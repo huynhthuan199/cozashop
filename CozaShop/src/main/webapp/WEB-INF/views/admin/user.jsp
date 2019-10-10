@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,20 +24,17 @@
 <link href="/resources/admin/vendors/nprogress/nprogress.css"
 	rel="stylesheet">
 <!-- iCheck -->
-<link
-	href="/resources/admin/vendors/iCheck/skins/flat/green.css"
+<link href="/resources/admin/vendors/iCheck/skins/flat/green.css"
 	rel="stylesheet">
 <!-- bootstrap-wysiwyg -->
 <link
 	href="/resources/admin/vendors/google-code-prettify/bin/prettify.min.css"
 	rel="stylesheet">
 <!-- Select2 -->
-<link
-	href="/resources/admin/vendors/select2/dist/css/select2.min.css"
+<link href="/resources/admin/vendors/select2/dist/css/select2.min.css"
 	rel="stylesheet">
 <!-- Switchery -->
-<link
-	href="/resources/admin/vendors/switchery/dist/switchery.min.css"
+<link href="/resources/admin/vendors/switchery/dist/switchery.min.css"
 	rel="stylesheet">
 <!-- starrr -->
 <link href="/resources/admin/vendors/starrr/dist/starrr.css"
@@ -48,8 +45,7 @@
 	rel="stylesheet">
 
 <!-- Custom Theme Style -->
-<link href="/resources/admin/build/css/custom.min.css"
-	rel="stylesheet">
+<link href="/resources/admin/build/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -106,10 +102,18 @@
 									<div class="x_content">
 										<br />
 										<div class="col-sm-6">
+
 											<div class="form-group">
 												<label class="control-label" for="first-name">Id <span
 													class="required">*</span>
-												</label> <input name="showid" type="text" id="first-name"
+												</label> <input name="id" type="text" id="first-name"
+													required="required" class="form-control"
+													value="${editID.id }">
+											</div>
+											<div class="form-group">
+												<label class="control-label" for="first-name">Id <span
+													class="required">*</span>
+												</label> <input name="username" type="text" id="first-name"
 													required="required" class="form-control"
 													value="${editID.username }">
 											</div>
@@ -186,6 +190,7 @@
 										<tr class="headings">
 											<th class="column-title">STT</th>
 											<th class="column-title">ID</th>
+											<th class="column-title">Username</th>
 											<th class="column-title">Password</th>
 											<th class="column-title">Họ tên</th>
 											<th class="column-title">Vai trò</th>
@@ -194,42 +199,43 @@
 									</thead>
 
 									<tbody>
-										<c:if test="${empty txtSearch}">
+<%-- 										<c:if test="${empty txtSearch}"> --%>
 											<c:set var="salary" scope="session" value="${0}" />
 											<c:forEach var="users" items="${listusers}">
 												<tr class="even pointer">
 													<td class=" ">${salary + 1}</td>
+													<td class=" ">${users.id}</td>
 													<td class=" ">${users.username}</td>
-													<input type="hidden" name="id" value="${users.username}">
+													<input type="hidden" name="id" value="${users.id}">
 													<td class=" ">${users.password }</td>
 													<td class=" ">${users.name }</td>
 													<td class=" ">${users.rules }</td>
 													<td class=" ">
 														<button type="button" class="btn btn-warning">
-															<a href="btnedit.htm?edit=&id=${users.username }"><i
+															<a href="?edit=&id=${users.id }"><i
 																class="fa fa-pencil"> Sửa</i></a>
 														</button>
 													</td>
 												</tr>
 											</c:forEach>
-										</c:if>
-										<c:if test="${not empty txtSearch}">
+<%-- 										</c:if> --%>
+<%-- 										<c:if test="${not empty txtSearch}">
 											<tr class="even pointer">
-												<td class=" ">${listuser}</td>
+												<td class=" ">${listuser.id}</td>
 												<td class=" ">${listuser.username}</td>
-												<input type="hidden" name="id" value="${users.username}">
+												<input type="hidden" name="id" value="${users.id}">
 												<td class=" ">${listuser.password }</td>
 												<td class=" ">${listuser.name }</td>
 												<td class=" ">${listuser.rules }</td>
 												<td class=" ">
 													<button type="button" class="btn btn-warning">
-														<a href="btnedit.htm?edit=&id=${listuser.username }"><i
+														<a href="?edit=&username=${listuser.username }"><i
 															class="fa fa-pencil"> Sửa</i></a>
 													</button>
 												</td>
 											</tr>
 											<hr>
-										</c:if>
+										</c:if> --%>
 									</tbody>
 								</table>
 							</div>
@@ -246,6 +252,31 @@
 	<!-- /footer content -->
 	</div>
 	</div>
+	<!-- Large modal -->
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+
+                  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                          </button>
+                          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                          <h4>Text in a modal</h4>
+                          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                          <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
 	<!-- jQuery -->
 	<script src="/resources/admin/vendors/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap -->
@@ -267,25 +298,21 @@
 	<!-- bootstrap-wysiwyg -->
 	<script
 		src="/resources/admin/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-	<script
-		src="/resources/admin/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+	<script src="/resources/admin/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
 	<script
 		src="/resources/admin/vendors/google-code-prettify/src/prettify.js"></script>
 	<!-- jQuery Tags Input -->
 	<script
 		src="/resources/admin/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
 	<!-- Switchery -->
-	<script
-		src="/resources/admin/vendors/switchery/dist/switchery.min.js"></script>
+	<script src="/resources/admin/vendors/switchery/dist/switchery.min.js"></script>
 	<!-- Select2 -->
 	<script
 		src="/resources/admin/vendors/select2/dist/js/select2.full.min.js"></script>
 	<!-- Parsley -->
-	<script
-		src="/resources/admin/vendors/parsleyjs/dist/parsley.min.js"></script>
+	<script src="/resources/admin/vendors/parsleyjs/dist/parsley.min.js"></script>
 	<!-- Autosize -->
-	<script
-		src="/resources/admin/vendors/autosize/dist/autosize.min.js"></script>
+	<script src="/resources/admin/vendors/autosize/dist/autosize.min.js"></script>
 	<!-- jQuery autocomplete -->
 	<script
 		src="/resources/admin/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
