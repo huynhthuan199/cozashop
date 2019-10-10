@@ -4,7 +4,7 @@
 <div class="col-md-3 left_col">
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title" style="border: 0;">
-			<a href="/home" class="site_title"><i class="fa fa-paw"></i> <span>Coza
+			<a href="/admin/home" class="site_title"><i class="fa fa-paw"></i> <span>Coza
 					Store</span></a>
 		</div>
 
@@ -13,7 +13,7 @@
 		<!-- menu profile quick info -->
 		<div class="profile clearfix">
 			<div class="profile_pic">
-				<img src="/spring-mvc/template/admin/images/img.jpg" alt="..."
+				<img src="/resources/admin/images/img.jpg" alt="..."
 					class="img-circle profile_img">
 			</div>
 			<div class="profile_info">
