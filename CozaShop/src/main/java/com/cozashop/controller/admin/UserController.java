@@ -18,6 +18,7 @@ public class UserController {
 	@GetMapping("user")
 	public String index(ModelMap model) {
 		model.addAttribute("txtSearch", "");
+		System.out.println(123);
 		model.addAttribute("listusers", userService.findAll());
 		return "admin/user";
 	}
