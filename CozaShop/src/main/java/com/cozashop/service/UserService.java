@@ -32,10 +32,21 @@ public class UserService {
 	}
 
 	public ApiResponse save(User user) {
-		if (userRepository.existsByUsername(user.getUsername())) {
-			return new ApiResponse(Status.warning, user.getUsername() + " ");
+		if(user.getName().equals("") && user.getUsername().equals("")) {
+			return new ApiResponse(Status.warning, user.getName() + " - Không được để trống họ tên </br>- Không được để trống tài khoản");
+		}else if(user.getName().equals("")) {
+			return new ApiResponse(Status.warning, user.getName() + " Không được để trống Họ Tên ...");
+		}else if(user.getUsername().equals("")) {
+			return new ApiResponse(Status.warning, user.getUsername() + " Không được để trống tài khoản ...");
+		}else if(String.valueOf(user.isEnabled()).equals("")) {
+			return new ApiResponse(Status.warning, user.getName() + " Vui lòng tích chọn tình trạng ...");
+		}else if(String.valueOf(user.isRules()).equals("")) {
+			return new ApiResponse(Status.warning, user.getName() + " Vui lòng tích chọn vai trò ...");
+		}else if (userRepository.existsByUsername(user.getUsername())) {
+			return new ApiResponse(Status.warning, user.getUsername() + " Đã tồn tại trong hệ thống...");
 		}
-		return new ApiResponse(Status.success, "Them thanh cong");
+		userRepository.save(user);
+		return new ApiResponse(Status.success, "Thêm thành công...");
 	}
 
 	public String delete(int id) {

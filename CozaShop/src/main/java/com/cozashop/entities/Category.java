@@ -22,7 +22,7 @@ public class Category extends BaseEntity  implements Serializable {
 	private String id;
 	private String name;
 
-	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade={CascadeType.ALL})
+	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
 	private Collection<Product> products;
 
 	public Category(String id, String name) {

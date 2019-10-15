@@ -40,9 +40,9 @@ public class UserController {
 //	Insert with ajax
 	@PostMapping(value = "user/btnInsert")
 	@ResponseBody
-	public ApiResponse insert(@RequestParam String username, @RequestParam String name) {
+	public ApiResponse insert(@RequestParam String username, @RequestParam String name, @RequestParam String rules, @RequestParam String enabled) {
 		return userService.save(new User(username, name, RandomStringUtils.randomAlphanumeric(10),
-				true, true, new Date()));
+				Boolean.parseBoolean(rules), Boolean.parseBoolean(enabled), new Date()));
 	}
 
 //	Delete with ajax

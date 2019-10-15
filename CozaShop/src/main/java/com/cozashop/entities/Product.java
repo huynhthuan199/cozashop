@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,11 +30,11 @@ public class Product extends BaseEntity implements Serializable {
 	private String image;
 	private String description;
 
-	@ManyToOne
-	@JoinColumn(name = "categoryid", nullable=false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "categoryid")
 	private Category category;
 
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "product" )
 	private Collection<OrderDetails> orderDetails;
 
 	public Product() {

@@ -1,19 +1,14 @@
 package com.cozashop.controller.admin;
 
-import java.util.Date;
-
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cozashop.entities.Category;
-import com.cozashop.entities.User;
 import com.cozashop.service.CategoryService;
 
 @Controller
@@ -33,11 +28,6 @@ public class CategoryController {
 	@GetMapping(value = "category/{id}")
 	@ResponseBody
 	public Category getbyid(@PathVariable("id") String id) {
-		System.out.println(id);
-		System.out.println(categoryService.finById(id));
-		System.out.println(categoryService.finById(id).getId());
-		System.out.println(categoryService.finById(id).getName());
-		System.out.println(categoryService.finById(id).getCreateAt());
 		return categoryService.finById(id);
 	}
 

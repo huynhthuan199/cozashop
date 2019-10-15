@@ -247,7 +247,7 @@
 						<div class="form-group">
 							<label class="control-label" for="first-name">CreatAt <span
 								class="required">*</span>
-							</label> <input id="CreatAt" type="text" id="first-name"
+							</label> <input id="creatAt" type="text" id="first-name"
 								required="required" class="form-control">
 						</div>
 					</div>
