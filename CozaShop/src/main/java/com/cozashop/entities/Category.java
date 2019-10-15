@@ -3,7 +3,9 @@ package com.cozashop.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -12,11 +14,15 @@ import javax.persistence.Table;
 @Table(name = "category")
 public class Category extends BaseEntity  implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5731256573258897472L;
 	@Id
 	private String id;
 	private String name;
 
-	@OneToMany(mappedBy = "category")
+	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade={CascadeType.ALL})
 	private Collection<Product> products;
 
 	public Category(String id, String name) {

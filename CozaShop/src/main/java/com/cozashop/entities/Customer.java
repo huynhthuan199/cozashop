@@ -1,6 +1,7 @@
 package com.cozashop.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +24,6 @@ public class Customer extends BaseEntity implements Serializable {
 
 	@Column(unique = true)
 	private String username;
-
 	private String name;
 	private String address;
 	private String password;
@@ -36,7 +36,7 @@ public class Customer extends BaseEntity implements Serializable {
 	}
 
 	public Customer(String username, String name, String address, String password, boolean gender, String email,
-			String phone) {
+			String phone, boolean enabled, Date createAt) {
 		super();
 		this.username = username;
 		this.name = name;
@@ -45,6 +45,23 @@ public class Customer extends BaseEntity implements Serializable {
 		this.gender = gender;
 		this.email = email;
 		this.phone = phone;
+		this.enabled = enabled;
+		this.createAt = createAt;
+	}
+	
+	public Customer(String username, String name, String address, String password, boolean gender, String email,
+			String phone, boolean enabled, Date createAt,int id) {
+		super();
+		this.username = username;
+		this.name = name;
+		this.address = address;
+		this.password = password;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.enabled = enabled;
+		this.createAt = createAt;
+		this.id = id;
 	}
 
 	public String getUsername() {
