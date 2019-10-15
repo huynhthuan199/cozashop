@@ -33,12 +33,10 @@
 	href="/resources/admin/vendors/google-code-prettify/bin/prettify.min.css"
 	rel="stylesheet">
 <!-- Select2 -->
-<link
-	href="/resources/admin/vendors/select2/dist/css/select2.min.css"
+<link href="/resources/admin/vendors/select2/dist/css/select2.min.css"
 	rel="stylesheet">
 <!-- Switchery -->
-<link
-	href="/resources/admin/vendors/switchery/dist/switchery.min.css"
+<link href="/resources/admin/vendors/switchery/dist/switchery.min.css"
 	rel="stylesheet">
 <!-- starrr -->
 <link href="/resources/admin/vendors/starrr/dist/starrr.css"
@@ -48,8 +46,11 @@
 	href="/resources/admin/vendors/bootstrap-daterangepicker/daterangepicker.css"
 	rel="stylesheet">
 <!-- Custom Theme Style -->
-<link href="/resources/admin//build/css/custom.min.css"
-	rel="stylesheet">
+<link href="/resources/admin//build/css/custom.min.css" rel="stylesheet">
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+	rel="stylesheet" />
 </head>
 
 <body class="nav-md">
@@ -107,44 +108,41 @@
 								<br />
 								<div class="col-sm-4">
 									<div class="form-group">
-										<label class="control-label" for="first-name">Tên danh
-											mục <span class="required">*</span>
-										</label> <input type="text" id="first-name" required="required"
-											class="form-control">
+										<label class="control-label" for="first-name">Id <span
+											class="required">*</span>
+										</label> <input id="addId" type="text" id="first-name"
+											required="required" class="form-control">
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label class="control-label" for="first-name">Name <span
+											class="required">*</span>
+										</label> <input id="addName" type="text" id="first-name"
+											required="required" class="form-control">
 									</div>
 								</div>
 
 								<div class="col-sm-4">
-									<div class="form-group">
-										<label class="control-label" for="first-name">Mã danh
-											mục <span class="required">*</span>
-										</label> <input type="text" id="first-name" required="required"
-											class="form-control">
+									<div>
+										<label class="control-label" for="first-name">Status <span
+											class="required">*</span>
+										</label>
 									</div>
-								</div>
-
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label class="control-label" for="first-name">Tình
-											trạng <span class="required">*</span>
-										</label> <select id="first-name" required="required"
-											class="form-control">
-											<option>Bật</option>
-											<option>Tắt</option>
-										</select>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input"
+											id="enabled_true" name="addenabled"> <label
+											class="custom-control-label" value="true"">On</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" class="custom-control-input"
+											id="enabled_false" name="addenabled"> <label
+											class="custom-control-label" value="false">Off</label>
 									</div>
 								</div>
 								<button type="button" class="btn btn-primary"
 									style="float: right; margin-top: 20px">
-									<i class="fa fa-refresh"> Thêm</i>
-								</button>
-								<button type="button" class="btn btn-danger"
-									style="float: right; margin-top: 20px">
-									<i class="fa fa-trash"> Xóa</i>
-								</button>
-								<button type="button" class="btn btn-success"
-									style="float: right; margin-top: 20px">
-									<i class="fa fa-inbox"> Lưu</i>
+									<i class="fa fa-refresh"> Insert</i>
 								</button>
 							</div>
 						</div>
@@ -155,7 +153,7 @@
 					<div class="col-md-6 col-xs-12">
 						<div class="x_panel" style="width: 1079px">
 							<div class="x_title">
-								<h2>Danh sách danh mục</h2>
+								<h2>List Category</h2>
 								<ul class="nav navbar-right panel_toolbox">
 									<li><a class="collapse-link"><i
 											class="fa fa-chevron-up"></i></a></li>
@@ -177,38 +175,30 @@
 									<table class="table table-striped jambo_table bulk_action">
 										<thead>
 											<tr class="headings">
-												<th class="column-title">STT</th>
-												<th class="column-title">Tên danh mục</th>
-												<th class="column-title">Mã danh mục</th>
-												<th class="column-title">Tình trạng</th>
-												<th class="column-title">Hành động</th>
+												<th class="column-title">Id</th>
+												<th class="column-title">Name</th>
+												<th class="column-title">Enabled</th>
+												<th class="column-title">CreatAt</th>
+												<th class="column-title">Action</th>
 												</th>
 										</thead>
 										</tr>
 
 										<tbody>
-											<tr class="even pointer">
-												<td class=" ">1</td>
-												<td class=" ">Áo sơ mi</td>
-												<td class=" ">SM001</td>
-												<td class=" ">Bật</td>
-												<td class=" ">
-													<button type="button" class="btn btn-warning">
-														<i class="fa fa-pencil"> Sửa</i>
-													</button>
-												</td>
-											</tr>
-											<tr class="even pointer">
-												<td class=" ">2</td>
-												<td class=" ">Áo thun</td>
-												<td class=" ">AT001</td>
-												<td class=" ">Tắt</td>
-												<td class=" ">
-													<button type="button" class="btn btn-warning">
-														<i class="fa fa-pencil"> Sửa</i>
-													</button>
-												</td>
-											</tr>
+											<c:forEach var="category" items="${listCategory}">
+												<tr class="even pointer">
+													<td class=" ">${category.id }</td>
+													<td class=" ">${category.name }</td>
+													<td class=" ">${category.enabled }</td>
+													<td class=" ">${category.createAt }</td>
+													<td class=" ">
+														<button type="button" class="btn btn-warning btnEdit"
+															data-id="${category.id }">
+															<i class="fa fa-pencil">Edit</i>
+														</button>
+													</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -226,9 +216,78 @@
 		<!-- /footer content -->
 	</div>
 	</div>
+
+	<!-- Large modal -->
+
+	<div id="edit-category" class="modal fade" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<!-- 			<form method="get"> -->
+			<div class="modal-content">
+				<div class="x_content">
+					<br />
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label" for="first-name">Id <span
+								class="required">*</span>
+							</label> <input id="id" type="text" id="first-name"
+								required="required" class="form-control">
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label" for="first-name">Name <span
+								class="required">*</span>
+							</label> <input id="name" type="text" id="first-name"
+								required="required" class="form-control">
+						</div>
+					</div>
+					
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label" for="first-name">CreatAt <span
+								class="required">*</span>
+							</label> <input id="CreatAt" type="text" id="first-name"
+								required="required" class="form-control">
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div>
+							<label class="control-label" for="first-name">Status <span
+								class="required">*</span>
+							</label>
+						</div>
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" class="custom-control-input"
+								id="enabled_true" name="enabled"> <label
+								class="custom-control-label" value="true"">On</label>
+						</div>
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" class="custom-control-input"
+								id="enabled_false" name="enabled"> <label
+								class="custom-control-label" value="false">Off</label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success btnUpdate"
+						name="btnUpdate" style="float: right; margin-top: 20px">
+						<i class="fa fa-inbox"> Save</i>
+					</button>
+					<button type="button" class="btn btn-danger btnDelete"
+						name="btnDelete" style="float: right; margin-top: 20px">
+						<i class="fa fa-trash"> Delete</i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- jQuery -->
 	<script src="/resources/admin/vendors/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<script
 		src="/resources/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!-- FastClick -->
@@ -247,25 +306,21 @@
 	<!-- bootstrap-wysiwyg -->
 	<script
 		src="/resources/admin/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-	<script
-		src="/resources/admin/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+	<script src="/resources/admin/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
 	<script
 		src="/resources/admin/vendors/google-code-prettify/src/prettify.js"></script>
 	<!-- jQuery Tags Input -->
 	<script
 		src="/resources/admin/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
 	<!-- Switchery -->
-	<script
-		src="/resources/admin/vendors/switchery/dist/switchery.min.js"></script>
+	<script src="/resources/admin/vendors/switchery/dist/switchery.min.js"></script>
 	<!-- Select2 -->
 	<script
 		src="/resources/admin/vendors/select2/dist/js/select2.full.min.js"></script>
 	<!-- Parsley -->
-	<script
-		src="/resources/admin/vendors/parsleyjs/dist/parsley.min.js"></script>
+	<script src="/resources/admin/vendors/parsleyjs/dist/parsley.min.js"></script>
 	<!-- Autosize -->
-	<script
-		src="/resources/admin/vendors/autosize/dist/autosize.min.js"></script>
+	<script src="/resources/admin/vendors/autosize/dist/autosize.min.js"></script>
 	<!-- jQuery autocomplete -->
 	<script
 		src="/resources/admin/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
@@ -274,5 +329,27 @@
 	<!-- Custom Theme Scripts -->
 	<script src="/resources/admin/build/js/custom.min.js"></script>
 
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+	
+	<!-- Edit  -->
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.btnEdit').click(function(){
+				$.ajax({
+					url : "category/" + $(this).data("id"),
+					type : "GET"
+				}).done(function(data){
+					$('#id').val(data.id);
+					$('#name').val(data.name);
+					$('#createAt').val(data.createAt);
+					console.log(data.createAt);
+					$('.enabled').prop("checked", true);	
+					$('#edit-category').modal('show');
+				}).fail(function(err){
+					console.log(err);
+				});
+			});
+		});
+	</script>
 </body>
 </html>

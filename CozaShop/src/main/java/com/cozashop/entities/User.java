@@ -1,6 +1,7 @@
 package com.cozashop.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,12 +24,24 @@ public class User extends BaseEntity implements Serializable {
 		super();
 	}
 
-	public User(String username, String name, String password, boolean rules) {
+	public User(int id, String username, String name, String password, boolean rules,boolean enabled) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.name = name;
+		this.password = password;
+		this.rules = rules;
+		this.enabled = enabled;
+	}
+
+	public User(String username, String name, String password, boolean rules,boolean enabled,Date createAt) {
 		super();
 		this.username = username;
 		this.name = name;
 		this.password = password;
 		this.rules = rules;
+		this.enabled = enabled;
+		this.createAt = createAt;
 	}
 
 	public String getUsername() {

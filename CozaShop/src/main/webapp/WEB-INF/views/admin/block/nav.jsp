@@ -17,7 +17,7 @@
 					class="img-circle profile_img">
 			</div>
 			<div class="profile_info">
-				<span>Xin chào,</span>
+				<span>Hello,</span>
 				<h2>ADMIN</h2>
 			</div>
 		</div>
@@ -35,20 +35,20 @@
 					<li><a><i class="fa fa-user"></i> Người dùng <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href="/user">Quản trị</a></li>
-							<li><a href="customer.htm">Khách hàng</a></li>
+							<li><a href="/admin/user">Quản trị</a></li>
+							<li><a href="/admin/customer">Khách hàng</a></li>
 						</ul></li>
 					<li><a><i class="fa fa-edit"></i> Sản phẩm <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href="infoproduct.htm">Thông tin sản phẩm</a></li>
-							<li><a href="categogy">Danh mục sản phẩm</a></li>
+							<li><a href="/admin/infoproduct">Thông tin sản phẩm</a></li>
+							<li><a href="/admin/category">Danh mục sản phẩm</a></li>
 						</ul></li>
 					<li><a><i class="fa fa-desktop"></i> Đơn hàng <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<!--                     <li><a href="general_elements.html">Phiếu giao hàng</a></li> -->
-							<li><a href="/order">Đơn hàng</a></li>
+							<li><a href="/admin/order">Đơn hàng</a></li>
 						</ul></li>
 					<li><a><i class="fa fa-bar-chart-o"></i> Thống kê <span
 							class="fa fa-chevron-down"></span></a>

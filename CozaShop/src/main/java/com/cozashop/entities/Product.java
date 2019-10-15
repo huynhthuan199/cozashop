@@ -30,7 +30,7 @@ public class Product extends BaseEntity implements Serializable {
 	private String description;
 
 	@ManyToOne
-	@JoinColumn(referencedColumnName = "id")
+	@JoinColumn(name = "categoryid", nullable=false)
 	private Category category;
 
 	@OneToMany(mappedBy = "product")

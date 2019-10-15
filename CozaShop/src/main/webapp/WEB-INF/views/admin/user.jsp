@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -46,6 +45,9 @@
 
 <!-- Custom Theme Style -->
 <link href="/resources/admin/build/css/custom.min.css" rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+	rel="stylesheet" />
 </head>
 
 <body class="nav-md">
@@ -55,35 +57,114 @@
 			<!-- top navigation -->
 			<%@ include file="./block/topnav.jsp"%>
 			<!-- /top navigation -->
-			<form method="post">
-				<!-- page content -->
-				<div class="right_col" role="main">
-					<div class="">
-						<div class="page-title">
-							<div class="title_left">
-								<h3>Tài khoản</h3>
-							</div>
-							<div class="title_right">
-								<div
-									class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-									<div class="input-group">
-										<input name="txtSearch" type="text" class="form-control"
-											placeholder="Search for..."> <span
-											class="input-group-btn">
-											<button type="submit" name="btnSearch"
-												class="btn btn-default">Go!</button>
-										</span>
-									</div>
+			<!-- page content -->
+			<div class="right_col" role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3>Users</h3>
+						</div>
+						<div class="title_right">
+							<div
+								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+								<div class="input-group">
+									<input id="txtSearch" name="txtSearch" type="text"
+										class="form-control" placeholder="Search With ID User...">
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default btnSearch">Go!</button>
+									</span>
 								</div>
 							</div>
 						</div>
-						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>Infomation Users</h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i
+												class="fa fa-chevron-up"></i></a></li>
+										<li class="dropdown"><a href="#" class="dropdown-toggle"
+											data-toggle="dropdown" role="button" aria-expanded="false"><i
+												class="fa fa-wrench"></i></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Settings 1</a></li>
+												<li><a href="#">Settings 2</a></li>
+											</ul></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+
+								<!-- 								<form method="post"> -->
+								<div class="x_content">
+									<br />
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="control-label" for="first-name">Username
+												<span class="required">*</span>
+											</label> <input id="addusername" name="addusername" type="text"
+												id="first-name" class="form-control" value="">
+										</div>
+										<div class="form-group">
+											<label class="control-label" for="first-name">Fullname
+												<span class="required">*</span>
+											</label> <input id="addname" name="addname" type="text"
+												id="first-name" class="form-control" value="">
+										</div>
+									</div>
+									<div class="col-sm-6" style="padding-left:  40px">
+
+										<div>
+											<label class="control-label" for="first-name">Rules <span
+												class="required">*</span>
+											</label>
+										</div>
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input"
+												id="rules_true" name="addrules" value="true"> <label
+												class="custom-control-label" >Manager</label>
+										</div>
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input"
+												id="rules_false" name="addrules" value="false"> <label
+												class="custom-control-label" >Employees</label>
+										</div>
+
+										<div>
+											<label class="control-label" for="first-name">Status
+												<span class="required">*</span>
+											</label>
+										</div>
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input"
+												id="enabled_true" name="addenabled" value="true"> <label
+												class="custom-control-label" >On</label>
+										</div>
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" class="custom-control-input"
+												id="enabled_false" name="addenabled" value="false"> <label
+												class="custom-control-label" >Off</label>
+										</div>
+									</div>
+									<button type="submit" class="btn btn-primary btnInsert"
+										name="btnInsert" style="float: right; margin-top: 20px">
+										<i class="fa fa-refresh"> Insert</i>
+									</button>
+								</div>
+							</div>
+						</div>
 
 						<div class="row">
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="x_panel">
+							<div class="col-md-12 col-xs-12">
+								<div class="x_panel" style="width: 1112px">
 									<div class="x_title">
-										<h2>Thông tin tài khoản</h2>
+										<h2>List Users</h2>
+
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
 													class="fa fa-chevron-up"></i></a></li>
@@ -94,231 +175,383 @@
 													<li><a href="#">Settings 1</a></li>
 													<li><a href="#">Settings 2</a></li>
 												</ul></li>
-											<li><a class="close-link"><i class="fa fa-close"></i></a>
-											</li>
+											<li><a class="close-link"><i class="fa fa-close"></i></a></li>
 										</ul>
 										<div class="clearfix"></div>
-									</div>
-									<div class="x_content">
-										<br />
-										<div class="col-sm-6">
 
-											<div class="form-group">
-												<label class="control-label" for="first-name">Id <span
-													class="required">*</span>
-												</label> <input name="id" type="text" id="first-name"
-													required="required" class="form-control"
-													value="${editID.id }">
-											</div>
-											<div class="form-group">
-												<label class="control-label" for="first-name">Id <span
-													class="required">*</span>
-												</label> <input name="username" type="text" id="first-name"
-													required="required" class="form-control"
-													value="${editID.username }">
-											</div>
-											<div class="form-group">
-												<label class="control-label" for="first-name">Pasword<span
-													class="required">*</span>
-												</label> <input name="pass" type="text" id="first-name"
-													required="required" class="form-control"
-													value="${editID.password }">
-											</div>
+									</div>
+									<div class="x_content" style="margin-top: -20px">
+
+										<br />
+										<div class="table-responsive">
+											<table class="table table-striped jambo_table bulk_action">
+												<thead>
+													<tr class="headings">
+														<th class="column-title">Id</th>
+														<th class="column-title">Username</th>
+														<th class="column-title">Password</th>
+														<th class="column-title">Fullname</th>
+														<th class="column-title">Rules</th>
+														<th class="column-title">CreateAt</th>
+														<th class="column-title">Status</th>
+														<th class="column-title">Action</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<c:forEach var="users" items="${listusers}">
+														<tr class="even pointer">
+															<td class=" ">${users.id}</td>
+															<td class=" ">${users.username}</td>
+															<input type="hidden" name="id" value="${users.id}">
+															<td class=" ">${users.password }</td>
+															<td class=" ">${users.name }</td>
+															<td class=" ">${users.rules }</td>
+															<td class=" ">${users.createAt}</td>
+															<td class=" ">${users.enabled}</td>
+															<td class=" ">
+																<button type="button" data-id="${users.id }"
+																	class="btn btn-warning edituser">
+																	<i class="fa fa-pencil"> Edit</i>
+																</button>
+															</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
 										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label class="control-label" for="first-name">Họ tên
-													<span class="required">*</span>
-												</label> <input name="name" type="text" id="first-name"
-													required="required" class="form-control"
-													value="${editID.name }">
-											</div>
-											<div class="form-group">
-												<label class="control-label" for="first-name">Vai
-													trò <span class="required">*</span>
-												</label> <input class="form-control"
-													${editID.rules=='true'?'checked':''} type="radio"
-													name="rules" value="true"> Quản Lý<br> <input
-													class="form-control" ${editID.rules=='false'?'checked':''}
-													type="radio" name="rules" value="false"> Nhân Viên<br>
-											</div>
-										</div>
-										<button type="submit" class="btn btn-primary" name="btnInsert"
-											style="float: right; margin-top: 20px">
-											<i class="fa fa-refresh"> Thêm</i>
-										</button>
-										<button type="submit" class="btn btn-danger" name="btnDelete"
-											style="float: right; margin-top: 20px">
-											<i class="fa fa-trash"> Xóa</i>
-										</button>
-										<button type="submit" class="btn btn-success" name="btnUpdate"
-											style="float: right; margin-top: 20px">
-											<i class="fa fa-inbox"> Lưu</i>
-										</button>
 									</div>
 								</div>
 							</div>
 						</div>
-			</form>
-			<div class="row">
-				<div class="col-md-6 col-xs-12">
-					<div class="x_panel" style="width: 1079px">
-						<div class="x_title">
-							<h2>Danh sách tài khoản</h2>
+					</div>
+				</div>
+				<!-- /page content -->
 
-							<ul class="nav navbar-right panel_toolbox">
-								<li><a class="collapse-link"><i
-										class="fa fa-chevron-up"></i></a></li>
-								<li class="dropdown"><a href="#" class="dropdown-toggle"
-									data-toggle="dropdown" role="button" aria-expanded="false"><i
-										class="fa fa-wrench"></i></a>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="#">Settings 1</a></li>
-										<li><a href="#">Settings 2</a></li>
-									</ul></li>
-								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-							</ul>
-							<div class="clearfix"></div>
+				<!-- footer content -->
+				<%@ include file="./block/footer.jsp"%>
+				<!-- /footer content -->
+			</div>
+		</div>
+		<!-- Large modal -->
 
+		<div id="edit-user" class="modal fade" tabindex="-1" role="dialog"
+			aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<!-- 			<form method="get"> -->
+				<div class="modal-content">
+					<div class="x_content">
+						<br />
+						<div class="col-sm-6">
+
+							<div class="form-group">
+								<label class="control-label" for="first-name">Id <span
+									class="required">*</span>
+								</label> <input readonly id="id" name="id" type="text" id="first-name"
+									required="required" class="form-control" value="">
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="first-name">Username <span
+									class="required">*</span>
+								</label> <input id="username" name="username" type="text"
+									id="first-name" required="required" class="form-control"
+									value="">
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="first-name">Password<span
+									class="required">*</span>
+								</label> <input id="password" name="password" type="text"
+									id="first-name" required="required" class="form-control"
+									value="">
+							</div>
+
+							<div class="form-group">
+								<label class="control-label" for="first-name">CreateAt<span
+									class="required">*</span>
+								</label> <input readonly id="createAt" name="createAt" type="datetime"
+									id="first-name" required="required" class="form-control"
+									value="">
+							</div>
 						</div>
-						<div class="x_content" style="margin-top: -20px">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label" for="first-name">Fullname <span
+									class="required">*</span>
+								</label> <input id="name" name="name" type="text" id="first-name"
+									required="required" class="form-control" value="">
+							</div>
+							<div style="margin-top: 20px">
+								<label class="control-label" for="first-name">Rules <span
+									class="required">*</span>
+								</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input" id="rules_true"
+									name="rules"> <label class="custom-control-label"
+									value="true"">Manager</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input"
+									id="rules_false" name="rules"> <label
+									class="custom-control-label" value="false">Employees</label>
+							</div>
 
-							<br />
-							<div class="table-responsive">
-								<table class="table table-striped jambo_table bulk_action">
-									<thead>
-										<tr class="headings">
-											<th class="column-title">STT</th>
-											<th class="column-title">ID</th>
-											<th class="column-title">Username</th>
-											<th class="column-title">Password</th>
-											<th class="column-title">Họ tên</th>
-											<th class="column-title">Vai trò</th>
-											<th class="column-title">Hành động</th>
-										</tr>
-									</thead>
-
-									<tbody>
-<%-- 										<c:if test="${empty txtSearch}"> --%>
-											<c:set var="salary" scope="session" value="${0}" />
-											<c:forEach var="users" items="${listusers}">
-												<tr class="even pointer">
-													<td class=" ">${salary + 1}</td>
-													<td class=" ">${users.id}</td>
-													<td class=" ">${users.username}</td>
-													<input type="hidden" name="id" value="${users.id}">
-													<td class=" ">${users.password }</td>
-													<td class=" ">${users.name }</td>
-													<td class=" ">${users.rules }</td>
-													<td class=" ">
-														<button type="button" class="btn btn-warning">
-															<a href="?edit=&id=${users.id }"><i
-																class="fa fa-pencil"> Sửa</i></a>
-														</button>
-													</td>
-												</tr>
-											</c:forEach>
-<%-- 										</c:if> --%>
-<%-- 										<c:if test="${not empty txtSearch}">
-											<tr class="even pointer">
-												<td class=" ">${listuser.id}</td>
-												<td class=" ">${listuser.username}</td>
-												<input type="hidden" name="id" value="${users.id}">
-												<td class=" ">${listuser.password }</td>
-												<td class=" ">${listuser.name }</td>
-												<td class=" ">${listuser.rules }</td>
-												<td class=" ">
-													<button type="button" class="btn btn-warning">
-														<a href="?edit=&username=${listuser.username }"><i
-															class="fa fa-pencil"> Sửa</i></a>
-													</button>
-												</td>
-											</tr>
-											<hr>
-										</c:if> --%>
-									</tbody>
-								</table>
+							<div>
+								<label class="control-label" for="first-name">Status <span
+									class="required">*</span>
+								</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input"
+									id="enabled_true" name="enabled"> <label
+									class="custom-control-label" value="true"">On</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" class="custom-control-input"
+									id="enabled_false" name="enabled"> <label
+									class="custom-control-label" value="false">Off</label>
 							</div>
 						</div>
 					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success btnUpdate"
+							name="btnUpdate" style="float: right; margin-top: 20px">
+							<i class="fa fa-inbox"> Save</i>
+						</button>
+						<button type="button" class="btn btn-danger btnDelete"
+							name="btnDelete" style="float: right; margin-top: 20px">
+							<i class="fa fa-trash"> Delete</i>
+						</button>
+					</div>
 				</div>
+				<!-- 			</form> -->
 			</div>
 		</div>
-	</div>
-	<!-- /page content -->
+		<!-- jQuery -->
+		<script src="/resources/admin/vendors/jquery/dist/jquery.min.js"></script>
+		<!-- jQuery -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+		<!-- Bootstrap -->
+		<script
+			src="/resources/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="/resources/admin/vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="/resources/admin/vendors/nprogress/nprogress.js"></script>
+		<!-- bootstrap-progressbar -->
+		<script
+			src="/resources/admin/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+		<!-- iCheck -->
+		<script src="/resources/admin/vendors/iCheck/icheck.min.js"></script>
+		<!-- bootstrap-daterangepicker -->
+		<script src="/resources/admin/vendors/moment/min/moment.min.js"></script>
+		<script
+			src="/resources/admin/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+		<!-- bootstrap-wysiwyg -->
+		<script
+			src="/resources/admin/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+		<script
+			src="/resources/admin/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+		<script
+			src="/resources/admin/vendors/google-code-prettify/src/prettify.js"></script>
+		<!-- jQuery Tags Input -->
+		<script
+			src="/resources/admin/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+		<!-- Switchery -->
+		<script src="/resources/admin/vendors/switchery/dist/switchery.min.js"></script>
+		<!-- Select2 -->
+		<script
+			src="/resources/admin/vendors/select2/dist/js/select2.full.min.js"></script>
+		<!-- Parsley -->
+		<script src="/resources/admin/vendors/parsleyjs/dist/parsley.min.js"></script>
+		<!-- Autosize -->
+		<script src="/resources/admin/vendors/autosize/dist/autosize.min.js"></script>
+		<!-- jQuery autocomplete -->
+		<script
+			src="/resources/admin/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+		<!-- starrr -->
+		<script src="/resources/admin/vendors/starrr/dist/starrr.js"></script>
+		<!-- Custom Theme Scripts -->
+		<script src="/resources/admin/build/js/custom.min.js"></script>
 
-	<!-- footer content -->
-	<%@ include file="./block/footer.jsp"%>
-	<!-- /footer content -->
-	</div>
-	</div>
-	<!-- Large modal -->
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
-
-                  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                          </button>
-                          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                        </div>
-                        <div class="modal-body">
-                          <h4>Text in a modal</h4>
-                          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                          <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-	<!-- jQuery -->
-	<script src="/resources/admin/vendors/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script
-		src="/resources/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- FastClick -->
-	<script src="/resources/admin/vendors/fastclick/lib/fastclick.js"></script>
-	<!-- NProgress -->
-	<script src="/resources/admin/vendors/nprogress/nprogress.js"></script>
-	<!-- bootstrap-progressbar -->
-	<script
-		src="/resources/admin/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-	<!-- iCheck -->
-	<script src="/resources/admin/vendors/iCheck/icheck.min.js"></script>
-	<!-- bootstrap-daterangepicker -->
-	<script src="/resources/admin/vendors/moment/min/moment.min.js"></script>
-	<script
-		src="/resources/admin/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<!-- bootstrap-wysiwyg -->
-	<script
-		src="/resources/admin/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-	<script src="/resources/admin/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-	<script
-		src="/resources/admin/vendors/google-code-prettify/src/prettify.js"></script>
-	<!-- jQuery Tags Input -->
-	<script
-		src="/resources/admin/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-	<!-- Switchery -->
-	<script src="/resources/admin/vendors/switchery/dist/switchery.min.js"></script>
-	<!-- Select2 -->
-	<script
-		src="/resources/admin/vendors/select2/dist/js/select2.full.min.js"></script>
-	<!-- Parsley -->
-	<script src="/resources/admin/vendors/parsleyjs/dist/parsley.min.js"></script>
-	<!-- Autosize -->
-	<script src="/resources/admin/vendors/autosize/dist/autosize.min.js"></script>
-	<!-- jQuery autocomplete -->
-	<script
-		src="/resources/admin/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-	<!-- starrr -->
-	<script src="/resources/admin/vendors/starrr/dist/starrr.js"></script>
-	<!-- Custom Theme Scripts -->
-	<script src="/resources/admin/build/js/custom.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<script type="text/javascript">
+		
+			toastr.options = {
+			  "closeButton": false,
+			  "debug": false,
+			  "newestOnTop": true,
+			  "progressBar": true,
+			  "positionClass": "toast-top-right",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "5000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+			}
+			</script>
+		<!-- Insert  -->
+		<script type="text/javascript">
+$(document).ready(function(){
+	$('.btnInsert').click(function(){
+	var addusername = $('#addusername').val();
+	console.log(addusername);
+	var addname = $('#addname').val();
+	var addrules = $("input[name='addrules']:checked").val();
+	var addenabled = $("input[name='addenabled']:checked").val();
+	console.log(addrules);
+	console.log(addenabled);
+ 		$.ajax({
+ 			type : "POST",
+			url : "user/btnInsert",
+			data : {  
+				 username : addusername,
+				 name : addname,
+				 rules : addrules,
+				 enabled : addenabled
+			} 
+		}).done(function(data){
+				Command: toastr[data.status](data.message, "Thông Báo");
+				if(data.status == 'success'){
+					location.reload();
+				} 		
+		}).fail(function(err){
+			console.log(err);
+			Command: toastr["warning"]("Thêm thất bại", "Thông Báo")
+		}); 
+	});
+});
+</script>
+		<!-- Edit  -->
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.edituser').click(function(){
+				$.ajax({
+					url : "user/" + $(this).data("id"),
+					type : "GET"
+				}).done(function(data){
+					$('#id').val(data.id);
+					$('#username').val(data.username);
+					$('#name').val(data.name);
+					$('#password').val(data.password);
+					$('#createAt').val(data.createAt);
+					console.log(data.enabled);
+					console.log(data.rules);
+					$('.enabled').prop("checked", data.enabled);
+					$('.rules').prop("checked", data.rules);
+					/*  data.rules ? $('#rules_true').prop("checked", true) : $('#rules_false').prop("checked", false); */		
+					$('#edit-user').modal('show');
+				}).fail(function(err){
+					console.log(err);
+				});
+			});
+		});
+	</script>
+		<!-- Delete  -->
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.btnDelete').click(function(){
+				Swal.fire({
+					  title: 'Bạn Có Chắc?',
+					  text: " Xóa sẽ không khôi phục được...",
+					  type: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Yes, delete it!'
+					}).then((result) => {
+						console.log(result);
+						if(result){
+							var id = $('#id').val();
+							$.ajax({
+								url : "user/btnDelete",
+								type : "GET",
+								data : {
+									id : id
+								}
+							}).done(function(data){
+								if(data != null ){
+								Command: toastr["success"]("Xóa Thành Công", "Thông Báo")
+							location.reload();
+							}else if(data == null){
+								Command: toastr["warning"]("Xóa thất bại", "Thông Báo")
+							}
+							}).fail(function(err){
+								console.log(err);
+							});
+						}	
+					})
+			});
+		});
+	</script>
+		<!-- Search  -->
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.btnSearch').click(function(){
+				var id = $("#txtSearch").val();
+				$.ajax({
+					url : "user/" + id,
+					type : "GET"
+				}).done(function(data){
+					if(data != null){
+						Command: toastr["success"]("Có thông tin User", "Thông Báo")
+					$('#id').val(data.id);
+					$('#username').val(data.username);
+					$('#name').val(data.name);
+					$('#password').val(data.password);
+					$('#createAt').val(data.createAt);
+					console.log(data.enabled);
+					console.log(data.rules);
+					$('.enabled').prop("checked", true);
+					$('.rules').prop("checked", false);
+					/*  data.rules ? $('#rules_true').prop("checked", true) : $('#rules_false').prop("checked", false); */		
+					$('#edit-user').modal('show');
+				}
+				}).fail(function(err){
+					Command: toastr["warning"]("Không tồn tại User", "Thông Báo")
+				});
+			});
+		});
+	</script>
+		<!-- Update -->
+		<script type="text/javascript">
+$(document).ready(function(){
+	$('.btnUpdate').click(function(){
+	var id = $('#id').val();
+	var username = $('#username').val();
+	var password = $('#password').val();
+	var name = $('#name').val();
+	var rules = $("input[name='rules']:checked").val();
+	var enabled = $("input[name='enabled']:checked").val();
+ 		$.ajax({
+ 			type : "GET",
+			url : "user/btnUpdate",
+			data : {
+				 id : id,
+				 username : username,
+				 password : password,
+				 name : name,
+				 rules : rules,
+				 enabled : enabled
+			} 
+		}).done(function(data){
+			console.log(data);
+				if(data){
+					Command: toastr["success"]("Sửa Thành Công", "Thông Báo")
+				location.reload();
+				}		
+		}).fail(function(err){
+			console.log(err);
+			Command: toastr["warning"]("Sửa thất bại", "Thông Báo")
+		}); 
+	});
+});
+</script>
 </body>
 </html>

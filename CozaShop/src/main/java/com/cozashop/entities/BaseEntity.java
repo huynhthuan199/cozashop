@@ -13,7 +13,7 @@ public abstract class BaseEntity{
 	
 	@Column(name = "enabled")
 	protected boolean enabled = true;
-
+ 
 	public Date getCreateAt() {
 		return createAt;
 	}
