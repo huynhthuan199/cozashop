@@ -117,7 +117,7 @@
 												id="first-name" class="form-control" value="">
 										</div>
 									</div>
-									<div class="col-sm-6" style="padding-left:  40px">
+									<div class="col-sm-6" style="padding-left: 40px">
 
 										<div>
 											<label class="control-label" for="first-name">Rules <span
@@ -127,12 +127,12 @@
 										<div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input"
 												id="rules_true" name="addrules" value="true"> <label
-												class="custom-control-label" >Manager</label>
+												class="custom-control-label">Manager</label>
 										</div>
 										<div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input"
 												id="rules_false" name="addrules" value="false"> <label
-												class="custom-control-label" >Employees</label>
+												class="custom-control-label">Employees</label>
 										</div>
 
 										<div>
@@ -143,18 +143,19 @@
 										<div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input"
 												id="enabled_true" name="addenabled" value="true"> <label
-												class="custom-control-label" >On</label>
+												class="custom-control-label">On</label>
 										</div>
 										<div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input"
-												id="enabled_false" name="addenabled" value="false"> <label
-												class="custom-control-label" >Off</label>
+												id="enabled_false" name="addenabled" value="false">
+											<label class="custom-control-label">Off</label>
 										</div>
 									</div>
 									<button type="submit" class="btn btn-primary btnInsert"
 										name="btnInsert" style="float: right; margin-top: 20px">
 										<i class="fa fa-refresh"> Insert</i>
 									</button>
+
 								</div>
 							</div>
 						</div>
@@ -213,6 +214,11 @@
 																<button type="button" data-id="${users.id }"
 																	class="btn btn-warning edituser">
 																	<i class="fa fa-pencil"> Edit</i>
+																</button>
+
+																<button type="button"  class="btn btn-danger btnDelete"
+																	name="btnDelete" data-id="${users.id }">
+																	<i class="fa fa-trash"> Delete</i>
 																</button>
 															</td>
 														</tr>
@@ -398,15 +404,13 @@
 			</script>
 		<!-- Insert  -->
 		<script type="text/javascript">
-$(document).ready(function(){
+	$(document).ready(function(){
 	$('.btnInsert').click(function(){
 	var addusername = $('#addusername').val();
 	console.log(addusername);
 	var addname = $('#addname').val();
 	var addrules = $("input[name='addrules']:checked").val();
 	var addenabled = $("input[name='addenabled']:checked").val();
-	console.log(addrules);
-	console.log(addenabled);
  		$.ajax({
  			type : "POST",
 			url : "user/btnInsert",
@@ -455,9 +459,9 @@ $(document).ready(function(){
 	</script>
 		<!-- Delete  -->
 		<script type="text/javascript">
-		$(document).ready(function(){
+		$(document).ready(function(){		
 			$('.btnDelete').click(function(){
-				Swal.fire({
+					Swal.fire({
 					  title: 'Bạn Có Chắc?',
 					  text: " Xóa sẽ không khôi phục được...",
 					  type: 'warning',
@@ -468,17 +472,17 @@ $(document).ready(function(){
 					}).then((result) => {
 						console.log(result);
 						if(result){
-							var id = $('#id').val();
 							$.ajax({
 								url : "user/btnDelete",
 								type : "GET",
 								data : {
-									id : id
+									id : $(this).data("id")
 								}
-							}).done(function(data){
+							}).done((data) => {
 								if(data != null ){
 								Command: toastr["success"]("Xóa Thành Công", "Thông Báo")
-							location.reload();
+								$(this).parent().parent().remove();
+							 /* location.reload();  */
 							}else if(data == null){
 								Command: toastr["warning"]("Xóa thất bại", "Thông Báo")
 							}

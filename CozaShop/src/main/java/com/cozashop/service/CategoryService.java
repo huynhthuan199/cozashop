@@ -21,6 +21,6 @@ public class CategoryService{
 	}
 	
 	public Category finById(String id) {
-		return categoryRepository.getOne(id);
+		return categoryRepository.getCategory(id);
 	}
 }
