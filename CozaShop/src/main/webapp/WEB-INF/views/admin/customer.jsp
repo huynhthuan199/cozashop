@@ -152,7 +152,7 @@
 										</div>
 										<div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input"
-												id="addgender_flase" name="addgender" value="false"> <label
+												id="addgender_false" name="addgender" value="false"> <label
 												class="custom-control-label" >Women</label>
 										</div>
 										<div style="margin-top: 50px">
@@ -332,7 +332,7 @@
 										</div>
 										<div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input"
-												id="gender_flase" name="gender" value="false"> <label
+												id="gender_false" name="gender" value="false"> <label
 												class="custom-control-label" >Women</label>
 										</div>
 										<div style="margin-top: 20px">
@@ -412,7 +412,25 @@
 		<script src="/resources/admin/build/js/custom.min.js"></script>
 		
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
+		<script>
+			toastr.options = {
+		  					 "closeButton": false,
+		  					 "debug": false,
+		  					 "newestOnTop": false,
+		  					 "progressBar": true,
+		       				 "positionClass": "toast-top-right",
+		  					 "preventDuplicates": false,
+		  "onclick": null,
+		  "showDuration": "300",
+		  "hideDuration": "1000",
+		  "timeOut": "5000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut"
+		}
+		</script>
 		<!-- Edit  -->
 		<script type="text/javascript">
 			$(document).ready(function() {
@@ -431,7 +449,8 @@
 						$('#phone').val(data.phone);
 						$('#createAt').val(data.createAt);
 						$('#enabled').val(data.enabled);
-						$('.enabled').prop("checked", data.enabled);
+						data.enabled ? $('#enabled_true').prop("checked", true) : $('#enabled_false').prop("checked", true);
+						data.gender ? $('#gender_true').prop("checked", true) : $('#gender_false').prop("checked", true);
 						$('#edit-customer').modal('show');
 					}).fail(function(err) {
 						console.log(err);
@@ -445,120 +464,36 @@
 $(document).ready(function(){
 	$('.btnInsert').click(function(){
 	var addusername = $('#addusername').val();
-	if(addusername == ""){
-		Swal.fire({
-			  type: 'error',
-			  title: 'Thông Báo...',
-			  text: 'Không Được bỏ trống tài khoản !',
-			  footer: '<a href>Try it...</a>'
-			})
-			return;
-	}
 	var addname = $('#addname').val();
-	if(addname == ""){
-		Swal.fire({
-			  type: 'error',
-			  title: 'Thông Báo...',
-			  text: 'Không Được bỏ trống họ tên !',
-			  footer: '<a href>Try it...</a>'
-			})
-			return;
-	}
-	
 	var addphone = $('#addphone').val();
-	if(addname == ""){
-		Swal.fire({
-			  type: 'error',
-			  title: 'Thông Báo...',
-			  text: 'Không Được bỏ trống số diện thoại !',
-			  footer: '<a href>Try it...</a>'
-			})
-			return;
-	}
-	
 	var addemail = $('#addemail').val();
-	if(addname == ""){
-		Swal.fire({
-			  type: 'error',
-			  title: 'Thông Báo...',
-			  text: 'Không Được bỏ trống email !',
-			  footer: '<a href>Try it...</a>'
-			})
-			return;
-	}
-	
 	var addaddress = $('#addaddress').val();
-	if(addname == ""){
-		Swal.fire({
-			  type: 'error',
-			  title: 'Thông Báo...',
-			  text: 'Không Được bỏ trống địa chỉ !',
-			  footer: '<a href>Try it...</a>'
-			})
-			return;
-	}
-	
 	var addgender = $("input[name='addgender']:checked").val();
 	var addenabled = $("input[name='addenabled']:checked").val();
  		$.ajax({
  			type : "GET",
 			url : "customer/btnInsert",
 			data : {  
-				 addusername : addusername,
-				 addname : addname,
-				 addphone : addphone,
-				 addaddress : addaddress,
-				 addemail : addemail,
-				 addgender : addgender,
-				 addenabled : addenabled
+				 username : addusername,
+				 name : addname,
+				 phone : addphone,
+				 address : addaddress,
+				 email : addemail,
+				 gender : addgender,
+				 enabled : addenabled
 			} 
 		}).done(function(data){
 				if(data != null){
 					Command: toastr["success"]("Thêm Thành Công", "Thông Báo")
-					toastr.options = {
-					  "closeButton": false,
-					  "debug": false,
-					  "newestOnTop": false,
-					  "progressBar": true,
-					  "positionClass": "toast-top-right",
-					  "preventDuplicates": false,
-					  "onclick": null,
-					  "showDuration": "300",
-					  "hideDuration": "1000",
-					  "timeOut": "5000",
-					  "extendedTimeOut": "1000",
-					  "showEasing": "swing",
-					  "hideEasing": "linear",
-					  "showMethod": "fadeIn",
-					  "hideMethod": "fadeOut"
-					}
 				location.reload();
 				}		
 		}).fail(function(err){
 			console.log(err);
 			Command: toastr["warning"]("Thêm thất bại", "Thông Báo")
-			toastr.options = {
-			  "closeButton": false,
-			  "debug": false,
-			  "newestOnTop": true,
-			  "progressBar": true,
-			  "positionClass": "toast-top-right",
-			  "preventDuplicates": false,
-			  "onclick": null,
-			  "showDuration": "300",
-			  "hideDuration": "1000",
-			  "timeOut": "5000",
-			  "extendedTimeOut": "1000",
-			  "showEasing": "swing",
-			  "hideEasing": "linear",
-			  "showMethod": "fadeIn",
-			  "hideMethod": "fadeOut"
-			}
 		}); 
 	});
 });
 </script>
-
 		<!-- Update -->
 		<script type="text/javascript">
 $(document).ready(function(){
@@ -590,45 +525,11 @@ $(document).ready(function(){
 			console.log(data);
 				if(data != null){
 					Command: toastr["success"]("Sửa Thành Công", "Thông Báo")
-					toastr.options = {
-					  "closeButton": false,
-					  "debug": false,
-					  "newestOnTop": false,
-					  "progressBar": true,
-					  "positionClass": "toast-top-right",
-					  "preventDuplicates": false,
-					  "onclick": null,
-					  "showDuration": "300",
-					  "hideDuration": "1000",
-					  "timeOut": "5000",
-					  "extendedTimeOut": "1000",
-					  "showEasing": "swing",
-					  "hideEasing": "linear",
-					  "showMethod": "fadeIn",
-					  "hideMethod": "fadeOut"
-					}
 				location.reload();
 				}		
 		}).fail(function(err){
 			console.log(err);
 			Command: toastr["warning"]("Sửa thất bại", "Thông Báo")
-			toastr.options = {
-			  "closeButton": false,
-			  "debug": false,
-			  "newestOnTop": true,
-			  "progressBar": true,
-			  "positionClass": "toast-top-right",
-			  "preventDuplicates": false,
-			  "onclick": null,
-			  "showDuration": "300",
-			  "hideDuration": "1000",
-			  "timeOut": "5000",
-			  "extendedTimeOut": "1000",
-			  "showEasing": "swing",
-			  "hideEasing": "linear",
-			  "showMethod": "fadeIn",
-			  "hideMethod": "fadeOut"
-			}
 		}); 
 	});
 });
@@ -644,59 +545,28 @@ $(document).ready(function(){
 					  showCancelButton: true,
 					  confirmButtonColor: '#3085d6',
 					  cancelButtonColor: '#d33',
-					  confirmButtonText: 'Yes, delete it!'
+					  confirmButtonText: 'Xóa',
+					  confirmCancelText: 'Hủy'
 					}).then((result) => {
-						var id = $('#id').val();
-						$.ajax({
-							url : "customer/btnDelete",
-							type : "GET",
-							data : {
-								id : id
+						if(result){
+							var id = $('#id').val();
+							$.ajax({
+								url : "customer/btnDelete",
+								type : "GET",
+								data : {
+									id : id
+								}
+							}).done(function(data){
+								if(data != null ){
+								Command: toastr["success"]("Xóa Thành Công", "Thông Báo")
+								location.reload();
+							}else if(data == null){
+								Command: toastr["warning"]("Xóa thất bại", "Thông Báo")
 							}
-						}).done(function(data){
-							if(data != null ){
-							Command: toastr["success"]("Xóa Thành Công", "Thông Báo")
-							toastr.options = {
-							  "closeButton": false,
-							  "debug": false,
-							  "newestOnTop": false,
-							  "progressBar": true,
-							  "positionClass": "toast-top-right",
-							  "preventDuplicates": false,
-							  "onclick": null,
-							  "showDuration": "300",
-							  "hideDuration": "1000",
-							  "timeOut": "5000",
-							  "extendedTimeOut": "1000",
-							  "showEasing": "swing",
-							  "hideEasing": "linear",
-							  "showMethod": "fadeIn",
-							  "hideMethod": "fadeOut"
-							}
-						location.reload();
-						}else if(data == null){
-							Command: toastr["warning"]("Xóa thất bại", "Thông Báo")
-							toastr.options = {
-							  "closeButton": false,
-							  "debug": false,
-							  "newestOnTop": true,
-							  "progressBar": true,
-							  "positionClass": "toast-top-right",
-							  "preventDuplicates": false,
-							  "onclick": null,
-							  "showDuration": "300",
-							  "hideDuration": "1000",
-							  "timeOut": "5000",
-							  "extendedTimeOut": "1000",
-							  "showEasing": "swing",
-							  "hideEasing": "linear",
-							  "showMethod": "fadeIn",
-							  "hideMethod": "fadeOut"
-							}
+							}).fail(function(err){
+								console.log(err);
+							});
 						}
-						}).fail(function(err){
-							console.log(err);
-						});
 					})
 			});
 		});
@@ -711,25 +581,6 @@ $(document).ready(function(){
 					type : "GET"
 				}).done(function(data){
 					if(data != null){
-						Command: toastr["success"]("Có thông tin User", "Thông Báo")
-
-						toastr.options = {
-						  "closeButton": false,
-						  "debug": false,
-						  "newestOnTop": false,
-						  "progressBar": true,
-						  "positionClass": "toast-top-right",
-						  "preventDuplicates": false,
-						  "onclick": null,
-						  "showDuration": "300",
-						  "hideDuration": "1000",
-						  "timeOut": "5000",
-						  "extendedTimeOut": "1000",
-						  "showEasing": "swing",
-						  "hideEasing": "linear",
-						  "showMethod": "fadeIn",
-						  "hideMethod": "fadeOut"
-						}
 					$('#id').val(data.id);
 					$('#username').val(data.username);
 					$('#name').val(data.name);
@@ -739,30 +590,12 @@ $(document).ready(function(){
 					$('#email').val(data.email);
 					$('#phone').val(data.phone);
 					$('#createAt').val(data.createAt);
-					$('#enabled').val(data.enabled);
-					$('.enabled').prop("checked", data.enabled);
+					data.enabled ? $('#enabled_true').prop("checked", true) : $('#enabled_false').prop("checked", true);
+					data.gender ? $('#gender_true').prop("checked", true) : $('#gender_false').prop("checked", true);
 					$('#edit-customer').modal('show');
 				}
 				}).fail(function(err){
 					Command: toastr["warning"]("Không tồn tại User", "Thông Báo")
-
-					toastr.options = {
-					  "closeButton": false,
-					  "debug": false,
-					  "newestOnTop": true,
-					  "progressBar": true,
-					  "positionClass": "toast-top-right",
-					  "preventDuplicates": false,
-					  "onclick": null,
-					  "showDuration": "300",
-					  "hideDuration": "1000",
-					  "timeOut": "5000",
-					  "extendedTimeOut": "1000",
-					  "showEasing": "swing",
-					  "hideEasing": "linear",
-					  "showMethod": "fadeIn",
-					  "hideMethod": "fadeOut"
-					}
 				});
 			});
 		});

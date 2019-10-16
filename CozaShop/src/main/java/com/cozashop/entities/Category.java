@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.ISBN;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "category")
 public class Category extends BaseEntity  implements Serializable {
@@ -23,6 +27,7 @@ public class Category extends BaseEntity  implements Serializable {
 	private String name;
 
 	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Collection<Product> products;
 
 	public Category(String id, String name) {

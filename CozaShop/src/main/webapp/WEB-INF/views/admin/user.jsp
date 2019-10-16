@@ -126,12 +126,12 @@
 										</div>
 										<div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input"
-												id="rules_true" name="addrules" value="true"> <label
+												id="addrules_true" name="addrules" value="true"> <label
 												class="custom-control-label">Manager</label>
 										</div>
 										<div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input"
-												id="rules_false" name="addrules" value="false"> <label
+												id="addrules_false" name="addrules" value="false"> <label
 												class="custom-control-label">Employees</label>
 										</div>
 
@@ -142,12 +142,12 @@
 										</div>
 										<div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input"
-												id="enabled_true" name="addenabled" value="true"> <label
-												class="custom-control-label">On</label>
+												id="addenabled_true" name="addenabled" value="true">
+											<label class="custom-control-label">On</label>
 										</div>
 										<div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input"
-												id="enabled_false" name="addenabled" value="false">
+												id="addenabled_false" name="addenabled" value="false">
 											<label class="custom-control-label">Off</label>
 										</div>
 									</div>
@@ -216,7 +216,7 @@
 																	<i class="fa fa-pencil"> Edit</i>
 																</button>
 
-																<button type="button"  class="btn btn-danger btnDelete"
+																<button type="button" class="btn btn-danger btnDelete"
 																	name="btnDelete" data-id="${users.id }">
 																	<i class="fa fa-trash"> Delete</i>
 																</button>
@@ -293,13 +293,13 @@
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
 								<input type="radio" class="custom-control-input" id="rules_true"
-									name="rules"> <label class="custom-control-label"
-									value="true"">Manager</label>
+									name="rules" value="true"> <label class="custom-control-label"
+									>Manager</label>
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
 								<input type="radio" class="custom-control-input"
-									id="rules_false" name="rules"> <label
-									class="custom-control-label" value="false">Employees</label>
+									id="rules_false" name="rules" value="false"> <label
+									class="custom-control-label" >Employees</label>
 							</div>
 
 							<div>
@@ -309,13 +309,13 @@
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
 								<input type="radio" class="custom-control-input"
-									id="enabled_true" name="enabled"> <label
-									class="custom-control-label" value="true"">On</label>
+									id="enabled_true" name="enabled" value="true"> <label
+									class="custom-control-label" >On</label>
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
 								<input type="radio" class="custom-control-input"
-									id="enabled_false" name="enabled"> <label
-									class="custom-control-label" value="false">Off</label>
+									id="enabled_false" name="enabled" value="false"> <label
+									class="custom-control-label" >Off</label>
 							</div>
 						</div>
 					</div>
@@ -323,10 +323,6 @@
 						<button type="button" class="btn btn-success btnUpdate"
 							name="btnUpdate" style="float: right; margin-top: 20px">
 							<i class="fa fa-inbox"> Save</i>
-						</button>
-						<button type="button" class="btn btn-danger btnDelete"
-							name="btnDelete" style="float: right; margin-top: 20px">
-							<i class="fa fa-trash"> Delete</i>
 						</button>
 					</div>
 				</div>
@@ -445,11 +441,10 @@
 					$('#name').val(data.name);
 					$('#password').val(data.password);
 					$('#createAt').val(data.createAt);
-					console.log(data.enabled);
-					console.log(data.rules);
 					$('.enabled').prop("checked", data.enabled);
 					$('.rules').prop("checked", data.rules);
-					/*  data.rules ? $('#rules_true').prop("checked", true) : $('#rules_false').prop("checked", false); */		
+					data.rules ? $('#rules_true').prop("checked", true) : $('#rules_false').prop("checked", true);
+					data.enabled ? $('#enabled_true').prop("checked", true) : $('#enabled_false').prop("checked", true);
 					$('#edit-user').modal('show');
 				}).fail(function(err){
 					console.log(err);
@@ -468,10 +463,10 @@
 					  showCancelButton: true,
 					  confirmButtonColor: '#3085d6',
 					  cancelButtonColor: '#d33',
-					  confirmButtonText: 'Yes, delete it!'
+					  confirmButtonText: 'Xóa',
+					  cancelButtonText: "Hủy"
 					}).then((result) => {
-						console.log(result);
-						if(result){
+						if(result.value){
 							$.ajax({
 								url : "user/btnDelete",
 								type : "GET",
@@ -482,9 +477,6 @@
 								if(data != null ){
 								Command: toastr["success"]("Xóa Thành Công", "Thông Báo")
 								$(this).parent().parent().remove();
-							 /* location.reload();  */
-							}else if(data == null){
-								Command: toastr["warning"]("Xóa thất bại", "Thông Báo")
 							}
 							}).fail(function(err){
 								console.log(err);
@@ -510,11 +502,8 @@
 					$('#name').val(data.name);
 					$('#password').val(data.password);
 					$('#createAt').val(data.createAt);
-					console.log(data.enabled);
-					console.log(data.rules);
-					$('.enabled').prop("checked", true);
-					$('.rules').prop("checked", false);
-					/*  data.rules ? $('#rules_true').prop("checked", true) : $('#rules_false').prop("checked", false); */		
+					data.rules ? $('#rules_true').prop("checked", true) : $('#rules_false').prop("checked", true);
+					data.enabled ? $('#enabled_true').prop("checked", true) : $('#enabled_false').prop("checked", true);	
 					$('#edit-user').modal('show');
 				}
 				}).fail(function(err){
@@ -525,7 +514,7 @@
 	</script>
 		<!-- Update -->
 		<script type="text/javascript">
-$(document).ready(function(){
+	$(document).ready(function(){
 	$('.btnUpdate').click(function(){
 	var id = $('#id').val();
 	var username = $('#username').val();
@@ -533,6 +522,8 @@ $(document).ready(function(){
 	var name = $('#name').val();
 	var rules = $("input[name='rules']:checked").val();
 	var enabled = $("input[name='enabled']:checked").val();
+	console.log(rules);
+	console.log(enabled);
  		$.ajax({
  			type : "GET",
 			url : "user/btnUpdate",
@@ -545,9 +536,9 @@ $(document).ready(function(){
 				 enabled : enabled
 			} 
 		}).done(function(data){
-			console.log(data);
-				if(data){
-					Command: toastr["success"]("Sửa Thành Công", "Thông Báo")
+			Command: toastr[data.status](data.message, "Thông Báo")
+				if(data.status == 'success'){
+					
 				location.reload();
 				}		
 		}).fail(function(err){
