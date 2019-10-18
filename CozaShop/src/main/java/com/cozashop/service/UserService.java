@@ -23,8 +23,7 @@ public class UserService {
 	}
 
 	public User findById(int id) {
-		User user = userRepository.findById(id).get();
-		return userRepository.findById(id).get();
+			return userRepository.findById(id).get();
 	}
 
 	public List<User> findAllByEnabled(boolean enabled) {
@@ -32,17 +31,18 @@ public class UserService {
 	}
 
 	public ApiResponse save(User user) {
-		if(user.getName().equals("") && user.getUsername().equals("")) {
-			return new ApiResponse(Status.warning, user.getName() + " - Không được để trống họ tên </br>- Không được để trống tài khoản");
-		}else if(user.getName().equals("")) {
+		if (user.getName().equals("") && user.getUsername().equals("")) {
+			return new ApiResponse(Status.warning,
+					" - Không được để trống họ tên </br>- Không được để trống tài khoản");
+		} else if (user.getName().equals("")) {
 			return new ApiResponse(Status.warning, user.getName() + " Không được để trống Họ Tên ...");
-		}else if(user.getUsername().equals("")) {
+		} else if (user.getUsername().equals("")) {
 			return new ApiResponse(Status.warning, user.getUsername() + " Không được để trống tài khoản ...");
-		}else if(String.valueOf(user.isEnabled()).equals("")) {
-			return new ApiResponse(Status.warning, user.getName() + " Vui lòng tích chọn tình trạng ...");
-		}else if(String.valueOf(user.isRules()).equals("")) {
-			return new ApiResponse(Status.warning, user.getName() + " Vui lòng tích chọn vai trò ...");
-		}else if (userRepository.existsByUsername(user.getUsername())) {
+		} else if (String.valueOf(user.isEnabled()).equals("")) {
+			return new ApiResponse(Status.warning, " Vui lòng tích chọn tình trạng ...");
+		} else if (String.valueOf(user.isRules()).equals("")) {
+			return new ApiResponse(Status.warning, " Vui lòng tích chọn vai trò ...");
+		} else if (userRepository.existsByUsername(user.getUsername())) {
 			return new ApiResponse(Status.warning, user.getUsername() + " Đã tồn tại trong hệ thống...");
 		}
 		userRepository.save(user);
@@ -50,17 +50,24 @@ public class UserService {
 	}
 
 	public String delete(int id) {
-		try {
-			userRepository.deleteById(id);
-			return "a";
-		} catch (Exception e) {
-			return "";
+		userRepository.deleteById(id);
+		return "a";
+	}
+
+	public ApiResponse update(User user) {
+		System.out.println(String.valueOf(user.isEnabled()));
+		if (user.getName().equals("") && user.getUsername().equals("")) {
+			return new ApiResponse(Status.warning,
+					" - Không được để trống họ tên </br>- Không được để trống tài khoản");
+		} else if (user.getName().equals("")) {
+			return new ApiResponse(Status.warning, " Không được để trống Họ Tên ...");
+		} else if (user.getPassword().equals("")) {
+			return new ApiResponse(Status.warning, " Không được để trống Password ...");
+		} else if (user.getUsername().equals("")) {
+			return new ApiResponse(Status.warning, user.getUsername() + " Không được để trống tài khoản ...");
 		}
-	}
-
-	public int update(User user) {
-		return userRepository.updatebyUser(user.getUsername(), user.getPassword(), user.getName(), user.isRules(),
+		userRepository.updatebyUser(user.getUsername(), user.getPassword(), user.getName(), user.isRules(),
 				user.isEnabled(), user.getId());
+		return new ApiResponse(Status.success, "Update Thành Công...");
 	}
-
 }

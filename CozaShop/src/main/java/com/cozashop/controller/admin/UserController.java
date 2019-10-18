@@ -27,14 +27,14 @@ public class UserController {
 	@GetMapping("user")
 	public String index(ModelMap model) {
 		model.addAttribute("listusers", userService.findAll());
-		return "admin/user";
+		return "admin/user2";
 	}
 
 	// Edit with ajax
 	@GetMapping(value = "user/{id}")
 	@ResponseBody
 	public User getbyid(@PathVariable("id") int id) {
-		return userService.findById(id);
+			return userService.findById(id);
 	}
 
 //	Insert with ajax
@@ -55,7 +55,7 @@ public class UserController {
 // Update with ajax
 	@GetMapping(value = "user/btnUpdate")
 	@ResponseBody
-	public int update(@RequestParam("username") String username, @RequestParam("password") String password,
+	public ApiResponse update(@RequestParam("username") String username, @RequestParam("password") String password,
 			@RequestParam("name") String name, @RequestParam("rules") String rules,
 			@RequestParam("enabled") String enabled, @RequestParam("id") int id) {
 		return userService.update(

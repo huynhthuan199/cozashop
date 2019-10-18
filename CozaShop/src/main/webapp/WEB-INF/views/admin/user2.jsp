@@ -15,6 +15,10 @@
 <link
 	href="/resources/admin/vendors/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+	
+	<link
+	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css"
+	rel="stylesheet">
 <!-- Font Awesome -->
 <link
 	href="/resources/admin/vendors/font-awesome/css/font-awesome.min.css"
@@ -48,6 +52,7 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
 	rel="stylesheet" />
+
 </head>
 
 <body class="nav-md">
@@ -103,8 +108,8 @@
 									<br />
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label class="control-label" for="first-name">Tài khoản
-												<span class="required">*</span>
+											<label class="control-label" for="first-name">Tài
+												khoản <span class="required">*</span>
 											</label> <input id="addusername" name="addusername" type="text"
 												id="first-name" class="form-control" value="">
 										</div>
@@ -118,14 +123,14 @@
 									<div class="col-sm-6" style="padding-left: 40px">
 
 										<div>
-											<label class="control-label" for="first-name">Vai trò <span
-												class="required">*</span>
+											<label class="control-label" for="first-name">Vai trò
+												<span class="required">*</span>
 											</label>
 										</div>
 										<div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input"
-												id="addrules_true" name="addrules" checked value="true"> <label
-												class="custom-control-label">Quản lí</label>
+												id="addrules_true" name="addrules" checked value="true">
+											<label class="custom-control-label">Quản lí</label>
 										</div>
 										<div class="custom-control custom-radio custom-control-inline">
 											<input type="radio" class="custom-control-input"
@@ -134,8 +139,8 @@
 										</div>
 
 										<div>
-											<label class="control-label" for="first-name">Trạng thái
-												<span class="required">*</span>
+											<label class="control-label" for="first-name">Trạng
+												thái <span class="required">*</span>
 											</label>
 										</div>
 										<div class="custom-control custom-radio custom-control-inline">
@@ -183,7 +188,7 @@
 
 										<br />
 										<div class="table-responsive">
-											<table class="table table-striped jambo_table bulk_action">
+											<table id="example" class="table table-striped table-bordered" style="width:100%">
 												<thead>
 													<tr class="headings">
 														<th class="column-title">Id</th>
@@ -196,9 +201,8 @@
 														<th class="column-title">Action</th>
 													</tr>
 												</thead>
-
 												<tbody>
-													<c:forEach var="users" items="${listusers}">
+												<c:forEach var="users" items="${listusers}">
 														<tr class="even pointer">
 															<td class=" ">${users.id}</td>
 															<td class=" ">${users.username}</td>
@@ -222,6 +226,18 @@
 														</tr>
 													</c:forEach>
 												</tbody>
+												<tfoot>
+													<tr class="headings">
+														<th class="column-title">Id</th>
+														<th class="column-title">Username</th>
+														<th class="column-title">Password</th>
+														<th class="column-title">Fullname</th>
+														<th class="column-title">Rules</th>
+														<th class="column-title">CreateAt</th>
+														<th class="column-title">Status</th>
+														<th class="column-title">Action</th>
+													</tr>
+												</tfoot>
 											</table>
 										</div>
 									</div>
@@ -255,8 +271,8 @@
 									required="required" class="form-control" value="">
 							</div>
 							<div class="form-group">
-								<label class="control-label" for="first-name">Tài khoản <span
-									class="required">*</span>
+								<label class="control-label" for="first-name">Tài khoản
+									<span class="required">*</span>
 								</label> <input id="username" name="username" type="text"
 									id="first-name" required="required" class="form-control"
 									value="">
@@ -291,29 +307,29 @@
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
 								<input type="radio" class="custom-control-input" id="rules_true"
-									name="rules" value="true" > <label class="custom-control-label"
-									>Quản lí</label>
+									name="rules" value="true"> <label
+									class="custom-control-label">Quản lí</label>
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
 								<input type="radio" class="custom-control-input"
 									id="rules_false" name="rules" value="false"> <label
-									class="custom-control-label" >Nhân viên</label>
+									class="custom-control-label">Nhân viên</label>
 							</div>
 
 							<div>
-								<label class="control-label" for="first-name">Trạng thái <span
-									class="required">*</span>
+								<label class="control-label" for="first-name">Trạng thái
+									<span class="required">*</span>
 								</label>
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
 								<input type="radio" class="custom-control-input"
 									id="enabled_true" name="enabled" value="true"> <label
-									class="custom-control-label" >Bật</label>
+									class="custom-control-label">Bật</label>
 							</div>
 							<div class="custom-control custom-radio custom-control-inline">
 								<input type="radio" class="custom-control-input"
 									id="enabled_false" name="enabled" value="false"> <label
-									class="custom-control-label" >Tắt</label>
+									class="custom-control-label">Tắt</label>
 							</div>
 						</div>
 					</div>
@@ -328,12 +344,16 @@
 		</div>
 		<!-- jQuery -->
 		<script src="/resources/admin/vendors/jquery/dist/jquery.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
 		<!-- jQuery -->
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 		<!-- Bootstrap -->
 		<script
 			src="/resources/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+			
+			
 		<!-- FastClick -->
 		<script src="/resources/admin/vendors/fastclick/lib/fastclick.js"></script>
 		<!-- NProgress -->
@@ -375,6 +395,11 @@
 		<script src="/resources/admin/build/js/custom.min.js"></script>
 
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<script>
+		$(document).ready(function() {
+		    $('#example').DataTable();
+		} );
+		</script>
 		<script type="text/javascript">
 		
 			toastr.options = {
