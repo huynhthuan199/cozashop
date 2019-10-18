@@ -75,9 +75,9 @@
 							class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 							<div class="input-group">
 								<input type="text" class="form-control"
-									placeholder="Search for..."> <span
+									placeholder="Tìm kiếm danh mục..."> <span
 									class="input-group-btn">
-									<button class="btn btn-default" type="button">Go!</button>
+									<button class="btn btn-default" type="button">Đi!</button>
 								</span>
 							</div>
 						</div>
@@ -131,18 +131,18 @@
 									</div>
 									<div class="custom-control custom-radio custom-control-inline">
 										<input type="radio" class="custom-control-input"
-											id="enabled_true" name="addenabled"> <label
-											class="custom-control-label" value="true"">On</label>
+											id="addenabled_true" name="addenabled" checked value="true"><label
+											class="custom-control-label"  >On</label>
 									</div>
 									<div class="custom-control custom-radio custom-control-inline">
 										<input type="radio" class="custom-control-input"
-											id="enabled_false" name="addenabled"> <label
-											class="custom-control-label" value="false">Off</label>
+											id="addenabled_false" name="addenabled" value="false"><label
+											class="custom-control-label" >Off</label>
 									</div>
 								</div>
-								<button type="button" class="btn btn-primary"
+								<button type="button" class="btn btn-primary btnInsert"
 									style="float: right; margin-top: 20px">
-									<i class="fa fa-refresh"> Insert</i>
+									<i class="fa fa-refresh"> Thêm</i>
 								</button>
 							</div>
 						</div>
@@ -153,7 +153,7 @@
 					<div class="col-md-6 col-xs-12">
 						<div class="x_panel" style="width: 1079px">
 							<div class="x_title">
-								<h2>List Category</h2>
+								<h2>Danh sách danh mục</h2>
 								<ul class="nav navbar-right panel_toolbox">
 									<li><a class="collapse-link"><i
 											class="fa fa-chevron-up"></i></a></li>
@@ -196,6 +196,10 @@
 															data-id="${category.id }">
 															<i class="fa fa-pencil">Edit</i>
 														</button>
+														<button type="button" class="btn btn-danger btnDelete"
+															name="btnDelete" data-id="${category.id }">
+															<i class="fa fa-trash"> Delete</i>
+														</button>
 													</td>
 												</tr>
 											</c:forEach>
@@ -222,7 +226,6 @@
 	<div id="edit-category" class="modal fade" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<div class="modal-dialog modal-lg">
-			<!-- 			<form method="get"> -->
 			<div class="modal-content">
 				<div class="x_content">
 					<br />
@@ -230,7 +233,7 @@
 						<div class="form-group">
 							<label class="control-label" for="first-name">Id <span
 								class="required">*</span>
-							</label> <input id="id" type="text" id="first-name"
+							</label> <input readonly id="id" type="text" id="first-name"
 								required="required" class="form-control">
 						</div>
 					</div>
@@ -247,7 +250,7 @@
 						<div class="form-group">
 							<label class="control-label" for="first-name">CreatAt <span
 								class="required">*</span>
-							</label> <input id="creatAt" type="text" id="first-name"
+							</label> <input readonly id="createAt" type="text" id="first-name"
 								required="required" class="form-control">
 						</div>
 					</div>
@@ -260,24 +263,20 @@
 						</div>
 						<div class="custom-control custom-radio custom-control-inline">
 							<input type="radio" class="custom-control-input"
-								id="enabled_true" name="enabled"> <label
-								class="custom-control-label" value="true"">On</label>
+								id="enabled_true" name="enabled" value="true"> <label
+								class="custom-control-label" >On</label>
 						</div>
 						<div class="custom-control custom-radio custom-control-inline">
 							<input type="radio" class="custom-control-input"
-								id="enabled_false" name="enabled"> <label
-								class="custom-control-label" value="false">Off</label>
+								id="enabled_false" name="enabled" value="false"><label
+								class="custom-control-label" >Off</label>
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-success btnUpdate"
 						name="btnUpdate" style="float: right; margin-top: 20px">
-						<i class="fa fa-inbox"> Save</i>
-					</button>
-					<button type="button" class="btn btn-danger btnDelete"
-						name="btnDelete" style="float: right; margin-top: 20px">
-						<i class="fa fa-trash"> Delete</i>
+						<i class="fa fa-inbox"> Lưu</i>
 					</button>
 				</div>
 			</div>
@@ -342,8 +341,7 @@
 					$('#id').val(data.id);
 					$('#name').val(data.name);
 					$('#createAt').val(data.createAt);
-					console.log(data.createAt);
-					$('.enabled').prop("checked", true);	
+					data.enabled ? $('#enabled_true').prop("checked", true) : $('#enabled_false').prop("checked", true);
 					$('#edit-category').modal('show');
 				}).fail(function(err){
 					console.log(err);
@@ -351,5 +349,96 @@
 			});
 		});
 	</script>
+	
+	<!-- Delete  -->
+		<script type="text/javascript">
+		$(document).ready(function(){		
+			$('.btnDelete').click(function(){
+					Swal.fire({
+					  title: 'Bạn Có Chắc?',
+					  text: ' Ẩn danh mục sản phẩm này sẽ khiến tất cả mặc hàng sản phẩm chứa danh mục này sẽ tắt...',
+					  type: 'question',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Ẩn',
+					  cancelButtonText: "Hủy"
+					}).then((result) => {
+						if(result.value){
+							$.ajax({
+								url : "category/btnDelete",
+								type : "GET",
+								data : {
+									id : $(this).data("id")
+								}
+							}).done((data) => {
+								if(data != null ){
+								Command: toastr["success"]("Ẩn Thành Công", "Thông Báo");
+								
+								}
+							}).fail(function(err){
+								console.log(err);
+							});
+						}	
+					})
+			});
+		});
+	</script>
+	
+	<!-- Update -->
+		<script type="text/javascript">
+	$(document).ready(function(){
+	$('.btnUpdate').click(function(){
+	var id = $('#id').val();
+	var name = $('#name').val();
+	var enabled = $("input[name='enabled']:checked").val();
+ 		$.ajax({
+ 			type : "GET",
+			url : "category/btnUpdate",
+			data : {
+				 id : id,
+				 name : name,
+				 enabled : enabled
+			} 
+		}).done(function(data){
+			 Command: toastr[data.status](data.message, "Thông Báo")
+				if(data.status == 'success'){
+				 location.reload();
+				}
+		}).fail(function(err){
+			console.log(err);
+			 Command: toastr["warning"]("Sửa thất bại", "Thông Báo") 
+		}); 
+	});
+});
+</script>
+
+<!-- Insert -->
+		<script type="text/javascript">
+	$(document).ready(function(){
+	$('.btnInsert').click(function(){
+	var addid = $('#addId').val();
+	var addname = $('#addName').val();
+	var addenabled = $("input[name='addenabled']:checked").val();
+ 		$.ajax({
+ 			type : "Post",
+			url : "category/btnInsert",
+			data : {
+				 id : addid,
+				 name : addname,
+				 enabled : addenabled
+			} 
+		}).done(function(data){
+			 Command: toastr[data.status](data.message, "Thông Báo")
+				if(data.status == 'success'){
+				 location.reload();
+				}
+		}).fail(function(err){
+			console.log(err);
+			 Command: toastr["warning"]("Sửa thất bại", "Thông Báo") 
+		}); 
+	});
+});
+</script>
 </body>
 </html>

@@ -2,7 +2,9 @@ package com.cozashop.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -10,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "product")
@@ -30,11 +34,13 @@ public class Product extends BaseEntity implements Serializable {
 	private String image;
 	private String description;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "categoryid")
+//	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "categoryid" ,referencedColumnName = "id")
 	private Category category;
 
-	@OneToMany(mappedBy = "product" )
+	@JsonIgnore
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	private Collection<OrderDetails> orderDetails;
 
 	public Product() {
@@ -42,7 +48,7 @@ public class Product extends BaseEntity implements Serializable {
 	}
 
 	public Product(String id, String name, Double price, Double amout, String material, String color, String image,
-			String description, Category category) {
+			String description, Category category,boolean enabled,Date createAt) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -53,6 +59,8 @@ public class Product extends BaseEntity implements Serializable {
 		this.image = image;
 		this.description = description;
 		this.category = category;
+		this.enabled = enabled;
+		this.createAt = createAt;
 	}
 
 	public String getId() {

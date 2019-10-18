@@ -2,15 +2,13 @@ package com.cozashop.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.validator.constraints.ISBN;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,14 +24,16 @@ public class Category extends BaseEntity  implements Serializable {
 	private String id;
 	private String name;
 
-	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
 	@JsonIgnore
+	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
 	private Collection<Product> products;
 
-	public Category(String id, String name) {
+	public Category(String id, String name,boolean enabled,Date createAt) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.enabled = enabled;
+		this.createAt = createAt;
 	}
 
 	public Category() {

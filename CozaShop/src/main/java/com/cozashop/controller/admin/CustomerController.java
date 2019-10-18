@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cozashop.entities.ApiResponse;
 import com.cozashop.entities.Customer;
 import com.cozashop.service.CustomerService;
 
@@ -39,7 +40,7 @@ public class CustomerController {
 //	Insert with ajax
 	@GetMapping(value = "customer/btnInsert")
 	@ResponseBody
-	public int insert(@RequestParam String username,
+	public ApiResponse insert(@RequestParam String username,
 					  @RequestParam String address,
 					  @RequestParam String phone,
 					  @RequestParam String name,
