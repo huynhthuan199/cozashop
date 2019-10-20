@@ -11,10 +11,10 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.cozashop.entities.ApiResponse;
 import com.cozashop.entities.Product;
-import com.cozashop.entities.ApiResponse.Status;
 import com.cozashop.repository.InfoProductRepository;
+import com.cozashop.util.ApiResponse;
+import com.cozashop.util.ApiResponse.Status;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
@@ -48,6 +48,25 @@ public class InfoProductService {
 	}
 	
 	public Product Update(Product product){
-		return infoProductRepository.save(product);
+		Product productUpdate = infoProductRepository.findById(product.getId()).get();
+		productUpdate.setAmout(product.getAmout());
+		productUpdate.setCategory(product.getCategory());
+		productUpdate.setCreateAt(product.getCreateAt());
+		productUpdate.setDescription(product.getDescription());
+		productUpdate.setEnabled(product.isEnabled());
+		productUpdate.setName(product.getName());
+		productUpdate.setPrice(product.getPrice());
+		productUpdate.setColor(product.getColor());
+		productUpdate.setImage(product.getImage());
+		return infoProductRepository.save(productUpdate);
+	}
+	
+	public Product finById(String id){
+		return infoProductRepository.findById(id).get();
+	}
+	
+	public String delete(String id) {
+		infoProductRepository.deleteById(id);
+		return "a";
 	}
 }

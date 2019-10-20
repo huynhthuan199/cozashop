@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cozashop.entities.ApiResponse;
 import com.cozashop.entities.User;
 import com.cozashop.service.UserService;
+import com.cozashop.util.ApiResponse;
 
 @Controller
 @RequestMapping("/admin/")

@@ -172,7 +172,7 @@
 							<div class="x_content">
 								<br />
 								<div class="table-responsive">
-									<table class="table table-striped jambo_table bulk_action">
+									<table id="myTable" class="table table-striped jambo_table bulk_action">
 										<thead>
 											<tr class="headings">
 												<th class="column-title">Id</th>

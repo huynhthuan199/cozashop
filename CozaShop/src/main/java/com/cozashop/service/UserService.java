@@ -7,10 +7,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.cozashop.entities.ApiResponse;
-import com.cozashop.entities.ApiResponse.Status;
 import com.cozashop.entities.User;
 import com.cozashop.repository.UserRepository;
+import com.cozashop.util.ApiResponse;
+import com.cozashop.util.ApiResponse.Status;
 
 @Service
 public class UserService {

@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cozashop.entities.ApiResponse;
-import com.cozashop.entities.ApiResponse.Status;
 import com.cozashop.entities.Customer;
 import com.cozashop.repository.CustomerRepository;
+import com.cozashop.util.ApiResponse;
+import com.cozashop.util.ApiResponse.Status;
 
 @Service
 public class CustomerService {

@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cozashop.entities.ApiResponse;
 import com.cozashop.entities.Category;
-import com.cozashop.entities.ApiResponse.Status;
 import com.cozashop.repository.CategoryRepository;
+import com.cozashop.util.ApiResponse;
+import com.cozashop.util.ApiResponse.Status;
 
 @Service
 public class CategoryService {

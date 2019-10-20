@@ -1,4 +1,4 @@
-package com.cozashop.entities;
+package com.cozashop.util;
 
 public class ApiResponse {
 	private Status status;

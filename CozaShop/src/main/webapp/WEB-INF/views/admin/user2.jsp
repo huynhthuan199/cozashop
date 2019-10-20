@@ -164,11 +164,10 @@
 						</div>
 
 						<div class="row">
-							<div class="col-md-12 col-xs-12">
-								<div class="x_panel" style="width: 1112px">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="x_panel">
 									<div class="x_title">
 										<h2>Danh sách nhân viên</h2>
-
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
 													class="fa fa-chevron-up"></i></a></li>
@@ -184,11 +183,10 @@
 										<div class="clearfix"></div>
 
 									</div>
-									<div class="x_content" style="margin-top: -20px">
-
+									<div class="x_content">
 										<br />
 										<div class="table-responsive">
-											<table id="example" class="table table-striped table-bordered" style="width:100%">
+											<table id="example" class="table table-striped table-bordered">
 												<thead>
 													<tr class="headings">
 														<th class="column-title">Id</th>
@@ -258,7 +256,6 @@
 		<div id="edit-user" class="modal fade" tabindex="-1" role="dialog"
 			aria-hidden="true">
 			<div class="modal-dialog modal-lg">
-				<!-- 			<form method="get"> -->
 				<div class="modal-content">
 					<div class="x_content">
 						<br />
@@ -396,8 +393,14 @@
 
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script>
-		$(document).ready(function() {
-		    $('#example').DataTable();
+		/* $(document).ready(function() {
+		    $('#example').DataTable({
+		    	responsive: true
+		    });
+		}); */
+		
+		$('#example').DataTable( {
+		    responsive: true
 		} );
 		</script>
 		<script type="text/javascript">

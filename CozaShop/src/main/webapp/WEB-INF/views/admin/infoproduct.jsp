@@ -103,94 +103,86 @@
 									</ul>
 									<div class="clearfix"></div>
 								</div>
-								<form action="infoproduct/btnInsert" method="POST" enctype="multipart/form-data"> 
-								<div class="x_content">
-									<br />
-									<div class="col-sm-4">
-										<div class="form-group">
-											<label class="control-label" for="first-name">Tên sản
-												phẩm <span class="required">*</span>
-											</label> <input type="text" id="addName" name="addName" required="required"
-												class="form-control">
+								<form action="infoproduct/btnInsert" method="POST"
+									enctype="multipart/form-data">
+									<div class="x_content">
+										<br />
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label class="control-label" for="first-name">Tên
+													sản phẩm <span class="required">*</span>
+												</label> <input type="text" id="addName" name="addName"
+													required="required" class="form-control">
+											</div>
+											<div class="form-group" style="margin-top: 20px">
+												<label class="control-label" for="first-name">Mã sản
+													phẩm <span class="required">*</span>
+												</label> <input type="text" id="addId" name="addId"
+													required="required" class="form-control">
+											</div>
+											<div class="form-group" style="margin-top: 20px">
+												<label class="control-label" for="first-name">Mã
+													danh mục <span class="required">*</span>
+												</label> <select id="addCategoryId" name="addCategoryId"
+													required="required" class="form-control">
+													<c:forEach var="listCategory" items="${listCategory }">
+														<option value="${listCategory.id }">${listCategory.name }
+															[${listCategory.id }]</option>
+													</c:forEach>
+												</select>
+											</div>
 										</div>
-										<div class="form-group" style="margin-top: 20px">
-											<label class="control-label" for="first-name">Mã sản
-												phẩm <span class="required">*</span>
-											</label> <input type="text" id="addId" name="addId" required="required"
-												class="form-control">
-										</div>
-										<div class="form-group" style="margin-top: 20px">
-											<label class="control-label" for="first-name">Mã danh
-												mục <span class="required">*</span>
-											</label> <select id="addCategoryId" name="addCategoryId" required="required"
-												class="form-control">
-												<c:forEach var="listCategory" items="${listCategory }">
-													<option value="${listCategory.id }">${listCategory.name } [${listCategory.id }]</option>
-												</c:forEach>
-											</select>
-										</div>
-									</div>
 
-									<div class="col-sm-4">
-										<div class="form-group">
-											<label class="control-label" for="first-name">Giá
-												tiền <span class="required">*</span>
-											</label> <input type="text" id="addPrice" name="addPrice" required="required"
-												class="form-control">
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label class="control-label" for="first-name">Giá
+													tiền <span class="required">*</span>
+												</label> <input type="text" id="addPrice" name="addPrice"
+													required="required" class="form-control">
+											</div>
+											<div class="form-group" style="margin-top: 20px">
+												<label class="control-label" for="first-name">Chất
+													Liệu<span class="required">*</span>
+												</label> <input type="text" id="addMaterial" name="addMaterial"
+													required="required" class="form-control">
+											</div>
+											<div class="form-group" style="margin-top: 20px">
+												<label class="control-label" for="first-name">Màu
+													sắc <span class="required">*</span>
+												</label> <select id="addColor" name="addColor" required="required"
+													class="form-control">
+													<option value="Đỏ">Đỏ</option>
+													<option value="Cam">Cam</option>
+													<option value="Vàng">Vàng</option>
+													<option value="Lục">Lục</option>
+													<option value="Lam">Lam</option>
+													<option value="Tràm">Tràm</option>
+													<option value="Tím">Tím</option>
+													<option value="Đen">Đen</option>
+													<option value="Xám">Xám</option>
+													<option value="Trắng">Trắng</option>
+												</select>
+											</div>
 										</div>
-										<div class="form-group" style="margin-top: 20px">
-											<label class="control-label" for="first-name">Chất
-												Liệu<span class="required">*</span>
-											</label> <input type="text" id="addMaterial" name="addMaterial" required="required"
-												class="form-control">
-										</div>
-										<div class="form-group" style="margin-top: 20px">
-											<label class="control-label" for="first-name">Màu sắc
-											 <span class="required">*</span>
-											</label> <select id="addColor" name="addColor" required="required"
-												class="form-control">
-												<option value="Đỏ">Đỏ</option>
-												<option value="Cam">Cam</option>
-												<option value="Vàng">Vàng</option>
-												<option value="Lục">Lục</option>
-												<option value="Lam">Lam</option>
-												<option value="Tràm">Tràm</option>
-												<option value="Tím">Tím</option>
-												<option value="Đen">Đen</option>
-												<option value="Xám">Xám</option>
-												<option value="Trắng">Trắng</option>
-											</select>
-										</div>
-									</div>
 
-									<div class="col-sm-4">
-										<div class="form-group">
-											<label for="exampleFormControlTextarea3">Mô tả sản
-												phẩm</label>
-											<textarea class="form-control"
-												id="addDescription" name="addDescription" rows="5 "></textarea>
+										<div class="col-sm-4">
+											<div class="form-group">
+												<label for="exampleFormControlTextarea3">Mô tả sản
+													phẩm</label>
+												<textarea class="form-control" id="addDescription"
+													name="addDescription" rows="5 "></textarea>
+											</div>
+											<div class="form-group" style="margin-top: 20px">
+												<label class="control-label" for="first-name">Hình
+													ảnh </label> <input type="file" id="file" name="file">
+											</div>
 										</div>
-										<div class="form-group" style="margin-top: 20px">
-											<label class="control-label" for="first-name">Hình
-												ảnh </label>
-									
-												<input type="file" id="file" name="file">	
-										</div>
-									</div>
 
-									<button type="submit" class="btn btn-primary btnInsert"
-										style="float: right; margin-top: 30px">
-										<i class="fa fa-refresh"> Thêm</i>
-									</button>
-									<button type="button" class="btn btn-danger"
-										style="float: right; margin-top: 30px">
-										<i class="fa fa-trash"> Xóa</i>
-									</button>
-									<button type="button" class="btn btn-success"
-										style="float: right; margin-top: 30px">
-										<i class="fa fa-inbox"> Lưu</i>
-									</button>
-								</div>
+										<button type="submit" class="btn btn-primary btnInsert"
+											style="float: right; margin-top: 30px">
+											<i class="fa fa-refresh"> Thêm</i>
+										</button>
+									</div>
 								</form>
 							</div>
 						</div>
@@ -250,8 +242,14 @@
 															style="width: 50px; height: 50px"
 															src="/resources/web/images/${product.image }" /></td>
 														<td class=" ">
-															<button type="button" class="btn btn-warning">
+															<button type="button" class="btn btn-warning btnEdit"
+																data-id="${product.id }">
 																<i class="fa fa-pencil"> Sửa</i>
+															</button>
+															
+															<button type="button" class="btn btn-danger btnDelete"
+																data-id="${product.id }">
+																<i class="fa fa-trash"> Xóa</i>
 															</button>
 														</td>
 													</tr>
@@ -272,13 +270,109 @@
 			<!-- /footer content -->
 		</div>
 	</div>
+	<!-- Large modal -->
+	<div id="edit-product" class="modal fade" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<form action="infoproduct/btnUpdate" method="POST"
+					enctype="multipart/form-data">
+					<div class="x_content">
+						<h2
+							style="font-size: 30px; text-align: center; text-shadow: 1px 1px">Thông
+							tin sản phẩm</h2>
+						<hr>
+						<br />
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label" for="first-name">Tên sản
+									phẩm <span class="required">*</span>
+								</label> <input type="text" id="name" name="name" required="required"
+									class="form-control">
+							</div>
+							<div class="form-group" style="margin-top: 20px">
+								<label class="control-label" for="first-name">Mã sản
+									phẩm <span class="required">*</span>
+								</label> <input type="text" id="id" name="id" required="required"
+									class="form-control">
+							</div>
+							<div class="form-group" style="margin-top: 20px">
+								<label class="control-label" for="first-name">Mã danh
+									mục <span class="required">*</span>
+								</label> <select id="categoryId" name="categoryId" required="required"
+									class="form-control">
+									<c:forEach var="listCategory" items="${listCategory }">
+										<option value="${listCategory.id }">${listCategory.name }
+											[${listCategory.id }]</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label" for="first-name">Giá tiền <span
+									class="required">*</span>
+								</label> <input type="text" id="price" name="price" required="required"
+									class="form-control">
+							</div>
+							<div class="form-group" style="margin-top: 20px">
+								<label class="control-label" for="first-name">Chất Liệu<span
+									class="required">*</span>
+								</label> <input type="text" id="material" name="material"
+									required="required" class="form-control">
+							</div>
+							<div class="form-group" style="margin-top: 20px">
+								<label class="control-label" for="first-name">Màu sắc <span
+									class="required">*</span>
+								</label> <select id="color" name="color" required="required"
+									class="form-control">
+									<option value="Đỏ">Đỏ</option>
+									<option value="Cam">Cam</option>
+									<option value="Vàng">Vàng</option>
+									<option value="Lục">Lục</option>
+									<option value="Lam">Lam</option>
+									<option value="Tràm">Tràm</option>
+									<option value="Tím">Tím</option>
+									<option value="Đen">Đen</option>
+									<option value="Xám">Xám</option>
+									<option value="Trắng">Trắng</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="exampleFormControlTextarea3">Mô tả sản phẩm</label>
+								<textarea class="form-control" id="description"
+									name="description" rows="5 "></textarea>
+							</div>
+							<div class="form-group" style="margin-top: 20px">
+								<label class="control-label" for="first-name">Hình ảnh </label>
+								<input type="file" id="file2" name="file2">
+								<br>
+								<img style="width: 70px ; height: 90px ; margin-left: 80px;" id="image" src="" />
+							</div>
+						</div>
+					</div>
+				
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-success btnUpdate"
+						name="btnUpdate" style="float: right; margin-top: 20px">
+						<i class="fa fa-inbox"> Lưu</i>
+					</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<!-- jQuery -->
 	<script src="/resources/admin/vendors/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap -->
 	<script
 		src="/resources/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script
-				src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<!-- FastClick -->
 	<script src="/resources/admin/vendors/fastclick/lib/fastclick.js"></script>
 	<!-- NProgress -->
@@ -319,63 +413,90 @@
 	<script src="/resources/admin/build/js/custom.min.js"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-<script>
-			toastr.options = {
-		  					 "closeButton": false,
-		  					 "debug": false,
-		  					 "newestOnTop": false,
-		  					 "progressBar": true,
-		       				 "positionClass": "toast-top-right",
-		  					 "preventDuplicates": false,
-		  "onclick": null,
-		  "showDuration": "300",
-		  "hideDuration": "1000",
-		  "timeOut": "5000",
-		  "extendedTimeOut": "1000",
-		  "showEasing": "swing",
-		  "hideEasing": "linear",
-		  "showMethod": "fadeIn",
-		  "hideMethod": "fadeOut"
+	<script>
+		toastr.options = {
+			"closeButton" : false,
+			"debug" : false,
+			"newestOnTop" : false,
+			"progressBar" : true,
+			"positionClass" : "toast-top-right",
+			"preventDuplicates" : false,
+			"onclick" : null,
+			"showDuration" : "300",
+			"hideDuration" : "1000",
+			"timeOut" : "5000",
+			"extendedTimeOut" : "1000",
+			"showEasing" : "swing",
+			"hideEasing" : "linear",
+			"showMethod" : "fadeIn",
+			"hideMethod" : "fadeOut"
 		}
-		</script>
- <!-- Insert  -->
-			<!-- <script type="text/javascript">
-$(document).ready(function(){
-	$('.btnInsert').click(function(){
-	var addId = $('#addId').val();
-	var addName = $('#addName').val();
-	var addPrice = $('#addPrice').val();
-	var addMaterial = $('#addMaterial').val();
-	var addColor = $('#addColor').val();
-	var addcategoryId = $("#addCategoryId option:selected" ).val();
-	var addDescription = $('#addDescription').val();
-	/* var addFile = $('#file').prop('files'); */
- 		$.ajax({
- 			type : "GET",
-			url : "infoproduct/btnInsert",
-			data : {  
-				 id : addId,
-				 name : addName,
-				 price : addPrice,
-				 material : addMaterial,
-				 color : addColor,
-				 categoryId : addcategoryId,
-				 description : addDescription
-				/*  file : addFile */
-			} 
-		}).done(function(data){
-				/* Command: toastr[data.status](data.message, "Thông Báo")
-				if(data.status == "success"){	
-					Command: toastr[data.status](data.message, "Thông Báo")
-				location.reload();
-				} */		
-				console.log(data);
-		}).fail(function(err){
-			console.log(err);
-			Command: toastr["warning"]("Thêm thất bại", "Thông Báo")
-		}); 
-	});
-});
-</script> -->
+	</script>
+	
+<!-- Edit -->
+	<script>
+		$(document).ready(
+				function() {
+					$('.btnEdit').click(
+							function() {
+								$.ajax({
+									type : "GET",
+									url : "infoproduct/" + $(this).data("id")
+								}).done(
+										function(data) {
+											$('#id').val(data.id);
+											$('#name').val(data.name);
+											$('#price').val(data.price);
+											$('#material').val(data.material);
+											$('#color').val(data.color);
+											$('#description').val(data.description);
+											$('#categoryId').val(data.category.id)
+											$("#image").attr("src","/resources/web/images/"+data.image);
+											$('#edit-product').modal('show');
+										}).fail(
+										function(err) {
+											console.log(err);
+											Command: toastr["warning"](
+													"Thêm thất bại",
+													"Thông Báo")
+										});
+							});
+				});
+	</script>
+
+<!-- Delete  -->
+	<script type="text/javascript">
+		$(document).ready(function(){		
+			$('.btnDelete').click(function(){
+					Swal.fire({
+					  title: 'Bạn Có Chắc?',
+					  text: " Xóa sẽ không khôi phục được...",
+					  type: 'question',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Xóa',
+					  cancelButtonText: "Hủy"
+					}).then((result) => {
+						if(result.value){
+							$.ajax({
+								url : "infoproduct/btnDelete",
+								type : "GET",
+								data : {
+									id : $(this).data("id")
+								}
+							}).done((data) => {
+								if(data != null ){
+								Command: toastr["success"]("Xóa Thành Công", "Thông Báo")
+								$(this).parent().parent().remove();
+							}
+							}).fail(function(err){
+								console.log(err);
+							});
+						}	
+					})
+			});
+		});
+	</script>
 </body>
 </html>
