@@ -368,6 +368,7 @@
 					</div>
 				</div>
 			</div>
+			</div>
 			<!-- jQuery -->
 			<script src="/resources/admin/vendors/jquery/dist/jquery.min.js"></script>
 			<!-- Bootstrap -->
