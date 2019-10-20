@@ -211,7 +211,7 @@
 												<td class=" ">Chờ xử lý</td>
 												<td class=" ">
 													<button type="button" class="btn btn-warning">
-														<a href="DonHangChiTiet.html" class="fa fa-eye"
+														<a href="orderdetail" class="fa fa-eye"
 															style="color: white"> </a>
 													</button>
 												</td>

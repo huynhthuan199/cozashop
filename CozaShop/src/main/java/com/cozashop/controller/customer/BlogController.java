@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class aboutController {
-
-	@GetMapping("/about")
+public class BlogController {
+	
+	@GetMapping("/blog")
 	public String about() {
-		return "customer/about";
+		return "customer/blog";
 	}
+	
 }
