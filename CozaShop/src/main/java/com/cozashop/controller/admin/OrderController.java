@@ -12,5 +12,5 @@ public class OrderController {
 	public String index() {
 		return "admin/order";
 	}
-	
+//	sss
 }

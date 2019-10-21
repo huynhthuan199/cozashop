@@ -55,7 +55,7 @@ public class CustomerController {
 												 Boolean.parseBoolean(enabled),
 												 new Date()));
 	}
-	
+//	ss
 	// Update with ajax
 		@GetMapping(value = "customer/btnUpdate")
 		@ResponseBody
