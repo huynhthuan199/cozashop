@@ -3,6 +3,8 @@ package com.cozashop.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.cozashop.entities.District;
@@ -19,7 +21,7 @@ public class DistrictService {
 	}
 	
 	public List<District> finById(String matp) {
-		return districtRepository.fin(matp);
+		return districtRepository.fin(matp,new Sort(Direction.ASC,"name"));
 	}
 	
 }

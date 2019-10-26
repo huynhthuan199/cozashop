@@ -39,8 +39,15 @@ public class CategoryController {
 //	Delete
 	@GetMapping(value = "category/btnDelete")
 	@ResponseBody
-	public int delete(@RequestParam String id) {
-		return categoryService.updateEnabled(false, id);
+	public int delete(@RequestParam String id, Boolean enabled) {
+		return categoryService.updateEnabled(enabled, id);
+	}
+	
+//	Hiden
+	@GetMapping(value = "category/btnHide")
+	@ResponseBody
+	public int hiden(@RequestParam String id) {
+		return categoryService.delete(id);
 	}
 
 //  Update

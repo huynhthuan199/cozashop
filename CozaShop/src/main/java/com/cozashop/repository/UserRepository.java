@@ -24,4 +24,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	int updatebyUser(String username,String password, String name, boolean rules,boolean enabled,int id);
 	
 	boolean existsByUsername(String username);
+	
+	User findByUsernameAndPassword(String username,String password);
 }

@@ -25,8 +25,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cozashop.entities.Category;
 import com.cozashop.entities.Customer;
 import com.cozashop.entities.Product;
+import com.cozashop.repository.ColorRepository;
 import com.cozashop.service.CategoryService;
+import com.cozashop.service.ColorService;
 import com.cozashop.service.InfoProductService;
+import com.cozashop.service.MaterialService;
 import com.cozashop.util.ApiResponse;
 
 @Controller
@@ -38,16 +41,23 @@ public class InfoproductController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private ColorService colorService;
+	
+	@Autowired
+	private MaterialService materialService;
 
 
 	@GetMapping("infoproduct")
 	public String index(Model model) {
 		model.addAttribute("listProduct", infoProductService.findAll());
 		model.addAttribute("listCategory", categoryService.listCategory());
+		model.addAttribute("listColor", colorService.finAll());
+		model.addAttribute("listMaterial", materialService.finAll());
 		return "admin/infoproduct";
 	}
 
-	
 //  Edit
 	@GetMapping(value = "infoproduct/{id}")
 	@ResponseBody
@@ -57,20 +67,23 @@ public class InfoproductController {
 	
 //	Submit Insert
 	@PostMapping(value = "infoproduct/btnInsert")
-	public String insert(@RequestParam("addId") String id,
-					  @RequestParam("addName") String name,
-					  @RequestParam("addPrice") String price,
-					  @RequestParam("addCategoryId") Category categoryId,
-					  @RequestParam("addMaterial") String material,
-					  @RequestParam("file") MultipartFile file,
-					  @RequestParam("addColor") String color,
-					  @RequestParam("addDescription") String description) throws IOException {
+	public String insert(@RequestParam("txtAddId") String id,
+					  @RequestParam("txtAddName") String name,
+					  @RequestParam("txtAddPrice") String price,
+					  @RequestParam("txtAddCategoryId") Category categoryId,
+					  @RequestParam("txtAddMaterial") String material,
+					  @RequestParam("addFile") MultipartFile file,
+					  @RequestParam("addFile2") MultipartFile file2,
+					  @RequestParam("addFile3") MultipartFile file3,
+					  @RequestParam("txtAddColor") String color,
+					  @RequestParam("txtAddDescription") String description,
+					  @RequestParam("txtAddShortDescription") String shortdescription) throws IOException {
 		
-		infoProductService.Update(new Product(id,name,Double.parseDouble(price)
+		infoProductService.save(new Product(id,name,Double.parseDouble(price)
 				,Double.parseDouble(price),material,color,
-				infoProductService.upload(file),description
+				infoProductService.upload(file),infoProductService.upload(file2),infoProductService.upload(file3),shortdescription,description
 				,categoryId,true,new Date()));
-		return "redirect:/admin/infoproduct";
+			return "redirect:/admin/infoproduct";
 	}
 	
 //	Delete with ajax
@@ -82,18 +95,21 @@ public class InfoproductController {
 	
 //	Submit Update
 	@PostMapping(value = "infoproduct/btnUpdate")
-	public String update(@RequestParam("id") String id,
-					  @RequestParam("name") String name,
-					  @RequestParam("price") String price,
-					  @RequestParam("categoryId") Category categoryId,
-					  @RequestParam("material") String material,
-					  @RequestParam("file2") MultipartFile file,
-					  @RequestParam("color") String color,
-					  @RequestParam("description") String description) throws IOException {
-		
+	public String update(@RequestParam("txtid") String id,
+					  @RequestParam("txtname") String name,
+					  @RequestParam("txtprice") String price,
+					  @RequestParam("txtcategoryId") Category categoryId,
+					  @RequestParam("txtmaterial") String material,
+					  @RequestParam("file4") MultipartFile file4,
+					  @RequestParam("file5") MultipartFile file5,
+					  @RequestParam("file6") MultipartFile file6,
+					  @RequestParam("txtcolor") String color,
+					  @RequestParam("txtdescription") String description,
+					  @RequestParam("txtshortDescription") String shortdescription ) throws IOException {
+			System.out.println(material);
 		infoProductService.Update(new Product(id,name,Double.parseDouble(price)
 				,Double.parseDouble(price),material,color,
-				infoProductService.upload(file),description
+				infoProductService.upload(file4),infoProductService.upload(file5),infoProductService.upload(file6),shortdescription,description
 				,categoryId,true,new Date()));
 		return "redirect:/admin/infoproduct";
 	}

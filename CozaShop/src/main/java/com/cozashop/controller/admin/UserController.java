@@ -2,6 +2,8 @@ package com.cozashop.controller.admin;
 
 import java.util.Date;
 
+import javax.mail.MessagingException;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cozashop.entities.User;
-import com.cozashop.service.ProviceService;
+import com.cozashop.service.EmailService;
 import com.cozashop.service.UserService;
 import com.cozashop.util.ApiResponse;
 
@@ -22,29 +24,30 @@ import com.cozashop.util.ApiResponse;
 @RequestMapping("/admin/")
 public class UserController {
 
-	
 	@Autowired
 	private UserService userService;
+
 
 	@GetMapping("user")
 	public String index(ModelMap model) {
 		model.addAttribute("listusers", userService.findAll());
-		return "admin/user2";
+		return "admin/user";
 	}
 
 	// Edit with ajax
 	@GetMapping(value = "user/{id}")
 	@ResponseBody
 	public User getbyid(@PathVariable("id") int id) {
-			return userService.findById(id);
+		return userService.findById(id);
 	}
 
 //	Insert with ajax
 	@PostMapping(value = "user/btnInsert")
 	@ResponseBody
-	public ApiResponse insert(@RequestParam String username, @RequestParam String name, @RequestParam String rules, @RequestParam String enabled) {
+	public ApiResponse insert(@RequestParam String username, @RequestParam String name, @RequestParam String rules,
+			@RequestParam boolean enabled) {
 		return userService.save(new User(username, name, RandomStringUtils.randomAlphanumeric(10),
-				Boolean.parseBoolean(rules), Boolean.parseBoolean(enabled), new Date()));
+				Boolean.parseBoolean(rules), enabled, new Date()));
 	}
 
 //	Delete with ajax

@@ -1,6 +1,7 @@
-		<footer>
-			<div class="pull-right">
-				 Coza Store - Edit template by <a href="/admin/home">Coza Store</a> 
-			</div>
-			<div class="clearfix"></div>
-		</footer>
+<footer class="footer">
+      <div class="container">
+        <div class="text-center">
+          Copyright © 2018 Rukada Admin
+        </div>
+      </div>
+    </footer>

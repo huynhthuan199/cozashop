@@ -70,4 +70,7 @@ public class UserService {
 				user.isEnabled(), user.getId());
 		return new ApiResponse(Status.success, "Update Thành Công...");
 	}
+	public User Login(String username,String password) {
+		return userRepository.findByUsernameAndPassword(username, password);
+	}
 }

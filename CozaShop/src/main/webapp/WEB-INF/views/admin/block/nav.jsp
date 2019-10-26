@@ -1,80 +1,60 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="col-md-3 left_col">
-	<div class="left_col scroll-view">
-		<div class="navbar nav_title" style="border: 0;">
-			<a href="/admin/home" class="site_title"><i class="fa fa-paw"></i> <span>Coza
-					Store</span></a>
-		</div>
-
-		<div class="clearfix"></div>
-
-		<!-- menu profile quick info -->
-		<div class="profile clearfix">
-			<div class="profile_pic">
-				<img src="/resources/admin/images/img.jpg" alt="..."
-					class="img-circle profile_img">
-			</div>
-			<div class="profile_info">
-				<span>Hello,</span>
-				<h2>ADMIN</h2>
-			</div>
-		</div>
-		<!-- /menu profile quick info -->
-
-		<br />
-
-		<!-- sidebar menu -->
-		<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-			<div class="menu_section">
-				<h3>General</h3>
-				<ul class="nav side-menu">
-					<li><a href="home"><i class="fa fa-home"></i> Trang
-							chủ</a></li>
-					<li><a><i class="fa fa-user"></i> Người dùng <span
-							class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<li><a href="/admin/user">Quản trị</a></li>
-							<li><a href="/admin/customer">Khách hàng</a></li>
-						</ul></li>
-					<li><a><i class="fa fa-edit"></i> Sản phẩm <span
-							class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<li><a href="/admin/infoproduct">Thông tin sản phẩm</a></li>
-							<li><a href="/admin/category">Danh mục sản phẩm</a></li>
-						</ul></li>
-					<li><a><i class="fa fa-desktop"></i> Đơn hàng <span
-							class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<!--                     <li><a href="general_elements.html">Phiếu giao hàng</a></li> -->
-							<li><a href="/admin/order">Đơn hàng</a></li>
-						</ul></li>
-					<li><a><i class="fa fa-bar-chart-o"></i> Thống kê <span
-							class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<li><a href="chartjs.html">Doanh thu</a></li>
-							<li><a href="chartjs2.html">Sản phẩm</a></li>
-							<li><a href="morisjs.html">Đơn hàng</a></li>
-						</ul></li>
-				</ul>
-			</div>
-		</div>
-		<!-- /sidebar menu -->
-
-		<!-- /menu footer buttons -->
-		<div class="sidebar-footer hidden-small">
-			<a data-toggle="tooltip" data-placement="top" title="Settings"> <span
-				class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-			</a> <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-				<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-			</a> <a data-toggle="tooltip" data-placement="top" title="Lock"> <span
-				class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-			</a> <a data-toggle="tooltip" data-placement="top" title="Logout"
-				href="login.html"> <span class="glyphicon glyphicon-off"
-				aria-hidden="true"></span>
-			</a>
-		</div>
-		<!-- /menu footer buttons -->
+<div id="sidebar-wrapper" data-simplebar=""
+	data-simplebar-auto-hide="true">
+	<div class="brand-logo">
+		<a href="./home"> <img
+			src="/resources/admin/assets/images/logo-icon.png" class="logo-icon"
+			alt="logo icon">
+			<h5 class="logo-text">Coza Shop</h5>
+		</a>
 	</div>
+	<ul class="sidebar-menu do-nicescrol">
+		<li class="sidebar-header">Quản Lí Hệ Thống</li>
+		<li><a href="./home" class="waves-effect"> <i
+				class="zmdi zmdi-view-dashboard"></i> <span>Trang Chủ</span></i>
+		</a></li>
+		<li><a href="javaScript:void();" class="waves-effect"> <i
+				class="zmdi zmdi-accounts"></i> <span>Quản Lí Tài Khoản</span> <i
+				class="fa fa-angle-left pull-right"></i>
+		</a>
+			<ul class="sidebar-submenu">
+				<li><a href="./user"><i class="zmdi zmdi-assignment-account"></i>Nhân
+						Viên</a></li>
+				<li><a href="./customer"><i class="zmdi zmdi-account"></i>Khách
+						Hàng</a></li>
+			</ul></li>
+		<li><a href="javaScript:void();" class="waves-effect"> <i
+				class="zmdi zmdi-layers"></i> <span>Quản Lí Sản Phẩm</span> <i
+				class="fa fa-angle-left pull-right"></i>
+		</a>
+			<ul class="sidebar-submenu">
+				<li><a href="./category"><i class="zmdi zmdi-star-outline"></i>Danh
+						Mục</a></li>
+				<li><a href="./infoproduct"><i
+						class="zmdi zmdi-star-outline"></i>Sản Phẩm</a></li>
+			</ul></li>
+		<li><a href="javaScript:void();" class="waves-effect"> <i
+				class="zmdi zmdi-layers"></i> <span>Quản Lí </span> <i
+				class="fa fa-angle-left pull-right"></i>
+		</a>
+			<ul class="sidebar-submenu">
+				<li><a href="./color"><i class="zmdi zmdi-star-outline"></i>Màu
+						Sắc</a></li>
+				<li><a href="./material"><i class="zmdi zmdi-star-outline"></i>Chất
+						Liệu</a></li>
+			</ul></li>
+		<li><a href="javaScript:void();" class="waves-effect"> <i
+				class="zmdi zmdi-layers"></i> <span>Quản Lí </span> <i
+				class="fa fa-angle-left pull-right"></i>
+		</a>
+			<ul class="sidebar-submenu">
+				<li><a href="./contact"><i class="zmdi zmdi-star-outline"></i>Liên
+						Hệ</a></li>
+				<li><a href="./blog"><i class="zmdi zmdi-star-outline"></i>Tin
+						Tức</a></li>
+			</ul></li>
+	</ul>
+
 </div>
