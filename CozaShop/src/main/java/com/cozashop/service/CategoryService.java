@@ -34,6 +34,7 @@ public class CategoryService {
 		return categoryRepository.listCategory();
 	}
 
+
 	public ApiResponse save(Category category) {
 		if(categoryRepository.existsById(category.getId())) {
 			return new ApiResponse(Status.warning, " Mã danh mục: " + category.getId() + " đã tồn tại trong hệ thống" );
@@ -47,7 +48,7 @@ public class CategoryService {
 		}
 		}
 		categoryRepository.save(category);
-		 return new ApiResponse(Status.success, "Update Thành Công...");
+		 return new ApiResponse(Status.success, "Thêm Thành Công...");
 	}
 
 	public ApiResponse update(Category category) {

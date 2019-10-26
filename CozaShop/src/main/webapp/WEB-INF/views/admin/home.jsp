@@ -1,349 +1,540 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- Meta, title, CSS, favicons, etc. -->
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="images/favicon.ico" type="image/ico" />
-
-<title>Coza Store</title>
-<!-- Bootstrap -->
-<link
-	href="/resources/admin/vendors/bootstrap/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<!-- Font Awesome -->
-<link
-	href="/resources/admin/vendors/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
-<!-- NProgress -->
-<link href="/resources/admin/vendors/nprogress/nprogress.css"
-	rel="stylesheet" type="text/css">
-<!-- iCheck -->
-<link
-	href="/resources/admin/vendors/iCheck/skins/flat/green.css"
-	rel="stylesheet" type="text/css">
-
-<!-- bootstrap-progressbar -->
-<link
-	href="/resources/admin/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css"
-	rel="stylesheet">
-<!-- JQVMap -->
-<link
-	href="/resources/admin/vendors/jqvmap/dist/jqvmap.min.css"
-	rel="stylesheet" />
-<!-- bootstrap-daterangepicker -->
-<link
-	href="/resources/admin/vendors/bootstrap-daterangepicker/daterangepicker.css"
-	rel="stylesheet">
-<!-- Custom Theme Style -->
-<link href="/resources/admin/build/css/custom.min.css"
-	rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Trang Chủ</title>
+  <!--favicon-->
+  <link rel="icon" href="/resources/admin/assets/images/favicon.ico" type="image/x-icon">
+  <!-- simplebar CSS-->
+  <link href="/resources/admin/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet">
+  <!-- Bootstrap core CSS-->
+  <link href="/resources/admin/assets/css/bootstrap.min.css" rel="stylesheet">
+  <!-- animate CSS-->
+  <link href="/resources/admin/assets/css/animate.css" rel="stylesheet" type="text/css">
+  <!-- Icons CSS-->
+  <link href="/resources/admin/assets/css/icons.css" rel="stylesheet" type="text/css">
+  <!-- Sidebar CSS-->
+  <link href="/resources/admin/assets/css/sidebar-menu.css" rel="stylesheet">
+  <!-- Custom Style-->
+  <link href="/resources/admin/assets/css/app-style.css" rel="stylesheet">
+  
 </head>
 
-<body class="nav-md">
-	<!-- body  -->
-	<div class="container body">
-		<div class="main_container">
-			<!-- include navbar  -->
-			<%@ include file="./block/nav.jsp"%>
-			<!-- top navigation -->
-			<%@ include file="./block/topnav.jsp"%>
-			<!-- /top navigation -->
+<body>
 
-			<!-- page content -->
-			<div class="right_col" role="main">
-				<!-- top tiles -->
-				<div class="row tile_count">
-					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-						<span class="count_top"><i class="fa fa-shopping-cart"></i>
-							Tổng đơn hàng</span>
-						<div class="count">0</div>
-						<span class="count_bottom"><i class="green">4% </i>Trong
-							tuần này</span>
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-						<span class="count_top"><i class="fa fa-clock-o"></i> Doanh
-							số </span>
-						<div class="count">0</div>
-						<span class="count_bottom"><i class="green">4% </i>Trong
-							tuần này</span>
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-						<span class="count_top"><i class="fa fa-user"></i> Tổng số
-							khách hàng</span>
-						<div class="count green">0</div>
-						<span class="count_bottom"><i class="green">4% </i>Trong
-							tuần này</span>
-					</div>
-					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-						<span class="count_top"><i class="fa fa-user"></i> Khách
-							đang truy cập</span>
-						<div class="count">0</div>
-						<span class="count_bottom"><i class="green">4% </i>Trong
-							tuần này</span>
-					</div>
-				</div>
-				<!-- /top tiles -->
+<!-- Start wrapper-->
+ <div id="wrapper">
+ 
+  <!--Start sidebar-wrapper-->
+   <%@ include file="./block/nav.jsp"%>
+   <!--End sidebar-wrapper-->
 
-				<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div class="dashboard_graph">
+<!--Start topbar header-->
+<%@ include file="./block/header.jsp"%>
+<!--End topbar header-->
 
-							<div class="row x_title">
-								<div class="col-md-6">
-									<h3>Thống kê bán hàng</h3>
-								</div>
-								<div class="col-md-6">
-									<div id="reportrange" class="pull-right"
-										style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-										<i class="glyphicon glyphicon-calendar fa fa-calendar"></i> <span>Tháng
-											9 23, 2019 - Tháng 12 03, 2019</span> <b class="caret"></b>
-									</div>
-								</div>
-							</div>
+<div class="clearfix"></div>
+	
+  <div class="content-wrapper">
+    <div class="container-fluid">
 
-							<div class="col-md-9 col-sm-9 col-xs-12">
-								<div id="chart_plot_01" class="demo-placeholder"></div>
-							</div>
-							<div class="col-md-3 col-sm-3 col-xs-12 bg-white">
-								<div class="x_title">
-									<h2>Chú thích</h2>
-									<div class="clearfix"></div>
-								</div>
+      <!--Start Dashboard Content-->
+	  
+      <div class="row mt-3">
+        <div class="col-12 col-lg-6 col-xl-3">
+          <div class="card gradient-bloody">
+            <div class="card-body">
+              <div class="media align-items-center">
+              <div class="media-body">
+                <p class="text-white">Total Orders</p>
+                <h4 class="text-white line-height-5">8450</h4>
+              </div>
+              <div class="w-circle-icon rounded-circle border border-white">
+                <i class="fa fa-cart-plus text-white"></i></div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3">
+          <div class="card gradient-scooter">
+            <div class="card-body">
+              <div class="media align-items-center">
+              <div class="media-body">
+                <p class="text-white">Total Revenue</p>
+                <h4 class="text-white line-height-5">$750</h4>
+              </div>
+              <div class="w-circle-icon rounded-circle border border-white">
+                <i class="fa fa-money text-white"></i></div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3">
+          <div class="card gradient-blooker">
+            <div class="card-body">
+              <div class="media align-items-center">
+              <div class="media-body">
+                <p class="text-white">New Users</p>
+                <h4 class="text-white line-height-5">620</h4>
+              </div>
+              <div class="w-circle-icon rounded-circle border border-white">
+                <i class="fa fa-users text-white"></i></div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3">
+          <div class="card gradient-ohhappiness">
+            <div class="card-body">
+              <div class="media align-items-center">
+              <div class="media-body">
+                <p class="text-white">Bounce Rate</p>
+                <h4 class="text-white line-height-5">12.80%</h4>
+              </div>
+              <div class="w-circle-icon rounded-circle border border-white">
+                <i class="fa fa-pie-chart text-white"></i></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div><!--End Row-->
 
-								<div class="col-md-12 col-sm-12 col-xs-6">
-									<div>
-										<p>Đơn hàng đã bán</p>
-										<div class="">
-											<div class="progress progress_sm" style="width: 76%;">
-												<div class="progress-bar bg-green" role="progressbar"
-													data-transitiongoal="80"></div>
-											</div>
-										</div>
-									</div>
-									<div>
-										<p>Nguồn khách hàng</p>
-										<div class="">
-											<div class="progress progress_sm" style="width: 76%;">
-												<div class="progress-bar bg-green" role="progressbar"
-													data-transitiongoal="60"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="card">
+            <div class="card-header">
+                Last 7 Days Report
+                <div class="card-action">
+                 <div class="dropdown">
+                 <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                  <i class="icon-options"></i>
+                 </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="javascript:void();">Action</a>
+                    <a class="dropdown-item" href="javascript:void();">Another action</a>
+                    <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+                <div class="card-body">
+                  <canvas id="dashboard-chart-1"></canvas>
+                </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="card">
+            <div class="card-header">
+                Most Selling Items
+                <div class="card-action">
+                 <div class="dropdown">
+                 <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                  <i class="icon-options"></i>
+                 </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="javascript:void();">Action</a>
+                    <a class="dropdown-item" href="javascript:void();">Another action</a>
+                    <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                   </div>
+                  </div>
+                 </div>
+                </div>
+                <div class="card-body">
+                  <canvas id="dashboard-chart-2"></canvas>
+                </div>
+          </div>
+        </div>
+      </div><!--End Row-->
+		  
+		  
+      <div class="row">
+        <div class="col-12 col-lg-12 col-xl-12">
+          <div class="card">
+    		   <div class="card-header">
+                <i class="fa fa-area-chart"></i> Sales Report 
+    				<div class="card-action">
 
-				</div>
-				<br />
+              <div class="form-group mb-0">
+                <select class="form-control form-control-sm">
+                  <option>Jan 18</option>
+                  <option>Feb 18</option>
+                  <option>Mar 18</option>
+                  <option>Apr 18</option>
+                  <option>May 18</option>
+                  <option>Jun 18</option>
+                  <option>Jul 18</option>
+                  <option>Aug 18</option>
+                  <option selected="">Sept 18</option>
+                </select>
+              </div>
+                     </div>
+    				</div>
+                 <div class="card-body">
+                   <canvas id="dashboard-chart-3" height="100"></canvas>
+                 </div>
+          </div>
+        </div>
+		
+      </div><!--End Row-->
 
-				<div class="row">
-					<div class="col-md-4 col-sm-4 col-xs-12">
-						<div class="x_panel tile fixed_height_320 overflow_hidden"
-							style="width: 1079px; height: 379px">
-							<div class="x_title">
-								<h2>Thông tin nhân viên tiêu biểu</h2>
-								<ul class="nav navbar-right panel_toolbox">
-									<li><a class="collapse-link"><i
-											class="fa fa-chevron-up"></i></a></li>
-									<li class="dropdown"><a href="#" class="dropdown-toggle"
-										data-toggle="dropdown" role="button" aria-expanded="false"><i
-											class="fa fa-wrench"></i></a>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="#">Settings 1</a></li>
-											<li><a href="#">Settings 2</a></li>
-										</ul></li>
-									<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-								</ul>
-								<div class="clearfix"></div>
-							</div>
-							<div class="x_content">
-								<div class="x_content">
 
-									<p>
-										Add class
-										<code>bulk_action</code>
-										to table for bulk actions options on row select
-									</p>
+      <div class="row">
+         <div class="col-12 col-lg-6 col-xl-8">
+           <div class="card">
+             <div class="card-header border-0">
+              New Customer List
+            <div class="card-action">
+             <div class="dropdown">
+             <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+              <i class="icon-options"></i>
+             </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="javascript:void();">Action</a>
+                <a class="dropdown-item" href="javascript:void();">Another action</a>
+                <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="javascript:void();">Separated link</a>
+               </div>
+              </div>
+             </div>
+            </div>
+            <div class="table-responsive">
+             <table class="table align-items-center table-flush">
+               <thead>
+                <tr>
+                 <th>Photo</th>
+                 <th>Name</th>
+                 <th>Username</th>
+                 <th>Email</th>
+                </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td><img src="/resources/admin/assets/images/avatars/avatar-1.png" class="rounded-circle customer-img" alt="user avatar"></td>
+                   <td>Selina Jccoy</td>
+                   <td>@selina</td>
+                   <td>xyz@example.com</td>
+                 </tr>
+                 <tr>
+                   <td><img src="/resources/admin/assets/images/avatars/avatar-2.png" class="rounded-circle customer-img" alt="user avatar"></td>
+                   <td>Michle jhon</td>
+                   <td>@Michle</td>
+                   <td>xyz@example.com</td>
+                 </tr>
+                 <tr>
+                   <td><img src="/resources/admin/assets/images/avatars/avatar-3.png" class="rounded-circle customer-img" alt="user avatar"></td>
+                   <td>Jhon Deo</td>
+                   <td>@deojhon</td>
+                   <td>xyz@example.com</td>
+                 </tr>
+                 <tr>
+                   <td><img src="/resources/admin/assets/images/avatars/avatar-4.png" class="rounded-circle customer-img" alt="user avatar"></td>
+                   <td>Selina Jccoy</td>
+                   <td>@selina</td>
+                   <td>xyz@example.com</td>
+                 </tr>
+                 <tr>
+                   <td><img src="/resources/admin/assets/images/avatars/avatar-5.png" class="rounded-circle customer-img" alt="user avatar"></td>
+                   <td>Katrin jade</td>
+                   <td>@Katrin</td>
+                   <td>xyz@example.com</td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+           </div>
+         </div>
+         <div class="col-12 col-lg-6 col-xl-4">
+           <div class="card">
+              <div class="card-header">Social Traffic</div>
+              <div class="card-body">
+                 <div class="media align-items-center">
+                   <div><i class="fa fa-facebook-square fa-2x text-facebook"></i></div>
+                     <div class="media-body text-left ml-3">
+                       <div class="progress-wrapper">
+                         <p>Facebook <span class="float-right">65%</span></p>
+                         <div class="progress" style="height: 7px;">
+                          <div class="progress-bar bg-facebook" style="width:65%"></div>
+                         </div>
+                        </div>                   
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="media align-items-center">
+                   <div><i class="fa fa-twitter fa-2x text-twitter"></i></div>
+                     <div class="media-body text-left ml-3">
+                       <div class="progress-wrapper">
+                         <p>Twitter <span class="float-right">50%</span></p>
+                         <div class="progress" style="height: 7px;">
+                          <div class="progress-bar bg-twitter" style="width:50%"></div>
+                         </div>
+                        </div>                   
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="media align-items-center">
+                   <div><i class="fa fa-dribbble fa-2x text-dribbble"></i></div>
+                     <div class="media-body text-left ml-3">
+                       <div class="progress-wrapper">
+                         <p>Dribble <span class="float-right">70%</span></p>
+                         <div class="progress" style="height: 7px;">
+                          <div class="progress-bar bg-dribbble" style="width:70%"></div>
+                         </div>
+                        </div>                   
+                    </div>
+                  </div>
+                   <hr>
+                  <div class="media align-items-center">
+                   <div><i class="fa fa-linkedin-square fa-2x text-linkedin"></i></div>
+                     <div class="media-body text-left ml-3">
+                       <div class="progress-wrapper">
+                         <p>Linkedin <span class="float-right">35%</span></p>
+                         <div class="progress" style="height: 7px;">
+                          <div class="progress-bar bg-linkedin" style="width:35%"></div>
+                         </div>
+                        </div>                   
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="media align-items-center">
+                   <div><i class="fa fa-youtube-square fa-2x text-youtube"></i></div>
+                     <div class="media-body text-left ml-3">
+                       <div class="progress-wrapper">
+                         <p>Youtube <span class="float-right">5%</span></p>
+                         <div class="progress" style="height: 7px;">
+                          <div class="progress-bar bg-youtube" style="width:25%"></div>
+                         </div>
+                        </div>                   
+                    </div>
+                  </div>
+              </div>
+            </div>
+         </div>
+      </div><!--End Row-->
 
-									<div class="table-responsive">
-										<table class="table table-striped jambo_table bulk_action">
-											<thead>
-												<tr class="headings">
-													<th><input type="checkbox" id="check-all" class="flat">
-													</th>
-													<th class="column-title">Id</th>
-													<th class="column-title">Họ Tên</th>
-													<th class="column-title">Số điện thoại</th>
-													<th class="column-title">Giới tính</th>
-													<th class="column-title">Ngày thống kê</th>
-													<th class="column-title no-link last"><span
-														class="nobr">Action</span></th>
-													<th class="bulk-actions" colspan="7"><a class="antoo"
-														style="color: #fff; font-weight: 500;">Bulk Actions (
-															<span class="action-cnt"> </span> ) <i
-															class="fa fa-chevron-down"></i>
-													</a></th>
-												</tr>
-											</thead>
+      <div class="card">
+        <div class="card-content">
+          <div class="row row-group m-0 text-center">
+            <div class="col-12 col-lg-3 col-xl-3">
+              <div class="card-body">
+                 <span class="donut" data-peity='{ "fill": ["#5e72e4", "#f2f2f2"], "innerRadius": 45, "radius": 32 }'>4/5</span>
+                  <hr>
+                  <h6 class="mb-0">Total Viwes : 4521</h6>
+              </div>
+            </div>
+            <div class="col-12 col-lg-3 col-xl-3">
+              <div class="card-body">
+                <span class="donut" data-peity='{ "fill": ["#ff2fa0", "#f2f2f2"], "innerRadius": 45, "radius": 32 }'>2/5</span>
+                <hr>
+                  <h6 class="mb-0">Page Click : 4521</h6>
+              </div>
+            </div>
+            <div class="col-12 col-lg-3 col-xl-3">
+              <div class="card-body">
+                <span class="donut" data-peity='{ "fill": ["#2dce89", "#f2f2f2"], "innerRadius": 45, "radius": 32 }'>3/5</span>
+                 <hr>
+                  <h6 class="mb-0">Server Load : 4521</h6>
+              </div>
+            </div>
+             <div class="col-12 col-lg-3 col-xl-3">
+              <div class="card-body">
+                <span class="donut" data-peity='{ "fill": ["#172b4d", "#f2f2f2"], "innerRadius": 45, "radius": 32 }'>2/5</span>
+                 <hr>
+                  <h6 class="mb-0">Used RAM : 4521</h6>
+              </div>
+            </div>
+          </div><!--End Row-->
+        </div>
+      </div>
 
-											<tbody>
-												<tr class="even pointer">
-													<td class="a-center "><input type="checkbox"
-														class="flat" name="table_records"></td>
-													<td class=" ">121000040</td>
-													<td class=" ">Ngyễn Ngọc Gia Huy</td>
-													<td class=" ">0939135074</td>
-													<td class=" ">Nam</td>
-													<td class=" ">May 23, 2014 11:47:56 PM</td>
-													<td class=" last"><a href="#">
-															<button type="button" class="btn btn-success">Info</button>
-													</a></td>
-												</tr>
-												<tr class="even pointer">
-													<td class="a-center "><input type="checkbox"
-														class="flat" name="table_records"></td>
-													<td class=" ">121000041</td>
-													<td class=" ">Ngyễn Huỳnh Thuận</td>
-													<td class=" ">0868926037</td>
-													<td class=" ">Nam</td>
-													<td class=" ">May 23, 2014 11:47:56 PM</td>
-													<td class=" last"><a href="#">
-															<button type="button" class="btn btn-success">Info</button>
-													</a></td>
-												</tr>
-												<tr class="even pointer">
-													<td class="a-center "><input type="checkbox"
-														class="flat" name="table_records"></td>
-													<td class=" ">121000042</td>
-													<td class=" ">Lê Định Thành</td>
-													<td class=" ">0929357148</td>
-													<td class=" ">Nam</td>
-													<td class=" ">May 23, 2014 11:47:56 PM</td>
-													<td class=" last"><a href="#">
-															<button type="button" class="btn btn-success">Info</button>
-													</a></td>
-												</tr>
-												<tr class="even pointer">
-													<td class="a-center "><input type="checkbox"
-														class="flat" name="table_records"></td>
-													<td class=" ">121000043</td>
-													<td class=" ">Ngyễn Phúc Khang</td>
-													<td class=" ">0342487692</td>
-													<td class=" ">Nam</td>
-													<td class=" ">May 23, 2014 11:47:56 PM</td>
-													<td class=" last"><a href="#">
-															<button type="button" class="btn btn-success">Info</button>
-													</a></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-8 col-sm-8 col-xs-12">
-						<div class="row">
-							<div class="col-md-12 col-sm-12 col-xs-12" style="width: 1099px">
-								<div class="x_panel">
-									<div class="x_title">
-										<h2>Bản đồ</h2>
-										<ul class="nav navbar-right panel_toolbox">
-											<li><a class="collapse-link"><i
-													class="fa fa-chevron-up"></i></a></li>
-											<li class="dropdown"><a href="#" class="dropdown-toggle"
-												data-toggle="dropdown" role="button" aria-expanded="false"><i
-													class="fa fa-wrench"></i></a></li>
-											<li><a class="close-link"><i class="fa fa-close"></i></a>
-											</li>
-										</ul>
-										<div class="clearfix"></div>
-									</div>
-									<div class="x_content">
-										<div class="dashboard-widget-content">
-											<div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12"
-												style="height: 340px; width: 1099px"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /page content -->
 
-			<!-- footer content -->
-			<%@ include file="./block/footer.jsp"%>
-			<!-- /footer content -->
-		</div>
-	</div>
-	<!-- jQuery -->
-	<script
-		src="/resources/admin/vendors/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script
-		src="/resources/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- FastClick -->
-	<script
-		src="/resources/admin/vendors/fastclick/lib/fastclick.js"></script>
-	<!-- NProgress -->
-	<script src="/resources/admin/vendors/nprogress/nprogress.js"></script>
-	<!-- Chart.js -->
-	<script
-		src="/resources/admin/vendors/Chart.js/dist/Chart.min.js"></script>
-	<!-- gauge.js -->
-	<script
-		src="/resources/admin/vendors/gauge.js/dist/gauge.min.js"></script>
-	<!-- bootstrap-progressbar -->
-	<script
-		src="/resources/admin/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-	<!-- iCheck -->
-	<script src="/resources/admin/vendors/iCheck/icheck.min.js"></script>
-	<!-- Skycons -->
-	<script src="/resources/admin/vendors/skycons/skycons.js"></script>
-	<!-- Flot -->
-	<script src="/resources/admin/vendors/Flot/jquery.flot.js"></script>
-	<script
-		src="/resources/admin/vendors/Flot/jquery.flot.pie.js"></script>
-	<script
-		src="/resources/admin/vendors/Flot/jquery.flot.time.js"></script>
-	<script
-		src="/resources/admin/vendors/Flot/jquery.flot.stack.js"></script>
-	<script
-		src="/resources/admin/vendors/Flot/jquery.flot.resize.js"></script>
-	<!-- Flot plugins -->
-	<script
-		src="/resources/admin/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-	<script
-		src="/resources/admin/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-	<script
-		src="/resources/admin/vendors/flot.curvedlines/curvedLines.js"></script>
-	<!-- DateJS -->
-	<script src="/resources/admin/vendors/DateJS/build/date.js"></script>
-	<!-- JQVMap -->
-	<script
-		src="/resources/admin/vendors/jqvmap/dist/jquery.vmap.js"></script>
-	<script
-		src="/resources/admin/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-	<script
-		src="/resources/admin/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-	<!-- bootstrap-daterangepicker -->
-	<script
-		src="/resources/admin/vendors/moment/min/moment.min.js"></script>
-	<script
-		src="/resources/admin/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<!-- Custom Theme Scripts -->
-	<script src="/resources/admin/build/js/custom.min.js"></script>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+      <div class="card-header border-0">
+                Recent Orders Table
+        <div class="card-action">
+         <div class="dropdown">
+         <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+          <i class="icon-options"></i>
+         </a>
+            <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="javascript:void();">Action</a>
+            <a class="dropdown-item" href="javascript:void();">Another action</a>
+            <a class="dropdown-item" href="javascript:void();">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="javascript:void();">Separated link</a>
+           </div>
+          </div>
+                 </div>
+                </div>
+               <div class="table-responsive">
+         
+                 <table class="table align-items-center table-flush">
+                  <thead>
+                   <tr>
+                     <th>Action</th>
+                     <th>Product</th>
+                     <th>Photo</th>
+                     <th>Product ID</th>
+                     <th>Status</th>
+                     <th>Amount</th>
+                     <th>Completion</th>
+                   </tr>
+                   </thead>
+                   <tr>
+                    <td>
+                       <div class="icheck-material-primary">
+                        <input type="checkbox" id="check1">
+                        <label for="check1"></label>
+                      </div>
+                    </td>
+                    <td>Iphone 5</td>
+                    <td><img src="/resources/admin/assets/images/products/01.png" class="product-img" alt="product img"></td>
+                    <td>#9405822</td>
+                    <td><span class="btn btn-sm btn-outline-success btn-round btn-block">Paid</span></td>
+                    <td>$ 1250.00</td>
+                    <td><div class="progress shadow" style="height: 4px;">
+                          <div class="progress-bar gradient-ohhappiness" role="progressbar" style="width: 100%"></div>
+                       </div></td>
+                   </tr>
+
+                   <tr>
+                    <td>
+                       <div class="icheck-material-primary">
+                        <input type="checkbox" id="check2">
+                        <label for="check2"></label>
+                      </div>
+                    </td>
+                    <td>Earphone GL</td>
+                    <td><img src="/resources/admin/assets/images/products/02.png" class="product-img" alt="product img"></td>
+                    <td>#9405820</td>
+                    <td><span class="btn btn-sm btn-outline-info btn-round btn-block">Pending</span></td>
+                    <td>$ 1500.00</td>
+                    <td><div class="progress shadow" style="height: 4px;">
+                          <div class="progress-bar gradient-scooter" role="progressbar" style="width: 80%"></div>
+                       </div></td>
+                   </tr>
+
+                   <tr>
+                    <td>
+                       <div class="icheck-material-primary">
+                        <input type="checkbox" id="check3">
+                        <label for="check3"></label>
+                      </div>
+                    </td>
+                    <td>HD Hand Camera</td>
+                    <td><img src="/resources/admin/assets/images/products/03.png" class="product-img" alt="product img"></td>
+                    <td>#9405830</td>
+                    <td><span class="btn btn-sm btn-outline-danger btn-round btn-block">Failed</span></td>
+                    <td>$ 1400.00</td>
+                    <td><div class="progress shadow" style="height: 4px;">
+                          <div class="progress-bar gradient-ibiza" role="progressbar" style="width: 60%"></div>
+                       </div></td>
+                   </tr>
+
+                   <tr>
+                    <td>
+                       <div class="icheck-material-primary">
+                        <input type="checkbox" id="check4">
+                        <label for="check4"></label>
+                      </div>
+                    </td>
+                    <td>Clasic Shoes</td>
+                    <td><img src="/resources/admin/assets/images/products/04.png" class="product-img" alt="product img"></td>
+                    <td>#9405825</td>
+                    <td><span class="btn btn-sm btn-outline-success btn-round btn-block">Paid</span></td>
+                    <td>$ 1200.00</td>
+                    <td><div class="progress shadow" style="height: 4px;">
+                          <div class="progress-bar gradient-ohhappiness" role="progressbar" style="width: 100%"></div>
+                       </div></td>
+                   </tr>
+
+                   <tr>
+                    <td>
+                       <div class="icheck-material-primary">
+                        <input type="checkbox" id="check5">
+                        <label for="check5"></label>
+                      </div>
+                    </td>
+                    <td>Hand Watch</td>
+                    <td><img src="/resources/admin/assets/images/products/05.png" class="product-img" alt="product img"></td>
+                    <td>#9405840</td>
+                    <td><span class="btn btn-sm btn-outline-danger btn-round btn-block">Failed</span></td>
+                    <td>$ 1800.00</td>
+                    <td><div class="progress shadow" style="height: 4px;">
+                          <div class="progress-bar gradient-ibiza" role="progressbar" style="width: 75%"></div>
+                       </div></td>
+                   </tr>
+
+                    <tr>
+                      <td>
+                       <div class="icheck-material-primary">
+                        <input type="checkbox" id="check6">
+                        <label for="check6"></label>
+                      </div>
+                    </td>
+                    <td>HD Hand Camera</td>
+                    <td><img src="/resources/admin/assets/images/products/03.png" class="product-img" alt="product img"></td>
+                    <td>#9405830</td>
+                    <td><span class="btn btn-sm btn-outline-info btn-round btn-block">Pending</span></td>
+                    <td>$ 1400.00</td>
+                    <td><div class="progress shadow" style="height: 4px;">
+                          <div class="progress-bar gradient-scooter" role="progressbar" style="width: 70%"></div>
+                       </div></td>
+                   </tr>
+
+                 </table>
+               </div>
+          </div>
+        </div>
+      </div><!--End Row-->
+
+      <!--End Dashboard Content-->
+
+    </div>
+    <!-- End container-fluid-->
+    
+    </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+	
+	<!--Start footer-->
+	<%@ include file="./block/footer.jsp"%>
+	<!--End footer-->
+   
+  </div><!--End wrapper-->
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/resources/admin/assets/js/jquery.min.js"></script>
+  <script src="/resources/admin/assets/js/popper.min.js"></script>
+  <script src="/resources/admin/assets/js/bootstrap.min.js"></script>
+	
+  <!-- simplebar js -->
+  <script src="/resources/admin/assets/plugins/simplebar/js/simplebar.js"></script>
+  <!-- waves effect js -->
+  <script src="/resources/admin/assets/js/waves.js"></script>
+  <!-- sidebar-menu js -->
+  <script src="/resources/admin/assets/js/sidebar-menu.js"></script>
+  <!-- Custom scripts -->
+  <script src="/resources/admin/assets/js/app-script.js"></script>
+  <!-- Chart js -->
+  <script src="/resources/admin/assets/plugins/Chart.js/Chart.min.js"></script>
+  <!--Peity Chart -->
+  <script src="/resources/admin/assets/plugins/peity/jquery.peity.min.js"></script>
+  <!-- Index js -->
+  <script src="/resources/admin/assets/js/index.js"></script>
+  
 </body>
 </html>

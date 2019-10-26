@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.cozashop.entities.Customer;
 import com.cozashop.repository.CustomerRepository;
 import com.cozashop.util.ApiResponse;
+import com.cozashop.util.SendMail;
 import com.cozashop.util.ApiResponse.Status;
 
 @Service
@@ -30,8 +31,6 @@ public class CustomerService {
 		String userName =customer.getUsername();
 		String address =customer.getAddress();
 		String email =customer.getEmail();
-		String gender = String.valueOf(customer.isGender());
-		System.out.println(gender);
 //		Check user đã tồn tại
 		if(customerRepository.existsByUsername(customer.getUsername())){
 			return new ApiResponse(Status.warning,"Tài khoản: " + customer.getUsername() + " đã có người sử dụng");
@@ -102,10 +101,74 @@ public class CustomerService {
 		return new ApiResponse(Status.success,"Thêm khách hàng thành công");
 	}
 
-	public int update(Customer customer) {
-		return customerRepository.updateByCustomer(customer.getUsername(), customer.getPassword(), customer.getName(),
+	public ApiResponse update(Customer customer) {
+		String name = customer.getName();
+		String numberphone = customer.getPhone();
+		String userName =customer.getUsername();
+		String address =customer.getAddress();
+		String email =customer.getEmail();
+//		Check 4 bỏ 1
+		 if(name.equals("") && numberphone.equals("") && userName.equals("") && address.equals("") && email.equals("")) {
+			return new ApiResponse(Status.warning,"Vui lòng điền thông tin <br>"
+													+ "  + Họ Tên <br>"
+													+ "  + Địa chỉ <br>"
+													+ "	 + Email <br>"
+													+ "  + Username <br>"
+													+ "	 + Số Điện Thoại");
+		}else if(name.equals("") && numberphone.equals("") && userName.equals("") && address.equals("") && !email.equals("")) {
+			return new ApiResponse(Status.warning,"Vui lòng điền thông tin <br>"
+					+ "  + Họ Tên <br>"
+					+ "  + Địa chỉ <br>"
+					+ "  + Username <br>"
+					+ "	 + Số Điện Thoại");
+		}else if(name.equals("") && numberphone.equals("") && userName.equals("") && !address.equals("") && email.equals("")) {
+			return new ApiResponse(Status.warning,"Vui lòng điền thông tin <br>"
+					+ "  + Họ Tên <br>"
+					+ "	 + Email <br>"
+					+ "  + Username <br>"
+					+ "	 + Số Điện Thoại");
+		}else if(name.equals("") && numberphone.equals("") && !userName.equals("") && address.equals("") && email.equals("")) {
+			return new ApiResponse(Status.warning,"Vui lòng điền thông tin <br>"
+					+ "  + Họ Tên <br>"
+					+ "  + Địa chỉ <br>"
+					+ "	 + Email <br>"
+					+ "	 + Số Điện Thoại");
+		}else if(name.equals("") && !numberphone.equals("") && userName.equals("") && address.equals("") && email.equals("")) {
+			return new ApiResponse(Status.warning,"Vui lòng điền thông tin <br>"
+					+ "  + Họ Tên <br>"
+					+ "  + Địa chỉ <br>"
+					+ "	 + Email <br>"
+					+ "  + Username");
+		}else if(!name.equals("") && numberphone.equals("") && userName.equals("") && address.equals("") && email.equals("")) {
+			return new ApiResponse(Status.warning,"Vui lòng điền thông tin <br>"
+					+ "  + Địa chỉ <br>"
+					+ "	 + Email <br>"
+					+ "  + Username <br>"
+					+ "	 + Số Điện Thoại");
+		}else if(name.equals("")) {
+			return new ApiResponse(Status.warning,"Vui lòng điền họ tên đầy đủ");
+		}else if(numberphone.equals("")) {
+			return new ApiResponse(Status.warning,"Vui lòng điền số điện thoại");
+		}else if(userName.equals("")) {
+			return new ApiResponse(Status.warning,"Không được bỏ trống tài khoản");
+		}else if(address.equals("")) {
+			return new ApiResponse(Status.warning,"Không được bỏ trống địa chỉ");
+		}else if(email .equals("")) {
+				return new ApiResponse(Status.warning,"Không được bỏ trống email");
+		}else if(!email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {
+			return new ApiResponse(Status.warning,"- Vui lòng điền email chính sát <br> - ví dụ: xxx123@xxx.xxx");
+		}else if(!numberphone.matches("^[0-9]*$")) {
+			return new ApiResponse(Status.warning,"- Vui lòng điền chính sát số điện thoại <br> - ví dụ: 08xxxxxxxx");
+		}else if(numberphone.length() >= 11 || numberphone.length() <= 9) {
+			return new ApiResponse(Status.warning,"- Số điện thoại phải phải gồm 10 số <br> - Và bắt đầu từ 08  <br> - Ví dụ: 08xxxxxxxx");
+		}else if(!numberphone.substring(0,2).equals("08")) {
+			return new ApiResponse(Status.warning,"- Số điện thoại phải bắt đầu từ 08 <br> - ví dụ: 08xxxxxxxx");
+		}
+		customerRepository.updateByCustomer(customer.getUsername(), customer.getPassword(), customer.getName(),
 				customer.getEmail(), customer.getPhone(), customer.getAddress(), customer.isGender(),
 				customer.isEnabled(), customer.getCreateAt(), customer.getId());
+		customerRepository.save(customer).getId();
+		return new ApiResponse(Status.success,"Sửa khách hàng thành công");
 	}
 
 	public String delete(int id) {

@@ -32,10 +32,13 @@ public class Product extends BaseEntity implements Serializable {
 	private String material;
 	private String color;
 	private String image;
+	private String image2;
+	private String image3;
+	private String shortdescription;
 	private String description;
 
 //	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name = "categoryid" ,referencedColumnName = "id")
 	private Category category;
 
@@ -47,7 +50,7 @@ public class Product extends BaseEntity implements Serializable {
 		super();
 	}
 
-	public Product(String id, String name, Double price, Double amout, String material, String color, String image,
+	public Product(String id, String name, Double price, Double amout, String material, String color, String image,String image2,String image3,String shortdescription,
 			String description, Category category,boolean enabled,Date createAt) {
 		super();
 		this.id = id;
@@ -57,10 +60,38 @@ public class Product extends BaseEntity implements Serializable {
 		this.material = material;
 		this.color = color;
 		this.image = image;
+		this.image2 = image2;
+		this.image3 = image3;
+		this.shortdescription = shortdescription;
 		this.description = description;
 		this.category = category;
 		this.enabled = enabled;
 		this.createAt = createAt;
+	}
+	
+	
+	public String getShortdescription() {
+		return shortdescription;
+	}
+
+	public void setShortdescription(String shortdescription) {
+		this.shortdescription = shortdescription;
+	}
+
+	public String getImage3() {
+		return image3;
+	}
+
+	public void setImage3(String image3) {
+		this.image3 = image3;
+	}
+	
+	public String getImage2() {
+		return image2;
+	}
+
+	public void setImage2(String image2) {
+		this.image2 = image2;
 	}
 
 	public String getId() {

@@ -1,6 +1,7 @@
 package com.cozashop.controller.admin;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,19 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cozashop.entities.Customer;
+import com.cozashop.entities.District;
+import com.cozashop.entities.Province;
+import com.cozashop.entities.Ward;
 import com.cozashop.service.CustomerService;
+import com.cozashop.service.DistrictService;
+import com.cozashop.service.ProviceService;
+import com.cozashop.service.WardService;
 import com.cozashop.util.ApiResponse;
 
 @Controller
@@ -23,12 +31,26 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerService customerService;
+
+	@Autowired
+	private ProviceService proviceService;
+	
+	@Autowired
+	private DistrictService districtService;
+	
+	@Autowired
+	private WardService wardService;
 	
 	@GetMapping("customer")
 	public String index(Model model) {
 		model.addAttribute("listCustomer",customerService.findAll());
+		model.addAttribute("listProvince",proviceService.findAll());
+		model.addAttribute("listDictricts",districtService.finById("79"));
+		model.addAttribute("listWard",wardService.finById("760"));
 		return "admin/customer";
 	}
+	
+	
 	
 // Edit with ajax
 	@GetMapping(value = "customer/{id}")
@@ -38,28 +60,35 @@ public class CustomerController {
 	}
 	
 //	Insert with ajax
-	@GetMapping(value = "customer/btnInsert")
+	@PostMapping(value = "customer/btnInsert")
 	@ResponseBody
 	public ApiResponse insert(@RequestParam String username,
 					  @RequestParam String address,
+					  @RequestParam String province,
+					  @RequestParam String district,
+					  @RequestParam String ward,
 					  @RequestParam String phone,
 					  @RequestParam String name,
 					  @RequestParam String email,
-					  @RequestParam String gender,
-					  @RequestParam String enabled) {
+					  @RequestParam String gender) {
+		
+		StringBuffer BfAddress = new StringBuffer();
+		BfAddress.append(address +", ");
+		BfAddress.append(province +", ");
+		BfAddress.append(district +", ");
+		BfAddress.append(ward);
 		return customerService.save(new Customer(username,
-												 name, address, RandomStringUtils.randomAlphanumeric(10),
+												 name, BfAddress.toString(), RandomStringUtils.randomAlphanumeric(10),
 												 Boolean.parseBoolean(gender),
 												 email,
-												 phone,
-												 Boolean.parseBoolean(enabled),
+												 phone,true,
 												 new Date()));
 	}
 //	ss
 	// Update with ajax
 		@GetMapping(value = "customer/btnUpdate")
 		@ResponseBody
-		public int update(@RequestParam("username") String username,
+		public ApiResponse update(@RequestParam("username") String username,
 				  		  @RequestParam("address") String address,
 				  		  @RequestParam("phone") String phone,
 				  		  @RequestParam("name") String name,

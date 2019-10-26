@@ -31,4 +31,7 @@ public interface CategoryRepository extends JpaRepository<Category, String> {
 	
 	@Query("SELECT c FROM Category c")
 	List<Category> listCategory();
+	
+	@Query("SELECT c.id, c.name FROM Category c")
+	List<String> listCategorya();
 }

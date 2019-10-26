@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -25,7 +26,7 @@ public class Category extends BaseEntity  implements Serializable {
 	private String name;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Collection<Product> products;
 
 	public Category(String id, String name,boolean enabled,Date createAt) {

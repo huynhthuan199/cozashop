@@ -28,7 +28,7 @@ public class InfoProductService {
 	@Autowired
 	private CategoryService categoryService;
 
-	private static String UPLOADED_FOLDER = "/static/web/images/";
+	private static String UPLOADED_FOLDER = "/static/web/images/Products/";
 	
 
 	public List<Product> findAll(){
@@ -36,6 +36,9 @@ public class InfoProductService {
 	}
 
 	public String upload(MultipartFile file) throws IOException {
+		if(file.isEmpty()) {
+			return null;
+		}
 		String name = file.getOriginalFilename();
 		byte[] bytes = file.getBytes();
 		Path path = Paths.get(
@@ -55,9 +58,13 @@ public class InfoProductService {
 		productUpdate.setDescription(product.getDescription());
 		productUpdate.setEnabled(product.isEnabled());
 		productUpdate.setName(product.getName());
+		productUpdate.setMaterial(product.getMaterial());
 		productUpdate.setPrice(product.getPrice());
 		productUpdate.setColor(product.getColor());
 		productUpdate.setImage(product.getImage());
+		productUpdate.setImage2(product.getImage2());
+		productUpdate.setImage3(product.getImage3());
+		productUpdate.setShortdescription(product.getShortdescription());;
 		return infoProductRepository.save(productUpdate);
 	}
 	
