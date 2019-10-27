@@ -42,7 +42,7 @@
 						<img src="/resources/admin/assets/images/logo-icon.png" alt="logo icon">
 					</div>
 					<div class="card-title text-uppercase text-center py-3">Đăng Nhập</div>
-					<form action="btnLogin" method="post">
+					<form action="/admin/login" method="post">
 						<div class="form-group">
 							<label for="exampleInputUsername" class="">Tài Khoản</label>
 							<div class="position-relative has-icon-right">

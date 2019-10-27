@@ -2,11 +2,15 @@ package com.cozashop.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +23,14 @@ public class User extends BaseEntity implements Serializable {
 	private String name;
 	private String password;
 	boolean rules;
-
+	
+	@ManyToMany
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+	private Set<Role> roles;
 	public User() {
 		super();
 	}
@@ -42,6 +53,15 @@ public class User extends BaseEntity implements Serializable {
 		this.rules = rules;
 		this.enabled = enabled;
 		this.createAt = createAt;
+	}
+
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	public String getUsername() {

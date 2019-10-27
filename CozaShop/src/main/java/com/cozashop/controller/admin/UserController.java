@@ -6,6 +6,7 @@ import javax.mail.MessagingException;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("user")
 	public String index(ModelMap model) {
 		model.addAttribute("listusers", userService.findAll());
@@ -58,6 +59,7 @@ public class UserController {
 	}
 
 // Update with ajax
+	@PreAuthorize ("hasRole('ADMIN')")
 	@GetMapping(value = "user/btnUpdate")
 	@ResponseBody
 	public ApiResponse update(@RequestParam("username") String username, @RequestParam("password") String password,

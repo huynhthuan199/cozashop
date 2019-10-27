@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cozashop.entities.User;
@@ -17,6 +18,9 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	  @Autowired 
+	  private PasswordEncoder passwordEncoder;
 
 	public List<User> findAll() {
 		return userRepository.findAll();
@@ -72,5 +76,16 @@ public class UserService {
 	}
 	public User Login(String username,String password) {
 		return userRepository.findByUsernameAndPassword(username, password);
+	}
+	
+	public void setPassword() {
+		
+		}
+	
+	public String finByUsername() {
+		User user = userRepository.findByUsername("huynhthuan199");
+		boolean check = passwordEncoder.matches("123456", user.getPassword());
+		System.out.println(check);
+		return user.getPassword().toString();
 	}
 }
