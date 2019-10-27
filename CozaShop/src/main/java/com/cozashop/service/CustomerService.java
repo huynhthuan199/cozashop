@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.cozashop.entities.Customer;
 import com.cozashop.repository.CustomerRepository;
 import com.cozashop.util.ApiResponse;
-import com.cozashop.util.SendMail;
 import com.cozashop.util.ApiResponse.Status;
 
 @Service

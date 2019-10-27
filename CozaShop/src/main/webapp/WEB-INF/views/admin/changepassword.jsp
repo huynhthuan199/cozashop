@@ -1,7 +1,6 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<title>Đăng Nhập</title>
+	<title>Đổi Mật Khẩu</title>
 	<!--favicon-->
 	<link rel="icon" href="/resources/admin/assets/images/favicon.ico" type="image/x-icon">
 	<!-- Bootstrap core CSS-->
@@ -41,50 +40,44 @@
 					<div class="text-center">
 						<img src="/resources/admin/assets/images/logo-icon.png" alt="logo icon">
 					</div>
-					<div class="card-title text-uppercase text-center py-3">Đăng Nhập</div>
-					<form action="/admin/login" method="post">
+					<div class="card-title text-uppercase text-center py-3">Đổi Mật Khẩu</div>
 						<div class="form-group">
 							<label for="exampleInputUsername" class="">Tài Khoản</label>
 							<div class="position-relative has-icon-right">
-								<input type="text" id="txtUsername" name="username" class="form-control input-shadow" placeholder="Tài khoản">
+								<input type="text" id="txtusername" name="username" class="form-control input-shadow" placeholder="Tài khoản">
 								<div class="form-control-position">
 									<i class="icon-user"></i>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword" class="">Mật Khẩu</label>
+							<label for="exampleInputPassword" class="">Mật Khẩu Củ</label>
 							<div class="position-relative has-icon-right">
-								<input type="password" id="txtPassword" name="password" class="form-control input-shadow" placeholder="Mật khẩu">
+								<input type="password" id="txtoldPassword" name="password" class="form-control input-shadow" placeholder="Mật khẩu củ">
+								<div class="form-control-position">
+									<i class="icon-lock"></i>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword" class="">Mật Khẩu Mới</label>
+							<div class="position-relative has-icon-right">
+								<input type="password" id="txtnewPassword" name="password" class="form-control input-shadow" placeholder="Mật khẩu mới">
 								<div class="form-control-position">
 									<i class="icon-lock"></i>
 								</div>
 							</div>
 						</div>
 						<div class="form-row">
-							<div class="form-group col-6">
-								<a href="./changepassword">Đổi mật khẩu</a>
+						<div class="form-group col-6 text-right">
+								
 							</div>
 							<div class="form-group col-6 text-right">
 								<a href="./recover">Quên mật khẩu</a>
 							</div>
 						</div>
-						<button type="submit" class="btn btn-primary shadow-primary btn-block waves-effect waves-light btnLogin">Đăng Nhập</button>
-						</form>
-						<div class="text-center mt-3">Đăng nhập với</div>
-						
-						<div class="form-row mt-4">
-							<div class="form-group mb-0 col-6">
-								<button type="button" class="btn btn-facebook shadow-facebook btn-block text-white"><i class="fa fa-facebook-square"></i> Facebook</button>
-							</div>
-							<div class="form-group mb-0 col-6 text-right">
-								<button type="button" class="btn btn-twitter shadow-twitter btn-block text-white"><i class="fa fa-twitter-square"></i> Twitter</button>
-							</div>
-						</div>
+						<button type="button" class="btn btn-primary shadow-primary btn-block waves-effect waves-light btnchangePassword">Đổi Mật Khẩu</button>
 				</div>
-			</div>
-			<div class="card-footer text-center py-3">
-				<p class="text-muted mb-0">Bạn chưa có tài khoản? <a href="authentication-signup.html"> Đăng Kí Ngay</a></p>
 			</div>
 		</div>
 		
@@ -97,7 +90,46 @@
 	<script src="/resources/admin/assets/js/jquery.min.js"></script>
 	<script src="/resources/admin/assets/js/popper.min.js"></script>
 	<script src="/resources/admin/assets/js/bootstrap.min.js"></script>
+	 <!--Sweet Alerts -->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+	<script>
+	$(document).ready(function(){
+		$('.btnchangePassword').click(function(){
+			var username = $('#txtusername').val();
+			var password =  $('#txtnewPassword').val();
+			var oldpassword =  $('#txtoldPassword').val();
+			$.ajax({
+				url : '/changepassword',
+				type : 'POST',
+				data : {
+					username : username,
+					password : password,
+					oldpassword : oldpassword
+				}
+			}).done(function(data){
+				if(data.status == 'danger'){
+					Swal.fire({
+						  position: 'top-end',
+						  type: 'warning',
+						  title: data.message,
+						  showConfirmButton: false,
+						  timer: 1500
+						})
+				}else if(data.status == 'success'){
+					Swal.fire({
+						  type: 'success',
+						  title: 'Thông Báo',
+						  showConfirmButton: false,
+						  text: 'Đổi mật khẩu thành công!',
+						  footer: '<a href="./login">Click vào đây để đăng nhập!</a>'
+						})
+				}
+			}).fail(function(err){
+				
+			})
+		})
+	})
+	</script>
 	
 </body>
 </html>
-	

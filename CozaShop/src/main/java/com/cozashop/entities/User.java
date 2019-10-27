@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity implements Serializable {
@@ -22,8 +24,10 @@ public class User extends BaseEntity implements Serializable {
 	private String username;
 	private String name;
 	private String password;
+	private String email;
 	boolean rules;
 	
+	@JsonIgnore
 	@ManyToMany
     @JoinTable(
             name = "user_role",
@@ -35,27 +39,38 @@ public class User extends BaseEntity implements Serializable {
 		super();
 	}
 
-	public User(int id, String username, String name, String password, boolean rules,boolean enabled) {
+	public User(int id, String username, String name, String password,String email, boolean rules,boolean enabled) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.name = name;
 		this.password = password;
+		this.email = email;
 		this.rules = rules;
 		this.enabled = enabled;
 	}
 
-	public User(String username, String name, String password, boolean rules,boolean enabled,Date createAt) {
+	public User(String username, String name, String password,String email, boolean rules,boolean enabled,Date createAt) {
 		super();
 		this.username = username;
 		this.name = name;
 		this.password = password;
+		this.email = email;
 		this.rules = rules;
 		this.enabled = enabled;
 		this.createAt = createAt;
 	}
 
 	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public Set<Role> getRoles() {
 		return roles;
 	}

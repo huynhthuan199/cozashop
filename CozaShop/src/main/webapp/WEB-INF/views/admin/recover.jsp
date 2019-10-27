@@ -36,19 +36,16 @@
 		 <div class="card-content p-2">
 		  <div class="card-title text-uppercase pb-2 text-center text-primary">Quên Mật Khẩu</div>
 		    <p class="pb-2 text-center">Vui lòng nhập địa chỉ email, bạn sẽ nhận được link để reset mật khẩu.</p>
-		    <form>
 			  <div class="form-group">
 			  <label for="exampleInputEmailAddress" class="">Địa chỉ Email</label>
 			   <div class="position-relative has-icon-right">
-				  <input type="text" id="exampleInputEmailAddress" class="form-control input-shadow" placeholder="Nhập địa chỉ email">
+				  <input type="text" id="txtemail" class="form-control input-shadow" placeholder="Nhập địa chỉ email">
 				  <div class="form-control-position">
 					  <i class="icon-envelope-open"></i>
 				  </div>
 			   </div>
 			  </div>
-			 
-			  <button type="button" class="btn btn-primary shadow-primary btn-block waves-effect waves-light mt-3">Xác nhận</button>
-			 </form>
+			  <button type="button" class="btn btn-primary shadow-primary btn-block waves-effect waves-light mt-3 submit">Xác nhận</button>
 		   </div>
 		  </div>
 		   <div class="card-footer text-center py-3">
@@ -66,6 +63,52 @@
   <script src="/resources/admin/assets/js/popper.min.js"></script>
   <script src="/resources/admin/assets/js/bootstrap.min.js"></script>
   
+  <!--Sweet Alerts -->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script>
+  $(document).ready(function(){
+	  $('.submit').click(function(){
+		  var email = $('#txtemail').val();
+		  $.ajax({
+			  url : '/submit',
+			  type : 'POST',
+			  data :{
+				  email : email
+			  },
+			  beforeSend: function() {
+				  Swal.fire({
+					  title: 'Vui lòng đợi trong giây lát',
+					  animation: false,
+					  showConfirmButton: false,
+					  customClass: {
+					    popup: 'animated tada'
+					  }
+					})
+              }
+		  }).done(function(data){
+				if(data.status == 'success'){
+					Swal.fire({
+						  type: 'success',
+						  title: 'Thông Báo',
+						  showConfirmButton: false,
+						  text: 'Click vào đây để đổi mật khẩu!',
+						  footer: '<a href="./changepassword">Click vào đây để đăng nhập!</a>'
+						})
+				}else if(data.status == 'danger'){
+					Swal.fire({
+						  position: 'top-end',
+						  type: 'warning',
+						  title: data.message,
+						  showConfirmButton: false,
+						  timer: 1500
+						})
+				}
+		  }).fail(function(err){
+			  console.log(err)
+		  })
+	  })
+  })
+  </script>
 	
 </body>
 </html>
