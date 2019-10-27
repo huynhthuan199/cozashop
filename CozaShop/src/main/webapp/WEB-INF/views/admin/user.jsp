@@ -114,6 +114,20 @@
 											<input type="text" class="form-control" id="txtAddName"
 												name="firstname">
 										</div>
+										<label for="input-10" class="col-sm-2 col-form-label">Email</label>
+										<div class="col-sm-4">
+											<input type="text" class="form-control" id="txtAddEmail"
+												name="firstname">
+										</div>
+										
+									</div>
+									<div class="form-group row">
+										<label for="input-12" class="col-sm-2 col-form-label">Tài
+											Khoản</label>
+										<div class="col-sm-4">
+											<input type="text" class="form-control" id="txtAddUsername"
+												name="username">
+										</div>
 										<label for="input-11" class="col-sm-2 col-form-label">Vai
 											Trò</label>
 										<div class="col-sm-4">
@@ -126,28 +140,6 @@
 												<input type="radio" id="inline-radio-info"
 													name="rdoAddRules" value="false"> <label
 													for="inline-radio-info">Nhân viên</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group row">
-										<label for="input-12" class="col-sm-2 col-form-label">Tài
-											Khoản</label>
-										<div class="col-sm-4">
-											<input type="text" class="form-control" id="txtAddUsername"
-												name="username">
-										</div>
-										<label for="input-13" class="col-sm-2 col-form-label">Trạng
-											Thái</label>
-										<div class="col-sm-4">
-											<div>
-												<div class="icheck-material-dark icheck-inline">
-													<input type="radio" id="dark1" name="rdoAddEnabled"
-														value="true" checked> <label for="dark1">Bật</label>
-												</div>
-												<div class="icheck-material-dark icheck-inline">
-													<input type="radio" id="dark2" name="rdoAddEnabled"
-														value="false"> <label for="dark2">Tắt</label>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -182,7 +174,6 @@
 											<tr class="headings">
 												<th class="column-title">Id</th>
 												<th class="column-title">Tài Khoản</th>
-												<th class="column-title">Mật Khẩu</th>
 												<th class="column-title">Họ Tên</th>
 												<th class="column-title">Vai Trò</th>
 												<th class="column-title">Ngày Tạo</th>
@@ -196,7 +187,6 @@
 													<td class=" ">${users.id}</td>
 													<td class=" ">${users.username}</td>
 													<input type="hidden" name="id" value="${users.id}">
-													<td class=" ">${users.password }</td>
 													<td class=" ">${users.name }</td>
 													<td class=" "><span class="check badge badge-danger shadow-danger m-1">
 													${users.rules == true ? "Quản lý" : "Nhân viên" }</span></td>
@@ -286,6 +276,11 @@
 									Khẩu</label>
 								<div class="col-sm-12">
 									<input type="text" class="form-control" id="txtpassword"
+										name="firstname">
+								</div>
+								<label for="input-10" class="col-sm-12 col-form-label">Email</label>
+								<div class="col-sm-12">
+									<input type="text" class="form-control" id="txtemail"
 										name="firstname">
 								</div>
 							</div>

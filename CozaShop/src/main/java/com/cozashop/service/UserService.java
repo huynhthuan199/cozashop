@@ -2,6 +2,8 @@ package com.cozashop.service;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -12,6 +14,7 @@ import com.cozashop.entities.User;
 import com.cozashop.repository.UserRepository;
 import com.cozashop.util.ApiResponse;
 import com.cozashop.util.ApiResponse.Status;
+import com.cozashop.util.Helper;
 
 @Service
 public class UserService {
@@ -19,8 +22,11 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	  @Autowired 
-	  private PasswordEncoder passwordEncoder;
+	@Autowired 
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired 
+	private EmailService emailService;
 
 	public List<User> findAll() {
 		return userRepository.findAll();
@@ -59,7 +65,6 @@ public class UserService {
 	}
 
 	public ApiResponse update(User user) {
-		System.out.println(String.valueOf(user.isEnabled()));
 		if (user.getName().equals("") && user.getUsername().equals("")) {
 			return new ApiResponse(Status.warning,
 					" - Không được để trống họ tên </br>- Không được để trống tài khoản");
@@ -78,14 +83,36 @@ public class UserService {
 		return userRepository.findByUsernameAndPassword(username, password);
 	}
 	
-	public void setPassword() {
-		
+	public ApiResponse setPassword(String email) throws MessagingException {
+		String newPassword = "";
+		String token = "";
+		if(email.equals("")) {
+			return new ApiResponse(Status.danger,"Không Được Để Trống Email");
+		}else if(!Helper.validateEmail(email)) {
+			return new ApiResponse(Status.danger,"Vui lòng nhập đúng dịnh dạng địa chỉ Email");
+		}
+			User user = userRepository.findByEmail(email);
+			if(user != null) {
+				newPassword = Helper.randomAlphaNumeric(8);
+				token = passwordEncoder.encode(newPassword);
+				user.setPassword(token);
+				userRepository.save(user);
+				emailService.sendMail(email, "Recover Passwrod", "Mật khẩu mới của bạn là: <span style='color:red;'> " + newPassword +" </span> Dùng mã này để đổi mật khẩu: " + token);
+				return new ApiResponse(Status.success,"Check email để nhận mật khẩu mới nhé!");
+			}
+			return new ApiResponse(Status.danger,"Không tồn tại Email trong hệ thông");
 		}
 	
-	public String finByUsername() {
-		User user = userRepository.findByUsername("huynhthuan199");
-		boolean check = passwordEncoder.matches("123456", user.getPassword());
-		System.out.println(check);
-		return user.getPassword().toString();
+	public ApiResponse changePassword(String username,String password,String oldpassword) {
+		if(!Helper.notNull(username,password,oldpassword)) {
+			return new ApiResponse(Status.danger,"Không được để trống thông tin");
+		}
+		User user = userRepository.findByUsernameAndPassword(username,oldpassword);
+		if(user != null) {
+			user.setPassword(passwordEncoder.encode(password));
+			userRepository.save(user);
+			return new ApiResponse(Status.success,"Đổi mật khẩu thành công");
+		}
+		return new ApiResponse(Status.danger,"Đổi mật khẩu không thành công");
 	}
 }

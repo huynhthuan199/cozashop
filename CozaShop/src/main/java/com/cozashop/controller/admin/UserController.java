@@ -45,10 +45,9 @@ public class UserController {
 //	Insert with ajax
 	@PostMapping(value = "user/btnInsert")
 	@ResponseBody
-	public ApiResponse insert(@RequestParam String username, @RequestParam String name, @RequestParam String rules,
-			@RequestParam boolean enabled) {
-		return userService.save(new User(username, name, RandomStringUtils.randomAlphanumeric(10),
-				Boolean.parseBoolean(rules), enabled, new Date()));
+	public ApiResponse insert(@RequestParam String username,@RequestParam String email, @RequestParam String name, @RequestParam String rules) {
+		return userService.save(new User(username, name, RandomStringUtils.randomAlphanumeric(10),email,
+				Boolean.parseBoolean(rules), true, new Date()));
 	}
 
 //	Delete with ajax
@@ -62,10 +61,10 @@ public class UserController {
 	@PreAuthorize ("hasRole('ADMIN')")
 	@GetMapping(value = "user/btnUpdate")
 	@ResponseBody
-	public ApiResponse update(@RequestParam("username") String username, @RequestParam("password") String password,
+	public ApiResponse update(@RequestParam("username") String username,@RequestParam("email") String email, @RequestParam("password") String password,
 			@RequestParam("name") String name, @RequestParam("rules") String rules,
 			@RequestParam("enabled") String enabled, @RequestParam("id") int id) {
 		return userService.update(
-				new User(id, username, name, password, Boolean.parseBoolean(rules), Boolean.parseBoolean(enabled)));
+				new User(id, username, name, password,email, Boolean.parseBoolean(rules), Boolean.parseBoolean(enabled)));
 	}
 }

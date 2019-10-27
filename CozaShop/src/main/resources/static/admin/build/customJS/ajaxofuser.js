@@ -5,8 +5,8 @@
 	var addusername = $('#txtAddUsername').val();
 	console.log(addusername);
 	var addname = $('#txtAddName').val();
+	var addemail = $('#txtAddEmail').val();
 	var addrules = $("input[name='rdoAddRules']:checked").val();
-	var addenabled = $("input[name='rdoAddEnabled']:checked").val();
  		$.ajax({
  			type : "POST",
 			url : "user/btnInsert",
@@ -14,7 +14,7 @@
 				 username : addusername,
 				 name : addname,
 				 rules : addrules,
-				 enabled : addenabled
+				 email : addemail
 			} 
 		}).done(function(data){
 				Command: toastr[data.status](data.message, "Thông Báo");
@@ -38,6 +38,7 @@
 					$('#txtusername').val(data.username);
 					$('#txtname').val(data.name);
 					$('#txtpassword').val(data.password);
+					$('#txtemail').val(data.email);
 					data.rules ? $('#rdorules_true').prop("checked", true) : $('#rdorules_false').prop("checked", true);
 					data.enabled ? $('#rdoenabled_true').prop("checked", true) : $('#rdoenabled_false').prop("checked", true);
 					$('#edit-user').modal('show');
@@ -108,6 +109,7 @@
 	$('.btnUpdate').click(function(){
 	var id = $('#txtid').val();
 	var username = $('#txtusername').val();
+	var email = $('#txemail').val();
 	var password = $('#txtpassword').val();
 	var name = $('#txtname').val();
 	var rules = $("input[name='rdorules']:checked").val();
@@ -118,6 +120,7 @@
 			data : {
 				 id : id,
 				 username : username,
+				 email : email,
 				 password : password,
 				 name : name,
 				 rules : rules,
