@@ -37,16 +37,16 @@
                 <div class="col-md-12">
                     <div class="text-center error-pages">
                         <h1 class="error-title text-white"> 403</h1>
-                        <h2 class="error-sub-title text-white">Forbidden error</h2>
+                        <h2 class="error-sub-title text-white">Bạn Không Phải Là ADMIN</h2>
 
-                        <p class="error-message text-white text-uppercase">You don't have permission to access on this server</p>
+                        <p class="error-message text-white text-uppercase">Bạn Không có quyền vào trang quản lí này</p>
                         <div class="mt-4">
-                          <a href="index.html" class="btn btn-danger btn-round shadow-danger m-1">Go To Home </a>
-                          <a href="javascript:void();" class="btn btn-danger btn-round m-1">Previous Page </a>
+                          <a href="index.html" class="btn btn-danger btn-round shadow-danger m-1" onclick="goBack()">Quay trở lại </a>
+                          <a href="javascript:void();" class="btn btn-danger btn-round m-1">Previous Page</a>
                         </div>
 
                         <div class="mt-4">
-                            <p class="text-white">Copyright © 2018 Rukada | All rights reserved.</p>
+                            <p class="text-white">Copyright © 2018 CoZa | All rights reserved.</p>
                         </div>
                            <hr class="w-50">
                         <div class="mt-2">
@@ -75,6 +75,10 @@
   <script src="/resources/admin/assets/js/sidebar-menu.js"></script>
   <!-- Custom scripts -->
   <script src="/resources/admin/assets/js/app-script.js"></script>
-	
+	<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 </body>
 </html>

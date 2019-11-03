@@ -1,14 +1,21 @@
 package com.cozashop.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "customer")
@@ -30,6 +37,10 @@ public class Customer extends BaseEntity implements Serializable {
 	private boolean gender;
 	private String email;
 	private String phone;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+	private Collection<Order> order;
 
 	public Customer() {
 		super();
@@ -62,6 +73,32 @@ public class Customer extends BaseEntity implements Serializable {
 		this.enabled = enabled;
 		this.createAt = createAt;
 		this.id = id;
+	}
+	
+	public Customer(int id, String username, String name, String address, String password, boolean gender, String email,
+			String phone, Collection<Order> order) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.name = name;
+		this.address = address;
+		this.password = password;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.order = order;
+	}
+
+	public Collection<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(Collection<Order> order) {
+		this.order = order;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public String getUsername() {

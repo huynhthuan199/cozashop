@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,8 +48,13 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/web/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
+<!-- Toastr -->
+<link
+	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="resources/web/css/util.css">
 <link rel="stylesheet" type="text/css" href="resources/web/css/main.css">
+
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -57,20 +63,19 @@
 	<header class="header-v4">
 		<%@ include file="./block/header.jsp"%>
 	</header>
-
 	<!-- Cart -->
 	<%@ include file="./block/card.jsp"%>
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140">
-		<div class="container">
+		<div id="container" class="container">
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button
-						class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
-						data-filter="*">Tất cả sản phẩm</button>
+<!-- 					<button
+						class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1 btncategogy"
+						data-filter="findAll">Tất cả sản phẩm</button> -->
 					<c:forEach var="listCategory" items="${listCategory}">
-						<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-							data-filter=".${listCategory.id }">${listCategory.name }
+						<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 btncategogy"
+							data-filter="${listCategory.id }">${listCategory.name }
 						</button>
 					</c:forEach>
 				</div>
@@ -107,118 +112,83 @@
 
 				<!-- Filter -->
 				<div class="dis-none panel-filter w-full p-t-10">
-					<div
-						class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 						<div class="filter-col1 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">Sort By</div>
-
+							<div class="mtext-102 cl2 p-b-15">Lọc Theo</div>
 							<ul>
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> Default </a></li>
-
+									class="filter-link stext-106 trans-04 sortByPrice " data-value="findAll"> Mặc Định 
+								</a></li>
+									
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> Popularity </a></li>
-
-								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> Average rating </a></li>
-
-								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04 filter-link-active">
-										Newness </a></li>
-
-								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> Price: Low to High
+									class="filter-link stext-106 trans-04 sortByPrice "  data-value="DESC"> Giá: Giảm Dần
 								</a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> Price: High to Low
+									class="filter-link stext-106 trans-04 sortByPrice"  data-value="ASC"> Giá: Tăng Dần
 								</a></li>
 							</ul>
 						</div>
-
+						
 						<div class="filter-col2 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">Price</div>
-
+							<div class="mtext-102 cl2 p-b-15">Giá</div>
 							<ul>
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04 filter-link-active">
-										All </a></li>
+									class="filter-link stext-106 trans-04 Price" data-start="100000" data-end="200000"> 100.000  -  200.000 VNĐ </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> $0.00 - $50.00 </a></li>
+									class="filter-link stext-106 trans-04 Price" data-start="200000" data-end="500000"> 200.00  -  500.000 VNĐ </a></li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> $50.00 - $100.00 </a></li>
-
-								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> $100.00 - $150.00 </a>
+									class="filter-link stext-106 trans-04 Price" data-start="500000" data-end="600000"> 500.000  -  600.000 VNĐ </a>
 								</li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> $150.00 - $200.00 </a>
+									class="filter-link stext-106 trans-04 Price" data-start="600000" data-end="1000000"> 6000.000  -  1.000.000 VNĐ </a>
 								</li>
 
 								<li class="p-b-6"><a href="#"
-									class="filter-link stext-106 trans-04"> $200.00+ </a></li>
+									class="filter-link stext-106 trans-04 Price" data-start="2000000" data-end="9999999"> 2.000.000 VNĐ + </a></li>
 							</ul>
 						</div>
-
+						
 						<div class="filter-col3 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">Color</div>
+							<div class="mtext-102 cl2 p-b-15">Màu Sắc</div>
 
 							<ul>
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
 									style="color: #222;"> <i class="zmdi zmdi-circle"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> Black </a>
+								</span> <a href="#" class="filter-link stext-106 trans-04 Color" data-color="Đen"> Đen </a>
 								</li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
 									style="color: #4272d7;"> <i class="zmdi zmdi-circle"></i>
 								</span> <a href="#"
-									class="filter-link stext-106 trans-04 filter-link-active">
-										Blue </a></li>
+									class="filter-link stext-106 trans-04 filter-link-active Color" data-color="Nâu">
+										Nâu </a></li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
 									style="color: #b3b3b3;"> <i class="zmdi zmdi-circle"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> Grey </a></li>
+								</span> <a href="#" class="filter-link stext-106 trans-04 Color" data-color="Xám"> Xám </a></li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
 									style="color: #00ad5f;"> <i class="zmdi zmdi-circle"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> Green </a>
+								</span> <a href="#" class="filter-link stext-106 trans-04 Color" data-color="Xanh"> Xanh </a>
 								</li>
-
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
 									style="color: #fa4251;"> <i class="zmdi zmdi-circle"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> Red </a></li>
+								</span> <a href="#" class="filter-link stext-106 trans-04 Color" data-color="Đỏ"> Đỏ </a></li>
 
 								<li class="p-b-6"><span class="fs-15 lh-12 m-r-6"
 									style="color: #aaa;"> <i class="zmdi zmdi-circle-o"></i>
-								</span> <a href="#" class="filter-link stext-106 trans-04"> White </a>
+								</span> <a href="#" class="filter-link stext-106 trans-04 Color" data-color="Trắng"> Trắng </a>
 								</li>
 							</ul>
-						</div>
-
-						<div class="filter-col4 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">Tags</div>
-
-							<div class="flex-w p-t-4 m-r--5">
-								<a href="#"
-									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion </a> <a href="#"
-									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle </a> <a href="#"
-									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim </a> <a href="#"
-									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle </a> <a href="#"
-									class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts </a>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row isotope-grid">
+			<div class="row" id="load-product">
 				<c:forEach var="listProduct" items="${listProduct }">
 					<div
 						class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${listProduct.category.id }">
@@ -227,19 +197,20 @@
 								<img src="/resources/web/images/Products/${listProduct.image }"
 									alt="IMG-PRODUCT">
 								<div data-id="${listProduct.id }">
-
-									<a href="#"
+									<button
 										class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 btnShow">
-										Quick View </a>
+										Quick View</button>
 								</div>
 							</div>
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="productdetail"
+									<a id="nameProduct" data-name="${listProduct.name }"
+										href="./productdetail/${listProduct.id }"
 										class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										${listProduct.name } </a> <span class="stext-105 cl3">
-										${listProduct.price } VNĐ </span>
+										<fmt:formatNumber type = "number" 
+         maxFractionDigits = "3" value = "${listProduct.price }" /> VNĐ </span>
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
@@ -258,14 +229,12 @@
 			</div>
 			<!-- Load more -->
 			<div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#"
-					class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+				<a href=""
+					class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04 btnloadMore" id="loadmore">
 					Load More </a>
 			</div>
 		</div>
 	</div>
-
-
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
 		<%@ include file="./block/footer.jsp"%>
@@ -282,7 +251,6 @@
 	<!-- Modal1 -->
 	<div id="show-product" class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div class="overlay-modal1 js-hide-modal1"></div>
-
 		<div class="container">
 			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
 				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
@@ -295,39 +263,38 @@
 							<div class="wrap-slick3 flex-sb flex-w">
 								<div class="wrap-slick3-dots"></div>
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3"
-										data-thumb="/resources/web/images/product-detail-01.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="/resources/web/images/product-detail-01.jpg"
-												alt="IMG-PRODUCT"> <a
+									<div id="div-image1" class="item-slick3"
+										data-thumb="/resources/web/images/Products/CV1.jpg">
+										<div id="hover-image1" class="wrap-pic-w pos-relative">
+											<img id="image1" src="" alt="IMG-PRODUCT"> <a
+												id="a-image1"
 												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="images/product-detail-01.jpg"> <i
+												href="/resources/web/images/product-detail-01.jpg"> <i
 												class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3"
-										data-thumb="/resources/web/images/product-detail-02.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="/resources/web/images/product-detail-02.jpg"
-												alt="IMG-PRODUCT"> <a
+									<div id="div-image2" class="item-slick3"
+										data-thumb="/resources/web/images/Products/CV2.jpg">
+										<div id="hover-image2" class="wrap-pic-w pos-relative">
+											<img id="image2" src="" alt="IMG-PRODUCT"> <a
+												id="a-image2"
 												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="images/product-detail-02.jpg"> <i
+												href="/resources/web/images/product-detail-02.jpg"> <i
 												class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3"
-										data-thumb="/resources/web/images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="/resources/web/images/product-detail-03.jpg"
-												alt="IMG-PRODUCT"> <a
+									<div id="div-image3" class="item-slick3"
+										data-thumb="/resources/web/images/Products/CV3.jpg">
+										<div id="hover-image3" class="wrap-pic-w pos-relative">
+											<img id="image3" src="" alt="IMG-PRODUCT"> <a
+												id="a-image3"
 												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="images/product-detail-03.jpg"> <i
+												href="/resources/web/images/product-detail-03.jpg"> <i
 												class="fa fa-expand"></i>
 											</a>
 										</div>
@@ -369,14 +336,12 @@
 
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
+											<select disabled id="txtcolor" class="form-control"
+												name="time">
+												<c:forEach var="listColor" items="${listColor }">
+													<option value="${listColor.name }">${listColor.name }</option>
+												</c:forEach>
 											</select>
-											<div class="dropDownSelect2"></div>
 										</div>
 									</div>
 								</div>
@@ -388,17 +353,15 @@
 												class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product"
-												type="number" name="num-product" value="1">
-
+											<input readonly id="txtquantity"
+												class="mtext-104 cl3 txt-center num-product" type="number"
+												name="num-product" value="1">
 											<div
 												class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
-
-										<button
+										<button id="addToCart"
 											class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 											Add to cart</button>
 									</div>
@@ -431,7 +394,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> <!-- End Modal  -->
 
 	<!--===============================================================================================-->
 	<script src="resources/web/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -480,6 +443,28 @@
 	<script src="resources/web/vendor/isotope/isotope.pkgd.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="resources/web/vendor/sweetalert/sweetalert.min.js"></script>
+	<!--Toastr -->
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script type="text/javascript">
+		toastr.options = {
+			"closeButton" : false,
+			"debug" : false,
+			"newestOnTop" : true,
+			"progressBar" : true,
+			"positionClass" : "toast-top-left",
+			"preventDuplicates" : false,
+			"onclick" : null,
+			"showDuration" : "300",
+			"hideDuration" : "1000",
+			"timeOut" : "5000",
+			"extendedTimeOut" : "1000",
+			"showEasing" : "swing",
+			"hideEasing" : "linear",
+			"showMethod" : "fadeIn",
+			"hideMethod" : "fadeOut"
+		}
+	</script>
 	<script>
 		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e) {
 			e.preventDefault();
@@ -491,35 +476,34 @@
 							'.js-name-b2').html();
 					$(this).on('click', function() {
 						swal(nameProduct, "is added to wishlist !", "success");
-
 						$(this).addClass('js-addedwish-b2');
 						$(this).off('click');
 					});
 				});
 
-		$('.js-addwish-detail').each(
-				function() {
-					var nameProduct = $(this).parent().parent().parent().find(
-							'.js-name-detail').html();
+		/* $('.js-addwish-detail').each(
+			function() {
+				var nameProduct = $(this).parent().parent().parent().find(
+						'.js-name-detail').html();
 
-					$(this).on('click', function() {
-						swal(nameProduct, "is added to wishlist !", "success");
+				$(this).on('click', function() {
+					swal(nameProduct, "is added to wishlist !", "success");
 
-						$(this).addClass('js-addedwish-detail');
-						$(this).off('click');
-					});
+					$(this).addClass('js-addedwish-detail');
+					$(this).off('click');
 				});
-
+			});
+		 */
 		/*---------------------------------------------*/
 
-		$('.js-addcart-detail').each(
+		/* $('.js-addcart-detail').each(
 				function() {
 					var nameProduct = $(this).parent().parent().parent()
 							.parent().find('.js-name-detail').html();
 					$(this).on('click', function() {
 						swal(nameProduct, "is added to cart !", "success");
 					});
-				});
+				});  */
 	</script>
 	<!--===============================================================================================-->
 	<script
@@ -540,32 +524,90 @@
 		});
 	</script>
 	<!--===============================================================================================-->
-	 <script src="resources/web/js/main2.js"></script>
-
-<!-- Edit -->
- 	<script>
-	$(document).ready(function() 
-			{$('.btnShow').click(function() {
-								$.ajax({
-									type : "GET",
-									url : "product/" + $(this).parent().data("id")
-								}).done(function(data) {
-											$('#id').text(data.id);
-											$('#name').text(data.name);
-											$('#price').text(data.price);
-											$('#description').text(data.description);/* 
-											$('#material').val(data.material);
-											$('#color').val(data.color);
-											$('#description').val(data.description);
-											$('#categoryId').val(data.category.id);
-											$("#image").attr("src","/resources/web/images/"+data.image); 
-											 $('#show-product').modal('show'); */
-										}).fail(function(err) {
-											console.log(err);
-										});
-							});
-				});
-	</script>  
+	<script src="/resources/web/js/main2.js"></script>
+	<script src="/resources/web/js/custom.js"></script>
+	<script src="/resources/web/js/sort.js"></script>
+	<!-- <script>
+		$(document).ready(function() {
+			
+		});
+	</script> -->
+	<!-- <script>
 	
+	$(document).ready(function(){
+		 var croll = true;
+		 var a;
+		 var b;
+		 var start;
+		 var end;
+		 $('.sortByPrice').click(function(){
+			 $('a#loadmore').css('display','flex'); 
+			 a = $(this).data('value')
+			 $('.animsition').animsition();
+			 $('.animsition').fadeOut();
+			 $('#load-product').load('/product3?color=false&field=price&order='+a+'&page='+Math.floor((parseInt($('#load-product .isotope-item').length) / 4)), function(){
+				 $('.animsition-loading').remove();
+				$('.animsition').fadeIn(); 
+			});
+		})
+		
+		 $('.btncategogy').click(function(){
+			 b = $(this).data('filter');
+			 console.log(b)
+			 $('.animsition').animsition();
+			$('.animsition').fadeOut();
+			$('#load-product').load('/product3?color=false&field=price&order='+b+'&page='+Math.floor((parseInt($('#load-product .isotope-item').length) / 4)), function(){
+			 	 if(b == 'findAll'){
+			 		$('a#loadmore').css('display','flex'); 
+			 	 }else{
+			 		$('a#loadmore').css('display','none'); 
+			 	 }
+				
+				 $('.animsition-loading').remove();
+				$('.animsition').fadeIn(); 
+			});
+		});
+		 
+		 $('.Color').click(function(){
+			 b = $(this).data('color');
+			
+			 $('.animsition').animsition();
+			$('.animsition').fadeOut();
+			$('#load-product').load('/product4?color=true&field=price&order='+b+'&page='+Math.floor((parseInt($('#load-product .isotope-item').length) / 4)), function(){
+			 	 $('a#loadmore').css('display','none'); 
+				 $('.animsition-loading').remove();
+				$('.animsition').fadeIn(); 
+			});
+		});
+		 
+		 $('.Price').click(function(){
+			 start = $(this).data('start');
+			 end = $(this).data('end');
+			 $('.animsition').animsition();
+			$('.animsition').fadeOut();
+			$('#load-product').load('/product5?start='+ start +'&field=price&end='+end+'&page='+Math.floor((parseInt($('#load-product .isotope-item').length) / 4)), function(){
+			 	 $('a#loadmore').css('display','none'); 
+				 $('.animsition-loading').remove();
+				$('.animsition').fadeIn(); 
+			});
+		});
+		
+		$('#loadmore').click(function(e){
+			console.log(a)
+			e.preventDefault();
+			$.ajax({
+				url : '/product3?color=false&field=price&order='+a+'&page='+Math.floor((parseInt($('#load-product .isotope-item').length) / 4)),
+			beforeSend :function(){
+			   	croll = false;
+	    	}		
+	    	}).done(function(data){							
+	    		$('#load-product').append(data);
+	    		croll = true;
+	    	}).fail(function(err){
+	    		console.log(err);
+	    	})
+		})
+	})
+	</script> -->
 </body>
 </html>

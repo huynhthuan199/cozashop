@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -41,6 +42,7 @@ public class CustomerController {
 	@Autowired
 	private WardService wardService;
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("customer")
 	public String index(Model model) {
 		model.addAttribute("listCustomer",customerService.findAll());

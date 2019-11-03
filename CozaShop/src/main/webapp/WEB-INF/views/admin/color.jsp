@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Rukada - Responsive Bootstrap4 Admin Dashboard Template</title>
+<title>Quản Lí Màu Sắc</title>
 <!--favicon-->
 <link rel="icon" href="/resources/admin/assets/images/favicon.ico"
 	type="image/x-icon">
@@ -118,7 +118,6 @@
 								<div class="form-group row">
 									<label for="input-27" class="col-sm-2 col-form-label">Trạng
 										Thái</label>
-									<div class="col-sm-2">
 										<div class="col-sm-10">
 											<div class="icheck-material-primary icheck-inline">
 												<input type="radio" id="inline-radio-primary"
@@ -131,7 +130,6 @@
 													for="inline-radio-info">Tắt</label>
 											</div>
 										</div>
-									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-2 col-form-label"></label>

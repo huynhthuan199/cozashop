@@ -1,5 +1,6 @@
 package com.cozashop.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -83,7 +84,7 @@ public class UserService {
 		return userRepository.findByUsernameAndPassword(username, password);
 	}
 	
-	public ApiResponse setPassword(String email) throws MessagingException {
+	public ApiResponse setPassword(String email) throws MessagingException, UnsupportedEncodingException {
 		String newPassword = "";
 		String token = "";
 		if(email.equals("")) {
@@ -97,7 +98,7 @@ public class UserService {
 				token = passwordEncoder.encode(newPassword);
 				user.setPassword(token);
 				userRepository.save(user);
-				emailService.sendMail(email, "Recover Passwrod", "Mật khẩu mới của bạn là: <span style='color:red;'> " + newPassword +" </span> Dùng mã này để đổi mật khẩu: " + token);
+				emailService.sendMail(email, "Recover Passwrod", "Mật khẩu mới của bạn là: <span style='color:red;'> " + newPassword +" </span><br> Dùng mã này để đổi mật khẩu: " + token);
 				return new ApiResponse(Status.success,"Check email để nhận mật khẩu mới nhé!");
 			}
 			return new ApiResponse(Status.danger,"Không tồn tại Email trong hệ thông");

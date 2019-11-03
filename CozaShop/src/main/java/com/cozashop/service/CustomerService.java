@@ -23,7 +23,16 @@ public class CustomerService {
 	public Customer findById(int id) {
 		return customerRepository.findById(id).get();
 	}
+	
+	public Customer findByUsername(String username) {
+		return customerRepository.findByUsername(username);
+	}
 
+	
+	public Customer saveCustomer(Customer customer) {
+		return customerRepository.save(customer);
+		
+	}
 	public ApiResponse save(Customer customer){
 		String name = customer.getName();
 		String numberphone = customer.getPhone();

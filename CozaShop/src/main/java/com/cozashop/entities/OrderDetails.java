@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "orderdetails")
-public class OrderDetails implements Serializable {
+public class OrderDetails extends BaseEntity implements Serializable {
 
 	/**
 	 * 
@@ -24,29 +24,29 @@ public class OrderDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
+	@ManyToOne
+	@JoinColumn(name = "productid", referencedColumnName = "id")
 	private Product product;
+	
 
 	@ManyToOne
-	@JoinColumn(name = "id", referencedColumnName = "id",  insertable = false, updatable = false)
+	@JoinColumn(name = "orderid", referencedColumnName = "id")
 	private Order order;
 
 	private int quantity;
-	private float Total;
+	private double price;
 
 	public OrderDetails() {
 		super();
 	}
 
-	public OrderDetails(Product product, Order order, int quantity, float total) {
+	public OrderDetails(Product product, Order order, int quantity, double price) {
 		super();
-		this.product = product;
+		this.product= product;
 		this.order = order;
 		this.quantity = quantity;
-		Total = total;
+		this.price = price;
 	}
-
 	public int getId() {
 		return id;
 	}
@@ -79,12 +79,12 @@ public class OrderDetails implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public float getTotal() {
-		return Total;
+	public double getPrice() {
+		return price;
 	}
 
-	public void setTotal(float total) {
-		Total = total;
+	public void setPrice(float price) {
+		this.price = price;
 	}
 
 	public static long getSerialversionuid() {

@@ -43,7 +43,6 @@
 		<!--  include nav -->
 		<%@ include file="./block/nav.jsp"%>
 		<!-- top navigation -->
-		<%@ include file="./block/topnav.jsp"%>
 		<!-- /top navigation -->
 
 		<!-- page content -->

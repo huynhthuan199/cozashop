@@ -69,10 +69,9 @@
 					<div class="col-sm-9">
 						<h4 class="page-title">Form Layouts</h4>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javaScript:void();">Rukada</a></li>
-							<li class="breadcrumb-item"><a href="javaScript:void();">Forms</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Form
-								Layouts</li>
+							<li class="breadcrumb-item"><a href="./home">Trang Chủ</a></li>
+							<li class="breadcrumb-item"><a href="javaScript:void();">Quản lí</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Chất liệu</li>
 						</ol>
 					</div>
 					<div class="col-sm-3">
@@ -118,20 +117,18 @@
 								<div class="form-group row">
 									<label for="input-27" class="col-sm-2 col-form-label">Trạng
 										Thái</label>
-									<div class="col-sm-2">
 										<div class="col-sm-10">
 											<div class="icheck-material-primary icheck-inline">
 												<input type="radio" id="inline-radio-primary"
 													name="rdoAddEnabled" checked value="true"> <label
-													for="inline-radio-primary">Bật</label>
+													for="inline-radio-primary">Còn</label>
 											</div>
 											<div class="icheck-material-info icheck-inline">
 												<input type="radio" id="inline-radio-info"
 													name="rdoAddEnabled" value="false"> <label
-													for="inline-radio-info">Tắt</label>
+													for="inline-radio-info">Không</label>
 											</div>
 										</div>
-									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-2 col-form-label"></label>

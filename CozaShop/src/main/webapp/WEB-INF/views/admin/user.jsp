@@ -10,7 +10,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Rukada - Responsive Bootstrap4 Admin Dashboard Template</title>
+<title>Quản Lí Nhân Viên</title>
 <!--favicon-->
 <link rel="icon" href="/resources/admin/assets/images/favicon.ico"
 	type="image/x-icon">
@@ -169,7 +169,7 @@
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="default-datatable" class="table table-bordered">
+									<table id="example" class="table table-bordered">
 										<thead class="thead-dark">
 											<tr class="headings">
 												<th class="column-title">Id</th>
@@ -400,7 +400,7 @@
 					$('#default-datatable').DataTable();
 					
 					var table = $('#example').DataTable({
-						lengthChange : false,
+						lengthChange : true,
 						buttons : [ 'copy', 'excel', 'pdf', 'print', 'colvis' ],
 						"lengthMenu": [ [5,10, 25, 50, -1], [5,10, 25, 50, "All"] ]
 					});

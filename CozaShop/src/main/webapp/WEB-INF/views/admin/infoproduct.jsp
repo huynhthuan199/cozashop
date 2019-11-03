@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Rukada - Responsive Bootstrap4 Admin Dashboard Template</title>
+<title>Quản Lí Sản Phẩm</title>
 <!--favicon-->
 <link rel="icon" href="/resources/admin/assets/images/favicon.ico"
 	type="image/x-icon">
@@ -55,8 +56,8 @@
 
 <body>
 
-	<!-- Start wrapper-->
-	<div id="wrapper">
+		<!-- Start wrapper-->
+		<div id="wrapper">
 
 		<!--Start sidebar-wrapper-->
 		<%@ include file="./block/nav.jsp"%>
@@ -278,7 +279,7 @@
 												<th>Mã sản phẩm</th>
 												<th>Mã danh mục</th>
 												<th>Tên sản phẩm</th>
-												<th>Giá tiền</th>
+												<th>Giá tiền [VNĐ]</th>
 												<th>Chất liệu</th>
 												<th>Màu sắc</th>
 												<th>Ngày tạo</th>
@@ -294,7 +295,7 @@
 													<td class=" ">${product.id }</td>
 													<td class=" ">${product.category.id }</td>
 													<td class=" ">${product.name }</td>
-													<td class=" ">${product.price }</td>
+													<td class=" "><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${product.price }" /></td>
 													<td class=" ">${product.material }</td>
 													<td class=" ">${product.color }</td>
 													<td class=" ">${product.createAt }</td>
@@ -606,8 +607,7 @@
 			}
 		</script>
 		<script>
-			$(document).ready(
-					function() {
+			$(document).ready(function() {
 						//Default data table
 						$('#default-datatable').DataTable();
 
