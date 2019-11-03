@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Rukada - Responsive Bootstrap4 Admin Dashboard Template</title>
+<title>Quản Lí Khách Hàng</title>
 <!--favicon-->
 <link rel="icon" href="/resources/admin/assets/images/favicon.ico"
 	type="image/x-icon">
@@ -37,7 +37,7 @@
 <!-- Sidebar CSS-->
 <link href="/resources/admin/assets/css/sidebar-menu.css"
 	rel="stylesheet">
-
+<!-- Select2 -->
 <link href="/resources/admin/assets/plugins/select2/css/select2.min.css"
 	rel="stylesheet">
 <!-- Toastr -->
@@ -494,7 +494,7 @@
 					$('#default-datatable').DataTable();
 				        
 					var table = $('#example').DataTable({
-						lengthChange : false,
+						lengthChange : true,
 						buttons : [ 'copy', 'excel', 'pdf', 'print', 'colvis' ],
 						"lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
 					});
@@ -510,52 +510,52 @@
 			$('.multiple-select').select2();
 		});
 	</script>
-<script type = "text/javascript" >
-    $(document)
-    .ready(
-        function() {
-            $('#district')
-                .change(
-                    function() {
-
-                        $
-                            .ajax({
+	<script type = "text/javascript" >
+    $(document).ready(function() {
+            $('#district').change(function(){
+                        $.ajax({
                                 type: "Post",
                                 url: "/admin/test3",
                                 data: {
-                                    id: $(
-                                            '#district')
-                                        .val()
-                                        .toString()
+                                    id: $('#district').val().toString()
                                 },
                                 beforeSend: function() {
-                                    $(
-                                            '#icon2')
-                                        .css({
-                                            display: "inline-block"
-                                        });
+                                    $('#icon2').css({display: "inline-block"});
                                 }
                             })
-                            .done(
-                                function(data) {
-                                    $('#icon2')
-                                        .css({
-                                            display: "none"
-                                        });
-                                    $('#ward')
-                                        .children()
-                                        .remove();
+                            .done(function(data) {
+                                    $('#icon2').css({display: "none"});
+                                    $('#ward').children().remove();
                                     for (var i = 0; i < data.length; i++) {
-                                        $(
-                                                '#ward')
-                                            .append(
-                                                '<option value=' + data[i].maqh + '>' + data[i].name + '</option>');
+                                        $('#ward').append('<option value=' + data[i].maqh + '>' + data[i].name + '</option>');
                                     }
                                 })
                             .fail(function(err) {
                                 console.log(err);
                             });
                     });
+            
+            $('#province').change(function(){
+                $.ajax({
+                        type: "Post",
+                        url: "/admin/test",
+                        data: {
+                            id: $('#province').val().toString()
+                        },
+                        beforeSend: function() {
+                            $('#icon2').css({display: "inline-block"});
+                        }
+                    }).done(function(data) {
+                            $('#icon2').css({display: "none"});
+                            $('#district').children().remove();
+                            for (var i = 0; i < data.length; i++) {
+                                $('#district').append('<option value=' + data[i].maqh + '>' + data[i].name + '</option>');
+                            }
+                        })
+                    .fail(function(err) {
+                        console.log(err);
+                    });
+            });
         }); 
     </script>
 </body>

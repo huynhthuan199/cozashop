@@ -1,6 +1,9 @@
 package com.cozashop.service;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.core.io.ClassPathResource;
@@ -17,7 +20,7 @@ public class EmailService {
         this.javaMailSender = javaMailSender;
     }
     private static String UPLOADED_FOLDER = "/static/web/images/Products/";
-    public void sendMail(String toEmail, String subject, String message) throws MessagingException {
+    public void sendMail(String toEmail, String subject, String message) throws MessagingException, UnsupportedEncodingException {
 
     	MimeMessage msg = javaMailSender.createMimeMessage();
 
@@ -25,6 +28,7 @@ public class EmailService {
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
 		
         helper.setTo(toEmail);
+        helper.setFrom(new InternetAddress("huynthuan199@gmail.com", "abcxyz"));
 
         helper.setSubject(subject);
 

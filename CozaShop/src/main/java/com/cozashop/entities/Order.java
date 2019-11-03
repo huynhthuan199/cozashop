@@ -2,13 +2,20 @@ package com.cozashop.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "orders")
@@ -20,65 +27,67 @@ public class Order extends BaseEntity  implements Serializable {
 	private static final long serialVersionUID = -7299273142778938132L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
-	private String username;
-	private String name;
-	private String address;
-	private String email;
+	private int id;
+	private double totalmoney;
 	
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "order")
 	private Collection<OrderDetails> orderDetails;
+
+	@ManyToOne
+	@JoinColumn(name = "customerid" ,referencedColumnName = "id")
+    private Customer customer;
+	
+	
 
 	public Order() {
 		super();
 	}
 
-	public Order(String username, String name, String address, String email) {
+	public Order( double totalmoney, Customer customer,Date createAt, boolean enabled) {
 		super();
-		this.username = username;
-		this.name = name;
-		this.address = address;
-		this.email = email;
+		this.totalmoney = totalmoney;
+		this.customer = customer;
+		this.createAt = createAt;
+		this.enabled = enabled;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public double getTotalmoney() {
+		return totalmoney;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setTotalmoney(double totalmoney) {
+		this.totalmoney = totalmoney;
 	}
 
-	public String getName() {
-		return name;
+	public Collection<OrderDetails> getOrderDetails() {
+		return orderDetails;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setOrderDetails(Collection<OrderDetails> orderDetails) {
+		this.orderDetails = orderDetails;
 	}
 
-	public String getAddress() {
-		return address;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
-	public String getEmail() {
-		return email;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
+	
+	
 }

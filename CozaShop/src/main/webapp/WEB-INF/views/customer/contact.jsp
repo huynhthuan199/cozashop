@@ -190,6 +190,6 @@
 	<script src="resources/web/js/map-custom.js"></script>
 <!--===============================================================================================-->
 	<script src="resources/web/js/main.js"></script>
-
+<script src="/resources/web/js/custom.js"></script>
 </body>
 </html>

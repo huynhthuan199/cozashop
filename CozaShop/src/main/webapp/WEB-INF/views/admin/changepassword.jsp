@@ -51,9 +51,9 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword" class="">Mật Khẩu Củ</label>
+							<label for="exampleInputPassword" class="">Mã check</label>
 							<div class="position-relative has-icon-right">
-								<input type="password" id="txtoldPassword" name="password" class="form-control input-shadow" placeholder="Mật khẩu củ">
+								<input type="password" id="txtoldPassword" name="oldpassword" class="form-control input-shadow" placeholder="Mật khẩu củ">
 								<div class="form-control-position">
 									<i class="icon-lock"></i>
 								</div>

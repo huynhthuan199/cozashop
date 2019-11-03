@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,9 @@ import com.cozashop.util.ApiResponse;
 @Controller
 @RequestMapping("/admin/")
 public class UserController {
-
+	@Autowired 
+	private PasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private UserService userService;
 
@@ -34,29 +37,28 @@ public class UserController {
 		model.addAttribute("listusers", userService.findAll());
 		return "admin/user";
 	}
-
+	@PreAuthorize("hasRole('ADMIN')")
 	// Edit with ajax
 	@GetMapping(value = "user/{id}")
 	@ResponseBody
 	public User getbyid(@PathVariable("id") int id) {
 		return userService.findById(id);
 	}
-
+	@PreAuthorize("hasRole('ADMIN')")
 //	Insert with ajax
 	@PostMapping(value = "user/btnInsert")
 	@ResponseBody
 	public ApiResponse insert(@RequestParam String username,@RequestParam String email, @RequestParam String name, @RequestParam String rules) {
-		return userService.save(new User(username, name, RandomStringUtils.randomAlphanumeric(10),email,
+		return userService.save(new User(username, name,passwordEncoder.encode(RandomStringUtils.randomAlphanumeric(5)),email,
 				Boolean.parseBoolean(rules), true, new Date()));
 	}
-
+	@PreAuthorize("hasRole('ADMIN')")
 //	Delete with ajax
 	@GetMapping(value = "user/btnDelete")
 	@ResponseBody
 	public String delete(@RequestParam("id") int id) {
 		return userService.delete(id);
 	}
-
 // Update with ajax
 	@PreAuthorize ("hasRole('ADMIN')")
 	@GetMapping(value = "user/btnUpdate")

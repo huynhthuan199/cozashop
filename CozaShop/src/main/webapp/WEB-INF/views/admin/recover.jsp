@@ -91,8 +91,8 @@
 						  type: 'success',
 						  title: 'Thông Báo',
 						  showConfirmButton: false,
-						  text: 'Click vào đây để đổi mật khẩu!',
-						  footer: '<a href="./changepassword">Click vào đây để đăng nhập!</a>'
+						  text: 'Kiểm tra email để nhận mật khẩu mới!',
+						  footer: '<a href="./changepassword">Click vào đây để đổi mật khẩu!</a>'
 						})
 				}else if(data.status == 'danger'){
 					Swal.fire({

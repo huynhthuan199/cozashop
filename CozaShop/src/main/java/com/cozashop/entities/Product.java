@@ -43,14 +43,14 @@ public class Product extends BaseEntity implements Serializable {
 	private Category category;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "product")
 	private Collection<OrderDetails> orderDetails;
 
 	public Product() {
 		super();
 	}
 
-	public Product(String id, String name, Double price, Double amout, String material, String color, String image,String image2,String image3,String shortdescription,
+	public Product(String id, String name, Double price, Double amout, String material, String color, String image1,String image2,String image3,String shortdescription,
 			String description, Category category,boolean enabled,Date createAt) {
 		super();
 		this.id = id;
@@ -59,7 +59,7 @@ public class Product extends BaseEntity implements Serializable {
 		this.amout = amout;
 		this.material = material;
 		this.color = color;
-		this.image = image;
+		this.image = image1;
 		this.image2 = image2;
 		this.image3 = image3;
 		this.shortdescription = shortdescription;
@@ -177,4 +177,10 @@ public class Product extends BaseEntity implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public enum ProductField{
+		price
+	}
 }
+
+

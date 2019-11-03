@@ -11,6 +11,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,8 @@ import com.cozashop.service.InfoProductService;
 import com.cozashop.service.MaterialService;
 import com.cozashop.util.ApiResponse;
 
+import javassist.NotFoundException;
+
 @Controller
 @RequestMapping("/admin/")
 public class InfoproductController {
@@ -48,7 +51,7 @@ public class InfoproductController {
 	@Autowired
 	private MaterialService materialService;
 
-
+	@PreAuthorize("hasRole('ADMIN') or hasRole('MEMBER')")
 	@GetMapping("infoproduct")
 	public String index(Model model) {
 		model.addAttribute("listProduct", infoProductService.findAll());
@@ -61,7 +64,7 @@ public class InfoproductController {
 //  Edit
 	@GetMapping(value = "infoproduct/{id}")
 	@ResponseBody
-	public Product getById(@PathVariable("id") String id) {
+	public Product getById(@PathVariable("id") String id) throws NotFoundException {
 		return infoProductService.finById(id);
 	}
 	

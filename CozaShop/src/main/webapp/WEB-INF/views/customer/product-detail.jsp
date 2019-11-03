@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,34 +9,38 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="resources/web/images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="/resources/web/images/icons/favicon.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/web/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/web/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/web/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/web/fonts/linearicons-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/web/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="resources/web/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/web/vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/web/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/vendor/select2/select2.min.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="resources/web/vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/web/vendor/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/vendor/slick/slick.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/web/vendor/MagnificPopup/magnific-popup.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/vendor/MagnificPopup/magnific-popup.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/web/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/web/css/util.css">
-	<link rel="stylesheet" type="text/css" href="resources/web/css/main.css">
+	<!-- Toastr -->
+<link
+	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+	rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/resources/web/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/resources/web/css/main.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -49,18 +55,16 @@
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
+			<a href="./index" class="stext-109 cl8 hov-cl1 trans-04">
+				Trang Chủ
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
-
-			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Men
+			<a href="./product" class="stext-109 cl8 hov-cl1 trans-04">
+				Sản Phẩm
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
-
 			<span class="stext-109 cl4">
-				Lightweight Jacket
+				Chi Tiết Sản Phẩm
 			</span>
 		</div>
 	</div>
@@ -75,33 +79,31 @@
 						<div class="wrap-slick3 flex-sb flex-w">
 							<div class="wrap-slick3-dots"></div>
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
 							<div class="slick3 gallery-lb">
-								<div class="item-slick3" data-thumb="resources/web/images/product-detail-01.jpg">
-									<div class="wrap-pic-w pos-relative">
-										<img src="resources/web/images/product-detail-01.jpg" alt="IMG-PRODUCT">
-
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="resources/web/images/product-detail-01.jpg">
+								<div id="div-image1od" class="item-slick3" data-thumb="/resources/web/images/Products/${modelProduct.image }">
+									<div id="hover-image1od" class="wrap-pic-w pos-relative">
+										<img id="image1od" src="/resources/web/images/Products/${modelProduct.image }" alt="IMG-PRODUCT">
+										<a id="a-image1od" class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/resources/web/images/Products/${modelProduct.image }">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
 
-								<div class="item-slick3" data-thumb="resources/web/images/product-detail-02.jpg">
-									<div class="wrap-pic-w pos-relative">
-										<img src="resources/web/images/product-detail-02.jpg" alt="IMG-PRODUCT">
+								<div id="div-image2od" class="item-slick3" data-thumb="/resources/web/images/Products/${modelProduct.image2 }">
+									<div id="hover-image2od" class="wrap-pic-w pos-relative">
+										<img id="image2od" src="/resources/web/images/Products/${modelProduct.image2 }" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="resources/web/images/product-detail-02.jpg">
+										<a id="a-image2od" class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/resources/web/images/Products/${modelProduct.image2 }">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
 
-								<div class="item-slick3" data-thumb="resources/web/images/product-detail-03.jpg">
-									<div class="wrap-pic-w pos-relative">
-										<img src="resources/web/images/product-detail-03.jpg" alt="IMG-PRODUCT">
+								<div id="div-image3od" class="item-slick3" data-thumb="/resources/web/images/Products/${modelProduct.image3 }">
+									<div  id="hover-image3od"class="wrap-pic-w pos-relative">
+										<img id="image3od" src="/resources/web/images/Products/${modelProduct.image3 }" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="resources/web/images/product-detail-03.jpg">
+										<a id="a-image3od" class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="/resources/web/images/Products/${modelProduct.image3 }">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -113,16 +115,16 @@
 					
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
-						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							Lightweight Jacket
+						<h4 data-name="${modelProduct.name }" id="nameod" class="mtext-105 cl2 js-name-detail p-b-14">
+							 ${modelProduct.name }
 						</h4>
 
-						<span class="mtext-106 cl2">
-							$58.79
+						<span data-price="${modelProduct.price }" id="priceod" class="mtext-106 cl2">
+							<fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${modelProduct.price }" /> VNĐ 
 						</span>
 
-						<p class="stext-102 cl3 p-t-23">
-							Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+						<p id="descriptionod" class="stext-102 cl3 p-t-23">
+							${modelProduct.description }
 						</p>
 						
 						<!--  -->
@@ -150,17 +152,16 @@
 								<div class="size-203 flex-c-m respon6">
 									Color
 								</div>
-
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
-											<option>Choose an option</option>
-											<option>Red</option>
-											<option>Blue</option>
-											<option>White</option>
-											<option>Grey</option>
-										</select>
-										<div class="dropDownSelect2"></div>
+									<c:set var="colorProduct" value="${modelProduct.color }" />  
+									
+										<select disabled id="txtcolorod" class="form-control"
+												name="time">
+												<c:forEach var="listColor" items="${listColor }">
+													<option value="${listColor.name }">${listColor.name }</option>
+												</c:forEach>
+											</select>
 									</div>
 								</div>
 							</div>
@@ -172,14 +173,14 @@
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+										<input readonly id="txtquantityod" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button data-id="${modelProduct.id }" id="addToCartod" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
 									</button>
 								</div>
@@ -231,10 +232,10 @@
 					<!-- Tab panes -->
 					<div class="tab-content p-t-43">
 						<!-- - -->
-						<div class="tab-pane fade show active" id="description" role="tabpanel">
+						<div class="tab-pane fade show active" id="descriptionx" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
 								<p class="stext-102 cl6">
-									Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
+									${modelProduct.description }
 								</p>
 							</div>
 						</div>
@@ -243,34 +244,14 @@
 						<div class="tab-pane fade" id="information" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-									<ul class="p-lr-28 p-lr-15-sm">
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Weight
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												0.79 kg
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												Dimensions
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												110 x 33 x 100 cm
-											</span>
-										</li>
-
+									<ul class="p-lr-28 p-lr-15-sm p-l-175">
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
 												Materials
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												60% cotton
+												${modelProduct.material }
 											</span>
 										</li>
 
@@ -280,7 +261,7 @@
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												Black, Blue, Grey, Green, Red, White
+												${modelProduct.color }
 											</span>
 										</li>
 
@@ -306,7 +287,7 @@
 										<!-- Review -->
 										<div class="flex-w flex-t p-b-68">
 											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-												<img src="resources/web/images/avatar-01.jpg" alt="AVATAR">
+												<img src="/resources/web/images/avatar-01.jpg" alt="AVATAR">
 											</div>
 
 											<div class="size-207">
@@ -363,12 +344,12 @@
 
 												<div class="col-sm-6 p-b-5">
 													<label class="stext-102 cl3" for="name">Name</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text" name="name">
+													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="namex" type="text" name="name">
 												</div>
 
 												<div class="col-sm-6 p-b-5">
 													<label class="stext-102 cl3" for="email">Email</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email" type="text" name="email">
+													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="emailx" type="text" name="email">
 												</div>
 											</div>
 
@@ -391,7 +372,7 @@
 			</span>
 
 			<span class="stext-107 cl6 p-lr-25">
-				Categories: Jacket, Men
+				Categories: ${modelProduct.category.name }
 			</span>
 		</div>
 	</section>
@@ -405,201 +386,44 @@
 					Sản phẩm liên quan
 				</h2>
 			</div>
-
 			<!-- Slide2 -->
 			<div class="wrap-slick2">
 				<div class="slick2">
+				 <c:forEach var="listProduct" items="${listProductRD }">
 					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 						<!-- Block2 -->
+						
 						<div class="block2">
 							<div class="block2-pic hov-img0">
-								<img src="resources/web/images/Products/T1.jpg" alt="IMG-PRODUCT">
+								<img src="/resources/web/images/Products/${listProduct.image2 }" alt="IMG-PRODUCT">
 
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+								<a data-id="${listProduct.id }" href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 btnShow">
 									Quick View
 								</a>
 							</div>
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Đồng hồ DW Classic Ashfield
+									<a href="/productdetail/${listProduct.id }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										${listProduct.name }
 									</a>
 
 									<span class="stext-105 cl3">
-										4.300.000 VNĐ
+										${listProduct.price }
 									</span>
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
 									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="resources/web/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/web/images/icons/icon-heart-02.png" alt="ICON">
+										<img class="icon-heart1 dis-block trans-04" src="/resources/web/images/icons/icon-heart-01.png" alt="ICON">
+										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="/resources/web/images/icons/icon-heart-02.png" alt="ICON">
 									</a>
 								</div>
 							</div>
 						</div>
+						
 					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="resources/web/images/Products/G1.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Leather Cap Toe Stays
-									</a>
-
-									<span class="stext-105 cl3">
-										2.150.000 VNĐ
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="resources/web/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/web/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="resources/web/images/Products/T3.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Only Check Trouser
-									</a>
-
-									<span class="stext-105 cl3">
-										$25.50
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="resources/web/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/web/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="resources/web/images/Products/G4.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Classic Trench Coat
-									</a>
-
-									<span class="stext-105 cl3">
-										$75.00
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="resources/web/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/web/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="resources/web/images/product-05.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Front Pocket Jumper
-									</a>
-
-									<span class="stext-105 cl3">
-										$34.75
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="resources/web/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/web/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="resources/web/images/product-08.jpg" alt="IMG-PRODUCT">
-
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
-								</a>
-							</div>
-
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Pieces Metallic Printed
-									</a>
-
-									<span class="stext-105 cl3">
-										$18.96
-									</span>
-								</div>
-
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="resources/web/images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="resources/web/images/icons/icon-heart-02.png" alt="ICON">
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -619,14 +443,13 @@
 		</span>
 	</div>
 
-	<!-- Modal1 -->
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+		<!-- Modal1 -->
+	<div id="show-product" class="wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div class="overlay-modal1 js-hide-modal1"></div>
-
 		<div class="container">
 			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
 				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="resources/web/images/icons/icon-close.png" alt="CLOSE">
+					<img src="/resources/web/images/icons/icon-close.png" alt="CLOSE">
 				</button>
 
 				<div class="row">
@@ -635,34 +458,39 @@
 							<div class="wrap-slick3 flex-sb flex-w">
 								<div class="wrap-slick3-dots"></div>
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="resources/web/images/product-detail-01.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="resources/web/images/product-detail-01.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="resources/web/images/product-detail-01.jpg">
-												<i class="fa fa-expand"></i>
+									<div id="div-image1" class="item-slick3"
+										data-thumb="/resources/web/images/Products/CV1.jpg">
+										<div id="hover-image1" class="wrap-pic-w pos-relative">
+											<img id="image1" src="" alt="IMG-PRODUCT"> <a
+												id="a-image1"
+												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+												href="/resources/web/images/product-detail-01.jpg"> <i
+												class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="resources/web/images/product-detail-02.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="resources/web/images/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="resources/web/images/product-detail-02.jpg">
-												<i class="fa fa-expand"></i>
+									<div id="div-image2" class="item-slick3"
+										data-thumb="/resources/web/images/Products/CV2.jpg">
+										<div id="hover-image2" class="wrap-pic-w pos-relative">
+											<img id="image2" src="" alt="IMG-PRODUCT"> <a
+												id="a-image2"
+												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+												href="/resources/web/images/Products/CV2.jpg"> <i
+												class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="resources/web/images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="resources/web/images/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="resources/web/images/product-detail-03.jpg">
-												<i class="fa fa-expand"></i>
+									<div id="div-image3" class="item-slick3"
+										data-thumb="/resources/web/images/Products/CV3.jpg">
+										<div id="hover-image3" class="wrap-pic-w pos-relative">
+											<img id="image3" src="" alt="IMG-PRODUCT"> <a
+												id="a-image3"
+												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+												href="/resources/web/images/product-detail-03.jpg"> <i
+												class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
@@ -670,27 +498,19 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="col-md-6 col-lg-5 p-b-30">
 						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								Lightweight Jacket
-							</h4>
+							<h4 id="name" class="mtext-105 cl2 js-name-detail p-b-14"></h4>
 
-							<span class="mtext-106 cl2">
-								$58.79
-							</span>
+							<span id="price" class="mtext-106 cl2"></span>
 
-							<p class="stext-102 cl3 p-t-23">
-								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-							</p>
-							
+							<p id="description" class="stext-102 cl3 p-t-23"></p>
+
 							<!--  -->
 							<div class="p-t-33">
 								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Size
-									</div>
+									<div class="size-203 flex-c-m respon6">Size</div>
 
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
@@ -707,20 +527,16 @@
 								</div>
 
 								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Color
-									</div>
+									<div class="size-203 flex-c-m respon6">Color</div>
 
 									<div class="size-204 respon6-next">
 										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
+											<select disabled id="txtcolor" class="form-control"
+												name="time">
+												<c:forEach var="listColor" items="${listColor }">
+													<option value="${listColor.name }">${listColor.name }</option>
+												</c:forEach>
 											</select>
-											<div class="dropDownSelect2"></div>
 										</div>
 									</div>
 								</div>
@@ -728,42 +544,44 @@
 								<div class="flex-w flex-r-m p-b-10">
 									<div class="size-204 flex-w flex-m respon6-next">
 										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+											<div
+												class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+											<input readonly id="txtquantity"
+												class="mtext-104 cl3 txt-center num-product" type="number"
+												name="num-product" value="1">
+											<div
+												class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
-
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
+										<button id="addToCart"
+											class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+											Add to cart</button>
 									</div>
-								</div>	
+								</div>
 							</div>
 
 							<!--  -->
 							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
 								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
+									<a href="#"
+										class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
+										data-tooltip="Add to Wishlist"> <i
+										class="zmdi zmdi-favorite"></i>
 									</a>
 								</div>
 
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-									<i class="fa fa-facebook"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-									<i class="fa fa-twitter"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-									<i class="fa fa-google-plus"></i>
+								<a href="#"
+									class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+									data-tooltip="Facebook"> <i class="fa fa-facebook"></i>
+								</a> <a href="#"
+									class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+									data-tooltip="Twitter"> <i class="fa fa-twitter"></i>
+								</a> <a href="#"
+									class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+									data-tooltip="Google Plus"> <i class="fa fa-google-plus"></i>
 								</a>
 							</div>
 						</div>
@@ -771,16 +589,16 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> <!-- End Modal  -->
 <!--===============================================================================================-->	
-	<script src="resources/web/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/resources/web/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/web/vendor/animsition/js/animsition.min.js"></script>
+	<script src="/resources/web/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/web/vendor/bootstrap/js/popper.js"></script>
-	<script src="resources/web/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/resources/web/vendor/bootstrap/js/popper.js"></script>
+	<script src="/resources/web/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/web/vendor/select2/select2.min.js"></script>
+	<script src="/resources/web/vendor/select2/select2.min.js"></script>
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -790,18 +608,18 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="resources/web/vendor/daterangepicker/moment.min.js"></script>
-	<script src="resources/web/vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="/resources/web/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/resources/web/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/web/vendor/slick/slick.min.js"></script>
-	<script src="resources/web/js/slick-custom.js"></script>
+	<script src="/resources/web/vendor/slick/slick.min.js"></script>
+	<script src="/resources/web/js/slick-custom.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/web/vendor/parallax100/parallax100.js"></script>
+	<script src="/resources/web/vendor/parallax100/parallax100.js"></script>
 	<script>
         $('.parallax100').parallax100();
 	</script>
 <!--===============================================================================================-->
-	<script src="resources/web/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script src="/resources/web/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 	<script>
 		$('.gallery-lb').each(function() { // the containers for all your galleries
 			$(this).magnificPopup({
@@ -815,9 +633,9 @@
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="resources/web/vendor/isotope/isotope.pkgd.min.js"></script>
+	<script src="/resources/web/vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/web/vendor/sweetalert/sweetalert.min.js"></script>
+	<script src="/resources/web/vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
 		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
 			e.preventDefault();
@@ -855,7 +673,7 @@
 	
 	</script>
 <!--===============================================================================================-->
-	<script src="resources/web/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="/resources/web/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function(){
 			$(this).css('position','relative');
@@ -872,6 +690,81 @@
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="resources/web/js/main.js"></script>
+	<script src="/resources/web/vendor/sweetalert/sweetalert.min.js"></script>
+	<!--Toastr -->
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script type="text/javascript">
+		toastr.options = {
+			"closeButton" : false,
+			"debug" : false,
+			"newestOnTop" : true,
+			"progressBar" : true,
+			"positionClass" : "toast-top-left",
+			"preventDuplicates" : false,
+			"onclick" : null,
+			"showDuration" : "300",
+			"hideDuration" : "1000",
+			"timeOut" : "5000",
+			"extendedTimeOut" : "1000",
+			"showEasing" : "swing",
+			"hideEasing" : "linear",
+			"showMethod" : "fadeIn",
+			"hideMethod" : "fadeOut"
+		}
+	</script>
+	<script src="/resources/web/js/main.js"></script>
+	 <script src="/resources/web/js/custom.js"></script> 
+	<script>
+	function addCommas(nStr)
+	{
+	    nStr += '';
+	    x = nStr.split('.');
+	    x1 = x[0];
+	    x2 = x.length > 1 ? '.' + x[1] : '';
+	    var rgx = /(\d+)(\d{3})/;
+	    while (rgx.test(x1)) {
+	        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	    }
+	    return x1 + x2;
+	}
+	</script>
+	<script>
+	$(document).ready(function(){
+		$('#txtcolorod').val('${colorProduct}');
+	$('.btnShow').click(function() {
+		console.log($(this).data('id'))
+		$.ajax({
+			type : "GET",
+			url : "/product/" + $(this).data("id")
+		}).done(function(data) {
+					$('#id').text(data.id);
+					$('#name').text(data.name);
+					$('#price').text(addCommas(data.price)+" VNĐ");
+					$('#description').text(data.description);
+					$('#addToCart').attr('data-id',data.id);
+					$("#image1").attr("src","/resources/web/images/Products/"+data.image); 
+					$("#image2").attr("src","/resources/web/images/Products/"+data.image2); 
+					$("#image3").attr("src","/resources/web/images/Products/"+data.image3);
+					$("#a-image1").attr("href","/resources/web/images/Products/"+data.image); 
+					$("#a-image2").attr("href","/resources/web/images/Products/"+data.image2); 
+					$("#a-image3").attr("href","/resources/web/images/Products/"+data.image3);
+					$('.slick3-dots img').eq(3).attr("src","/resources/web/images/Products/"+data.image);
+					$('.slick3-dots img').eq(4).attr("src","/resources/web/images/Products/"+data.image2);
+					$('.slick3-dots img').eq(5).attr("src","/resources/web/images/Products/"+data.image);
+					$('#txtcolor').val(data.color);
+					$('#show-product').addClass('show-modal1');
+					/* 
+ 					$('#material').val(data.material);
+					$('#color').val(data.color);
+					$('#description').val(data.description);
+					$('#categoryId').val(data.category.id); 
+					 $('#show-product').modal('show'); */
+				}).fail(function(err) {
+					console.log(err);
+				});
+	});
+	})
+	</script>
 </body>
 </html>
