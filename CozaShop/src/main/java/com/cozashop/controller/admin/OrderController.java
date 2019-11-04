@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cozashop.entities.Order;
@@ -39,6 +41,12 @@ public class OrderController {
 	public String checka(Model model,@PathVariable int id) {
 		model.addAttribute("listOrderdetail",orderDetailService.finByid(id));
 		return "admin/orderdetail";
+	}
+	
+	@PostMapping("order/confirm")
+	@ResponseBody
+	public int checka(@RequestParam int id, Boolean enabled) {
+		return orderService.updateStatusOrder(enabled, id);
 	}
 
 	

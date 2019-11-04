@@ -77,7 +77,7 @@ public class UserService {
 			return new ApiResponse(Status.warning, user.getUsername() + " Không được để trống tài khoản ...");
 		}
 		userRepository.updatebyUser(user.getUsername(), user.getPassword(), user.getName(), user.isRules(),
-				user.isEnabled(), user.getId());
+				user.isEnabled(),user.getEmail(), user.getId());
 		return new ApiResponse(Status.success, "Update Thành Công...");
 	}
 	public User Login(String username,String password) {

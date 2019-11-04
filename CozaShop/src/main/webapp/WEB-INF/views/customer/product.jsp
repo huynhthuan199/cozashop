@@ -63,6 +63,7 @@
 	<header class="header-v4">
 		<%@ include file="./block/header.jsp"%>
 	</header>
+	<c:set var="cartSize" value="${CART.size }" />
 	<!-- Cart -->
 	<%@ include file="./block/card.jsp"%>
 	<!-- Product -->

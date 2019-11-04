@@ -109,7 +109,7 @@
 	$('.btnUpdate').click(function(){
 	var id = $('#txtid').val();
 	var username = $('#txtusername').val();
-	var email = $('#txemail').val();
+	var email = $('#txtemail').val();
 	var password = $('#txtpassword').val();
 	var name = $('#txtname').val();
 	var rules = $("input[name='rdorules']:checked").val();

@@ -20,8 +20,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Transactional
 	@Modifying
-	@Query("UPDATE User u SET u.username =?1, u.password = ?2, u.name = ?3, u.rules = ?4, u.enabled = ?5 WHERE u.id = ?6")
-	int updatebyUser(String username,String password, String name, boolean rules,boolean enabled,int id);
+	@Query("UPDATE User u SET u.username =?1, u.password = ?2, u.name = ?3, u.rules = ?4, u.enabled = ?5,u.email =?6 WHERE u.id = ?7")
+	int updatebyUser(String username,String password, String name, boolean rules,boolean enabled,String email,int id);
 	
 	boolean existsByUsername(String username);
 	

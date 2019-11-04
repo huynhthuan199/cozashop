@@ -66,6 +66,9 @@ public class ShoppingCartController {
 	@GetMapping(value = "/show")
 	public String index(Model model,HttpSession session) {
 		Map<String, Cart> listCart = (Map<String, Cart>) session.getAttribute("CART");
+		model.addAttribute("listProvince",proviceService.findAll());
+		model.addAttribute("listDictricts",districtService.finById("79"));
+		model.addAttribute("listWard",wardService.finById("760"));
 		return "customer/shoping-cart";
 	}
 
@@ -101,9 +104,6 @@ public class ShoppingCartController {
 	@GetMapping("/getTotalMoney/a")
 	@ResponseBody
 	public String getTotalMoney(HttpSession session,Model model) {
-		model.addAttribute("listProvince",proviceService.findAll());
-		model.addAttribute("listDictricts",districtService.finById("79"));
-		model.addAttribute("listWard",wardService.finById("760"));
 		double total = 0;
 		DecimalFormat fm = new DecimalFormat("#");
 		Map<String, Cart> listCart = (Map<String, Cart>) session.getAttribute("CART");
@@ -124,6 +124,7 @@ public class ShoppingCartController {
 		Map<String, Cart> listCart = (Map<String, Cart>) session.getAttribute("CART");
 		listCart.remove(id);
 		session.setAttribute("CART", listCart);
+		model.addAttribute("cartSize",listCart.size());
 		if (type.equals("table")) {
 			return "customer/cart-table";
 		} else {
@@ -152,7 +153,7 @@ public class ShoppingCartController {
 	
 	@PostMapping("/backquantity/{id}")
 	@ResponseBody
-	public double backQuantityProduct(HttpSession session,@PathVariable String id) throws NotFoundException {
+	public String backQuantityProduct(HttpSession session,@PathVariable String id) throws NotFoundException {
 		Map<String, Cart> listCart = (Map<String, Cart>) session.getAttribute("CART");
 		Cart cart = null;
 		if (listCart == null) {
@@ -162,17 +163,26 @@ public class ShoppingCartController {
 		if (product != null) {
 			if ((cart = listCart.get(id)) != null) {
 				cart.setQuantity(cart.getQuantity() -1);
-				return cart.getQuantity() * cart.getProduct().getPrice();
+				DecimalFormat fm = new DecimalFormat("#");
+				return fm.format(cart.getQuantity() * cart.getProduct().getPrice());
 			}
 		}
-		return 0;
+		return null;
 	}
 	
 	@PostMapping("/checkout")
 	@ResponseBody
 	public ApiResponse checkOut(@RequestParam String address, @RequestParam String province, @RequestParam String district,
 		@RequestParam String ward, @RequestParam String phone, @RequestParam String name,
-			@RequestParam String email,HttpSession session) throws NotFoundException {
+			@RequestParam String email, HttpSession session)
+			throws NotFoundException {/*
+										 * 
+										 * 
+										 * if(!Helper.notNull(address,province,district,ward,phone,name,email)) { return
+										 * new
+										 * ApiResponse(Status.warning,"Điền thông tin đầy đủ trước khi thanh toán nhá!"
+										 * ); }
+										 */
 		Map<String, Cart> listCart = (Map<String, Cart>) session.getAttribute("CART");
 		if(listCart == null) {
 			return new ApiResponse(Status.warning,"Hãy mua gì đó rồi thanh toán sau nhé!");
@@ -193,9 +203,9 @@ public class ShoppingCartController {
 		
 		Customer customer = customerService.saveCustomer(new Customer(username, name, BfAddress.toString(),
 				RandomStringUtils.randomAlphanumeric(10), false,
-				email, phone, true, new Date()));
+				email, phone, false, new Date()));
 		
-		Order order = OrderService.save(new Order(total,customer, new Date(), true));
+		Order order = OrderService.save(new Order(total,customer, new Date(), false));
 		
 		for (Map.Entry<String, Cart> list : listCart.entrySet()) {
 			

@@ -11,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Rukada - Responsive Bootstrap4 Admin Dashboard Template</title>
+<title>Quản Lý Hóa Đơn</title>
 <!--favicon-->
 <link rel="icon" href="/resources/admin/assets/images/favicon.ico"
 	type="image/x-icon">
@@ -121,7 +121,7 @@
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="example" class="table table-bordered">
-										<thead>
+										<thead class="thead-light">
 											<tr>
 												<th class="column-title">Id</th>
 												<th class="column-title">Khách Hàng</th>
@@ -138,16 +138,16 @@
 													<td class=" ">${order.customer.name }</td>
 													<td class=" ">${order.totalmoney }</td>
 													<td class=" ">${order.createAt }</td>
-													<td class=" ">${order.enabled == true ? "Chờ Xử lý" : "Đã Xong" }</td>
+													<td class="valEnabled"><span class=" check2 badge badge-danger shadow-danger m-1">${order.enabled == true ? "Đã Duyệt" : "Chờ Xử lý" }</span></td>
 													<td class=" ">
 														<button type="button" data-id="${order.id }"
 															class="btn btn-outline-dark waves-effect waves-light m-1 show">
 															<i class="fa fa-pencil"> Xem</i>
 														</button>
 														<button type="button"
-															class="btn btn-outline-danger waves-effect waves-light m-1 btnDelete"
+															class="btn btn-outline-success waves-effect waves-light m-1 btnShow"
 															data-id="${order.id }" name="btnDelete">
-															<i class="fa fa-trash"> Xóa</i>
+															<i class="fa fa-trash"> Xác Nhận</i>
 														</button>
 													</td>
 												</tr>
@@ -242,10 +242,10 @@
 	<!--Toastr -->
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-	<!-- Ajax  -->
-	<script src="/resources/admin/build/customJS/ajaxoforder.js"></script>
 	<!--Select Plugins Js-->
 	<script src="/resources/admin/assets/plugins/select2/js/select2.min.js"></script>
+	
+	<script src="/resources/admin/build/customJS/ajaxoforder.js"></script>
 	<script type="text/javascript">
 		toastr.options = {
 			"closeButton" : false,
@@ -302,5 +302,10 @@
 			})
 		})
 	</script>
+		<script> 
+        $(document).ready(function() {
+            $(".check2:contains('Đã Duyệt')").removeClass( "badge badge-danger shadow-danger m-1" ).addClass( "badge badge-primary shadow-primary m-1" )
+        }); 
+    </script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <div class="wrap-header-cart js-panel-cart">
 	<div class="s-full js-hide-cart"></div>
 
@@ -23,7 +25,7 @@
 					<a href=""
 						class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10 js-hide-cart">
 						Quay Lại </a> <a href="/cart/show"
-						class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+						class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10" id="check">
 						Thanh Toán </a>
 				</div>
 			</div>
