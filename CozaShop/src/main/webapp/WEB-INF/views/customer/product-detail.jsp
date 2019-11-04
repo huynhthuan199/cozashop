@@ -154,8 +154,7 @@
 								</div>
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-									<c:set var="colorProduct" value="${modelProduct.color }" />  
-									
+	<c:set var="colorProduct" value="${modelProduct.color }" /> 
 										<select disabled id="txtcolorod" class="form-control"
 												name="time">
 												<c:forEach var="listColor" items="${listColor }">
@@ -614,7 +613,7 @@
 	<script src="/resources/web/vendor/slick/slick.min.js"></script>
 	<script src="/resources/web/js/slick-custom.js"></script>
 <!--===============================================================================================-->
-	<script src="/resources/web/vendor/parallax100/parallax100.js"></script>
+	<script src="/resources/web/vendor/parallax100/parallax100.js"></script>f
 	<script>
         $('.parallax100').parallax100();
 	</script>

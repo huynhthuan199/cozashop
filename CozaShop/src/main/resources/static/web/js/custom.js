@@ -90,7 +90,7 @@ $(document).ready(function() {
                     footer: "<a href='/product'>Quay lại trang sản phẩm</a>"
                 })
 			}else{
-
+				
 				$('#totalMoney').text(addCommas(data) +' VNĐ');
 				$('#total').text(addCommas(Math.floor((parseInt(data)+30000))) + ' VNĐ');
 				$('#largesizemodal').modal('show')
@@ -121,13 +121,6 @@ $(document).ready(function() {
 					$('.slick3-dots img').eq(2).attr("src","/resources/web/images/Products/"+data.image);
 					$('#txtcolor').val(data.color);
 					$('#show-product').addClass('show-modal1');
-					/* 
-					$('#material').val(data.material);
-					$('#color').val(data.color);
-					$('#description').val(data.description);
-					$('#categoryId').val(data.category.id);
-					
-					 $('#show-product').modal('show'); */
 				}).fail(function(err) {
 					console.log(err);
 				});
@@ -135,15 +128,13 @@ $(document).ready(function() {
 	
 	$('#listCart').on('click','.delete-item-md',function(){
 		var quantity = $('#cart-remove').data('notify');
-		quantity--
-		console.log(quantity)
 		$.ajax({
 			url : '/cart/delete/'+ $(this).data('id'),
 			type : 'post',
 			data : {type : 'modal'}
 		}).done(function(data){
 			$('#cart-modal').html(data);
-			$('#cart-remove').attr('data-notify',1);
+			$('#cart-remove').attr('data-notify','${cartSize}');
 		}).fail(function(err){
 			
 		})
@@ -213,6 +204,7 @@ $(document).ready(function() {
 	});
 	
 		$('.show-cart').click(function() {
+			
 			  $.ajax({
 					type : "GET",
 					url : "/cart/products"

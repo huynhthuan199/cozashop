@@ -111,7 +111,6 @@ public class InfoProductService {
 			Pageable firstPageWithTwoElements = PageRequest.of(page, count);
 			return infoProductRepository.findAllByCategory(firstPageWithTwoElements).iterator();
 		} else {
-			System.out.println(der);
 			if (der.equals("ASC")) {
 				Pageable firstPageWithTwoElements = PageRequest.of(page, count, new Sort(Direction.ASC, field));
 				return infoProductRepository.findAllByCategory(firstPageWithTwoElements).iterator();
@@ -119,7 +118,6 @@ public class InfoProductService {
 				Pageable firstPageWithTwoElements = PageRequest.of(page, count, new Sort(Direction.DESC, field));
 				return infoProductRepository.findAllByCategory(firstPageWithTwoElements).iterator();
 			} else if (der.equals("findAll") && field.equals("price")) {
-				System.out.println("a");
 				Pageable firstPageWithTwoElements = PageRequest.of(page, count);
 				return infoProductRepository.findAllByCategory(firstPageWithTwoElements).iterator();
 			} else {

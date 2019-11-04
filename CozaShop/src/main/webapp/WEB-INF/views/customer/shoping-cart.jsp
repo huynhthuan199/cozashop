@@ -37,7 +37,8 @@
 	href="/resources/web/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 <!-- jquery steps CSS-->
-  <link rel="stylesheet" type="text/css" href="/resources/admin/assets/plugins/jquery.steps/css/jquery.steps.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/admin/assets/plugins/jquery.steps/css/jquery.steps.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="/resources/web/vendor/perfect-scrollbar/perfect-scrollbar.css">
@@ -121,14 +122,15 @@
 									<td class="column-4">
 										<div class="wrap-num-product flex-w m-l-auto m-r-0">
 											<div data-id="${cart.value.product.id}"
-											style="width: 45px; text-align: center"
+												style="width: 45px; text-align: center"
 												class=" cl8 hov-btn3 trans-04 flex-c-m btnbackQuantity">
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 											<input class="mtext-104 cl3 txt-center num-product" readonly
 												type="number" name="num-product1"
 												value="${cart.value.quantity}">
-											<div data-id="${cart.value.product.id}" style="width: 45px; text-align: center"
+											<div data-id="${cart.value.product.id}"
+												style="width: 45px; text-align: center"
 												class="cl8 hov-btn3 trans-04 flex-c-m btnupQuantity">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
@@ -147,172 +149,140 @@
 				</table>
 			</div>
 		</div>
-		
-		 <!-- End Breadcrumb-->
-<!-- 		 <button class="btn btn-primary btn-block m-1 " id="totalmoney" data-toggle="modal" data-target="#largesizemodal">Xác Nhận </button> -->
-		  <button class="btn btn-info btn-lg btn-round btn-block waves-effect waves-light " style="margin-bottom: 30px" id="totalmoney">Xác Nhận </button>
-      
-      
-      <!-- Large Size Modal -->
-              
-              <!-- Modal -->
-                <div class="modal fade" id="largesizemodal" style="z-index: 99999999;">
-                  <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Xác Nhân Đơn Hàng</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="card-header text-uppercase">
-               Thông Tin
-            </div>
-            <div class="card-body">
-               <form id="basic-form" action="#">
-                  <div>
-                      <h3>Đơn Hàng</h3>
-                      <section >
-				<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm" style="margin-top: 20px">
-						<h4 class="mtext-109 cl2 p-b-30" style="font-family: Verdana; font-weight:bold text-align:center">
-							Tổng giỏ hàng
-						</h4>
+		<div class="row m-t-30 border border-dark border-bottom-0 border-radius-5">
+		<span class="m-t-30 m-b-30 mx-auto text-uppercase font-italic font-weight-bold"> Thông Tin Nhận Hàng</span>
+		</div>
+		<div class="row m-b-30 border border-dark border-top-0">
+			<div class="col-lg-6">
+				<div class="m-r-30 m-l-30 m-t-6">
+					<div class="form-group">
+						<label for="input-29" class="font-italic">Tỉnh/Thành Phố</label> <select id="province"
+							name="province" class="form-control single-select">
+							<c:forEach var="listProvince" items="${listProvince }">
+								<option value="${listProvince.matp }">${listProvince.name }</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="input-29" class="font-italic">Huyện/Quận</label> <select
+							id="district" name="district" class="form-control single-select">
+							<c:forEach var="listDictricts" items="${listDictricts }">
+								<option value="${listDictricts.maqh }">${listDictricts.name }</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="input-29" class="font-italic">Xã/Phường</label> <select id="ward"
+							name="ward" class="form-control single-select">
+							<c:forEach var="listWard" items="${listWard }">
+								<option value="${listWard.xaid }">${listWard.name }</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="form-group m-t-32">
+						<label for="input-27" class="font-italic">Địa Chỉ Cụ Thể</label> <input
+							type="text" class="form-control form-control-rounded"
+							id="txtaddress" name="txtAddAddress"
+							placeholder="Nhập địa chỉ như tên đường, địa điểm nhận dạng...">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="m-r-30 m-l-30">
+					<div class="form-group">
+						<label class="font-italic"> Họ Và Tên *</label> <input id="txtname" id="txtname"
+							type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<label class="font-italic">Số Điện Thoại *</label> <input id="txtphone" type="text"
+							class="form-control">
+					</div>
+					<div class="form-group">
+						<label class="font-italic">Email *</label> <input id="txtemail" type="text"
+							class="form-control">
+					</div>
+					<div class="form-group">
+						<label class="font-italic">Chú Thích *</label> <input id="txtnote" type="text"
+							class="form-control">
+					</div>
+				</div>
+			</div>
+
+			<button class="btn btn-dark btn-block m-r-44 m-l-44 m-b-30 m-t-30" id="totalmoney">Đặt Hàng</button>
+		</div>
+	</div>
+
+	<!-- End Breadcrumb-->
+
+
+	<!--  <button class="btn btn-info btn-lg btn-round btn-block waves-effect waves-light " style="margin-bottom: 30px" id="totalmoney">Xác Nhận </button> -->
+
+
+	<!-- Large Size Modal -->
+	<!-- Modal -->
+	<div class="modal fade" style="z-index: 99999" id="largesizemodal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content" style="margin-top: 100px;">
+				<div class="modal-header">
+					<h5 class="modal-title font-weight-bold">Kiểm Tra Thông Tin</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div
+						class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm"
+						style="margin-top: 20px">
+						<h4 class="mtext-109 cl2 p-b-30"
+							style="font-family: Verdana; font-weight: bold text-align:center">
+							Tổng giỏ hàng</h4>
 
 						<div class="flex-w flex-t bor12 p-b-13">
 							<div class="size-208">
-								<span class="stext-110 cl2">
-									Tiền hàng :
-								</span>
+								<span class="stext-110 cl2"> Tiền hàng : </span>
 							</div>
 
 							<div class="size-209">
-								<span id="totalMoney" class="mtext-110 cl2">
-									$79.65
-								</span>
+								<span id="totalMoney" class="mtext-110 cl2"> $79.65 </span>
 							</div>
 						</div>
 
 						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
 							<div class="size-208">
-								<span class="stext-110 cl2">
-									Phí ship:
-								</span>
+								<span class="stext-110 cl2"> Phí ship: </span>
 							</div>
 
 							<div class="size-209">
-								<span class="mtext-110 cl2">
-									30,000 VNĐ
-								</span>
+								<span class="mtext-110 cl2"> 30,000 VNĐ </span>
 							</div>
 						</div>
 
 						<div class="flex-w flex-t p-t-27 p-b-33">
 							<div class="size-208">
-								<span  class="mtext-101 cl2">
-									Total:
-								</span>
+								<span class="mtext-101 cl2"> Total: </span>
 							</div>
 
 							<div class="size-209 p-t-1">
-								<span id="total" class="mtext-110 cl2">
-									$79.65
-								</span>
+								<span id="total" class="mtext-110 cl2"> $79.65 </span>
 							</div>
 						</div>
 					</div>
-                        <!--   <div class="form-group">
-                              <label for="userName">User name *</label>
-                              <input class="form-control" type="text" id="userName">
-                          </div>
-                          <div class="form-group">
-                              <label for="userName">User name *</label>
-                              <input class="form-control" type="text" id="userName">
-                          </div> -->
-                      </section>
-                      <h3>Hồ Sơ</h3>
-                      <section>
-                          <div class="form-group">
-                              <label> Họ Và Tên *</label>
-                              <input id="txtname" type="text" class="form-control">
-                          </div>
-                          <div class="form-group">
-                              <label>Số Điện Thoại *</label>
-                              <input type="text" class="form-control">
-                          </div>
-                          <div class="form-group">
-                              <label>Email *</label>
-                              <input type="text" class="form-control">
-                          </div>
-                      </section>
-                      <h3>Địa Chỉ</h3>
-                      <section>
-                     <div class="form-group">
-                          <div class="form-group row">
-									<div class="col-sm-10">
-										<select id="province" name="province">
-											<c:forEach var="listProvince" items="${listProvince }">
-												<option value="${listProvince.matp }">${listProvince.name }</option>
-											</c:forEach>
-										</select>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="input-29" class="col-sm-2 col-form-label">Huyện/Quận</label>
-
-									<div class="col-sm-10">
-										<select id="district" name="district"
-											class="form-control multiple-select" multiple="multiple">
-											<c:forEach var="listDictricts" items="${listDictricts }">
-												<option value="${listDictricts.maqh }">${listDictricts.name }</option>
-											</c:forEach>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="input-29" class="col-sm-2 col-form-label">Xã/Phường</label>
-
-									<div class="col-sm-10">
-										<select id="ward" name="ward"
-											class="form-control multiple-select" multiple="multiple">
-											<c:forEach var="listWard" items="${listWard }">
-												<option value="${listWard.xaid }">${listWard.name }</option>
-											</c:forEach>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-								</div>
-								</div>
-                      </section>
-                      <h3>Finish</h3>
-                      <section>
-                          <div class="form-group">
-                              <div class="col-lg-12">
-                                  <div class="checkbox checkbox-primary">
-                                      <input id="checkbox-h" type="checkbox">
-                                      <label for="checkbox-h">
-                                          I agree with the Terms and Conditions.
-                                      </label>
-                                  </div>
-                              </div>
-                          </div>
-                      </section>
-                  </div>
-              </form> 
-            </div>
-          </div>
-        </div>
-      </div><!-- End Row-->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-		   </div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-inverse-primary"
+						data-dismiss="modal">
+						<i class="fa fa-times"></i> Close
+					</button>
+					<button type="button" class="btn btn-primary btncheckOut">
+						<i class="fa fa-check-square-o"></i> Xác Nhận
+					</button>
+				</div>
+			</div>
+		</div>
 	</div>
+	</div>
+	<!-- End Row-->
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
 		<%@ include file="./block/footer.jsp"%>
@@ -336,14 +306,14 @@
 		src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="/resources/admin/assets/plugins/select2/js/select2.min.js"></script>
- 	<script>
+	<script>
 		$(".js-select2").each(function() {
 			$(this).select2({
 				minimumResultsForSearch : 20,
 				dropdownParent : $(this).next('.dropDownSelect2')
 			});
 		})
-	</script> 
+	</script>
 	<!--===============================================================================================-->
 	<script
 		src="/resources/web/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
@@ -351,18 +321,21 @@
 	<script
 		src="/resources/web/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script src="/resources/web/js/main.js"></script>
-<!--Form Wizard-->
-  <script src="/resources/admin/assets/plugins/jquery.steps/js/jquery.steps.min.js"></script>
-  <script src="/resources/admin/assets/plugins/jquery-validation/js/jquery.validate.min.js"></script>
-  <!--wizard initialization-->
-  <script src="/resources/admin/assets/plugins/jquery.steps/js/jquery.wizard-init.js"></script>
+	<!--Form Wizard-->
+	<script
+		src="/resources/admin/assets/plugins/jquery.steps/js/jquery.steps.min.js"></script>
+	<script
+		src="/resources/admin/assets/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+	<!--wizard initialization-->
+	<script
+		src="/resources/admin/assets/plugins/jquery.steps/js/jquery.wizard-init.js"></script>
 	<script src="/resources/web/js/custom.js"></script>
 	<!--Sweet Alerts -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-	
+
 	<script>
 		$(document).ready(function() {
-			$('.multiple-select').select2();
+			$('.single-select').select2();
 		});
 	</script>
 	<script>
@@ -382,122 +355,170 @@
 	</script>
 	<!--===============================================================================================-->
 	<script>
-	$(document).ready(function() {
-           /*  $('#cart-remove').remove(); */
-            $('#district').change(function() {
-                        $.ajax({
-                                type: "Post",
-                                url: "/admin/test3",
-                                data: {
-                                    id: $('#district').val().toString()
-                                },
-                                beforeSend: function() {
-                                    $('#icon2').css({display: "inline-block"});
-                                }
-                            })
-                            .done(function(data) {
-                                    $('#icon2').css({display: "none"});
-                                    $('#ward').children().remove();
-                                    for (var i = 0; i < data.length; i++) {
-                                        $('#ward').append(
-                                                '<option value=' + data[i].maqh + '>' +
-                                                data[i].name +
-                                                '</option>');
-                                    }
-                                })
-                            .fail(function(err) {
-                                console.log(err);
-                            });
-                    });
+		$(document)
+				.ready(
+						function() {
+							$('#cart-remove').remove();
+							$('#district')
+									.change(
+											function() {
+												$
+														.ajax(
+																{
+																	type : "Post",
+																	url : "/admin/test3",
+																	data : {
+																		id : $(
+																				'#district')
+																				.val()
+																				.toString()
+																	},
+																	beforeSend : function() {
+																		$(
+																				'#icon2')
+																				.css(
+																						{
+																							display : "inline-block"
+																						});
+																	}
+																})
+														.done(
+																function(data) {
+																	$('#icon2')
+																			.css(
+																					{
+																						display : "none"
+																					});
+																	$('#ward')
+																			.children()
+																			.remove();
+																	for (var i = 0; i < data.length; i++) {
+																		$(
+																				'#ward')
+																				.append(
+																						'<option value=' + data[i].maqh + '>'
+																								+ data[i].name
+																								+ '</option>');
+																	}
+																})
+														.fail(function(err) {
+															console.log(err);
+														});
+											});
 
-            $('#province').change(function() {
-                        $.ajax({
-                                type: "Post",
-                                url: "/admin/test",
-                                data: {
-                                    id: $('#province').val().toString()
-                                },
-                                beforeSend: function() {
-                                    $('#icon2').css({display: "inline-block"});
-                                }
-                            }).done(
-                                function(data) {
-                                    $('#icon2').css({display: "none"});
-                                    $('#district').children().remove();
-                                    for (var i = 0; i < data.length; i++) {
-                                        $('#district').append(
-                                                '<option value=' + data[i].maqh + '>' +
-                                                data[i].name +
-                                                '</option>');
-                                    }
-                                })
-                            .fail(function(err) {
-                                console.log(err);
-                            });
-                    });
+							$('#province')
+									.change(
+											function() {
+												$
+														.ajax(
+																{
+																	type : "Post",
+																	url : "/admin/test",
+																	data : {
+																		id : $(
+																				'#province')
+																				.val()
+																				.toString()
+																	},
+																	beforeSend : function() {
+																		$(
+																				'#icon2')
+																				.css(
+																						{
+																							display : "inline-block"
+																						});
+																	}
+																})
+														.done(
+																function(data) {
+																	$('#icon2')
+																			.css(
+																					{
+																						display : "none"
+																					});
+																	$(
+																			'#district')
+																			.children()
+																			.remove();
+																	for (var i = 0; i < data.length; i++) {
+																		$(
+																				'#district')
+																				.append(
+																						'<option value=' + data[i].maqh + '>'
+																								+ data[i].name
+																								+ '</option>');
+																	}
+																})
+														.fail(function(err) {
+															console.log(err);
+														});
+											});
 
-            $('.btncheckOut')
-                .click(
-                    function() {
-                        var addname = $('#txtname')
-                            .val();
-                        var addphone = $('#txtphone')
-                            .val();
-                        var addemail = $('#txtemail')
-                            .val();
-                        var addaddress = $(
-                            '#txtaddress').val();
-                        var addprovince = $(
-                                '#province :selected')
-                            .text();
-                        var adddistrict = $(
-                                '#district :selected')
-                            .text();
-                        var addward = $(
-                                '#ward :selected')
-                            .text();
-                        $
-                            .ajax({
-                                type: "POST",
-                                url: "/cart/checkout",
-                                data: {
-                                    name: addname,
-                                    phone: addphone,
-                                    address: addaddress,
-                                    email: addemail,
-                                    province: addprovince,
-                                    district: adddistrict,
-                                    ward: addward
-                                }
-                            })
-                            .done(
-                                function(data) {
-                                    if (data.status == 'warning') {
-                                        Swal
-                                            .fire({
-                                                type: 'info',
-                                                title: 'Oops...',
-                                                text: 'Chưa có gì để thanh toán đâu ^^',
-                                                footer: "<a href='/product'>Quay lại trang sản phẩm</a>"
-                                            })
-                                    } else if (data.status == 'success') {
-                                        Command: toastr[data.status]
-                                            (
-                                                data.message,
-                                                "Thông Báo")
-                                    }
-                                })
-                            .fail(
-                                function(err) {
-                                    console
-                                        .log(err);
-                                    Command: toastr["warning"]
-                                        (
-                                            "Thêm thất bại",
-                                            "Thông Báo")
-                                });
-                    });
-        });
+							$(document)
+									.on(
+											'click',
+											'.btncheckOut',
+											function() {
+												var addname = $('#txtname')
+														.val();
+												var addphone = $('#txtphone')
+														.val();
+												var addemail = $('#txtemail')
+														.val();
+												var addaddress = $(
+														'#txtaddress').val();
+												var addprovince = $(
+														'#province :selected')
+														.text();
+												var adddistrict = $(
+														'#district :selected')
+														.text();
+												var addward = $(
+														'#ward :selected')
+														.text();
+												$
+														.ajax(
+																{
+																	type : "POST",
+																	url : "/cart/checkout",
+																	data : {
+																		name : addname,
+																		phone : addphone,
+																		address : addaddress,
+																		email : addemail,
+																		province : addprovince,
+																		district : adddistrict,
+																		ward : addward
+																	}
+																})
+														.done(
+																function(data) {
+																	if (data.status == 'warning') {
+																		Swal
+																				.fire({
+																					type : 'info',
+																					title : 'Oops...',
+																					text : 'Chưa có gì để thanh toán đâu ^^',
+																					footer : "<a href='/product'>Quay lại trang sản phẩm</a>"
+																				})
+																	} else if (data.status == 'success') {
+																		Command: toastr[data.status]
+																				(
+																						data.message,
+																						"Thông Báo")
+																	}
+																})
+														.fail(
+																function(err) {
+																	console
+																			.log(err);
+																	Command: toastr["warning"]
+																			(
+																					"Thêm thất bại",
+																					"Thông Báo")
+																});
+											});
+						});
 	</script>
 </body>
 </html>

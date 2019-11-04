@@ -26,4 +26,8 @@ public class OrderService {
 	public Order finById(int id) {
 		return orderRepository.findById(id).get();
 	}
+	
+	public int updateStatusOrder(boolean enabled,int id) {
+		return orderRepository.updateStatusOrder(enabled,id);
+	}
 }
