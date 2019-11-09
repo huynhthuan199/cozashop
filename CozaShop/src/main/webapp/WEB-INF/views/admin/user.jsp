@@ -69,8 +69,10 @@
 						<h4 class="page-title">Đường Dẫn</h4>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="./home">Trang Chủ</a></li>
-							<li class="breadcrumb-item"><a href="./user">Quản Lý Tài Khoản</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Nhân Viên</li>
+							<li class="breadcrumb-item"><a href="./user">Quản Lý Tài
+									Khoản</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Nhân
+								Viên</li>
 						</ol>
 					</div>
 					<div class="col-sm-3">
@@ -103,7 +105,8 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-body">
-								<form id="signupForm">
+								<form method="POST" enctype="multipart/form-data"
+									id="fileUploadForm">
 									<h4 class="form-header text-uppercase">
 										<i class="fa fa-address-book-o"></i>Thông Tin Nhân Viên
 									</h4>
@@ -112,14 +115,13 @@
 											và Tên</label>
 										<div class="col-sm-4">
 											<input type="text" class="form-control" id="txtAddName"
-												name="firstname">
+												name="name">
 										</div>
 										<label for="input-10" class="col-sm-2 col-form-label">Email</label>
 										<div class="col-sm-4">
 											<input type="text" class="form-control" id="txtAddEmail"
-												name="firstname">
+												name="email">
 										</div>
-										
 									</div>
 									<div class="form-group row">
 										<label for="input-12" class="col-sm-2 col-form-label">Tài
@@ -133,21 +135,31 @@
 										<div class="col-sm-4">
 											<div class="icheck-material-primary icheck-inline">
 												<input type="radio" id="inline-radio-primary"
-													name="rdoAddRules" checked value="true"> <label
+													name="rules" checked value="true"> <label
 													for="inline-radio-primary">Quản lý</label>
 											</div>
 											<div class="icheck-material-info icheck-inline">
 												<input type="radio" id="inline-radio-info"
-													name="rdoAddRules" value="false"> <label
+													name="rules" value="false"> <label
 													for="inline-radio-info">Nhân viên</label>
 											</div>
 										</div>
 									</div>
+									<div class="form-group row">
+									<label for="input-12" class="col-sm-2 col-form-label">Hình Ảnh</label>
+										<div class="col-sm-4">
+											<div class="custom-file">
+												<input name="image" type="file" class="custom-file-input" id="addFile3"
+													name="rules"> <label class="custom-file-label"
+													for="inputGroupFile01">Chọn hình Ảnh</label>
+											</div>
+										</div>
+										</div>
 									<div class="form-footer">
 										<div class="row">
 											<div class="col-sm-10"></div>
 											<div class="col-sm-2">
-												<button type=button
+												<button type=button id="btnSubmit"
 													class="btn btn-outline-success waves-effect waves-light m-1 btnInsert">
 													<i class="fa fa-check-square-o"></i> Thêm
 												</button>
@@ -188,11 +200,13 @@
 													<td class=" ">${users.username}</td>
 													<input type="hidden" name="id" value="${users.id}">
 													<td class=" ">${users.name }</td>
-													<td class=" "><span class="check badge badge-danger shadow-danger m-1">
-													${users.rules == true ? "Quản lý" : "Nhân viên" }</span></td>
+													<td class=" "><span
+														class="check badge badge-danger shadow-danger m-1">
+															${users.rules == true ? "Quản lý" : "Nhân viên" }</span></td>
 													<td class=" ">${users.createAt}</td>
-													<td class=" "><span class=" check2 badge badge-danger shadow-danger m-1">
-													${users.enabled == true ? "Bật" : "Tắt" }</span></td>
+													<td class=" "><span
+														class=" check2 badge badge-danger shadow-danger m-1">
+															${users.enabled == true ? "Bật" : "Tắt" }</span></td>
 													<td class=" ">
 														<button type="button" data-id="${users.id }"
 															class="btn btn-info shadow-info waves-effect waves-light m-1 edituser">
@@ -398,24 +412,54 @@
 				function() {
 					//Default data table
 					$('#default-datatable').DataTable();
-					
-					var table = $('#example').DataTable({
-						lengthChange : true,
-						buttons : [ 'copy', 'excel', 'pdf', 'print', 'colvis' ],
-						"lengthMenu": [ [5,10, 25, 50, -1], [5,10, 25, 50, "All"] ]
-					});
-					
+
+					var table = $('#example').DataTable(
+							{
+								lengthChange : true,
+								buttons : [ 'copy', 'excel', 'pdf', 'print',
+										'colvis' ],
+								"lengthMenu" : [ [ 5, 10, 25, 50, -1 ],
+										[ 5, 10, 25, 50, "All" ] ]
+							});
+
 					table.buttons().container().appendTo(
 							'#example_wrapper .col-md-6:eq(0)');
 
 				});
-		$( "span" ).removeClass( "myClass noClass" ).addClass( "yourClass" )
+		$("span").removeClass("myClass noClass").addClass("yourClass")
 	</script>
-	<script> 
-        $(document).ready(function() { 
-            $(".check:contains('Quản lý')").removeClass( "badge badge-danger shadow-danger m-1" ).addClass( "badge badge-primary shadow-primary m-1" );
-            $(".check2:contains('Bật')").removeClass( "badge badge-danger shadow-danger m-1" ).addClass( "badge badge-primary shadow-primary m-1" )
-        }); 
-    </script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$(".check:contains('Quản lý')")
+									.removeClass(
+											"badge badge-danger shadow-danger m-1")
+									.addClass(
+											"badge badge-primary shadow-primary m-1");
+							$(".check2:contains('Bật')")
+									.removeClass(
+											"badge badge-danger shadow-danger m-1")
+									.addClass(
+											"badge badge-primary shadow-primary m-1")
+							$(document)
+									.on(
+											'click',
+											'.page-link',
+											function() {
+
+												$(".check:contains('Quản lý')")
+														.removeClass(
+																"badge badge-danger shadow-danger m-1")
+														.addClass(
+																"badge badge-primary shadow-primary m-1");
+												$(".check2:contains('Bật')")
+														.removeClass(
+																"badge badge-danger shadow-danger m-1")
+														.addClass(
+																"badge badge-primary shadow-primary m-1")
+											})
+						});
+	</script>
 </body>
 </html>

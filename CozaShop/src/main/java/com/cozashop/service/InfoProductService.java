@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -19,6 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cozashop.entities.Product;
 import com.cozashop.repository.InfoProductRepository;
+import com.cozashop.util.ApiResponse;
+import com.cozashop.util.ApiResponse.Status;
+import com.cozashop.util.Helper;
 
 import javassist.NotFoundException;
 
@@ -52,8 +56,29 @@ public class InfoProductService {
 		return name;
 	}
 
-	public Product save(Product product) {
-		return infoProductRepository.save(product);
+	public ApiResponse save(Product product) {
+		if(infoProductRepository.existsById(product.getId())) {
+			return new ApiResponse(Status.warning,"Mã Sản Phẩm "+ product.getId()+" đã tồn tại",null) ;
+		}
+		if(product.getId().equals("") && product.getName().equals("") && product.getShortdescription().equals("")) {
+			return new ApiResponse(Status.warning,"Không được thông tin sản phẩm ",null) ;
+		}else if(product.getId().equals("") && product.getName().equals("") && !product.getShortdescription().equals("")) {
+			return new ApiResponse(Status.warning,"-Không được để trống</br> + Mã Sản Phẩm</br> + Tên Sản Phẩm ",null) ;
+		}else if(product.getId().equals("") && !product.getName().equals("") && product.getShortdescription().equals("")) {
+			return new ApiResponse(Status.warning,"-Không được để trống</br> + Mã Sản Phẩm</br> + Mô Tả Sản Phẩm ",null);
+		}else if(!product.getId().equals("") && product.getName().equals("") && product.getShortdescription().equals("")) {
+			return new ApiResponse(Status.warning,"-Không được để trống</br> + Tên Sản Phẩm</br> + Mô Tả Sản Phẩm ",null) ;
+		}else if(product.getId().equals("")) {
+			return new ApiResponse(Status.warning,"Không được để trống mã sản phẩm ",null) ;
+		}else if(product.getName().equals("")) {
+			return new ApiResponse(Status.warning,"Không được để trống tên sản phẩm ",null) ;
+		}else if(product.getShortdescription().equals("")) {
+			return new ApiResponse(Status.warning,"Không được để trống mô tả sản phẩm ",null) ;
+		}else if(product.getImage() == null || product.getImage2() == null || product.getImage3() == null) {
+			return new ApiResponse(Status.warning,"Chưa chọn hình ảnh cho sản phẩm",null) ;
+		}
+		Product dataProduct = infoProductRepository.save(product);
+		return new ApiResponse(Status.success,"Thêm Sản Phẩm" +product.getId()+" Thành Công",dataProduct) ;
 	}
 
 	public Product Update(Product product) {
@@ -100,7 +125,7 @@ public class InfoProductService {
 	public List<Product> findAllByColor(String der, String field) {
 		return infoProductRepository.findByPColor(der, new Sort(Direction.ASC, field));
 	}
-	
+
 	public List<Product> findProducRD(String id) {
 		return infoProductRepository.findProductRD(id);
 	}

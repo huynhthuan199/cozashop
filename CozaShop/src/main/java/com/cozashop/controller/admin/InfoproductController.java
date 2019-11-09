@@ -32,6 +32,7 @@ import com.cozashop.service.ColorService;
 import com.cozashop.service.InfoProductService;
 import com.cozashop.service.MaterialService;
 import com.cozashop.util.ApiResponse;
+import com.cozashop.util.ApiResponse.Status;
 
 import javassist.NotFoundException;
 
@@ -70,7 +71,8 @@ public class InfoproductController {
 	
 //	Submit Insert
 	@PostMapping(value = "infoproduct/btnInsert")
-	public String insert(@RequestParam("txtAddId") String id,
+	@ResponseBody
+	public ApiResponse insert(@RequestParam("txtAddId") String id,
 					  @RequestParam("txtAddName") String name,
 					  @RequestParam("txtAddPrice") String price,
 					  @RequestParam("txtAddCategoryId") Category categoryId,
@@ -81,12 +83,15 @@ public class InfoproductController {
 					  @RequestParam("txtAddColor") String color,
 					  @RequestParam("txtAddDescription") String description,
 					  @RequestParam("txtAddShortDescription") String shortdescription) throws IOException {
-		
-		infoProductService.save(new Product(id,name,Double.parseDouble(price)
-				,Double.parseDouble(price),material,color,
-				infoProductService.upload(file),infoProductService.upload(file2),infoProductService.upload(file3),shortdescription,description
-				,categoryId,true,new Date()));
-			return "redirect:/admin/infoproduct";
+		try {
+			return infoProductService.save(new Product(id,name,Double.parseDouble(price)
+					,Double.parseDouble(price),material,color,
+					infoProductService.upload(file),infoProductService.upload(file2),infoProductService.upload(file3),shortdescription,shortdescription
+					,categoryId,true,new Date()));
+		}catch(Exception e) {
+			return new ApiResponse(Status.warning,"-Sai Định Dạng Giá Sản Phẩm </br> + Giá Phải là Số</br>+ không chứa kí tự ",null) ;
+		}
+			
 	}
 	
 //	Delete with ajax
@@ -109,8 +114,7 @@ public class InfoproductController {
 					  @RequestParam("txtcolor") String color,
 					  @RequestParam("txtdescription") String description,
 					  @RequestParam("txtshortDescription") String shortdescription ) throws IOException {
-			System.out.println(material);
-		infoProductService.Update(new Product(id,name,Double.parseDouble(price)
+				infoProductService.Update(new Product(id,name,Double.parseDouble(price)
 				,Double.parseDouble(price),material,color,
 				infoProductService.upload(file4),infoProductService.upload(file5),infoProductService.upload(file6),shortdescription,description
 				,categoryId,true,new Date()));

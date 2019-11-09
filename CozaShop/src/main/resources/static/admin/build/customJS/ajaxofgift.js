@@ -3,13 +3,15 @@
 		$(document).ready(function(){
 			$('.btnEdit').click(function(){
 				$.ajax({
-					url : "category/" + $(this).data("id"),
+					url : "gift/" + $(this).data("id"),
 					type : "GET"
 				}).done(function(data){
 					$('#txtId').val(data.id);
 					$('#txtName').val(data.name);
+					$('#txtCode').val(data.code);
+					$('#txtMoney').val(data.money);
 					data.enabled ? $('#inline-radio-primary2').prop("checked", true) : $('#inline-radio-info2').prop("checked", true);
-					$('#edit-category').modal('show');
+					$('#edit-gift').modal('show');
 				}).fail(function(err){
 					console.log(err);
 				});
@@ -22,7 +24,7 @@
 			$('.btnDelete').click(function(){
 					Swal.fire({
 					  title: 'Bạn Có Chắc?',
-					  text: ' Ẩn danh mục sản phẩm này sẽ khiến tất cả mặc hàng sản phẩm chứa danh mục này sẽ tắt...',
+					  text: ' Ẩn Màu này',
 					  type: 'question',
 					  showCancelButton: true,
 					  confirmButtonColor: '#3085d6',
@@ -32,7 +34,7 @@
 					}).then((result) => {
 						if(result.value){
 							$.ajax({
-								url : "category/btnDelete",
+								url : "gift/btnDelete",
 								type : "GET",
 								data : {
 									id : $(this).data("id"),
@@ -55,7 +57,7 @@
 			$('.btnShow').click(function(){
 					Swal.fire({
 					  title: 'Bạn Có Chắc?',
-					  text: ' Hiện danh mục sản phẩm này sẽ khiến tất cả mặc hàng sản phẩm chứa danh mục này sẽ được bật...',
+					  text: ' Hiện màu này',
 					  type: 'question',
 					  showCancelButton: true,
 					  confirmButtonColor: '#3085d6',
@@ -65,7 +67,7 @@
 					}).then((result) => {
 						if(result.value){
 							$.ajax({
-								url : "category/btnDelete",
+								url : "gift/btnDelete",
 								type : "GET",
 								data : {
 									id : $(this).data("id"),
@@ -89,7 +91,7 @@
 				var id = $('#txtId').val();
 					Swal.fire({
 					  title: 'Bạn Có Chắc?',
-					  text: ' Xóa danh mục sản phẩm này sẽ khiến tất cả mặc hàng sản phẩm chứa danh mục này xóa sạch...',
+					  text: ' Xóa màu này',
 					  type: 'question',
 					  showCancelButton: true,
 					  confirmButtonColor: '#3085d6',
@@ -99,7 +101,7 @@
 					}).then((result) => {
 						if(result.value){
 							$.ajax({
-								url : "category/btnHide",
+								url : "gift/btnHide",
 								type : "GET",
 								data : {
 									id : id
@@ -121,15 +123,19 @@
 	$('.btnUpdate').click(function(){
 	var id = $('#txtId').val();
 	var name = $('#txtName').val();
-	var enabled = $("input[name='txtEnabled']:checked").val();
+	var code = $('#txtCode').val();
+	var money = $('#txtMoney').val();
+	var enabled = $("input[name='rdoEnabled']:checked").val();
  		$.ajax({
  			type : "GET",
-			url : "category/btnUpdate",
-			data : {
-				 id : id,
-				 name : name,
-				 enabled : enabled
-			} 
+			url : "gift/btnUpdate",
+				data : {
+					 id : id,
+					 name : name,
+					 code : code,
+					 money : money,
+					 enabled : enabled
+				} 
 		}).done(function(data){
 			 Command: toastr[data.status](data.message, "Thông Báo")
 				if(data.status == 'success'){
@@ -145,15 +151,17 @@
 <!-- Insert -->
 	$(document).ready(function(){
 	$('.btnInsert').click(function(){
-	var addid = $('#txtAddId').val();
 	var addname = $('#txtAddName').val();
+	var addcode = $('#txtAddCode').val();
+	var addmoney = $('#txtAddMoney').val();
 	var addenabled = $("input[name='rdoAddEnabled']:checked").val();
  		$.ajax({
  			type : "Post",
-			url : "category/btnInsert",
+			url : "gift/btnInsert",
 			data : {
-				 id : addid,
 				 name : addname,
+				 code : addcode,
+				 money : addmoney,
 				 enabled : addenabled
 			} 
 		}).done(function(data){

@@ -2,25 +2,24 @@
 
 	$(document).ready(function(){
 	$('.btnInsert').click(function(){
+	var form = $('#fileUploadForm')[0];
+	 var formData = new FormData(form);/*
 	var addusername = $('#txtAddUsername').val();
-	console.log(addusername);
 	var addname = $('#txtAddName').val();
 	var addemail = $('#txtAddEmail').val();
-	var addrules = $("input[name='rdoAddRules']:checked").val();
+	var addrules = $("input[name='rdoAddRules']:checked").val();*/
  		$.ajax({
  			type : "POST",
 			url : "user/btnInsert",
-			data : {  
-				 username : addusername,
-				 name : addname,
-				 rules : addrules,
-				 email : addemail
-			} 
+			data : formData,
+ 		cache: false,
+ 	    contentType: false,
+ 	    processData: false,
 		}).done(function(data){
 				Command: toastr[data.status](data.message, "Thông Báo");
 				if(data.status == 'success'){
 					location.reload();
-				} 		
+				}
 		}).fail(function(err){
 			console.log(err);
 			Command: toastr["warning"]("Thêm thất bại", "Thông Báo")

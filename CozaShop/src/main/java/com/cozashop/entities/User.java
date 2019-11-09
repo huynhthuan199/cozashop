@@ -18,12 +18,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String username;
 	private String name;
 	private String password;
+	private String image;
 	private String email;
 	boolean rules;
 	
@@ -60,9 +65,30 @@ public class User extends BaseEntity implements Serializable {
 		this.enabled = enabled;
 		this.createAt = createAt;
 	}
+	
+
+	public User(String username, String name, String password,String email,String image, boolean rules,boolean enabled,Date createAt) {
+		super();
+		this.username = username;
+		this.name = name;
+		this.password = password;
+		this.email = email;
+		this.image = image;
+		this.rules = rules;
+		this.enabled = enabled;
+		this.createAt = createAt;
+	}
 
 	
 	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public String getEmail() {
 		return email;
 	}

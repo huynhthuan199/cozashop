@@ -42,18 +42,21 @@ public class UserService {
 	}
 
 	public ApiResponse save(User user) {
-		if (user.getName().equals("") && user.getUsername().equals("")) {
-			return new ApiResponse(Status.warning,
-					" - Không được để trống họ tên </br>- Không được để trống tài khoản");
+		if (user.getName().equals("") && user.getUsername().equals("") && user.getEmail().equals("") && user.getImage() == null) {
+			return new ApiResponse(Status.warning, " - Không được để trống </br>   + họ tên </br>   + tài khoản </br>   + Email </br>   + Hình ảnh " );
+		} else if (user.getEmail().equals("")) {
+			return new ApiResponse(Status.warning, user.getEmail()+ " Không được để trống Email ...");
 		} else if (user.getName().equals("")) {
 			return new ApiResponse(Status.warning, user.getName() + " Không được để trống Họ Tên ...");
-		} else if (user.getUsername().equals("")) {
-			return new ApiResponse(Status.warning, user.getUsername() + " Không được để trống tài khoản ...");
+		} else if (user.getUsername().equals("")) { 
+			return new ApiResponse(Status.warning, user.getUsername() + " 	Không được để trống tài khoản ...");
 		} else if (String.valueOf(user.isEnabled()).equals("")) {
 			return new ApiResponse(Status.warning, " Vui lòng tích chọn tình trạng ...");
 		} else if (String.valueOf(user.isRules()).equals("")) {
 			return new ApiResponse(Status.warning, " Vui lòng tích chọn vai trò ...");
-		} else if (userRepository.existsByUsername(user.getUsername())) {
+		}else if(user.getImage() == null) {
+			return new ApiResponse(Status.warning, user.getImage()+ "Chưa chọn ảnh cho tài khoản ...");
+		}else if (userRepository.existsByUsername(user.getUsername())) {
 			return new ApiResponse(Status.warning, user.getUsername() + " Đã tồn tại trong hệ thống...");
 		}
 		userRepository.save(user);

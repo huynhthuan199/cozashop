@@ -1,10 +1,12 @@
 package com.cozashop.controller.customer;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.DefaultFormatter;
 
@@ -21,11 +23,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cozashop.entities.Cart;
 import com.cozashop.entities.Customer;
+import com.cozashop.entities.Gift;
 import com.cozashop.entities.Order;
 import com.cozashop.entities.OrderDetails;
 import com.cozashop.entities.Product;
 import com.cozashop.service.CustomerService;
 import com.cozashop.service.DistrictService;
+import com.cozashop.service.EmailService;
+import com.cozashop.service.GiftService;
 import com.cozashop.service.InfoProductService;
 import com.cozashop.service.OrderDetailService;
 import com.cozashop.service.OrderService;
@@ -62,6 +67,11 @@ public class ShoppingCartController {
 	
 	@Autowired
 	private WardService wardService;
+	
+	@Autowired
+	private GiftService giftService;
+	@Autowired
+	private EmailService emailService;
 
 	@GetMapping(value = "/show")
 	public String index(Model model,HttpSession session) {
@@ -101,17 +111,35 @@ public class ShoppingCartController {
 		return "customer/cart-modal";
 	}
 	
+	@GetMapping("/check")
+	@ResponseBody
+	public Gift getProduct(@RequestParam String code) {
+		return giftService.finByCode(code);
+	}
+	
 	@GetMapping("/getTotalMoney/a")
 	@ResponseBody
-	public String getTotalMoney(HttpSession session,Model model) {
+	public ApiResponse getTotalMoney(HttpSession session,Model model,@RequestParam String address, @RequestParam String province, @RequestParam String district,
+		@RequestParam String ward, @RequestParam String phone, @RequestParam String name,@RequestParam String code,
+			@RequestParam String email) {
 		double total = 0;
+		 if(!Helper.notNull(address,province,district,ward,phone,name,email)) { 
+			 return new ApiResponse(Status.warning,"Điền thông tin đầy đủ trước khi thanh toán nhá!",total); 
+		}else if(!Helper.validateEmail(email)) {
+			return new ApiResponse(Status.warning,"Vui Lòng Nhập Đúng Định Dạng Email \n VD : xnxx123@gmail.com!","validateEmail"); 
+		}else if(!Helper.validatePhone(phone)) {
+			return new ApiResponse(Status.warning,"Vui Lòng Nhập Đúng Định Dạng Số Điện Thoại \n VD : 08xxxxxxxxx!","validatePhone"); 
+		}
+		Gift gift = giftService.finByCode(code);
 		DecimalFormat fm = new DecimalFormat("#");
 		Map<String, Cart> listCart = (Map<String, Cart>) session.getAttribute("CART");
 		for (Map.Entry<String, Cart> list : listCart.entrySet()) {
 			total += (list.getValue().getQuantity() * list.getValue().getProduct().getPrice());
 		}
-		return fm.format(total);
-		
+		if(gift != null) {
+			total = total - gift.getMoney();
+		}
+		return new ApiResponse(Status.success,"Số Tiền Cần Phải Thanh Toán!", fm.format(total));
 	}
 	
 	@GetMapping("/table")
@@ -173,20 +201,14 @@ public class ShoppingCartController {
 	@PostMapping("/checkout")
 	@ResponseBody
 	public ApiResponse checkOut(@RequestParam String address, @RequestParam String province, @RequestParam String district,
-		@RequestParam String ward, @RequestParam String phone, @RequestParam String name,
+		@RequestParam String ward, @RequestParam String phone, @RequestParam String name,@RequestParam String code,
 			@RequestParam String email, HttpSession session)
-			throws NotFoundException {/*
-										 * 
-										 * 
-										 * if(!Helper.notNull(address,province,district,ward,phone,name,email)) { return
-										 * new
-										 * ApiResponse(Status.warning,"Điền thông tin đầy đủ trước khi thanh toán nhá!"
-										 * ); }
-										 */
+			throws NotFoundException, MessagingException, UnsupportedEncodingException {
 		Map<String, Cart> listCart = (Map<String, Cart>) session.getAttribute("CART");
 		if(listCart == null) {
 			return new ApiResponse(Status.warning,"Hãy mua gì đó rồi thanh toán sau nhé!");
 		}
+		DecimalFormat fm = new DecimalFormat("#");
 		double total =0;
 		
 		StringBuffer BfAddress = new StringBuffer();
@@ -198,7 +220,11 @@ public class ShoppingCartController {
 		String username = Helper.randomAlphaNumeric(8);
 		
 		for (Map.Entry<String, Cart> list : listCart.entrySet()) {
-			total += (list.getValue().getQuantity() * list.getValue().getProduct().getPrice());
+			total += (list.getValue().getQuantity() * list.getValue().getProduct().getPrice() +30000);
+		}
+		Gift gift = giftService.finByCode(code); 
+		if(gift != null) {
+			total = total - gift.getMoney();
 		}
 		
 		Customer customer = customerService.saveCustomer(new Customer(username, name, BfAddress.toString(),
@@ -206,14 +232,40 @@ public class ShoppingCartController {
 				email, phone, false, new Date()));
 		
 		Order order = OrderService.save(new Order(total,customer, new Date(), false));
-		
+
+		StringBuffer sendmail = new StringBuffer();
+		sendmail.append("<!DOCTYPE html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8' /><title>Demystifying Email Design</title><meta name='viewport' content='width=device-width, initial-scale=1.0'/></head>");
+		sendmail.append("<body style='margin: 0; padding: 0;'>");
+		sendmail.append("<h1>Xác Nhận Thông Tin Đơn Hàng Của Bạn Bao Gồm</h1>");
+		sendmail.append("<table align='center' border='1' cellpadding='0' cellspacing='0' width='800' style='border-collapse: collapse;border-style: dotted;'>");
+		sendmail.append("<thead>");
+		sendmail.append("<th>Tên Sản Phẩm</th>");
+		sendmail.append("<th>Số Lượng</th>");
+		sendmail.append("<th>Giá Tiền</th>");
+		sendmail.append("</thead>");
+		sendmail.append("<tbody>");
 		for (Map.Entry<String, Cart> list : listCart.entrySet()) {
 			
 			Product product = infoProductService.finById(list.getKey());
 			if(product != null) {
 				orderDetailService.save(new OrderDetails(product,order,list.getValue().getQuantity(),list.getValue().getProduct().getPrice()));
+				sendmail.append("<tr>");
+				sendmail.append("<td style='text-align: center'>"+list.getValue().getProduct().getName()+"</td>");
+				sendmail.append("<td style='text-align: center'>"+list.getValue().getQuantity() +"</td>");
+				sendmail.append("<td style='text-align: center'>"+fm.format(list.getValue().getProduct().getPrice())+"</td>");
+				sendmail.append("</tr>");
 			}
 		}
+		sendmail.append("</tbody>");
+		sendmail.append("</table>");
+		sendmail.append("</body>");
+		sendmail.append("<h1> Phí ship: 30000</h1>");
+		sendmail.append("<h1> Tổng tiền hàng: "+fm.format(order.getTotalmoney() -30000)+"</h1>");
+		sendmail.append("<h1> Tổng tiền: "+fm.format(total)+"</h1>");
+		sendmail.append("<h1> Cám ơn bạn đã mua hàng tại Coza Shop</h1>");
+		sendmail.append("<h1> Bạn vui lòng chú ý điện thoại shipper giao hàng nhé</h1>");
+		sendmail.append("</html>");
+		emailService.sendMail(customer.getEmail(),"Hóa Đơn",sendmail.toString());
 		return new ApiResponse(Status.success, "Check Mail Để Nhận Thông Tin Về Đơn hàng");
 	}
 }

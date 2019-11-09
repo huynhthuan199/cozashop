@@ -47,15 +47,12 @@
 <link href="/resources/admin/assets/css/app-style.css" rel="stylesheet">
 <style>
 .myimage {
-	width: 100px;
+	/* width: 100px; */
 	height: 400px
 }
 </style>
-
 </head>
-
 <body>
-
 		<!-- Start wrapper-->
 		<div id="wrapper">
 
@@ -73,19 +70,18 @@
 				<!-- Breadcrumb-->
 				<div class="row pt-2 pb-2">
 					<div class="col-sm-9">
-						<h4 class="page-title">Form Layouts</h4>
+						<h4 class="page-title">Quản Lý Khách Hàng</h4>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javaScript:void();">Rukada</a></li>
-							<li class="breadcrumb-item"><a href="javaScript:void();">Forms</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Form
-								Layouts</li>
+							<li class="breadcrumb-item"><a href="home">Trang Chủ</a></li>
+							<li class="breadcrumb-item"><a href="infoproduct">Quản Lý</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Khách Hàng</li>
 						</ol>
 					</div>
 					<div class="col-sm-3">
 						<div class="btn-group float-sm-right">
 							<button type="button"
 								class="btn btn-outline-primary waves-effect waves-light">
-								<i class="fa fa-cog mr-1"></i> Setting
+								<i class="fa fa-cog mr-1"></i> Cài Đặt
 							</button>
 							<button type="button"
 								class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split waves-effect waves-light"
@@ -113,8 +109,7 @@
 							<div class="card-body">
 								<div class="card-title text-info">Thông tin sản phẩm</div>
 								<hr>
-								<form action="infoproduct/btnInsert" method="POST"
-									enctype="multipart/form-data">
+								<form enctype="multipart/form-data" id="formProduct">
 									<div class="form-group row">
 										<label for="input-26" class="col-sm-2 col-form-label">Mã
 											Sản Phẩm</label>
@@ -255,6 +250,10 @@
 										<div class="col-sm-10">
 											<button type="submit" name="btnInsert"
 												class="btn btn-info shadow-info btn-round px-5 btnInsert">
+												<i class="zmdi zmdi-collection-plus"></i> Thêm
+											</button>
+												<button type="button" name="btnInsert"
+												class="btn btn-info shadow-info btn-round px-5 btnInsert1">
 												<i class="zmdi zmdi-collection-plus"></i> Thêm
 											</button>
 										</div>

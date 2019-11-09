@@ -135,7 +135,7 @@
 											<c:forEach var="order" items="${listOrder}">
 												<tr class="even pointer">
 													<td class=" ">${order.id }</td>
-													<td class=" ">${order.customer.name }</td>
+													<td class="lblidCustomer" data-id="${order.customer.id }">${order.customer.name }</td>
 													<td class=" ">${order.totalmoney }</td>
 													<td class=" ">${order.createAt }</td>
 													<td class="valEnabled"><span class=" check2 badge badge-danger shadow-danger m-1">${order.enabled == true ? "Đã Duyệt" : "Chờ Xử lý" }</span></td>
@@ -289,10 +289,13 @@
 
 	<script>
 		$(document).ready(function() {
-			$('.show').click(function() {
+			$(document).on('click','.show',function() {
 				$.ajax({
 					type : 'Get',
-					url : 'showdetail/' + $(this).data('id')
+					url : 'showdetail/' + $(this).data('id'),
+					data :{
+						idCustomer : $(this).parent().parent().find('td.lblidCustomer').data('id')
+					}
 				}).done(function(data) {
 					$('#show-body').html(data)
 					$('#show-orderdetail').modal('show');
@@ -304,8 +307,48 @@
 	</script>
 		<script> 
         $(document).ready(function() {
-            $(".check2:contains('Đã Duyệt')").removeClass( "badge badge-danger shadow-danger m-1" ).addClass( "badge badge-primary shadow-primary m-1" )
+        	$(".check2:contains('Đã Duyệt')").removeClass( "badge badge-danger shadow-danger m-1" ).addClass( "badge badge-primary shadow-primary m-1" )
+        	$(document).on('click','.page-link',function(){
+        		$(".check2:contains('Đã Duyệt')").removeClass( "badge badge-danger shadow-danger m-1" ).addClass( "badge badge-primary shadow-primary m-1" )
+        	})
+            
         }); 
+    </script>
+    <script>
+    <!-- btnUpdateCustomer -->
+	$(document).ready(function(){
+		$(document).on('click','.btnUpdateCustomer',function(){
+		var id = $('#txtid').val();
+		var name = $('#txtname').val();
+		var phone = $('#txtphone').val();
+		var email = $('#txtemail').val();
+		var address = $('#txtaddress').val();
+	 		$.ajax({
+	 			type : "Post",
+				url : "order/btnUpdate",
+				data : {
+					 id : id,
+					 name : name,
+					 phone : phone,
+					 email : email,
+					 address : address
+				} 
+			}).done(function(data){
+				if(data.status == "success"){	
+					Command: toastr[data.status](data.message, "Thông Báo")
+				location.reload();
+				}else{
+					Command: toastr[data.status](data.message, "Thông Báo")
+				}
+				
+				
+							
+			}).fail(function(err){
+				console.log(err);
+				Command: toastr["warning"]("Sửa thất bại", "Thông Báo")
+			}); 
+		});
+	});
     </script>
 </body>
 </html>

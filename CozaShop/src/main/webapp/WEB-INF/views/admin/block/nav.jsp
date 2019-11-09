@@ -9,9 +9,14 @@
 		<a href="./home"> <img
 			src="/resources/admin/assets/images/logo-icon.png" class="logo-icon"
 			alt="logo icon">
-			<h5 class="logo-text"><sec:authentication property="principal.fullname" /> </h5>
+			
 		</a>
 	</div>
+	<div class="mx-auto mt-20" style="text-align: center;margin-top: 20px ">
+			<img style="border-radius: 50px;" src="/resources/admin/assets/images/avatars/" alt="profile-image" class="profile">
+			<h5 class="logo-text"><sec:authentication property="principal.fullname" /> </h5>
+			</div>
+			
 	<ul class="sidebar-menu do-nicescrol">
 		<li class="sidebar-header">Quản Lí Hệ Thống</li>
 		<li><a href="./home" class="waves-effect"> <i

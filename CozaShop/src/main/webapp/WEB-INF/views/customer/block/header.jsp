@@ -121,8 +121,8 @@
 						</div>
 					</div>
 
-				</a> <a href="#" class="flex-c-m trans-04 p-lr-25"> EN </a> <a href="#"
-					class="flex-c-m trans-04 p-lr-25"> USD </a>
+				</a> <a href="#" class="flex-c-m trans-04 p-lr-25"> VIETNAM </a> <a href="#"
+					class="flex-c-m trans-04 p-lr-25"> VNĐ </a>
 			</div>
 		</div>
 	</div>

@@ -507,7 +507,14 @@
 
 	<script>
 		$(document).ready(function() {
-			$('.multiple-select').select2();
+			$('.multiple-select').select2({
+				placeholder: "Click chọn địa chỉ",
+				maximumSelectionSize :1,
+				tags: true,
+				cache: false,
+				allowClear: true,
+			})
+			
 		});
 	</script>
 	<script type = "text/javascript" >
