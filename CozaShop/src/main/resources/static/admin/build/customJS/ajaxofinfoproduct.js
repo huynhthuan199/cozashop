@@ -1,5 +1,4 @@
 <!-- Edit -->
-
 		$(document).ready(
 				function() {
 					$('.btnEdit').click(
@@ -29,11 +28,9 @@
 													"Thông Báo")
 										});
 							});
-				});
 
 
-<!-- Delete  -->
-		$(document).ready(function(){		
+<!-- Delete  -->	
 			$('.btnDelete').click(function(){
 					Swal.fire({
 					  title: 'Bạn Có Chắc?',
@@ -63,4 +60,25 @@
 						}	
 					})
 			});
+			
+<!-- Insert  -->
+		$('.btnInsert1').click(()=>{
+			var form = $('#formProduct')[0]
+			var formData = new FormData(form);
+			$.ajax({
+				type : "Post",
+				url : "infoproduct/btnInsert",
+				data : formData,
+				cache: false,
+				contentType: false,
+	 	    	processData: false,
+			}).done((data)=>{
+				Command: toastr[data.status](data.message, "Thông Báo");
+				if(data.success =='success'){
+					location.reload()
+				}
+			}).fail((err)=>{
+				console.log(err)
+			})
+		})
 		});

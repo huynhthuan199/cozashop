@@ -19,6 +19,12 @@ public interface CustomerRepository  extends JpaRepository<Customer, Integer> {
 	@Query("UPDATE Customer u SET u.username =?1, u.password = ?2, u.name = ?3, u.email = ?4 , u.phone = ?5 , u.address = ?6, u.gender = ?7, u.enabled = ?8,u.createAt = ?9 WHERE u.id = ?10")
 		int updateByCustomer(String username,String password, String name,String email,String phone,String address, boolean gender, boolean enabled,Date createAt,int id);
 
+	
+	@Transactional
+	@Modifying
+	@Query("UPDATE Customer u SET u.name = ?1, u.email = ?2 , u.phone = ?3 , u.address = ?4 WHERE u.id = ?5")
+		int updateCustomerOrder(String name,String email,String phone,String address,int id);
+	
 	boolean existsByUsername(String username);
 	
 	boolean existsByEmail(String email);

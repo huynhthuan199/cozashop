@@ -28,7 +28,7 @@ public class EmailService {
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
 		
         helper.setTo(toEmail);
-        helper.setFrom(new InternetAddress("huynthuan199@gmail.com", "abcxyz"));
+        helper.setFrom(new InternetAddress("huynthuan199@gmail.com", "Coza Shop"));
 
         helper.setSubject(subject);
 
@@ -41,7 +41,7 @@ public class EmailService {
 		// hard coded a file path
         //FileSystemResource file = new FileSystemResource(new File("path/android.png"));
 
-        helper.addAttachment("my_photo.png", new ClassPathResource("/static/web/images/Products/A1.jpg"));
+        helper.addAttachment("my_photo.png", new ClassPathResource("/static/admin/assets/images/logo-icon.png"));
 
         javaMailSender.send(msg);
     }

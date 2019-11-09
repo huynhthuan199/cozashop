@@ -182,7 +182,7 @@
 					<div class="form-group m-t-32">
 						<label for="input-27" class="font-italic">Địa Chỉ Cụ Thể</label> <input
 							type="text" class="form-control form-control-rounded"
-							id="txtaddress" name="txtAddAddress"
+							id="txtaddress" name="txtAddAddress" value="abc"
 							placeholder="Nhập địa chỉ như tên đường, địa điểm nhận dạng...">
 					</div>
 				</div>
@@ -190,20 +190,27 @@
 			<div class="col-lg-6">
 				<div class="m-r-30 m-l-30">
 					<div class="form-group">
-						<label class="font-italic"> Họ Và Tên *</label> <input id="txtname" id="txtname"
+						<label class="font-italic"> Họ Và Tên *</label> <input id="txtname" id="txtname" value="abc"
 							type="text" class="form-control">
 					</div>
 					<div class="form-group">
-						<label class="font-italic">Số Điện Thoại *</label> <input id="txtphone" type="text"
+						<label class="font-italic">Số Điện Thoại *</label> <input id="txtphone" type="text" value="0868926024"
 							class="form-control">
 					</div>
 					<div class="form-group">
-						<label class="font-italic">Email *</label> <input id="txtemail" type="text"
+						<label class="font-italic">Email *</label> <input id="txtemail" type="text" value="huynhthuan199@gmail.com"
 							class="form-control">
 					</div>
 					<div class="form-group">
-						<label class="font-italic">Chú Thích *</label> <input id="txtnote" type="text"
+						<label class="font-italic">Mã Khuyến Mãi *</label> 
+						<div class="">
+						<input id="txtcode" type="text"
 							class="form-control">
+							<button type="button" class="form-control btn btn-inverse-primary m-t-10 btnCheck">
+						<i class=""></i> Kiểm Tra
+					</button>
+						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -244,7 +251,7 @@
 							</div>
 
 							<div class="size-209">
-								<span id="totalMoney" class="mtext-110 cl2"> $79.65 </span>
+								<span id="totalMoney" class="mtext-110 cl2"></span>
 							</div>
 						</div>
 
@@ -260,11 +267,11 @@
 
 						<div class="flex-w flex-t p-t-27 p-b-33">
 							<div class="size-208">
-								<span class="mtext-101 cl2"> Total: </span>
+								<span class="mtext-101 cl2"> Tổng Tiền: </span>
 							</div>
 
 							<div class="size-209 p-t-1">
-								<span id="total" class="mtext-110 cl2"> $79.65 </span>
+								<span id="total" class="mtext-110 cl2"></span>
 							</div>
 						</div>
 					</div>
@@ -355,170 +362,93 @@
 	</script>
 	<!--===============================================================================================-->
 	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#cart-remove').remove();
-							$('#district')
-									.change(
-											function() {
-												$
-														.ajax(
-																{
-																	type : "Post",
-																	url : "/admin/test3",
-																	data : {
-																		id : $(
-																				'#district')
-																				.val()
-																				.toString()
-																	},
-																	beforeSend : function() {
-																		$(
-																				'#icon2')
-																				.css(
-																						{
-																							display : "inline-block"
-																						});
-																	}
-																})
-														.done(
-																function(data) {
-																	$('#icon2')
-																			.css(
-																					{
-																						display : "none"
-																					});
-																	$('#ward')
-																			.children()
-																			.remove();
-																	for (var i = 0; i < data.length; i++) {
-																		$(
-																				'#ward')
-																				.append(
-																						'<option value=' + data[i].maqh + '>'
-																								+ data[i].name
-																								+ '</option>');
-																	}
-																})
-														.fail(function(err) {
-															console.log(err);
-														});
-											});
+	$(document).ready(function() {
+		 $('#cart-remove').remove();
+		 $('#district').change(function() {
+		  $.ajax({
+		    type: "Post",
+		    url: "/admin/test3",
+		    data: {
+		     id: $('#district').val().toString()
+		    },
+		    beforeSend: function() {
+		     $('#icon2').css({display: "inline-block"});
+		    }
+		   }).done(function(data) {
+		    $('#icon2').css({display: "none"});
+		    $('#ward').children().remove();
+		    for (var i = 0; i < data.length; i++) {
+		     $('#ward').append('<option value=' + data[i].maqh + '>' +data[i].name +'</option>');
+		    }
+		   }).fail(function(err) {
+		    console.log(err);
+		   });
+		 });
 
-							$('#province')
-									.change(
-											function() {
-												$
-														.ajax(
-																{
-																	type : "Post",
-																	url : "/admin/test",
-																	data : {
-																		id : $(
-																				'#province')
-																				.val()
-																				.toString()
-																	},
-																	beforeSend : function() {
-																		$(
-																				'#icon2')
-																				.css(
-																						{
-																							display : "inline-block"
-																						});
-																	}
-																})
-														.done(
-																function(data) {
-																	$('#icon2')
-																			.css(
-																					{
-																						display : "none"
-																					});
-																	$(
-																			'#district')
-																			.children()
-																			.remove();
-																	for (var i = 0; i < data.length; i++) {
-																		$(
-																				'#district')
-																				.append(
-																						'<option value=' + data[i].maqh + '>'
-																								+ data[i].name
-																								+ '</option>');
-																	}
-																})
-														.fail(function(err) {
-															console.log(err);
-														});
-											});
+		 $('#province').change(function() {
+		    $.ajax({
+		      type: "Post",
+		      url: "/admin/test",
+		      data: {
+		       id: $('#province').val().toString()
+		      },
+		      beforeSend: function() {
+		       $('#icon2').css({display: "inline-block"});
+		      }
+		     }).done(
+		      function(data) {
+		       $('#icon2').css({display: "none"});
+		       $('#district').children().remove();
+		       for (var i = 0; i < data.length; i++) {
+		        $('#district').append('<option value=' + data[i].maqh + '>' +data[i].name +'</option>');
+		       }
+		      })
+		     .fail(function(err) {
+		      console.log(err);
+		     });
+		   });
 
-							$(document)
-									.on(
-											'click',
-											'.btncheckOut',
-											function() {
-												var addname = $('#txtname')
-														.val();
-												var addphone = $('#txtphone')
-														.val();
-												var addemail = $('#txtemail')
-														.val();
-												var addaddress = $(
-														'#txtaddress').val();
-												var addprovince = $(
-														'#province :selected')
-														.text();
-												var adddistrict = $(
-														'#district :selected')
-														.text();
-												var addward = $(
-														'#ward :selected')
-														.text();
-												$
-														.ajax(
-																{
-																	type : "POST",
-																	url : "/cart/checkout",
-																	data : {
-																		name : addname,
-																		phone : addphone,
-																		address : addaddress,
-																		email : addemail,
-																		province : addprovince,
-																		district : adddistrict,
-																		ward : addward
-																	}
-																})
-														.done(
-																function(data) {
-																	if (data.status == 'warning') {
-																		Swal
-																				.fire({
-																					type : 'info',
-																					title : 'Oops...',
-																					text : 'Chưa có gì để thanh toán đâu ^^',
-																					footer : "<a href='/product'>Quay lại trang sản phẩm</a>"
-																				})
-																	} else if (data.status == 'success') {
-																		Command: toastr[data.status]
-																				(
-																						data.message,
-																						"Thông Báo")
-																	}
-																})
-														.fail(
-																function(err) {
-																	console
-																			.log(err);
-																	Command: toastr["warning"]
-																			(
-																					"Thêm thất bại",
-																					"Thông Báo")
-																});
-											});
-						});
+		 $(document).on('click','.btncheckOut', function() {
+		    var addname = $('#txtname').val();
+		    var addphone = $('#txtphone').val();
+		    var addemail = $('#txtemail').val();
+		    var addcode = $('#txtcode').val();
+		    var addaddress = $('#txtaddress').val();
+		    var addprovince = $('#province :selected').text();
+		    var adddistrict = $('#district :selected').text();
+		    var addward = $('#ward :selected').text();
+		    $.ajax({
+		      type: "POST",
+		      url: "/cart/checkout",
+		      data: {
+		       name: addname,
+		       code: addcode,
+		       phone: addphone,
+		       address: addaddress,
+		       email: addemail,
+		       province: addprovince,
+		       district: adddistrict,
+		       ward: addward
+		      }
+		     }).done(
+		      function(data) {
+		       if (data.status == 'warning') {
+		        Swal
+		         .fire({
+		          type: 'info',
+		          title: 'Oops...',
+		          text: 'Chưa có gì để thanh toán đâu ^^',
+		          footer: "<a href='/product'>Quay lại trang sản phẩm</a>"
+		         })
+		       } else if (data.status == 'success') {
+		        Command: toastr[data.status](data.message,"Thông Báo")
+		       }
+		      }).fail(function(err) {
+		       console.log(err);
+		       Command: toastr["warning"]("Thêm thất bại","Thông Báo")
+		      });
+		   });
+		});
 	</script>
 </body>
 </html>

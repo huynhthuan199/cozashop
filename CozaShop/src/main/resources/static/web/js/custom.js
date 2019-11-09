@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	
+//	Show Cart modal
 	$('#show-cart').click(function() {
 		$.ajax({
 			type : "GET",
@@ -9,7 +11,7 @@ $(document).ready(function() {
 			console.log(err);
 		});
 	});
-	
+//	Show Cart table
 		$('#show-cart-table').click(function() {
 			$.ajax({
 				type : "GET",
@@ -20,26 +22,8 @@ $(document).ready(function() {
 				console.log(err);
 			});
 		});
-
-//		$(document).on('click', '#addToCart', function(e){
-//			let id = e.target.dataset.id;
-//			let name = $('#nameProduct').data('name');
-//			var quantity = $('#txtquantity').val();
-//			$.ajax({
-//				type : "GET",
-//				url : '/cart/add/'+id,
-//				data : {
-//					quantity : quantity
-//				}
-//			}).done(function(data) {
-//				Command: toastr["success"]("Đã thêm "+quantity+ " sản phẩm " + name+" sản phẩm vào giỏ hàng", "Thông Báo");
-//				$('#cart-remove').attr('data-notify',data);
-//			}).fail(function(err) {
-//				console.log(err);
-//			});
-//		})
 		
-
+// addToCart orderDetail jquery
 			$('#addToCartod').click(function(){
 				var id = $(this).data('id');
 				var name = $('#nameod').data('name');
@@ -57,6 +41,7 @@ $(document).ready(function() {
 					console.log(err);
 				});
 			})
+//			Js  addToCart
 	let atc = document.getElementById("addToCart");
 	if(atc){
 		document.getElementById("addToCart").addEventListener("click", function(e){
@@ -77,11 +62,30 @@ $(document).ready(function() {
 			});
 		})
 	}
+//	Show Total money
 	$('#totalmoney').click(function(){
+		var addname = $('#txtname').val();
+		var addphone = $('#txtphone').val();
+		var addemail = $('#txtemail').val();
+		var addcode = $('#txtcode').val();
+		var addaddress = $('#txtaddress').val();
+		var addprovince = $('#province :selected').text();
+		var adddistrict = $('#district :selected').text();
+		var addward = $('#ward :selected').text();
 		$.ajax({
-			url : 'getTotalMoney/a'
+			url : 'getTotalMoney/a',
+			data : {
+				name : addname,
+				code : addcode,
+				phone : addphone,
+				address : addaddress,
+				email : addemail,
+				province : addprovince,
+				district : adddistrict,
+				ward : addward
+				}
 		}).done(function(data) {
-			if(data == 0 || data == null){
+			if(data.status =='warning' & data.data == null){
 				Swal
                 .fire({
                     type: 'info',
@@ -89,17 +93,68 @@ $(document).ready(function() {
                     text: 'Chưa có gì để thanh toán đâu ^^',
                     footer: "<a href='/product'>Quay lại trang sản phẩm</a>"
                 })
+			}else if(data.status =='warning' & data.data == 0){
+				Swal
+                .fire({
+                    type: 'info',
+                    title: 'Oops...',
+                    text: data.message,
+                    footer: "<a href='/product'>Quay lại trang sản phẩm</a>"
+                })
+			}else if(data.status =='warning' & data.data == 'validatePhone'){
+				Swal
+                .fire({
+                    type: 'info',
+                    title: 'Oops...',
+                    text: data.message,
+                    footer: "<a href='/product'>Quay lại trang sản phẩm</a>"
+                })
+			}else if(data.status =='warning' & data.data == 'validateEmail'){
+				Swal
+                .fire({
+                    type: 'info',
+                    title: 'Oops...',
+                    text: data.message,
+                    footer: "<a href='/product'>Quay lại trang sản phẩm</a>"
+                })
 			}else{
-				
-				$('#totalMoney').text(addCommas(data) +' VNĐ');
-				$('#total').text(addCommas(Math.floor((parseInt(data)+30000))) + ' VNĐ');
+				Command: toastr[data.status](data.message, 'Thông Báo');
+				$('#totalMoney').text(addCommas(data.data) +' VNĐ');
+				$('#total').text(addCommas(Math.floor((parseInt(data.data)+30000))) + ' VNĐ');
 				$('#largesizemodal').modal('show')
 			}
 		}).fail(function(err) {
 			console.log(err);
 		});
 	})
-	
+//	Check GiftCode
+		$('.btnCheck').click(function(){
+		$.ajax({
+			url : 'check',
+			data : {
+				code : $('#txtcode').val()
+			}
+		}).done(function(data) {
+			if(data == 0 || data == null){
+				Swal.fire({
+                    type: 'info',
+                    title: 'Oops...',
+                    text: 'Mã này không tồn tại hoặc đã được sử dụng',
+                    footer: "<a href='/product'>Quay lại trang sản phẩm</a>"
+                })
+			}else{
+				Swal.fire({
+                    type: 'info',
+                    title: 'Oops...',
+                    text: 'Với Mã Này Bạn Được Giảm ' +addCommas(data.money) +' VNĐ',
+                    footer: "<a href='/product'>Quay lại trang sản phẩm</a>"
+                })
+			}
+		}).fail(function(err) {
+			console.log(err);
+		});
+	})
+//	quick view SP modal
 	$(document).on('click', '.btnShow',function() {
 		$.ajax({
 			type : "GET",
@@ -125,7 +180,7 @@ $(document).ready(function() {
 					console.log(err);
 				});
 	});
-	
+//	delete sp modal
 	$('#listCart').on('click','.delete-item-md',function(){
 		var quantity = $('#cart-remove').data('notify');
 		$.ajax({
@@ -139,7 +194,7 @@ $(document).ready(function() {
 			
 		})
 	});
-	
+//	xóa sp trong table
 	$('#cart-table').on('click','.delete-item-tb',function(){
 		$.ajax({
 			url : '/cart/delete/'+ $(this).data('id'),
@@ -151,7 +206,7 @@ $(document).ready(function() {
 			
 		})
 	});
-	
+//	Chuyển đổi string money
 	function addCommas(nStr)
 	{
 	    nStr += '';
@@ -164,14 +219,12 @@ $(document).ready(function() {
 	    }
 	    return x1 + x2;
 	}
-	
+//	Tăng số lượng sản phẩm $(this)
 	$('#cart-table').on('click','.btnupQuantity,btn-num-product-up',function(){
 		var quantity = $(this).parent().find('[name ="num-product1"]').val();
 		a = parseInt(quantity);
 		a++
-		console.log(a)
 		$(this).parent().find('[name ="num-product1"]').val(a)
-		console.log(a)
 		$.ajax({
 			url : '/cart/upquantity/'+ $(this).data('id'),
 			type : 'post'
@@ -185,7 +238,7 @@ $(document).ready(function() {
 	});
 	
 	
-	
+//	Giảm số lượng sản phẩm $(this)
 	$('#cart-table').on('click','.btnbackQuantity',function(){
 		var quantity = $(this).parent().find('[name ="num-product1"]').val();
 		a = parseInt(quantity);
@@ -204,7 +257,6 @@ $(document).ready(function() {
 	});
 	
 		$('.show-cart').click(function() {
-			
 			  $.ajax({
 					type : "GET",
 					url : "/cart/products"

@@ -1,5 +1,6 @@
 package com.cozashop.controller.admin;
 
+import java.io.IOException;
 import java.util.Date;
 
 import javax.mail.MessagingException;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cozashop.entities.User;
 import com.cozashop.service.EmailService;
 import com.cozashop.service.UserService;
 import com.cozashop.util.ApiResponse;
+import com.cozashop.util.Helper;
 
 @Controller
 @RequestMapping("/admin/")
@@ -44,12 +47,20 @@ public class UserController {
 	public User getbyid(@PathVariable("id") int id) {
 		return userService.findById(id);
 	}
-	@PreAuthorize("hasRole('ADMIN')")
+//	@PreAuthorize("hasRole('ADMIN')")
+//	Insert with ajax
+//	@PostMapping(value = "user/btnInsert")
+//	@ResponseBody
+//	public ApiResponse insert(@RequestParam String username,@RequestParam String email, @RequestParam String name, @RequestParam String rules) {
+//		return userService.save(new User(username, name,passwordEncoder.encode(RandomStringUtils.randomAlphanumeric(5)),email,
+//				Boolean.parseBoolean(rules), true, new Date()));
+//	}
+	
 //	Insert with ajax
 	@PostMapping(value = "user/btnInsert")
 	@ResponseBody
-	public ApiResponse insert(@RequestParam String username,@RequestParam String email, @RequestParam String name, @RequestParam String rules) {
-		return userService.save(new User(username, name,passwordEncoder.encode(RandomStringUtils.randomAlphanumeric(5)),email,
+	public ApiResponse insert(@RequestParam String username,@RequestParam String email, @RequestParam String name, @RequestParam String rules, @RequestParam MultipartFile image) throws IOException {
+		return userService.save(new User(username, name,passwordEncoder.encode(RandomStringUtils.randomAlphanumeric(5)),email,Helper.upload(image),
 				Boolean.parseBoolean(rules), true, new Date()));
 	}
 	@PreAuthorize("hasRole('ADMIN')")
