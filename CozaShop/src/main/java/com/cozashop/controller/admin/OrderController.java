@@ -54,6 +54,15 @@ public class OrderController {
 		return "admin/orderdetail";
 	}
 	
+	@GetMapping("printOrder/{id}")
+	public String printOrder(Model model,@PathVariable int id, @RequestParam int idCustomer) {
+		model.addAttribute("listOrderdetail",
+				orderDetailService.finByid(id));
+		model.addAttribute("listOrder",
+				orderService.finById(id));
+		 model.addAttribute("customeOrderdetail",customerService.findById(idCustomer));					 
+		return "admin/printorder";
+	}
 	@PostMapping("order/confirm")
 	@ResponseBody
 	public int checka(@RequestParam int id, Boolean enabled) {

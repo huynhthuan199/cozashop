@@ -124,12 +124,12 @@
 									<table id="example" class="table table-bordered">
 										<thead class="thead-light">
 											<tr>
-												<th class="column-title">Id</th>
-												<th class="column-title">Khách Hàng</th>
-												<th class="column-title">Tổng Tiền (VNĐ)</th>
-												<th class="column-title">Ngày Tạo</th>
-												<th class="column-title">Trạng Thái</th>
-												<th class="column-title">Chức Năng</th>
+												<th class="column-title text-center">Id</th>
+												<th class="column-title text-center">Khách Hàng</th>
+												<th class="column-title text-center">Tổng Tiền (VNĐ)</th>
+												<th class="column-title text-center">Ngày Tạo</th>
+												<th class="column-title text-center">Trạng Thái</th>
+												<th class="column-title text-center">Chức Năng</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -150,6 +150,11 @@
 															class="btn btn-outline-success waves-effect waves-light m-1 btnShow"
 															data-id="${order.id }" name="btnDelete">
 															<i class="fa fa-trash"> Xác Nhận</i>
+														</button>
+														<button type="button"
+															class="btn btn-outline-primary waves-effect waves-light m-1 btnprint"
+															data-id="${order.id }" name="btnDelete">
+															<i class="fa fa-print">In Hóa Đơn</i>
 														</button>
 													</td>
 												</tr>
@@ -192,7 +197,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-inverse-primary" data-dismiss="modal"><i class="fa fa-times"></i> Đóng</button>
-                        <button type="button" class="btn btn-primary btnprint" data-dismiss="modal"><i class="fa fa-print"></i> In Hóa Đơn</button>
+                        <!-- <button type="button" class="btn btn-primary btnprint" data-dismiss="modal"><i class="fa fa-print"></i> In Hóa Đơn</button> -->
                       </div>
                     </div>
                   </div>
@@ -352,7 +357,22 @@
 		});
 		
 		$('.btnprint').click(function(){
-			window.print()
+			$.ajax({
+				url : 'printOrder/'+ $(this).data('id'),
+				data : {
+					idCustomer : $(this).parent().parent().find('td.lblidCustomer').data('id')
+				}
+			}).done((data) =>{
+				console.log(data)
+				var printWin = window.open('','In Hóa Đơn','left=0,top=0,width=500,height=500,toolbar=0,scrollbars=0,status  =0')
+				   printWin.document.write(data);
+				   printWin.document.close();
+				   printWin.focus();
+				   printWin.print();
+				   printWin.close();
+			}).fail((err) =>{
+				console.log(err)
+			})
 		})
 	});
     </script>
