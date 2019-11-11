@@ -64,6 +64,7 @@ $(document).ready(function() {
 	}
 //	Show Total money
 	$('#totalmoney').click(function(){
+//		form 
 		var addname = $('#txtname').val();
 		var addphone = $('#txtphone').val();
 		var addemail = $('#txtemail').val();

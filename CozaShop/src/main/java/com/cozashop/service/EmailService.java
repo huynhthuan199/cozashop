@@ -1,6 +1,8 @@
 package com.cozashop.service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
     private JavaMailSender javaMailSender;
+    private ScheduledExecutorService quickService = Executors.newScheduledThreadPool(20);
 
     public EmailService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
@@ -42,8 +45,15 @@ public class EmailService {
         //FileSystemResource file = new FileSystemResource(new File("path/android.png"));
 
         helper.addAttachment("my_photo.png", new ClassPathResource("/static/admin/assets/images/logo-icon.png"));
-
-        javaMailSender.send(msg);
+        
+//        Thead chạy chung với luồng chính
+        quickService.submit(new Runnable() {
+			@Override
+			public void run() {
+				 javaMailSender.send(msg);
+				
+			}
+		});
     }
     
     public void sendMailPhoto(String toEmail, String subject, String message) throws MessagingException {

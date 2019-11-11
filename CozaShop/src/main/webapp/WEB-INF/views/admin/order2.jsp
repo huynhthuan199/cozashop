@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,7 +126,7 @@
 											<tr>
 												<th class="column-title">Id</th>
 												<th class="column-title">Khách Hàng</th>
-												<th class="column-title">Tổng Tiền</th>
+												<th class="column-title">Tổng Tiền (VNĐ)</th>
 												<th class="column-title">Ngày Tạo</th>
 												<th class="column-title">Trạng Thái</th>
 												<th class="column-title">Chức Năng</th>
@@ -136,9 +137,10 @@
 												<tr class="even pointer">
 													<td class=" ">${order.id }</td>
 													<td class="lblidCustomer" data-id="${order.customer.id }">${order.customer.name }</td>
-													<td class=" ">${order.totalmoney }</td>
+													<td class="text-justify"><fmt:formatNumber type = "number" 
+         maxFractionDigits = "3" value = "${order.totalmoney }" /></td>
 													<td class=" ">${order.createAt }</td>
-													<td class="valEnabled"><span class=" check2 badge badge-danger shadow-danger m-1">${order.enabled == true ? "Đã Duyệt" : "Chờ Xử lý" }</span></td>
+													<td class="valEnabled "><span class=" check2 badge badge-danger shadow-danger m-1">${order.enabled == true ? "Đã Duyệt" : "Chờ Xử lý" }</span></td>
 													<td class=" ">
 														<button type="button" data-id="${order.id }"
 															class="btn btn-outline-dark waves-effect waves-light m-1 show">
@@ -189,8 +191,8 @@
                         
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-inverse-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        <button type="button" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Save changes</button>
+                        <button type="button" class="btn btn-inverse-primary" data-dismiss="modal"><i class="fa fa-times"></i> Đóng</button>
+                        <button type="button" class="btn btn-primary btnprint" data-dismiss="modal"><i class="fa fa-print"></i> In Hóa Đơn</button>
                       </div>
                     </div>
                   </div>
@@ -348,6 +350,10 @@
 				Command: toastr["warning"]("Sửa thất bại", "Thông Báo")
 			}); 
 		});
+		
+		$('.btnprint').click(function(){
+			window.print()
+		})
 	});
     </script>
 </body>

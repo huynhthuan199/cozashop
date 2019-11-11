@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="card">
 	<div class="card-header">
@@ -80,19 +80,9 @@
 							<td class=" ">${list.order.id }</td>
 							<td class=" ">${list.product.name }</td>
 							<td class=" ">${list.quantity }</td>
-							<td class=" ">${list.price }</td>
+							<td class=" "><fmt:formatNumber type = "number" 
+         maxFractionDigits = "3" value = "${list.price }" /> VNĐ</td>
 							<td class=" ">${list.createAt }</td>
-							<%-- <td class=" ">
-									<button type="button" data-id="${order.id }"
-										class="btn btn-outline-dark waves-effect waves-light m-1 show-orderdetail">
-										<i class="fa fa-pencil"> Xem</i>
-									</button>
-									<button type="button"
-										class="btn btn-outline-danger waves-effect waves-light m-1 btnDelete"
-										data-id="${order.id }" name="btnDelete">
-										<i class="fa fa-trash"> Xóa</i>
-									</button>
-								</td> --%>
 						</tr>
 					</c:forEach>
 				</tbody>
