@@ -63,23 +63,20 @@
 		<!--Start sidebar-wrapper-->
 		<%@ include file="./block/nav.jsp"%>
 		<!--End sidebar-wrapper-->
-
 		<!--Start topbar header-->
 		<%@ include file="./block/header.jsp"%>
 		<!--End topbar header-->
 		<div class="clearfix"></div>
-
 		<div class="content-wrapper">
 			<div class="container-fluid">
 				<!-- Breadcrumb-->
 				<div class="row pt-2 pb-2">
 					<div class="col-sm-9">
-						<h4 class="page-title">Form Layouts</h4>
+						<h4 class="page-title">Đường Dẫn</h4>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javaScript:void();">Rukada</a></li>
-							<li class="breadcrumb-item"><a href="javaScript:void();">Forms</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Form
-								Layouts</li>
+							<li class="breadcrumb-item"><a href="javaScript:void();">Trang Chủ</a></li>
+							<li class="breadcrumb-item"><a href="javaScript:void();">Quản Lý</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Khách Hàng</li>
 						</ol>
 					</div>
 					<div class="col-sm-3">
@@ -246,13 +243,10 @@
 											<tr>
 												<th class="column-title">Id</th>
 												<th class="column-title">Fullname</th>
-												<th class="column-title">Username</th>
-												<th class="column-title">Password</th>
 												<th class="column-title">Email</th>
 												<th class="column-title">Phone</th>
 												<th class="column-title">Address</th>
 												<th class="column-title">Gender</th>
-												<th class="column-title">createAt</th>
 												<th class="column-title">Status</th>
 												<th class="column-title">Action</th>
 											</tr>
@@ -262,14 +256,11 @@
 												<tr class="even pointer">
 													<td class=" ">${customers.id }</td>
 													<td class=" ">${customers.name }</td>
-													<td class=" ">${customers.username }</td>
-													<td class=" ">${customers.password }</td>
 													<td class=" ">${customers.email }</td>
 													<td class=" ">${customers.phone }</td>
 													<td class=" ">${customers.address }</td>
-													<td class=" ">${customers.gender }</td>
-													<td class=" ">${customers.createAt }</td>
-													<td class=" ">${customers.enabled }</td>
+													<td class=" ">${customers.gender == true ? "Nam" : "Nữ"}</td>
+													<td class=" ">${customers.enabled  == true ? "Khách Offline" : "Khách Online"}</td>
 													<td class=" ">
 														<button type="button" data-id="${customers.id }"
 															class="btn btn-warning editCustomer">

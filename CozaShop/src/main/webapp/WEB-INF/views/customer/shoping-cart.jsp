@@ -363,7 +363,7 @@
 	<!--===============================================================================================-->
 	<script>
 	$(document).ready(function() {
-		 $('#cart-remove').remove();
+		 $('#cart-remove').remove();	
 		 $('#district').change(function() {
 		  $.ajax({
 		    type: "Post",

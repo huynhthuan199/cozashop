@@ -2,7 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<c:forEach var="listProduct" items="${listProduct }">
+
+<c:if test="${empty listProduct}">
+<span style="text-align:center">
+Danh Mục Này Hiện Tại Đã Hết Hàng
+</span>
+</c:if>
+<c:if test="${not empty listProduct}">
+<c:forEach var="listProduct" items="${listProduct}">
 	<div
 		class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${listProduct.category.id }">
 		<div class="block2">
@@ -39,3 +46,4 @@
 		</div>
 	</div>
 </c:forEach>
+</c:if>

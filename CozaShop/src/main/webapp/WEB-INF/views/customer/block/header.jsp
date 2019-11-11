@@ -131,27 +131,22 @@
 		<nav class="limiter-menu-desktop container">
 
 			<!-- Logo desktop -->
-			<a href="index" class="logo"> <img
+			<a href="/index" class="logo"> <img
 				src="/resources/web/images/icons/logo-01.png" alt="IMG-LOGO">
 			</a>
 
 			<!-- Menu desktop -->
 			<div class="menu-desktop">
 				<ul class="main-menu">
-					<li class="active-menu"><a href="index">Trang chủ</a></li>
-					<li><a href="/product">Sản phẩm</a></li>
-
-					<li class="label1" data-label1="hot"><a
+					<li class="active-menu"><a href="/index">Trang chủ</a></li>
+					<li class="label1" data-label1="hot"><a href="/product">Sản phẩm</a></li>
+					<li><a
 						href="/cart/show">Giỏ hàng</a></li>
-
-					<li><a href="/blog">Tin tức</a></li>
-
+					<li class="label1" data-label1="new"><a href="/blog">Tin tức</a></li>
 					<li><a href="/about">Về chúng tôi</a></li>
-
 					<li><a href="/contact">Liên hệ</a></li>
 				</ul>
 			</div>
-
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m">
 				<div

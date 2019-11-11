@@ -216,7 +216,6 @@ public class ShoppingCartController {
 		BfAddress.append(province + ", ");
 		BfAddress.append(district + ", ");
 		BfAddress.append(ward);
-		
 		String username = Helper.randomAlphaNumeric(8);
 		
 		for (Map.Entry<String, Cart> list : listCart.entrySet()) {
@@ -230,14 +229,15 @@ public class ShoppingCartController {
 		Customer customer = customerService.saveCustomer(new Customer(username, name, BfAddress.toString(),
 				RandomStringUtils.randomAlphanumeric(10), false,
 				email, phone, false, new Date()));
-		
 		Order order = OrderService.save(new Order(total,customer, new Date(), false));
-
 		StringBuffer sendmail = new StringBuffer();
 		sendmail.append("<!DOCTYPE html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8' /><title>Demystifying Email Design</title><meta name='viewport' content='width=device-width, initial-scale=1.0'/></head>");
 		sendmail.append("<body style='margin: 0; padding: 0;'>");
-		sendmail.append("<h1>Xác Nhận Thông Tin Đơn Hàng Của Bạn Bao Gồm</h1>");
-		sendmail.append("<table align='center' border='1' cellpadding='0' cellspacing='0' width='800' style='border-collapse: collapse;border-style: dotted;'>");
+		sendmail.append("<h1 style='text-align:center'>Xác Nhận Thông Tin Đơn Hàng Của Bạn Bao Gồm</h1>");
+		sendmail.append("<span style='display: block;margin-left: 415px'>Anh/Chị          : "+ customer.getName() +"</span>");
+		sendmail.append("<span style='display: block;margin-left: 415px'>Số điện thoại    : "+ customer.getPhone() +"</span>");
+		sendmail.append("<span style='display: block;margin-left: 415px';margin-top:50px>Địa chỉ nhận hàng: "+ customer.getAddress() +"</span></br>");
+		sendmail.append("<table align='center' border='1' cellpadding='0' cellspacing='0' width='800' style='margin-top:30px;border-collapse: collapse;border-style: dotted;'>");
 		sendmail.append("<thead>");
 		sendmail.append("<th>Tên Sản Phẩm</th>");
 		sendmail.append("<th>Số Lượng</th>");
@@ -259,11 +259,11 @@ public class ShoppingCartController {
 		sendmail.append("</tbody>");
 		sendmail.append("</table>");
 		sendmail.append("</body>");
-		sendmail.append("<h1> Phí ship: 30000</h1>");
-		sendmail.append("<h1> Tổng tiền hàng: "+fm.format(order.getTotalmoney() -30000)+"</h1>");
-		sendmail.append("<h1> Tổng tiền: "+fm.format(total)+"</h1>");
-		sendmail.append("<h1> Cám ơn bạn đã mua hàng tại Coza Shop</h1>");
-		sendmail.append("<h1> Bạn vui lòng chú ý điện thoại shipper giao hàng nhé</h1>");
+		sendmail.append("<h1 style='margin-left:900px'> Phí ship      : 30000</h1>");
+		sendmail.append("<h1 style='margin-left:900px'> Tổng tiền hàng: "+fm.format(order.getTotalmoney() -30000)+"</h1>");
+		sendmail.append("<h1 style='margin-left:900px'> Tổng tiền     : "+fm.format(total)+"</h1>");
+		sendmail.append("<h1 style='text-align:center'> Cám ơn bạn đã mua hàng tại <span style='color: #f13d3d'>Coza Shop</span></h1>");
+		sendmail.append("<h1 style='text-align:center'> Bạn vui lòng chú ý điện thoại Shipper giao hàng nhé</h1>");
 		sendmail.append("</html>");
 		emailService.sendMail(customer.getEmail(),"Hóa Đơn",sendmail.toString());
 		return new ApiResponse(Status.success, "Check Mail Để Nhận Thông Tin Về Đơn hàng");

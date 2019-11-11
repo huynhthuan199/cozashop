@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,12 +124,12 @@
 									<table id="example" class="table table-bordered">
 										<thead class="thead-light">
 											<tr>
-												<th class="column-title">Id</th>
-												<th class="column-title">Khách Hàng</th>
-												<th class="column-title">Tổng Tiền</th>
-												<th class="column-title">Ngày Tạo</th>
-												<th class="column-title">Trạng Thái</th>
-												<th class="column-title">Chức Năng</th>
+												<th class="column-title text-center">Id</th>
+												<th class="column-title text-center">Khách Hàng</th>
+												<th class="column-title text-center">Tổng Tiền (VNĐ)</th>
+												<th class="column-title text-center">Ngày Tạo</th>
+												<th class="column-title text-center">Trạng Thái</th>
+												<th class="column-title text-center">Chức Năng</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -136,9 +137,10 @@
 												<tr class="even pointer">
 													<td class=" ">${order.id }</td>
 													<td class="lblidCustomer" data-id="${order.customer.id }">${order.customer.name }</td>
-													<td class=" ">${order.totalmoney }</td>
+													<td class="text-justify"><fmt:formatNumber type = "number" 
+         maxFractionDigits = "3" value = "${order.totalmoney }" /></td>
 													<td class=" ">${order.createAt }</td>
-													<td class="valEnabled"><span class=" check2 badge badge-danger shadow-danger m-1">${order.enabled == true ? "Đã Duyệt" : "Chờ Xử lý" }</span></td>
+													<td class="valEnabled "><span class=" check2 badge badge-danger shadow-danger m-1">${order.enabled == true ? "Đã Duyệt" : "Chờ Xử lý" }</span></td>
 													<td class=" ">
 														<button type="button" data-id="${order.id }"
 															class="btn btn-outline-dark waves-effect waves-light m-1 show">
@@ -148,6 +150,11 @@
 															class="btn btn-outline-success waves-effect waves-light m-1 btnShow"
 															data-id="${order.id }" name="btnDelete">
 															<i class="fa fa-trash"> Xác Nhận</i>
+														</button>
+														<button type="button"
+															class="btn btn-outline-primary waves-effect waves-light m-1 btnprint"
+															data-id="${order.id }" name="btnDelete">
+															<i class="fa fa-print">In Hóa Đơn</i>
 														</button>
 													</td>
 												</tr>
@@ -189,8 +196,8 @@
                         
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-inverse-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        <button type="button" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Save changes</button>
+                        <button type="button" class="btn btn-inverse-primary" data-dismiss="modal"><i class="fa fa-times"></i> Đóng</button>
+                        <!-- <button type="button" class="btn btn-primary btnprint" data-dismiss="modal"><i class="fa fa-print"></i> In Hóa Đơn</button> -->
                       </div>
                     </div>
                   </div>
@@ -348,6 +355,25 @@
 				Command: toastr["warning"]("Sửa thất bại", "Thông Báo")
 			}); 
 		});
+		
+		$('.btnprint').click(function(){
+			$.ajax({
+				url : 'printOrder/'+ $(this).data('id'),
+				data : {
+					idCustomer : $(this).parent().parent().find('td.lblidCustomer').data('id')
+				}
+			}).done((data) =>{
+				console.log(data)
+				var printWin = window.open('','In Hóa Đơn','left=0,top=0,width=500,height=500,toolbar=0,scrollbars=0,status  =0')
+				   printWin.document.write(data);
+				   printWin.document.close();
+				   printWin.focus();
+				   printWin.print();
+				   printWin.close();
+			}).fail((err) =>{
+				console.log(err)
+			})
+		})
 	});
     </script>
 </body>

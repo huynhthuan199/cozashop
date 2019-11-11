@@ -70,8 +70,8 @@
 						<h4 class="page-title">Đường Dẫn</h4>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="./home">Trang Chủ</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Form
-								Layouts</li>
+							<li class="breadcrumb-item"><a href="./category">Quản lý</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Danh Mục</li>
 						</ol>
 					</div>
 					<div class="col-sm-3">
@@ -180,24 +180,24 @@
 													<td class=" ">${category.id }</td>
 													<td class=" ">${category.name }</td>
 													<td class=" valEnabled"><span
-														class="badge badge-danger shadow-danger m-1">${category.enabled == true ? "Bật" : "Tắt"}</span></td>
+														class="badge badge-danger shadow-danger m-1 valEnabled1" >${category.enabled == true ? "Bật" : "Tắt"}</span></td>
 													<td class=" ">${category.createAt }</td>
-													<td class="text-center">
+													<td class="text-center action" >
 														<button type="button"
 															class="btn btn-warning shadow-warning waves-effect waves-light m-1 btnEdit"
 															data-id="${category.id }">
 															<i class="fa fa-pencil">Sửa</i>
 														</button>
 														<button type="button"
-															class="btn btn-danger shadow-danger waves-effect waves-light m-1 btnDelete"
+															class="btn btn-danger shadow-danger waves-effect waves-light m-1 btnDelete checkHideShow"
 															name="btnDelete" data-id="${category.id }">
-															<i class="fa fa-trash"> Ẩn</i>
+															<i class="fa fa-unlock-alt"> Tắt</i>
 														</button>
-														<button type="button"
+														<%-- <button type="button"
 															class="btn btn-primary shadow-primary waves-effect waves-light m-1 btnShow"
 															name="btnShow" data-id="${category.id }">
 															<i class="fa fa-trash"> Hiện</i>
-														</button>
+														</button> --%>
 													</td>
 												</tr>
 											</c:forEach>
@@ -332,16 +332,37 @@
 					//Default data table
 					$('#default-datatable').DataTable();
 
-					var table = $('#example').DataTable({
-						lengthChange : true,
-						buttons : [ 'copy', 'excel', 'pdf', 'print', 'colvis' ]
-					"lengthMenu": [ [5,10, 25, 50, -1], [5,10, 25, 50, "All"] ]
-					});
+					var table = $('#example').DataTable(
+							{
+								lengthChange : true,
+								buttons : [ 'copy', 'excel', 'pdf', 'print',
+										'colvis' ],
+								"lengthMenu" : [ [ 5, 10, 25, 50, -1 ],
+										[ 5, 10, 25, 50, "All" ] ]
+							});
 
 					table.buttons().container().appendTo(
 							'#example_wrapper .col-md-6:eq(0)');
 
 				});
+	</script>
+	<script>
+	$(document).ready(function(){
+		$(".valEnabled1:contains('Tắt')").parent().parent().find('td.action').children('.checkHideShow').removeClass('btnDelete btn btn-danger shadow-danger').addClass('btnShow btn btn-primary shadow-primary').children().removeClass('fa fa-unlock-alt').addClass('fa fa-unlock').text(' Bật')
+		$(".valEnabled1:contains('Bật')")
+									.removeClass(
+											"badge badge-danger shadow-danger m-1")
+									.addClass(
+											"badge badge-primary shadow-primary m-1")
+		$(document).on('click','.page-link',function(){
+		$(".valEnabled1:contains('Tắt')").parent().parent().find('td.action').children('.checkHideShow').removeClass('btnDelete btn btn-danger shadow-danger').addClass('btnShow btn btn-primary shadow-primary').children().removeClass('fa fa-unlock-alt').addClass('fa fa-unlock').text(' Bật')
+		$(".valEnabled1:contains('Bật')")
+									.removeClass(
+											"badge badge-danger shadow-danger m-1")
+									.addClass(
+											"badge badge-primary shadow-primary m-1")
+		})
+	})
 	</script>
 
 </body>
