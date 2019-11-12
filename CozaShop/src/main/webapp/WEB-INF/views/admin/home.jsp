@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,8 +54,8 @@
             <div class="card-body">
               <div class="media align-items-center">
               <div class="media-body">
-                <p class="text-white">Total Orders</p>
-                <h4 class="text-white line-height-5">8450</h4>
+                <p class="text-white pb-10">Tiền Đã Nhận</p>
+                <h4 class="text-white line-height-5"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${totalOrderTrue}"/></h4>
               </div>
               <div class="w-circle-icon rounded-circle border border-white">
                 <i class="fa fa-cart-plus text-white"></i></div>
@@ -66,8 +68,8 @@
             <div class="card-body">
               <div class="media align-items-center">
               <div class="media-body">
-                <p class="text-white">Total Revenue</p>
-                <h4 class="text-white line-height-5">$750</h4>
+                <p class="text-white">Tiền Chưa Thanh Toán</p>
+                <h4 class="text-white line-height-5"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${totalOrderFalse}"/></h4>
               </div>
               <div class="w-circle-icon rounded-circle border border-white">
                 <i class="fa fa-money text-white"></i></div>
@@ -80,8 +82,8 @@
             <div class="card-body">
               <div class="media align-items-center">
               <div class="media-body">
-                <p class="text-white">New Users</p>
-                <h4 class="text-white line-height-5">620</h4>
+                <p class="text-white">Khách Hàng Mới</p>
+                <h4 class="text-white line-height-5 ml-5">${totalCustomer}</h4>
               </div>
               <div class="w-circle-icon rounded-circle border border-white">
                 <i class="fa fa-users text-white"></i></div>
@@ -94,8 +96,8 @@
             <div class="card-body">
               <div class="media align-items-center">
               <div class="media-body">
-                <p class="text-white">Bounce Rate</p>
-                <h4 class="text-white line-height-5">12.80%</h4>
+                <p class="text-white">Tổng Hóa Đơn</p>
+                <h4 class="text-white line-height-5 ml-5">${totalorderEnabled}</h4>
               </div>
               <div class="w-circle-icon rounded-circle border border-white">
                 <i class="fa fa-pie-chart text-white"></i></div>
@@ -327,7 +329,7 @@
           <div class="row row-group m-0 text-center">
             <div class="col-12 col-lg-3 col-xl-3">
               <div class="card-body">
-                 <span class="donut" data-peity='{ "fill": ["#5e72e4", "#f2f2f2"], "innerRadius": 45, "radius": 32 }'>4/5</span>
+                 <span class="donut" data-peity='{ "fill": ["#5e72e4", "#f2f2f2"], "innerRadius": 45, "radius": 32 }'>5/5</span>
                   <hr>
                   <h6 class="mb-0">Total Viwes : 4521</h6>
               </div>

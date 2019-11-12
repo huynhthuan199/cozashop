@@ -30,4 +30,15 @@ public class OrderService {
 	public int updateStatusOrder(boolean enabled,int id) {
 		return orderRepository.updateStatusOrder(enabled,id);
 	}
+	public double totalOrder(boolean enabled) {
+		return orderRepository.total(enabled);
+	}
+	
+	public int orderEnabled(boolean enabled) {
+		return orderRepository.orderEnabled(enabled);
+	}
+	
+	public List<String> FindMonthTotal() {
+		return orderRepository.FindMonthTotal();
+	}
 }

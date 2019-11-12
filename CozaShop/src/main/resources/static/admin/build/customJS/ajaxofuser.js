@@ -1,13 +1,8 @@
 <!-- Insert  -->
-
 	$(document).ready(function(){
 	$('.btnInsert').click(function(){
 	var form = $('#fileUploadForm')[0];
-	 var formData = new FormData(form);/*
-	var addusername = $('#txtAddUsername').val();
-	var addname = $('#txtAddName').val();
-	var addemail = $('#txtAddEmail').val();
-	var addrules = $("input[name='rdoAddRules']:checked").val();*/
+	 var formData = new FormData(form);
  		$.ajax({
  			type : "POST",
 			url : "user/btnInsert",

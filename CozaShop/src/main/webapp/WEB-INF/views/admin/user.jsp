@@ -442,14 +442,9 @@
 											"badge badge-danger shadow-danger m-1")
 									.addClass(
 											"badge badge-primary shadow-primary m-1")
-							$(document)
-									.on(
-											'click',
-											'.page-link',
-											function() {
-
+							$(document).on('click','.page-link',function() {
 												$(".check:contains('Quản lý')")
-														.removeClass(
+														.removeClass(	
 																"badge badge-danger shadow-danger m-1")
 														.addClass(
 																"badge badge-primary shadow-primary m-1");

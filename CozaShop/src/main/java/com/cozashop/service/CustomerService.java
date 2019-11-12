@@ -24,6 +24,10 @@ public class CustomerService {
 		return customerRepository.findById(id).get();
 	}
 	
+	public long totalCustomer() {
+		return customerRepository.count();
+	}
+	
 	public Customer findByUsername(String username) {
 		return customerRepository.findByUsername(username);
 	}

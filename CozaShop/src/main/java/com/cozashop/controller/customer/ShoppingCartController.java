@@ -94,7 +94,6 @@ public class ShoppingCartController {
 		}
 		Product product = infoProductService.finById(id);
 		if (product != null) {
-
 			if ((cart = listCart.get(id)) != null) {
 				cart.setQuantity(cart.getQuantity() + quantity);
 			} else {

@@ -22,7 +22,7 @@ $(document).ready(function(){
 			$('.animsition').fadeOut();
 			$('#load-product').load('/product3?color=false&field=price&order='+b+'&page='+Math.floor((parseInt($('#load-product .isotope-item').length) / 4)), function(){
 			 	 if(b == 'findAll'){
-			 		$('a#loadmore').css('display','flex'); 
+			 		$('a#loadmore').css('display','flex');
 			 	 }else{
 			 		$('a#loadmore').css('display','none'); 
 			 	 }
@@ -34,7 +34,6 @@ $(document).ready(function(){
 		 
 		 $('.Color').click(function(){
 			 b = $(this).data('color');
-			
 			 $('.animsition').animsition();
 			$('.animsition').fadeOut();
 			$('#load-product').load('/product4?color=true&field=price&order='+b+'&page='+Math.floor((parseInt($('#load-product .isotope-item').length) / 4)), function(){

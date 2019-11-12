@@ -174,7 +174,7 @@ $(document).ready(function() {
 					$("#a-image3").attr("href","/resources/web/images/Products/"+data.image3);
 					$('.slick3-dots img').eq(0).attr("src","/resources/web/images/Products/"+data.image);
 					$('.slick3-dots img').eq(1).attr("src","/resources/web/images/Products/"+data.image2);
-					$('.slick3-dots img').eq(2).attr("src","/resources/web/images/Products/"+data.image);
+					$('.slick3-dots img').eq(2).attr("src","/resources/web/images/Products/"+data.image3);
 					$('#txtcolor').val(data.color);
 					$('#show-product').addClass('show-modal1');
 				}).fail(function(err) {
