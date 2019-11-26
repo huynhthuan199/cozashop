@@ -3,6 +3,7 @@ package com.cozashop.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.cozashop.entities.OrderDetails;
@@ -23,5 +24,13 @@ public class OrderDetailService {
 	}
 	public OrderDetails save(OrderDetails orderDetail) {
 		return orderDetailReoisitory.save(orderDetail);
+	}
+	
+	public List<Object> statisticalProduct() {
+		return orderDetailReoisitory.statisticalProduct(PageRequest.of(0, 5));
+	}
+	
+	public List<Object> statisticalCategory() {
+		return orderDetailReoisitory.statisticalCategory();
 	}
 }

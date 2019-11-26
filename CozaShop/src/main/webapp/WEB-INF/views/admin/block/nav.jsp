@@ -54,6 +54,7 @@
 							Sắc</a></li>
 					<li><a href="./material"><i class="zmdi zmdi-star-outline"></i>Chất
 							Liệu</a></li>
+							<li><a href="./gift"><i class="zmdi zmdi-star-outline"></i>Khuyến Mãi</a></li>
 				</ul></li>
 			<li><a href="javaScript:void();" class="waves-effect"> <i
 					class="zmdi zmdi-layers"></i> <span>Quản Lí </span> <i

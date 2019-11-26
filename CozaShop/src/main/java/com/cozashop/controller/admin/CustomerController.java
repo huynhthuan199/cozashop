@@ -3,6 +3,8 @@ package com.cozashop.controller.admin;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -53,12 +55,12 @@ public class CustomerController {
 	}
 	
 	
-	
+	// đúng rồi ông đọc code luôn khó hơn viết mà
 // Edit with ajax
 	@GetMapping(value = "customer/{id}")
 	@ResponseBody
 	public Customer getbyid(@PathVariable("id") int id,ModelMap model) {
-		return customerService.findById(id);
+		return customerService.findById(id); 
 	}
 	
 //	Insert with ajax
@@ -116,4 +118,5 @@ public class CustomerController {
 		public String delete(@RequestParam("id") int id) {
 			return customerService.delete(id);
 		}
+
 }

@@ -52,9 +52,6 @@ public class GiftService {
 	}
 
 	public ApiResponse update(Gift gift) {
-		if(giftRepository.existsByCode(gift.getCode())) {
-			return new ApiResponse(Status.warning, " Mã: " + gift.getCode() + " đã tồn tại trong hệ thống" );
-		} else {
 		 if(gift.getName().equals("")  && gift.getCode().equals("")) {
 			return new ApiResponse(Status.warning, "Không được để trống Thông Tin");
 		 }else if(gift.getName().equals("")  && !gift.getCode().equals("")){
@@ -66,7 +63,6 @@ public class GiftService {
 		 }
 		giftRepository.updategift(gift.isEnabled(), gift.getName(), gift.getCode(), gift.getMoney(),gift.getId());
 		return new ApiResponse(Status.success, "Update Thành Công...");
-	}
 	}
 
 	public int delete(int id) {

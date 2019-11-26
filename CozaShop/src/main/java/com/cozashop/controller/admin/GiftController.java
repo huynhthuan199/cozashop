@@ -20,6 +20,7 @@ import com.cozashop.service.ColorService;
 import com.cozashop.service.GiftService;
 import com.cozashop.service.MaterialService;
 import com.cozashop.util.ApiResponse;
+import com.cozashop.util.ApiResponse.Status;
 
 @Controller
 @RequestMapping(value = "/admin/")
@@ -73,9 +74,14 @@ public class GiftController {
 	@ResponseBody
 	public ApiResponse insert(
 			@RequestParam String name,
-			@RequestParam double money,
+			@RequestParam String money,
 			@RequestParam String code,
 			@RequestParam boolean enabled) {
-		return giftService.save(new Gift(name,money,code,new Date(),enabled));
+		try {
+			return giftService.save(new Gift(name,Double.parseDouble(money),code,new Date(),enabled));
+		}catch(Exception e) {
+			 return new ApiResponse(Status.warning, "+ Giá Tiền Phải là số </br>+ Không Chứa chữ và kí tự đặc biệt");
+		}
+		
 	}
 }

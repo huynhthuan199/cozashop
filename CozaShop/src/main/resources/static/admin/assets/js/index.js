@@ -4,60 +4,61 @@ $(function() {
 
 // chart 1
 
-var ctx = document.getElementById("dashboard-chart-1").getContext('2d');
+/*var ctx = document.getElementById("dashboard-chart-1").getContext('2d');
 
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: [1, 2, 3, 4, 5, 6, 7, 8],
-          datasets: [{
-            label: 'New Orders',
-            data: [40, 30, 60, 35, 60, 25, 50, 40],
-            borderColor: '#11cdef',
-            backgroundColor: '#11cdef',
-            hoverBackgroundColor: '#11cdef',
-            pointRadius: 0,
-            fill: false,
-            borderWidth: 1
-          }, {
-            label: 'Pending',
-            data: [50, 60, 40, 70, 35, 75, 30, 20],
-            borderColor: '#e8e8e8',
-            backgroundColor: '#e8e8e8',
-            hoverBackgroundColor: '#e8e8e8',
-            pointRadius: 0,
-            fill: false,
-            borderWidth: 1
+var myChart = new Chart(ctx, {
+     type: 'bar',
+     data: {
+       labels: [1, 2, 3, 4, 5, 6, 7, 8],
+       datasets: [{
+         label: 'New Orders',
+         data: [40, 30, 60, 35, 60, 25, 50, 40],
+         borderColor: '#11cdef',
+         backgroundColor: '#11cdef',
+         hoverBackgroundColor: '#11cdef',
+         pointRadius: 0,
+         fill: false,
+         borderWidth: 1
+       }, {
+         label: 'Pending',
+         data: [50, 60, 40, 70, 35, 75, 30, 20],
+         borderColor: '#e8e8e8',
+         backgroundColor: '#e8e8e8',
+         hoverBackgroundColor: '#e8e8e8',
+         pointRadius: 0,
+         fill: false,
+         borderWidth: 1
+       }]
+     },
+ options:{
+   legend: {
+     position: 'bottom',
+           display: true,
+     labels: {
+             boxWidth:12
+           }
+         },  
+   scales: {
+     xAxes: [{
+     stacked: true,
+     barPercentage: .5
+     }],
+       yAxes: [{ 
+         stacked: true
           }]
-        },
-    options:{
-      legend: {
-        position: 'bottom',
-              display: true,
-        labels: {
-                boxWidth:12
-              }
-            },  
-      scales: {
-        xAxes: [{
-        stacked: true,
-        barPercentage: .5
-        }],
-          yAxes: [{ 
-            stacked: true
-             }]
-         },
-      tooltips: {
-        displayColors:false,
-      }
-    }
-      });
+      },
+   tooltips: {
+     displayColors:false,
+   }
+ }
+   });*/
+
 
 
 
 // chart 2
 
- var ctx = document.getElementById("dashboard-chart-2").getContext('2d');
+/* var ctx = document.getElementById("dashboard-chart-2").getContext('2d');
 
       var myChart = new Chart(ctx, {
         type: 'doughnut',
@@ -97,7 +98,7 @@ var ctx = document.getElementById("dashboard-chart-1").getContext('2d');
         displayColors:false,
       }
         }
-      });
+      });*/
 
 	
 // chart 3

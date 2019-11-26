@@ -38,7 +38,8 @@
 <!-- Sidebar CSS-->
 <link href="/resources/admin/assets/css/sidebar-menu.css"
 	rel="stylesheet">
-
+ <!-- Dropzone css -->
+  <link href="/resources/admin/assets/plugins/dropzone/css/dropzone.css" rel="stylesheet" type="text/css">
 <!-- Toastr -->
 <link
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
@@ -70,34 +71,12 @@
 				<!-- Breadcrumb-->
 				<div class="row pt-2 pb-2">
 					<div class="col-sm-9">
-						<h4 class="page-title">Quản Lý Khách Hàng</h4>
+						<h4 class="page-title">Quản Lý Sản Phẩm</h4>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="home">Trang Chủ</a></li>
 							<li class="breadcrumb-item"><a href="infoproduct">Quản Lý</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Khách Hàng</li>
+							<li class="breadcrumb-item active" aria-current="page">Sản Phẩm</li>
 						</ol>
-					</div>
-					<div class="col-sm-3">
-						<div class="btn-group float-sm-right">
-							<button type="button"
-								class="btn btn-outline-primary waves-effect waves-light">
-								<i class="fa fa-cog mr-1"></i> Cài Đặt
-							</button>
-							<button type="button"
-								class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split waves-effect waves-light"
-								data-toggle="dropdown">
-								<span class="caret"></span>
-							</button>
-							<div class="dropdown-menu">
-								<a href="javaScript:void();" class="dropdown-item">Action</a> <a
-									href="javaScript:void();" class="dropdown-item">Another
-									action</a> <a href="javaScript:void();" class="dropdown-item">Something
-									else here</a>
-								<div class="dropdown-divider"></div>
-								<a href="javaScript:void();" class="dropdown-item">Separated
-									link</a>
-							</div>
-						</div>
 					</div>
 				</div>
 				<!-- End Breadcrumb-->
@@ -109,7 +88,7 @@
 							<div class="card-body">
 								<div class="card-title text-info">Thông tin sản phẩm</div>
 								<hr>
-								<form enctype="multipart/form-data" id="formProduct">
+								<form enctype="multipart/form-data" id="dropzone" class="dropzone">
 									<div class="form-group row">
 										<label for="input-26" class="col-sm-2 col-form-label">Mã
 											Sản Phẩm</label>
@@ -215,7 +194,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="form-group row">
+									<!-- <div class="form-group row">
 										<label class="col-sm-2 col-form-label">Hình Ảnh 2</label>
 										<div class="col-sm-10">
 											<div class="input-group mb-3">
@@ -244,20 +223,17 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									</div> -->
 									<div class="form-group row">
 										<label class="col-sm-2 col-form-label"></label>
 										<div class="col-sm-10">
-											<button type="submit" name="btnInsert"
-												class="btn btn-info shadow-info btn-round px-5 btnInsert">
-												<i class="zmdi zmdi-collection-plus"></i> Thêm
-											</button>
 												<button type="button" name="btnInsert"
 												class="btn btn-info shadow-info btn-round px-5 btnInsert1">
 												<i class="zmdi zmdi-collection-plus"></i> Thêm
 											</button>
 										</div>
-									</div>
+									</div> 
+        
 								</form>
 							</div>
 						</div>
@@ -273,7 +249,7 @@
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="example" class="table table-bordered">
-										<thead>
+										<thead class="thead-dark">
 											<tr>
 												<th>Mã sản phẩm</th>
 												<th>Mã danh mục</th>
@@ -281,9 +257,8 @@
 												<th>Giá tiền [VNĐ]</th>
 												<th>Chất liệu</th>
 												<th>Màu sắc</th>
-												<th>Ngày tạo</th>
-												<th>Mô tả</th>
-												<th>Mô tả</th>
+												<!-- <th>Mô tả</th>
+												<th>Mô tả</th> -->
 												<th>Hình ảnh</th>
 												<th>Hành động</th>
 											</tr>
@@ -296,10 +271,9 @@
 													<td class=" ">${product.name }</td>
 													<td class=" "><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${product.price }" /></td>
 													<td class=" ">${product.material }</td>
-													<td class=" ">${product.color }</td>
-													<td class=" ">${product.createAt }</td>
+													<td class=" ">${product.color }</td><%-- 
 													<td class=" ">${product.description }</td>
-													<td class=" ">${product.shortdescription }</td>
+													<td class=" ">${product.shortdescription }</td> --%>
 													<td class=" "><img style="width: 50px; height: 50px"
 														src="/resources/web/images/Products/${product.image }" /></td>
 													<td class=" ">
@@ -519,8 +493,8 @@
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-sm-2 col-form-label"></label>
-													<div class="col-sm-10">
+													<label class="col-md-8 col-form-label"></label>
+													<div class="col-md-2">
 														<button type="submit" name="btnUpdate"
 															class="btn btn-primary shadow-primary btn-round px-5 btnUpdate">
 															<i class="zmdi zmdi-collection-plus"></i> Lưu
@@ -578,6 +552,8 @@
 		<script
 			src="/resources/admin/assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js"></script>
 
+<!-- Dropzone JS  -->
+  <script src="/resources/admin/assets/plugins/dropzone/js/dropzone.js"></script>
 		<!--Sweet Alerts -->
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 

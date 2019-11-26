@@ -174,7 +174,7 @@ $(document).ready(function() {
 					$("#a-image3").attr("href","/resources/web/images/Products/"+data.image3);
 					$('.slick3-dots img').eq(0).attr("src","/resources/web/images/Products/"+data.image);
 					$('.slick3-dots img').eq(1).attr("src","/resources/web/images/Products/"+data.image2);
-					$('.slick3-dots img').eq(2).attr("src","/resources/web/images/Products/"+data.image);
+					$('.slick3-dots img').eq(2).attr("src","/resources/web/images/Products/"+data.image3);
 					$('#txtcolor').val(data.color);
 					$('#show-product').addClass('show-modal1');
 				}).fail(function(err) {
@@ -269,4 +269,82 @@ $(document).ready(function() {
 						console.log(err);
 					}); 
 			});
+// Login
+			 $('#btnlogin').click(function(){
+				$.ajax({
+					url : '/admin/customer/login',
+					type : 'POST',
+					data :{
+						username : $('#txtloginUsername').val(),
+					 	password : $('#txtloginPassword').val()
+					}
+				}).done((data)=>{
+					if(data != null){
+						Command: toastr['success']('Đăng Nhập Thành Công', 'Thông Báo');
+						$('#loginCustomer').modal('hide');
+						$('#profile').empty().append(data)
+					}
+				}).fail((err)=>{
+					
+				})
+			 })
+//			 profile Customer
+			 $('.editCustomer').click(function() {
+					$.ajax({
+						url : "/customer/" + $(this).data("id"),
+						type : "GET"
+//							data return về
+					}).done(function(data) {
+						$('#txtid').val(data.id);
+						$('#txtusername').val(data.username);
+						$('#txtname1').val(data.name);
+						$('#txtaddress1').val(data.address);
+						$('#txtpassword').val(data.password);
+						$('#txtemail1').val(data.email);
+						$('#txtphone1').val(data.phone);
+						data.enabled ? $('#rdoenabled_true').prop("checked", true) : $('#rdoenabled_false').prop("checked", true);
+						data.gender ? $('#rdoGender_true').prop("checked", true) : $('#rdoGender_false').prop("checked", true);
+						$('#edit-customer').modal('show');
+					}).fail(function(err) {
+						console.log(err);
+					});
+				});
+			 
+//			 update
+			 $('.btnUpdate').click(function(){
+					var id = $('#txtid').val();
+					var username = $('#txtusername').val();
+					var password = $('#txtpassword').val();
+					var name = $('#txtname1').val();
+					var phone = $('#txtphone1').val();
+					var email = $('#txtemail1').val();
+					var address = $('#txtaddress1').val();
+					var gender = $("input[name='rdoGender']:checked").val();
+					var enabled = $("input[name='rdoenabled']:checked").val();
+				 		$.ajax({
+				 			type : "POST",
+							url : "/customer/btnUpdate",
+							data : {
+								 id : id,
+								 username : username,
+								 password : password,
+								 name : name,
+								 phone : phone,
+								 email : email,
+								 address : address,
+								 gender : gender,
+								 enabled : enabled
+							} 
+						}).done(function(data){
+							if(data.status == "success"){	
+								Command: toastr[data.status]("Thông Tin Quý Khách Đã Được Thay Đổi", "Thông Báo")
+							/*location.reload();*/
+							}else{
+								Command: toastr[data.status](data.message, "Thông Báo")
+							}	
+						}).fail(function(err){
+							console.log(err);
+							Command: toastr["warning"]("Sửa thất bại", "Thông Báo")
+						}); 
+					});
 });
