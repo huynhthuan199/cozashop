@@ -19,7 +19,7 @@
 	
 	<!-- Hiden  -->
 		$(document).ready(function(){		
-			$('.btnDelete').click(function(){
+			$(document).on('click','.btnDelete',function(){
 					Swal.fire({
 					  title: 'Bạn Có Chắc?',
 					  text: ' Ẩn chất liệu này',
@@ -40,8 +40,11 @@
 								}
 							}).done((data) => {
 								if(data != null ){
-								Command: toastr["success"]("Ẩn Thành Công", "Thông Báo");
-								$(this).parent().parent().find('td.valEnabled').children().text('Tắt');
+								Command: toastr["success"]("Đã tắt Màu: "+$(this).data("id"), "Thông Báo");
+								$(this).parent().parent().find('td.valEnabled').children().removeClass('badge badge-primary shadow-primary')
+								.addClass('badge badge-danger shadow-danger').text('Tắt').parent().parent().find('td.action').children('.checkHideShow')
+								.removeClass('btnDelete btn btn-danger shadow-danger')
+								.addClass('btnShow btnDelete btn btn-primary shadow-primary').children().removeClass('fa fa-unlock-alt').addClass('fa fa-unlock').text(' Bật');
 								}
 							}).fail(function(err){
 								console.log(err);
@@ -52,7 +55,7 @@
 		});
 	<!-- Show  -->
 		$(document).ready(function(){		
-			$('.btnShow').click(function(){
+			$(document).on('click','.btnShow',function(){
 					Swal.fire({
 					  title: 'Bạn Có Chắc?',
 					  text: ' Hiện chất liệu này',
@@ -73,8 +76,11 @@
 								}
 							}).done((data) => {
 								if(data != null ){
-								Command: toastr["success"]("Hiện Thành Công", "Thông Báo");
-								$(this).parent().parent().find('td.valEnabled').children().text('Bật');
+								Command: toastr["success"]("Đã Bật: " + $(this).data("id"), "Thông Báo");
+								$(this).parent().parent().find('td.valEnabled').children().removeClass('badge badge-danger shadow-danger')
+								.addClass('badge badge-primary shadow-primary').text('Bật').parent().parent().find('td.action').children('.checkHideShow')
+								.removeClass('btnShow btn btn-primary shadow-primary')
+								.addClass('btnDelete btn btn-danger shadow-danger').children().removeClass('fa fa-unlock').addClass('fa fa-unlock-alt').text(' Tắt');
 								}
 							}).fail(function(err){
 								console.log(err);

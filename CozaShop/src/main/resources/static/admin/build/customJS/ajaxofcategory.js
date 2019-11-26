@@ -18,7 +18,8 @@
 
 	
 	<!-- Hiden  -->
-		$(document).ready(function(){		
+		$(document).ready(function(){
+//			JSTL thì nó hỗ trợ cho JSP mà, nè tiếp nè 
 			$('.btnDelete').click(function(){
 					Swal.fire({
 					  title: 'Bạn Có Chắc?',

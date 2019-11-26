@@ -4,6 +4,7 @@
 					$.ajax({
 						url : "customer/" + $(this).data("id"),
 						type : "GET"
+//							data return về
 					}).done(function(data) {
 						$('#txtid').val(data.id);
 						$('#txtusername').val(data.username);
@@ -24,6 +25,7 @@
 			<!-- Insert  -->
 $(document).ready(function(){
 	$('.btnInsert').click(function(){
+//		 này là mấy thẻ input của html value
 	var addusername = $('#txtAddUsername').val();
 	var addname = $('#txtAddName').val();
 	var addphone = $('#txtAddPhone').val();
@@ -33,6 +35,7 @@ $(document).ready(function(){
 	var adddistrict = $('#district :selected').text();
 	var addward = $('#ward :selected').text();
 	var addgender = $("input[name='rdoAddGender']:checked").val();
+//	đây gọi ajax 
  		$.ajax({
  			type : "Post",
 			url : "customer/btnInsert",
@@ -50,7 +53,8 @@ $(document).ready(function(){
 		}).done(function(data){
 			if(data.status == "success"){	
 				Command: toastr[data.status](data.message, "Thông Báo")
-			location.reload();
+//				lúc nãy reload trang là tui để function này
+			/*location.reload();*/
 			}else{
 				Command: toastr[data.status](data.message, "Thông Báo")
 				}		

@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,35 +68,12 @@
 				<!-- Breadcrumb-->
 				<div class="row pt-2 pb-2">
 					<div class="col-sm-9">
-						<h4 class="page-title">Form Layouts</h4>
+						<h4 class="page-title">Quản Lý Khuyến Mãi</h4>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javaScript:void();">Rukada</a></li>
-							<li class="breadcrumb-item"><a href="javaScript:void();">Forms</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Form
-								Layouts</li>
+							<li class="breadcrumb-item"><a href="./home">Trang Chủ</a></li>
+							<li class="breadcrumb-item"><a href="./">Quản Lí</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Khuyến Mãi</li>
 						</ol>
-					</div>
-					<div class="col-sm-3">
-						<div class="btn-group float-sm-right">
-							<button type="button"
-								class="btn btn-outline-primary waves-effect waves-light">
-								<i class="fa fa-cog mr-1"></i> Setting
-							</button>
-							<button type="button"
-								class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split waves-effect waves-light"
-								data-toggle="dropdown">
-								<span class="caret"></span>
-							</button>
-							<div class="dropdown-menu">
-								<a href="javaScript:void();" class="dropdown-item">Action</a> <a
-									href="javaScript:void();" class="dropdown-item">Another
-									action</a> <a href="javaScript:void();" class="dropdown-item">Something
-									else here</a>
-								<div class="dropdown-divider"></div>
-								<a href="javaScript:void();" class="dropdown-item">Separated
-									link</a>
-							</div>
-						</div>
 					</div>
 				</div>
 				<!-- End Breadcrumb-->
@@ -105,7 +83,7 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-body">
-								<div class="card-title text-info">Thông Tin Màu Sắc</div>
+								<div class="card-title text-info">Thông Tin Khuyến Mãi</div>
 								<hr>
 								<div class="form-group row">
 									<label for="input-27" class="col-sm-2 col-form-label">Tên
@@ -160,7 +138,6 @@
 					</div>
 				</div>
 				<!--End Row-->
-
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
@@ -175,9 +152,9 @@
 												<th class="text-center">Mã Khuyến Mãi</th>
 												<th class="text-center">Tên Khuyến Mãi</th>
 												<th class="text-center">Tiền Giảm</th>
-													<th class="text-center">Mã Code</th>
+												<th class="text-center">Mã Code</th>
 												<th class="text-center">Trạng Thái</th>
-												<th class="text-center">Ngày Tạo</th>
+												<!-- <th class="text-center">Ngày Tạo</th> -->
 												<th class="text-center">Thao Tác</th>
 											</tr>
 										</thead>
@@ -186,27 +163,29 @@
 												<tr class="even pointer">
 													<td class=" ">${listGift.id }</td>
 													<td class=" ">${listGift.name }</td>
-													<td class=" ">${listGift.money }</td>
+													<td class=" ">
+													<fmt:formatNumber type = "number" 
+         maxFractionDigits = "3" value = "${listGift.money }" /></td>
 													<td class=" ">${listGift.code }</td>
-													<td class=" valEnabled"><span
-														class="badge badge-danger shadow-danger m-1">${listGift.enabled == true ? "Bật" : "Tắt"}</span></td>
-													<td class=" ">${listGift.createAt }</td>
-													<td class="text-center">
+													<td class="valEnabled"><span
+														class="badge badge-danger shadow-danger m-1 valEnabled1">${listGift.enabled == true ? "Bật" : "Tắt"}</span></td>
+											<%-- 		<td class=" ">${listGift.createAt }</td> --%>
+													<td class="text-center action">
 														<button type="button"
 															class="btn btn-warning shadow-warning waves-effect waves-light m-1 btnEdit"
 															data-id="${listGift.id }">
 															<i class="fa fa-pencil">Sửa</i>
 														</button>
 														<button type="button"
-															class="btn btn-danger shadow-danger waves-effect waves-light m-1 btnDelete"
+															class="btn btn-danger shadow-danger waves-effect waves-light m-1 checkHideShow btnDelete"
 															name="btnDelete" data-id="${listGift.id }">
-															<i class="fa fa-trash"> Ẩn</i>
-														</button>
+															<i class="fa fa-trash">Tắt</i>
+														</button><%-- 
 														<button type="button"
 															class="btn btn-primary shadow-primary waves-effect waves-light m-1 btnShow"
 															name="btnShow" data-id="${listGift.id }">
 															<i class="fa fa-trash"> Hiện</i>
-														</button>
+														</button> --%>
 													</td>
 												</tr>
 											</c:forEach>
@@ -283,7 +262,7 @@
 								<div class=col-sm-10>
 							<div class="icheck-material-primary icheck-inline">
 								<input type="radio" id="inline-radio-primary2" name="rdoEnabled"
-									checked value="false"> <label
+									checked value="true"> <label
 									for="inline-radio-primary2">Bật</label>
 							</div>
 							<div class="icheck-material-info icheck-inline">
@@ -369,6 +348,25 @@
 							'#example_wrapper .col-md-6:eq(0)');
 
 				});
+	</script>
+	<script>
+	$(document).ready(function(){
+		$(".valEnabled1:contains('Tắt')").parent().parent().find('td.action').children('.checkHideShow').removeClass('btnDelete btn btn-danger shadow-danger').addClass('btnShow btn btn-primary shadow-primary').children().removeClass('fa fa-unlock-alt').addClass('fa fa-unlock').text(' Bật')
+		$(".valEnabled1:contains('Bật')")
+									.removeClass(
+											"badge badge-danger shadow-danger m-1")
+									.addClass(
+											"badge badge-primary shadow-primary m-1")
+		$(document).on('click','.page-link',function(){
+		$(".valEnabled1:contains('Tắt')").parent().parent().find('td.action').children('.checkHideShow').removeClass('btnDelete btn btn-danger shadow-danger').addClass('btnShow btn btn-primary shadow-primary').children().removeClass('fa fa-unlock-alt').addClass('fa fa-unlock').text(' Bật')
+		$(".valEnabled1:contains('Bật')")
+									.removeClass(
+											"badge badge-danger shadow-danger m-1")
+									.addClass(
+											"badge badge-primary shadow-primary m-1")
+		})
+	})
+	
 	</script>
 
 </body>

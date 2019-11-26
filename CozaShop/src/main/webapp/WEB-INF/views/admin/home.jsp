@@ -58,7 +58,7 @@
                 <h4 class="text-white line-height-5"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${totalOrderTrue}"/></h4>
               </div>
               <div class="w-circle-icon rounded-circle border border-white">
-                <i class="fa fa-cart-plus text-white"></i></div>
+                <i class="fa fa-money text-white"></i></div>
             </div>
             </div>
           </div>
@@ -72,32 +72,35 @@
                 <h4 class="text-white line-height-5"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${totalOrderFalse}"/></h4>
               </div>
               <div class="w-circle-icon rounded-circle border border-white">
-                <i class="fa fa-money text-white"></i></div>
+                <i class="fa fa-cart-plus text-white"></i></div>
             </div>
             </div>
           </div>
         </div>
         <div class="col-12 col-lg-6 col-xl-3">
+         <a href="./customer">
           <div class="card gradient-blooker">
             <div class="card-body">
               <div class="media align-items-center">
               <div class="media-body">
-                <p class="text-white">Khách Hàng Mới</p>
+                <p class="text-white">Tổng Khách Hàng</p>
                 <h4 class="text-white line-height-5 ml-5">${totalCustomer}</h4>
               </div>
               <div class="w-circle-icon rounded-circle border border-white">
                 <i class="fa fa-users text-white"></i></div>
             </div>
             </div>
+            </a>
           </div>
         </div>
+        
         <div class="col-12 col-lg-6 col-xl-3">
           <div class="card gradient-ohhappiness">
             <div class="card-body">
               <div class="media align-items-center">
               <div class="media-body">
                 <p class="text-white">Tổng Hóa Đơn</p>
-                <h4 class="text-white line-height-5 ml-5">${totalorderEnabled}</h4>
+                <h4 class="text-white line-height-5 ml-5">${totalorder}</h4>
               </div>
               <div class="w-circle-icon rounded-circle border border-white">
                 <i class="fa fa-pie-chart text-white"></i></div>
@@ -105,13 +108,75 @@
             </div>
           </div>
         </div>
+        <div class="col-12 col-lg-6 col-xl-3">
+        <a href="./infoproduct">
+          <div class="card gradient-titanium">
+            <div class="card-body">
+              <div class="media align-items-center">
+              <div class="media-body">
+                <p class="text-white">Tổng Số Sản Phẩm</p>
+                <h4 class="text-white line-height-5 ml-5">${totalProduct}</h4>
+              </div>
+              <div class="w-circle-icon rounded-circle border border-white">
+                <i class="fa fa-puzzle-piece text-white"></i></div>
+            </div>
+            </div>
+          </div>
+           </a>
+        </div>
+        
+        <div class="col-12 col-lg-6 col-xl-3">
+          <div class="card gradient-ohhappiness">
+            <div class="card-body">
+              <div class="media align-items-center">
+              <div class="media-body">
+                <p class="text-white">Hóa Đơn Đã / Chưa</p>
+                <h4 class="text-white line-height-5 ml-5">${totalorderEnabled} / ${totalorderDisnabled}</h4>
+              </div>
+              <div class="w-circle-icon rounded-circle border border-white">
+                <i class="fa fa-first-order text-white"></i></div>
+            </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-12 col-lg-6 col-xl-3">
+          <div class="card gradient-jshine">
+            <div class="card-body">
+              <div class="media align-items-center">
+              <div class="media-body">
+                <p class="text-white">Khách Hàng Mới</p>
+                <h4 class="text-white line-height-5 ml-5">${NewCustomerToday}</h4>
+              </div>
+              <div class="w-circle-icon rounded-circle border border-white">
+                <i class="fa fa-user-plus text-white"></i></div>
+            </div>
+            </div>
+          </div>
+        </div>
+        
+         <div class="col-12 col-lg-6 col-xl-3">
+          <div class="card gradient-hossein">
+            <div class="card-body">
+              <div class="media align-items-center">
+              <div class="media-body">
+                <p class="text-white">Hóa Đơn Hôm Nay</p>
+                <h4 class="text-white line-height-5 ml-5">${newOrderToday}</h4>
+              </div>
+              <div class="w-circle-icon rounded-circle border border-white">
+                <i class="fa fa-plus text-white"></i></div>
+            </div>
+            </div>
+          </div>
+        </div>
+        
       </div><!--End Row-->
 
       <div class="row">
         <div class="col-12 col-lg-6">
           <div class="card">
             <div class="card-header">
-                Last 7 Days Report
+               Thống Kê Theo Tháng [2019]
                 <div class="card-action">
                  <div class="dropdown">
                  <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
@@ -135,20 +200,8 @@
         <div class="col-12 col-lg-6">
           <div class="card">
             <div class="card-header">
-                Most Selling Items
+                Tổng Sản Phẩm Bán Ra Theo Danh Mục
                 <div class="card-action">
-                 <div class="dropdown">
-                 <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-                  <i class="icon-options"></i>
-                 </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="javascript:void();">Action</a>
-                    <a class="dropdown-item" href="javascript:void();">Another action</a>
-                    <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="javascript:void();">Separated link</a>
-                   </div>
-                  </div>
                  </div>
                 </div>
                 <div class="card-body">
@@ -194,7 +247,7 @@
          <div class="col-12 col-lg-6 col-xl-8">
            <div class="card">
              <div class="card-header border-0">
-              New Customer List
+              Danh Sách Khách Hàng Mới
             <div class="card-action">
              <div class="dropdown">
              <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
@@ -212,45 +265,27 @@
             </div>
             <div class="table-responsive">
              <table class="table align-items-center table-flush">
-               <thead>
+               <thead class="thead-info">
                 <tr>
-                 <th>Photo</th>
-                 <th>Name</th>
-                 <th>Username</th>
+                 <th>Họ Tên</th>
+                 <th>Số Điện Thoại</th>
+                <!--  <th>Địa Chỉ</th> -->
                  <th>Email</th>
+                 <th>Công Cụ</th>
                 </tr>
                </thead>
                <tbody>
+               <c:forEach var="listCustomerNew" items="${listCustomerNew }">
                  <tr>
-                   <td><img src="/resources/admin/assets/images/avatars/avatar-1.png" class="rounded-circle customer-img" alt="user avatar"></td>
-                   <td>Selina Jccoy</td>
-                   <td>@selina</td>
-                   <td>xyz@example.com</td>
+                   <td>${listCustomerNew.name }</td>
+                   <td>${listCustomerNew.phone }</td>
+                   <%-- <td>${listCustomerNew.address }</td> --%>
+                   <td>${listCustomerNew.email }</td>
+                   <td><button data-id="${listCustomerNew.id }" type="button" class="btn btn-info waves-effect waves-light m-1 editCustomer">
+                   <i class="fa fa-search"></i>
+                   </button></td>
                  </tr>
-                 <tr>
-                   <td><img src="/resources/admin/assets/images/avatars/avatar-2.png" class="rounded-circle customer-img" alt="user avatar"></td>
-                   <td>Michle jhon</td>
-                   <td>@Michle</td>
-                   <td>xyz@example.com</td>
-                 </tr>
-                 <tr>
-                   <td><img src="/resources/admin/assets/images/avatars/avatar-3.png" class="rounded-circle customer-img" alt="user avatar"></td>
-                   <td>Jhon Deo</td>
-                   <td>@deojhon</td>
-                   <td>xyz@example.com</td>
-                 </tr>
-                 <tr>
-                   <td><img src="/resources/admin/assets/images/avatars/avatar-4.png" class="rounded-circle customer-img" alt="user avatar"></td>
-                   <td>Selina Jccoy</td>
-                   <td>@selina</td>
-                   <td>xyz@example.com</td>
-                 </tr>
-                 <tr>
-                   <td><img src="/resources/admin/assets/images/avatars/avatar-5.png" class="rounded-circle customer-img" alt="user avatar"></td>
-                   <td>Katrin jade</td>
-                   <td>@Katrin</td>
-                   <td>xyz@example.com</td>
-                 </tr>
+               </c:forEach>
                </tbody>
              </table>
            </div>
@@ -324,178 +359,29 @@
          </div>
       </div><!--End Row-->
 
-      <div class="card">
-        <div class="card-content">
-          <div class="row row-group m-0 text-center">
-            <div class="col-12 col-lg-3 col-xl-3">
-              <div class="card-body">
-                 <span class="donut" data-peity='{ "fill": ["#5e72e4", "#f2f2f2"], "innerRadius": 45, "radius": 32 }'>5/5</span>
-                  <hr>
-                  <h6 class="mb-0">Total Viwes : 4521</h6>
-              </div>
-            </div>
-            <div class="col-12 col-lg-3 col-xl-3">
-              <div class="card-body">
-                <span class="donut" data-peity='{ "fill": ["#ff2fa0", "#f2f2f2"], "innerRadius": 45, "radius": 32 }'>2/5</span>
-                <hr>
-                  <h6 class="mb-0">Page Click : 4521</h6>
-              </div>
-            </div>
-            <div class="col-12 col-lg-3 col-xl-3">
-              <div class="card-body">
-                <span class="donut" data-peity='{ "fill": ["#2dce89", "#f2f2f2"], "innerRadius": 45, "radius": 32 }'>3/5</span>
-                 <hr>
-                  <h6 class="mb-0">Server Load : 4521</h6>
-              </div>
-            </div>
-             <div class="col-12 col-lg-3 col-xl-3">
-              <div class="card-body">
-                <span class="donut" data-peity='{ "fill": ["#172b4d", "#f2f2f2"], "innerRadius": 45, "radius": 32 }'>2/5</span>
-                 <hr>
-                  <h6 class="mb-0">Used RAM : 4521</h6>
-              </div>
-            </div>
-          </div><!--End Row-->
-        </div>
-      </div>
-
 
       <div class="row">
         <div class="col-lg-12">
           <div class="card">
       <div class="card-header border-0">
-                Recent Orders Table
+                TOP 5 Sản Phẩm Bán Ra
         <div class="card-action">
-         <div class="dropdown">
-         <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-          <i class="icon-options"></i>
-         </a>
-            <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="javascript:void();">Action</a>
-            <a class="dropdown-item" href="javascript:void();">Another action</a>
-            <a class="dropdown-item" href="javascript:void();">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="javascript:void();">Separated link</a>
-           </div>
-          </div>
                  </div>
                 </div>
                <div class="table-responsive">
          
-                 <table class="table align-items-center table-flush">
+                 <table id="example" class="table align-items-center table-flush table-dark">
                   <thead>
                    <tr>
-                     <th>Action</th>
-                     <th>Product</th>
-                     <th>Photo</th>
-                     <th>Product ID</th>
-                     <th>Status</th>
-                     <th>Amount</th>
-                     <th>Completion</th>
+                     <th>Mã Sản Phẩm</th>
+                     <th>Tên Sản Phẩm</th>
+                     <th>Hình Ảnh</th>
+                     <th>Số Lượng Bán Ra</th>
+                     <th>Tổng Tiền</th>
                    </tr>
                    </thead>
-                   <tr>
-                    <td>
-                       <div class="icheck-material-primary">
-                        <input type="checkbox" id="check1">
-                        <label for="check1"></label>
-                      </div>
-                    </td>
-                    <td>Iphone 5</td>
-                    <td><img src="/resources/admin/assets/images/products/01.png" class="product-img" alt="product img"></td>
-                    <td>#9405822</td>
-                    <td><span class="btn btn-sm btn-outline-success btn-round btn-block">Paid</span></td>
-                    <td>$ 1250.00</td>
-                    <td><div class="progress shadow" style="height: 4px;">
-                          <div class="progress-bar gradient-ohhappiness" role="progressbar" style="width: 100%"></div>
-                       </div></td>
-                   </tr>
-
-                   <tr>
-                    <td>
-                       <div class="icheck-material-primary">
-                        <input type="checkbox" id="check2">
-                        <label for="check2"></label>
-                      </div>
-                    </td>
-                    <td>Earphone GL</td>
-                    <td><img src="/resources/admin/assets/images/products/02.png" class="product-img" alt="product img"></td>
-                    <td>#9405820</td>
-                    <td><span class="btn btn-sm btn-outline-info btn-round btn-block">Pending</span></td>
-                    <td>$ 1500.00</td>
-                    <td><div class="progress shadow" style="height: 4px;">
-                          <div class="progress-bar gradient-scooter" role="progressbar" style="width: 80%"></div>
-                       </div></td>
-                   </tr>
-
-                   <tr>
-                    <td>
-                       <div class="icheck-material-primary">
-                        <input type="checkbox" id="check3">
-                        <label for="check3"></label>
-                      </div>
-                    </td>
-                    <td>HD Hand Camera</td>
-                    <td><img src="/resources/admin/assets/images/products/03.png" class="product-img" alt="product img"></td>
-                    <td>#9405830</td>
-                    <td><span class="btn btn-sm btn-outline-danger btn-round btn-block">Failed</span></td>
-                    <td>$ 1400.00</td>
-                    <td><div class="progress shadow" style="height: 4px;">
-                          <div class="progress-bar gradient-ibiza" role="progressbar" style="width: 60%"></div>
-                       </div></td>
-                   </tr>
-
-                   <tr>
-                    <td>
-                       <div class="icheck-material-primary">
-                        <input type="checkbox" id="check4">
-                        <label for="check4"></label>
-                      </div>
-                    </td>
-                    <td>Clasic Shoes</td>
-                    <td><img src="/resources/admin/assets/images/products/04.png" class="product-img" alt="product img"></td>
-                    <td>#9405825</td>
-                    <td><span class="btn btn-sm btn-outline-success btn-round btn-block">Paid</span></td>
-                    <td>$ 1200.00</td>
-                    <td><div class="progress shadow" style="height: 4px;">
-                          <div class="progress-bar gradient-ohhappiness" role="progressbar" style="width: 100%"></div>
-                       </div></td>
-                   </tr>
-
-                   <tr>
-                    <td>
-                       <div class="icheck-material-primary">
-                        <input type="checkbox" id="check5">
-                        <label for="check5"></label>
-                      </div>
-                    </td>
-                    <td>Hand Watch</td>
-                    <td><img src="/resources/admin/assets/images/products/05.png" class="product-img" alt="product img"></td>
-                    <td>#9405840</td>
-                    <td><span class="btn btn-sm btn-outline-danger btn-round btn-block">Failed</span></td>
-                    <td>$ 1800.00</td>
-                    <td><div class="progress shadow" style="height: 4px;">
-                          <div class="progress-bar gradient-ibiza" role="progressbar" style="width: 75%"></div>
-                       </div></td>
-                   </tr>
-
-                    <tr>
-                      <td>
-                       <div class="icheck-material-primary">
-                        <input type="checkbox" id="check6">
-                        <label for="check6"></label>
-                      </div>
-                    </td>
-                    <td>HD Hand Camera</td>
-                    <td><img src="/resources/admin/assets/images/products/03.png" class="product-img" alt="product img"></td>
-                    <td>#9405830</td>
-                    <td><span class="btn btn-sm btn-outline-info btn-round btn-block">Pending</span></td>
-                    <td>$ 1400.00</td>
-                    <td><div class="progress shadow" style="height: 4px;">
-                          <div class="progress-bar gradient-scooter" role="progressbar" style="width: 70%"></div>
-                       </div></td>
-                   </tr>
-
+                   <tbody id="totalQuantityProduct">
+                   </tbody>
                  </table>
                </div>
           </div>
@@ -515,7 +401,90 @@
 	<!--Start footer-->
 	<%@ include file="./block/footer.jsp"%>
 	<!--End footer-->
-   
+   <!-- Modal -->
+		<div class="modal fade" id="edit-customer">
+			<div class="modal-dialog" style="max-width: 700px">
+				<div class="modal-content animated jackInTheBox">
+					<div class="modal-header">
+						<h5 class="modal-title">Chỉnh Sửa Thông Tin Khách Hàng</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Id</label>
+							<div class="col-sm-10">
+								<input readonly type="text"
+									class="form-control form-control-rounded" id="txtid"
+									name="txtid" placeholder="Id">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Họ
+								Tên</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control form-control-rounded"
+									id="txtname" name="txtname" placeholder="Nhập vào họ tên...">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Trạng
+								Thái</label>
+							<div class="col-sm-4">
+								<div class="icheck-material-primary icheck-inline">
+									<input type="radio" id="rdoenabled_true" name="rdoenabled"
+										checked value="true"> <label for="rdoenabled_true">Offline</label>
+								</div>
+								<div class="icheck-material-info icheck-inline">
+									<input type="radio" id="rdoenabled_false" name="rdoenabled"
+										value="false"> <label for="rdoenabled_false">Online</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Địa
+								Chỉ Cụ Thể</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control form-control-rounded"
+									id="txtaddress" name="txtaddress"
+									placeholder="Nhập địa chỉ như tên đường, địa điểm nhận dạng...">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Email</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control form-control-rounded"
+									id="txtemail" name="txtemail"
+									placeholder="Nhập vào địa chỉ Email của bạn...">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Số
+								Điện Thoại</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control form-control-rounded"
+									id="txtphone" name="txtphone"
+									placeholder="Nhập vào số điện thoại của bạn...">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button"
+							class="btn btn-danger shadow-danger btn-round px-5"
+							data-dismiss="modal">
+							<i class="fa fa-times"></i> Quay lại
+						</button><!-- <!-- 
+						<button type="button"
+							class="btn btn-info shadow-info btn-round px-5 btnUpdate">
+							<i class="fa fa-check-square-o"></i> Lưu
+						</button> --> -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--End Modal -->
   </div><!--End wrapper-->
 
   <!-- Bootstrap core JavaScript-->
@@ -537,6 +506,162 @@
   <script src="/resources/admin/assets/plugins/peity/jquery.peity.min.js"></script>
   <!-- Index js -->
   <script src="/resources/admin/assets/js/index.js"></script>
-  
+  <script src="/resources/admin/build/customJS/ajaxofcustomer.js"></script>
+	<script>
+		$(document).ready(function() {
+			
+//			Chuyển đổi string money
+			function addCommas(nStr)
+			{
+			    nStr += '';
+			    x = nStr.split('.');
+			    x1 = x[0];
+			    x2 = x.length > 1 ? '.' + x[1] : '';
+			    var rgx = /(\d+)(\d{3})/;
+			    while (rgx.test(x1)) {
+			        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+			    }
+			    return x1 + x2;
+			}
+					$.get('/admin/getProductTotal', function(data) {
+		 		    	var tr;
+		 		    	var table = $('#example tbody')
+		 		    	table.empty();
+		 				  $.each(eval(data.replace(/[\r\n]/, "")), function(i, item) {
+		 					   tr = "<tr><td>"+item[0]+"</td><td>"+item[1]+"</td><td> <img style='width:50px' src='/resources/web/images/Products/"+item[2]+"'</td><td> <span class='check2 badge badge-info shadow-info m-1 yourClass'>"+item[3]+" Cái </span></td><td>"+addCommas(item[4])+" VNĐ</td></tr>";
+		 					  $('#totalQuantityProduct').append(tr)
+		 				  });
+		 				});
+				});
+	</script>
+  <script>
+	$(document).ready(function(){
+		var ctx = document.getElementById("dashboard-chart-1").getContext('2d');
+		var myChart = new Chart(ctx, {
+		     type: 'bar',
+		     data: {
+		       labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+		       datasets: [{
+		         label: 'Tổng Tiền Theo Tháng [đơn vị: VNĐ]',
+		         data: [40, 30, 60, 35, 60, 25, 50, 40],
+		         borderColor: '#11cdef',
+		         backgroundColor: '#11cdef',
+		         hoverBackgroundColor: '#11cdef',
+		         pointRadius: 0,
+		         fill: false,
+		         borderWidth: 1
+		       },{
+		            label: 'Lãi [20%]',
+		            data: [50, 60, 40, 70, 35, 75, 30, 20],
+		            borderColor: '#e8e8e8',
+		            backgroundColor: '#e8e8e8',
+		            hoverBackgroundColor: '#e8e8e8',
+		            pointRadius: 0,
+		            fill: false,
+		            borderWidth: 1
+		          }]
+		     },
+		 options:{
+		   legend: {
+		     position: 'bottom',
+		           display: true,
+		     labels: {
+		             boxWidth:12
+		           }
+		         },  
+		   scales: {
+		     xAxes: [{
+		     stacked: true,
+		     barPercentage: .5
+		     }],
+		       yAxes: [{
+		    	   
+		         stacked: true
+		          }]
+		      },
+		   tooltips: {
+			    callbacks: {
+			          label: function(tooltipItem, data) {
+			              return tooltipItem.yLabel.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+			          }
+			      },
+		     displayColors:false,
+		   }
+		 }
+		   });
+		
+		$.get('/admin/abc', function(data) {
+			var chartmonth = [];
+			var chartpending = [];
+			var chartmoney = [];
+			  $.each(eval(data.replace(/[\r\n]/, "")), function(i, item) {
+				   chartmonth.push(item.month); 
+				  chartmoney.push(item.totalmoney);
+				  chartpending.push(item.totalmoney*0.2)
+			  });
+			  myChart.data.labels = chartmonth;
+			  myChart.data.datasets[0].data = chartmoney;
+			  myChart.data.datasets[1].data = chartpending;
+			  myChart.update();
+			});
+ 		
+ 	// chart 2
+
+ 		 var ctx = document.getElementById("dashboard-chart-2").getContext('2d');
+	
+ 		      var myChart2 = new Chart(ctx, {
+ 		        type: 'doughnut',
+ 		        data: {
+ 		          labels: ["Jeans", "T-Shirts", "Shoes", "Lingerie", "Laptops", "Mobiles"],
+ 		          datasets: [{
+ 		            backgroundColor: [
+ 		              '#5e72e4',
+ 		              '#ff2fa0',
+ 		              '#2dce89',
+ 		              '#f5365c',
+ 		              '#fb6340',
+ 		              '#11cdef'
+ 		            ],
+ 		            hoverBackgroundColor: [
+ 		              '#5e72e4',
+ 		              '#ff2fa0',
+ 		              '#2dce89',
+ 		              '#f5365c',
+ 		              '#fb6340',
+ 		              '#11cdef'
+ 		            ],
+ 		            data: [25, 50, 25, 25, 15, 10],
+ 		      borderWidth: [1, 1, 1, 1, 1, 1]
+ 		          }]
+ 		        },
+ 		        options: {
+ 		      cutoutPercentage: 25,
+ 		            legend: {
+ 		        position: 'right',
+ 		              display: true,
+ 		        labels: {
+ 		                boxWidth:12
+ 		              }
+ 		            },
+ 		      tooltips: {
+ 		        displayColors:false,
+ 		      }
+ 		        }
+ 		      });
+ 		      
+ 		     $.get('/admin/tester', function(data) {
+   				var nameProduct = [];
+   				var totalProduct = [];
+   				  $.each(eval(data.replace(/[\r\n]/, "")), function(i, item) {
+   					  nameProduct.push(item[0]);
+   					  totalProduct.push(item[1]);
+   				  });
+   				  myChart2.data.labels = nameProduct;
+   				  myChart2.data.datasets[0].data = totalProduct;
+   				  myChart2.update();
+   				});
+ 		
+ 	})
+  </script>
 </body>
 </html>

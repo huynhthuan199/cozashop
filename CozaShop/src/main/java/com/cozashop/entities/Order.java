@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,15 +33,13 @@ public class Order extends BaseEntity  implements Serializable {
 	
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "order")
+	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
 	private Collection<OrderDetails> orderDetails;
 
 	@ManyToOne
 	@JoinColumn(name = "customerid" ,referencedColumnName = "id")
     private Customer customer;
 	
-	
-
 	public Order() {
 		super();
 	}

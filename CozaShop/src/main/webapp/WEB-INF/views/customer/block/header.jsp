@@ -1,132 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- Header desktop -->
 <div class="container-menu-desktop">
 	<!-- Topbar -->
-	<div class="top-bar">
+	<div class="top-bar" id="profile">
 		<div class="content-topbar flex-sb-m h-full container">
 			<div class="left-top-bar">
 				<marquee>Free shipping for standard order over $100</marquee>
 			</div>
-
+			 <c:if test="${customer == null }"> 
 			<div class="right-top-bar flex-w h-full">
-				<a href="#" class="flex-c-m trans-04 p-lr-25"> Help & FAQs </a> <a
-					href="#" class="flex-c-m trans-04 p-lr-25" data-toggle="modal"
-					data-target="#myModal1"> Đăng ký
-					<div class="modal fade" id="myModal1" role="dialog"
-						style="z-index: 9999">
-						<div class="modal-dialog">
-
-							<!-- Modal content-->
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"></button>
-									<h4 class="modal-title">Đăng ký</h4>
-								</div>
-								<div class="modal-body">
-									<form action="" style="font-size: 15px">
-										<div class="form-group">
-											<label for="email">Họ tên:</label> <input type="email"
-												class="form-control" id="email">
-										</div>
-										<div class="form-group">
-											<label for="email">Tên đăng nhập:</label> <input type="email"
-												class="form-control" id="email">
-										</div>
-										<div class="form-group">
-											<label for="pwd">Mật khẩu:</label> <input type="password"
-												class="form-control" id="pwd">
-										</div>
-										<div class="form-group">
-											<label for="pwd">Nhập lại mật khẩu:</label> <input
-												type="password" class="form-control" id="pwd">
-										</div>
-
-										<div class="form-group">
-											<div class="row">
-												<label for="pwd" style="margin-left: 20px">Giới
-													tính:</label>
-												<div class="col-sm-10" style="margin-left: 20px">
-													<div class="form-check">
-														<input class="form-check-input" type="radio"
-															name="gridRadios" id="gridRadios1" value="option1"
-															checked> <label class="form-check-label"
-															for="gridRadios1"> Nam </label>
-													</div>
-													<div class="form-check">
-														<input class="form-check-input" type="radio"
-															name="gridRadios" id="gridRadios2" value="option2">
-														<label class="form-check-label" for="gridRadios2">
-															Nữ </label>
-													</div>
-												</div>
-											</div>
-
-										</div>
-										<div class="form-group">
-											<label for="email">Địa chỉ:</label> <input type="email"
-												class="form-control" id="email">
-										</div>
-										<div class="form-group">
-											<label for="email">Email:</label> <input type="email"
-												class="form-control" id="email">
-										</div>
-										<div class="form-group">
-											<label for="email">Số điện thoại:</label> <input type="email"
-												class="form-control" id="email">
-										</div>
-										<button class="btn btn-info" style="margin-left: 42%">Submit</button>
-									</form>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</a> <a href="#" class="flex-c-m trans-04 p-lr-25" data-toggle="modal"
-					data-target="#myModal2"> Đăng nhập
-					<div class="modal fade" id="myModal2" role="dialog"
-						style="z-index: 9999">
-						<div class="modal-dialog">
-
-							<!-- Modal content-->
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"></button>
-									<h4 class="modal-title">Đăng nhập</h4>
-								</div>
-								<div class="modal-body">
-									<form action="">
-										<div class="form-group">
-											<label for="email">Email address:</label> <input type="email"
-												class="form-control" id="email">
-										</div>
-										<div class="form-group">
-											<label for="pwd">Password:</label> <input type="password"
-												class="form-control" id="pwd">
-										</div>
-										<div class="checkbox">
-											<label><input type="checkbox"> Remember me</label>
-										</div>
-										<button class="btn btn-info" style="margin-left: 42%">Submit</button>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default"
-										data-dismiss="modal">Close</button>
-								</div>
-							</div>
-
-						</div>
-					</div>
-
-				</a> <a href="#" class="flex-c-m trans-04 p-lr-25"> VIETNAM </a> <a href="#"
-					class="flex-c-m trans-04 p-lr-25"> VNĐ </a>
+				<a href="#" class="flex-c-m trans-04 p-lr-25"> Help & FAQs </a>
+				<button style="border: 0px">
+					<a href="#" class="flex-c-m trans-04 p-lr-25"> Đăng ký </a>
+				</button>
+				<button style="border: 0px" type="button" data-toggle="modal"
+	data-target="#loginCustomer">
+					<a href="#" class="flex-c-m trans-04 p-lr-25">Đăng nhập</a>
+				</button>
+				<a href="#" class="flex-c-m trans-04 p-lr-25"> VIETNAM </a> <a
+					href="#" class="flex-c-m trans-04 p-lr-25"> VNĐ </a>
 			</div>
+			 </c:if>
+		 	<c:if test="${customer != null }">
+			<div class="right-top-bar flex-w h-full">
+				<a href="#" class="flex-c-m trans-04 p-lr-25">Xin Chào ${customer.name }</a>
+				<button data-id="${customer.id }" style="border: 0px" type="button" class="editCustomer">
+					 <a href="#" class="flex-c-m trans-04 p-lr-25">Thông tin</a>
+				</button>
+				<button style="border: 0px" type="submit">
+					<a href="/logout2" class="flex-c-m trans-04 p-lr-25">Đăng xuất</a>
+				</button>
+				<a href="#" class="flex-c-m trans-04 p-lr-25"> VIETNAM </a> <a
+					href="#" class="flex-c-m trans-04 p-lr-25"> VNĐ </a>
+			</div>
+			</c:if> 
 		</div>
 	</div>
-
 	<div class="wrap-menu-desktop">
 		<nav class="limiter-menu-desktop container">
 
@@ -139,10 +51,11 @@
 			<div class="menu-desktop">
 				<ul class="main-menu">
 					<li class="active-menu"><a href="/index">Trang chủ</a></li>
-					<li class="label1" data-label1="hot"><a href="/product">Sản phẩm</a></li>
-					<li><a
-						href="/cart/show">Giỏ hàng</a></li>
-					<li class="label1" data-label1="new"><a href="/blog">Tin tức</a></li>
+					<li class="label1" data-label1="hot"><a href="/product">Sản
+							phẩm</a></li>
+					<li><a href="/cart/show">Giỏ hàng</a></li>
+					<li class="label1" data-label1="new"><a href="/blog">Tin
+							tức</a></li>
 					<li><a href="/about">Về chúng tôi</a></li>
 					<li><a href="/contact">Liên hệ</a></li>
 				</ul>
@@ -153,9 +66,10 @@
 					class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
 				</div>
-				<div id="cart-remove" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+				<div id="cart-remove"
+					class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
 					data-notify="">
-					<i id ="show-cart" class="zmdi zmdi-shopping-cart show-cart"></i>
+					<i id="show-cart" class="zmdi zmdi-shopping-cart show-cart"></i>
 				</div>
 				<a href="#"
 					class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
@@ -170,8 +84,8 @@
 <div class="wrap-header-mobile">
 	<!-- Logo moblie -->
 	<div class="logo-mobile">
-		<a href="index"><img
-			src="/resources/web/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+		<a href="index"><img src="/resources/web/images/icons/logo-01.png"
+			alt="IMG-LOGO"></a>
 	</div>
 
 	<!-- Icon header -->
@@ -229,8 +143,7 @@
 
 		<li><a href="product">Shop</a></li>
 
-		<li><a href="shopingcart" class="label1 rs1"
-			data-label1="hot">Features</a></li>
+		<li><a href="shopingcart" class="label1 rs1" data-label1="hot">Features</a></li>
 
 		<li><a href="blog">Blog</a></li>
 
@@ -239,6 +152,153 @@
 		<li><a href="contact">Contact</a></li>
 	</ul>
 </div>
+
+<!-- Login Modal -->
+<div class="modal fade" style="z-index: 9999; margin-top:100px" id="loginCustomer"
+	tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Đăng Nhập</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+			<form action ="/login" method="POST">
+				<div class="form-group">
+					<label class="font-italic">Tài Khoản *</label>
+					 <input id="txtloginUsername" value="OC4eHRcH" name="txtloginUsername" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<label class="font-italic">Mật Khẩu *</label> 
+					<input id="txtloginPassword" value="rvrPbzeHXw" name="txtloginPassword" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" name="btnlogin">Đăng Nhập</button>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+		<!-- Modal -->
+		<div class="modal fade" style="z-index: 99999999" id="edit-customer">
+			<div class="modal-dialog" style="max-width: 700px">
+				<div class="modal-content animated jackInTheBox">
+					<div class="modal-header">
+						<h5 class="modal-title">Chỉnh Sửa Thông Tin Khách Hàng</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Id</label>
+							<div class="col-sm-10">
+								<input readonly type="text"
+									class="form-control form-control-rounded" id="txtid"
+									name="txtid" placeholder="Id">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Tài
+								Khoản</label>
+							<div class="col-sm-10">
+								<input readonly type="text" class="form-control form-control-rounded"
+									id="txtusername" name="txtusername"
+									placeholder="Nhập vào tài khoản...">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Họ
+								Tên</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control form-control-rounded"
+									id="txtname1" name="txtname" placeholder="Nhập vào họ tên...">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Giới
+								Tính</label>
+							<div class="col-sm-4">
+								<div class="icheck-material-primary icheck-inline">
+									<input type="radio" id="rdoGender_true" name="rdoGender"
+										checked value="true"> <label for="rdoGender_true">Nam</label>
+								</div>
+								<div class="icheck-material-info icheck-inline">
+									<input type="radio" id="rdoGender_false" name="rdoGender"
+										value="false"> <label for="rdoGender_false">Nữ</label>
+								</div>
+							</div>
+							<label for="input-27" class="col-sm-2 col-form-label">Trạng
+								Thái</label>
+							<div class="col-sm-4">
+								<div class="icheck-material-primary icheck-inline">
+									<input type="radio" id="rdoenabled_true" name="rdoenabled"
+										checked value="true"> <label for="rdoenabled_true">Bật</label>
+								</div>
+								<div class="icheck-material-info icheck-inline">
+									<input type="radio" id="rdoenabled_false" name="rdoenabled"
+										value="false"> <label for="rdoenabled_false">Tắt</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Mật
+								Khẩu</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control form-control-rounded"
+									id="txtpassword" name="txtpassword"
+									placeholder="Nhập vào mật khẩu...">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Địa
+								Chỉ Cụ Thể</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control form-control-rounded"
+									id="txtaddress1" name="txtaddress"
+									placeholder="Nhập địa chỉ như tên đường, địa điểm nhận dạng...">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Email</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control form-control-rounded"
+									id="txtemail1" name="txtemail"
+									placeholder="Nhập vào địa chỉ Email của bạn...">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="input-27" class="col-sm-2 col-form-label">Số
+								Điện Thoại</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control form-control-rounded"
+									id="txtphone1" name="txtphone"
+									placeholder="Nhập vào số điện thoại của bạn...">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button"
+							class="btn btn-danger shadow-danger btn-round px-5"
+							data-dismiss="modal">
+							<i class="fa fa-times"></i> Quay lại
+						</button>
+						<button type="button"
+							class="btn btn-info shadow-info btn-round px-5 btnUpdate">
+							<i class="fa fa-check-square-o"></i> Lưu
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--End Modal -->
 
 <!-- Modal Search -->
 <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">

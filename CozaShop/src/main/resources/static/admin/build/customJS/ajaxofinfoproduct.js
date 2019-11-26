@@ -63,7 +63,7 @@
 			
 <!-- Insert  -->
 		$('.btnInsert1').click(()=>{
-			var form = $('#formProduct')[0]
+			var form = $('#dropzone')[0]
 			var formData = new FormData(form);
 			$.ajax({
 				type : "Post",

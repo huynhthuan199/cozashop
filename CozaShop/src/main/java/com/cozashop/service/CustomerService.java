@@ -3,6 +3,7 @@ package com.cozashop.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.cozashop.entities.Customer;
@@ -31,13 +32,26 @@ public class CustomerService {
 	public Customer findByUsername(String username) {
 		return customerRepository.findByUsername(username);
 	}
-
+	
+	public Customer existsByUsernameAndPassword(String username,String password) {
+		return customerRepository.findByUsernameAndPassword(username, password);
+	}
+	
+	
+	public List<Customer> listCustomerNew() {
+		return customerRepository.listCustomerNew(PageRequest.of(0, 5));
+	}
+	
+	public int NewCustomerToday() {
+		return customerRepository.NewCustomerToday();
+	}
 	
 	public Customer saveCustomer(Customer customer) {
 		return customerRepository.save(customer);
 		
 	}
 	public ApiResponse save(Customer customer){
+//		này là có validate
 		String name = customer.getName();
 		String numberphone = customer.getPhone();
 		String userName =customer.getUsername();
@@ -51,6 +65,7 @@ public class CustomerService {
 				return new ApiResponse(Status.warning,"Số điên thoại: " + customer.getPhone() + " đã có người sử dụng");
 //		Check email đã tồn tại
 		}else if(customerRepository.existsByEmail(customer.getEmail())){
+//			nó sẽ return về một cái dữ liệu nào đó
 				return new ApiResponse(Status.warning,"Email : " + customer.getEmail() + " đã tồn tại trong hệ thống");
 //		Check 4 bỏ 1
 		}else if(name.equals("") && numberphone.equals("") && userName.equals("") && address.equals("") && email.equals("")) {

@@ -125,13 +125,7 @@
       </div>
     </li>
     <li class="nav-item language">
-      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="#"><i class="flag-icon flag-icon-gb"></i></a>
-      <ul class="dropdown-menu dropdown-menu-right">
-          <li class="dropdown-item"> <i class="flag-icon flag-icon-gb mr-2"></i> English</li>
-          <li class="dropdown-item"> <i class="flag-icon flag-icon-fr mr-2"></i> French</li>
-          <li class="dropdown-item"> <i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
-          <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
-        </ul>
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect"><i class="flag-icon flag-icon-vn"></i></a>
     </li>
     <li class="nav-item">
       <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">

@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.DefaultFormatter;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +75,10 @@ public class ShoppingCartController {
 	@GetMapping(value = "/show")
 	public String index(Model model,HttpSession session) {
 		Map<String, Cart> listCart = (Map<String, Cart>) session.getAttribute("CART");
+		Customer customer = (Customer) session.getAttribute("customer");
+		if(customer != null) {
+			model.addAttribute("profileCustomer",customer);
+		}
 		model.addAttribute("listProvince",proviceService.findAll());
 		model.addAttribute("listDictricts",districtService.finById("79"));
 		model.addAttribute("listWard",wardService.finById("760"));

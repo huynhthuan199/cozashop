@@ -45,6 +45,11 @@ public class InfoProductService {
 		return infoProductRepository.findById(id).get();
 	}
 
+
+	public long countProduct() {
+		return infoProductRepository.count();
+	}
+	
 	public String upload(MultipartFile file) throws IOException {
 		if (file.isEmpty()) {
 			return null;

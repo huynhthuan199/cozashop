@@ -67,39 +67,15 @@
 				<!-- Breadcrumb-->
 				<div class="row pt-2 pb-2">
 					<div class="col-sm-9">
-						<h4 class="page-title">Form Layouts</h4>
+						<h4 class="page-title">Quản Lý Chất Liệu</h4>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="./home">Trang Chủ</a></li>
 							<li class="breadcrumb-item"><a href="javaScript:void();">Quản lí</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Chất liệu</li>
 						</ol>
 					</div>
-					<div class="col-sm-3">
-						<div class="btn-group float-sm-right">
-							<button type="button"
-								class="btn btn-outline-primary waves-effect waves-light">
-								<i class="fa fa-cog mr-1"></i> Setting
-							</button>
-							<button type="button"
-								class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split waves-effect waves-light"
-								data-toggle="dropdown">
-								<span class="caret"></span>
-							</button>
-							<div class="dropdown-menu">
-								<a href="javaScript:void();" class="dropdown-item">Action</a> <a
-									href="javaScript:void();" class="dropdown-item">Another
-									action</a> <a href="javaScript:void();" class="dropdown-item">Something
-									else here</a>
-								<div class="dropdown-divider"></div>
-								<a href="javaScript:void();" class="dropdown-item">Separated
-									link</a>
-							</div>
-						</div>
-					</div>
 				</div>
 				<!-- End Breadcrumb-->
-
-
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
@@ -170,23 +146,18 @@
 													<td class=" ">${listMaterial.id }</td>
 													<td class=" ">${listMaterial.name }</td>
 													<td class=" valEnabled"><span
-														class="badge badge-danger shadow-danger m-1">${listMaterial.enabled == true ? "Bật" : "Tắt"}</span></td>
+														class="badge badge-danger shadow-danger m-1 valEnabled1">${listMaterial.enabled == true ? "Bật" : "Tắt"}</span></td>
 													<td class=" ">${listMaterial.createAt }</td>
-													<td class="text-center">
+													<td class="text-center action">
 														<button type="button"
 															class="btn btn-warning shadow-warning waves-effect waves-light m-1 btnEdit"
 															data-id="${listMaterial.id }">
 															<i class="fa fa-pencil">Sửa</i>
 														</button>
 														<button type="button"
-															class="btn btn-danger shadow-danger waves-effect waves-light m-1 btnDelete"
+															class="btn btn-danger shadow-danger waves-effect waves-light m-1 checkHideShow btnDelete"
 															name="btnDelete" data-id="${listMaterial.id }">
-															<i class="fa fa-trash"> Ẩn</i>
-														</button>
-														<button type="button"
-															class="btn btn-primary shadow-primary waves-effect waves-light m-1 btnShow"
-															name="btnShow" data-id="${listMaterial.id }">
-															<i class="fa fa-trash"> Hiện</i>
+															<i class="fa fa-trash"> Tắt</i>
 														</button>
 													</td>
 												</tr>
@@ -249,7 +220,7 @@
 								<div class=col-sm-10>
 							<div class="icheck-material-primary icheck-inline">
 								<input type="radio" id="inline-radio-primary2" name="rdoEnabled"
-									checked value="false"> <label
+									checked value="true"> <label
 									for="inline-radio-primary">Bật</label>
 							</div>
 							<div class="icheck-material-info icheck-inline">
@@ -336,6 +307,24 @@
 
 				});
 	</script>
-
+	<script>
+	$(document).ready(function(){
+		$(".valEnabled1:contains('Tắt')").parent().parent().find('td.action').children('.checkHideShow').removeClass('btnDelete btn btn-danger shadow-danger').addClass('btnShow btn btn-primary shadow-primary').children().removeClass('fa fa-unlock-alt').addClass('fa fa-unlock').text(' Bật')
+		$(".valEnabled1:contains('Bật')")
+									.removeClass(
+											"badge badge-danger shadow-danger m-1")
+									.addClass(
+											"badge badge-primary shadow-primary m-1")
+		$(document).on('click','.page-link',function(){
+		$(".valEnabled1:contains('Tắt')").parent().parent().find('td.action').children('.checkHideShow').removeClass('btnDelete btn btn-danger shadow-danger').addClass('btnShow btn btn-primary shadow-primary').children().removeClass('fa fa-unlock-alt').addClass('fa fa-unlock').text(' Bật')
+		$(".valEnabled1:contains('Bật')")
+									.removeClass(
+											"badge badge-danger shadow-danger m-1")
+									.addClass(
+											"badge badge-primary shadow-primary m-1")
+		})
+	})
+	
+	</script>
 </body>
 </html>

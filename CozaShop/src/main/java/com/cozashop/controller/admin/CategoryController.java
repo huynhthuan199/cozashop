@@ -37,6 +37,7 @@ public class CategoryController {
 	}
 
 //	Delete
+//	khi 
 	@GetMapping(value = "category/btnDelete")
 	@ResponseBody
 	public int delete(@RequestParam String id, Boolean enabled) {

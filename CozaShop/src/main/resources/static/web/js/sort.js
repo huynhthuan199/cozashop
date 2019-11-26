@@ -17,9 +17,29 @@ $(document).ready(function(){
 		
 		 $('.btncategogy').click(function(){
 			 b = $(this).data('filter');
-			 console.log(b)
-			 $('.animsition').animsition();
-			$('.animsition').fadeOut();
+			 $.ajax({
+				 url: '/product3?color=false&field=price&order='+b+'&page='+Math.floor((parseInt($('#load-product .isotope-item').length) / 4)),
+				 beforeSend: function(){
+					 $('.animsition').animsition();
+						$('.animsition').fadeOut();
+				 },
+			 }).done(function(data){
+				 $('#load-product').empty()
+				 $('#load-product').append(data)
+				  $('.animsition-loading').remove();
+					$('.animsition').fadeIn(); 
+				 if(b == 'findAll'){
+				 		$('a#loadmore').css('display','flex');
+				 	 }else{
+				 		$('a#loadmore').css('display','none'); 
+				 	 }
+				
+			 }).fail(function(err){
+				 
+			 })
+			
+			/* console.log(b)
+			 
 			$('#load-product').load('/product3?color=false&field=price&order='+b+'&page='+Math.floor((parseInt($('#load-product .isotope-item').length) / 4)), function(){
 			 	 if(b == 'findAll'){
 			 		$('a#loadmore').css('display','flex');
@@ -29,7 +49,7 @@ $(document).ready(function(){
 				
 				 $('.animsition-loading').remove();
 				$('.animsition').fadeIn(); 
-			});
+			});*/
 		});
 		 
 		 $('.Color').click(function(){

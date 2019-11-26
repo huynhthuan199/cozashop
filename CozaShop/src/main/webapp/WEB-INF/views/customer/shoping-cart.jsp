@@ -173,7 +173,7 @@
 					</div>
 					<div class="form-group">
 						<label for="input-29" class="font-italic">Xã/Phường</label> <select id="ward"
-							name="ward" class="form-control single-select">
+							name="ward" class="form-control single-select" id="abc">
 							<c:forEach var="listWard" items="${listWard }">
 								<option value="${listWard.xaid }">${listWard.name }</option>
 							</c:forEach>
@@ -182,7 +182,7 @@
 					<div class="form-group m-t-32">
 						<label for="input-27" class="font-italic">Địa Chỉ Cụ Thể</label> <input
 							type="text" class="form-control form-control-rounded"
-							id="txtaddress" name="txtAddAddress" value="abc"
+							id="txtaddress" name="txtAddAddress" value="${profileCustomer.address }"
 							placeholder="Nhập địa chỉ như tên đường, địa điểm nhận dạng...">
 					</div>
 				</div>
@@ -190,15 +190,15 @@
 			<div class="col-lg-6">
 				<div class="m-r-30 m-l-30">
 					<div class="form-group">
-						<label class="font-italic"> Họ Và Tên *</label> <input id="txtname" id="txtname" value="abc"
+						<label class="font-italic"> Họ Và Tên *</label> <input id="txtname" value="${profileCustomer.name }"
 							type="text" class="form-control">
 					</div>
 					<div class="form-group">
-						<label class="font-italic">Số Điện Thoại *</label> <input id="txtphone" type="text" value="0868926024"
+						<label class="font-italic">Số Điện Thoại *</label> <input id="txtphone" type="text" value="${profileCustomer.phone }"
 							class="form-control">
 					</div>
 					<div class="form-group">
-						<label class="font-italic">Email *</label> <input id="txtemail" type="text" value="huynhthuan199@gmail.com"
+						<label class="font-italic">Email *</label> <input id="txtemail" type="text" value="${profileCustomer.email }"
 							class="form-control">
 					</div>
 					<div class="form-group">
@@ -214,7 +214,6 @@
 					</div>
 				</div>
 			</div>
-
 			<button class="btn btn-dark btn-block m-r-44 m-l-44 m-b-30 m-t-30" id="totalmoney">Đặt Hàng</button>
 		</div>
 	</div>
@@ -343,6 +342,11 @@
 	<script>
 		$(document).ready(function() {
 			$('.single-select').select2();
+			var a = '<%= session.getAttribute("customer") %>';
+			console.log(a)
+			if(a != null){
+				$(".single-select option").not(":selected").attr("disabled", "disabled");
+			}
 		});
 	</script>
 	<script>

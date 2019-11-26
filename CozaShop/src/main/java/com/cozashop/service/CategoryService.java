@@ -33,6 +33,10 @@ public class CategoryService {
 	public List<Category> listCategory() {
 		return categoryRepository.listCategory();
 	}
+	
+	public List<String> StringlistCategory() {
+		return categoryRepository.StringListCategory();
+	}
 
 
 	public ApiResponse save(Category category) {
