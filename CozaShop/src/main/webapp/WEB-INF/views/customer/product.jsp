@@ -528,6 +528,27 @@
 	<script src="/resources/web/js/main2.js"></script>
 	<script src="/resources/web/js/custom.js"></script>
 	<script src="/resources/web/js/sort.js"></script>
+	<script>
+	$(document).ready(function(){
+		
+		function GetURLParameter(sParam) {
+		    var sPageURL = window.location.search.substring(1);
+		    var sURLVariables = sPageURL.split('&');
+		    for (var i = 0; i < sURLVariables.length; i++){
+		        var sParameterName = sURLVariables[i].split('=');
+		        if (sParameterName[0] == sParam)
+		        {
+		            return sParameterName[1];
+		        }
+		    }
+		}
+		
+		var categogyName = GetURLParameter('categogyName');
+		if(categogyName != null){
+			$("button[data-filter="+categogyName+"]").click()
+		}
+	})
+	</script>
 	<!-- <script>
 		$(document).ready(function() {
 			

@@ -41,6 +41,11 @@ public class HomeWebController {
 		return "customer/index";
 	}
 	
+	@GetMapping(value = {"/regist"})
+	public String regist(){
+		return "customer/regist";
+	}
+	
 	@PostMapping(value = "/login")
 	public String login(HttpSession session,@RequestParam("txtloginUsername") String username,@RequestParam("txtloginPassword") String password) {
 		Customer customer = customerService.existsByUsernameAndPassword(username, password);

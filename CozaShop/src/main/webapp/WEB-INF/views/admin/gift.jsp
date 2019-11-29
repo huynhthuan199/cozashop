@@ -180,12 +180,7 @@
 															class="btn btn-danger shadow-danger waves-effect waves-light m-1 checkHideShow btnDelete"
 															name="btnDelete" data-id="${listGift.id }">
 															<i class="fa fa-trash">Tắt</i>
-														</button><%-- 
-														<button type="button"
-															class="btn btn-primary shadow-primary waves-effect waves-light m-1 btnShow"
-															name="btnShow" data-id="${listGift.id }">
-															<i class="fa fa-trash"> Hiện</i>
-														</button> --%>
+														</button>
 													</td>
 												</tr>
 											</c:forEach>
@@ -366,7 +361,6 @@
 											"badge badge-primary shadow-primary m-1")
 		})
 	})
-	
 	</script>
 
 </body>

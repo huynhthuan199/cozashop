@@ -182,7 +182,7 @@
 					<div class="form-group m-t-32">
 						<label for="input-27" class="font-italic">Địa Chỉ Cụ Thể</label> <input
 							type="text" class="form-control form-control-rounded"
-							id="txtaddress" name="txtAddAddress" value="${profileCustomer.address }"
+							id="txtaddress" name="txtAddAddress" value="${addressCustomer[0]}"
 							placeholder="Nhập địa chỉ như tên đường, địa điểm nhận dạng...">
 					</div>
 				</div>
@@ -299,7 +299,6 @@
 			class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
-
 	<!--===============================================================================================-->
 	<script src="/resources/web/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
@@ -342,11 +341,18 @@
 	<script>
 		$(document).ready(function() {
 			$('.single-select').select2();
-			var a = '<%= session.getAttribute("customer") %>';
-			console.log(a)
-			if(a != null){
-				$(".single-select option").not(":selected").attr("disabled", "disabled");
+			var sessionLogin = '<% session.getAttribute("customer");%>'
+			if(sessionLogin != null){
+				var district = '${addressCustomer[1]}'
+				console.log(district)
+					$('#province option:contains("${addressCustomer[1]}")').attr('selected','selected');
+					$('#district option:contains("${addressCustomer[2]}")').attr('selected','selected');
+					$('#ward option:contains("${addressCustomer[3]}")').attr('selected','selected');
+					$('#select2-province-container').text("${addressCustomer[1]}");
+					$('#select2-district-container').text("${addressCustomer[2]}");
+					$('#select2-ward-container').text("${addressCustomer[3]}");
 			}
+		 
 		});
 	</script>
 	<script>
@@ -420,7 +426,7 @@
 		    var addaddress = $('#txtaddress').val();
 		    var addprovince = $('#province :selected').text();
 		    var adddistrict = $('#district :selected').text();
-		    var addward = $('#ward :selected').text();
+		    var addward = $('#select2-ward-container').text();
 		    $.ajax({
 		      type: "POST",
 		      url: "/cart/checkout",

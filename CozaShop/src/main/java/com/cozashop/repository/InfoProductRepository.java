@@ -21,6 +21,10 @@ public interface InfoProductRepository extends JpaRepository<Product, String> {
 	// Query hiện sản phẩm được enabled
 	@Query("from Product p left join p.category where p.category.enabled = true and p.enabled=true")
 	List<Product> findAllByCategory(Pageable page);
+	
+	// Query hiện sản phẩm được enabled
+		@Query("from Product p left join p.category where p.category.enabled = true and p.enabled=true and p.category.id=?1")
+		List<Product> findAllByCategoryNews(String id,Pageable page);
 
 	// Query tìm sản phẩm theo id danh mục đang được bật
 	@Query("from Product p left join p.category where p.category.id = ?1 and p.category.enabled = true")

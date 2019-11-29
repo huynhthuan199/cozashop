@@ -19,7 +19,6 @@ public interface CategoryRepository extends JpaRepository<Category, String> {
 	// Tìm danh mục theo Id
 	@Query("SELECT c FROM Category c WHERE id = ?1")
 	Category getCategory(String id);
-	
 	// Update danh mục
 	@Transactional
 	@Modifying

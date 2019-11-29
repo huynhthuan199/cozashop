@@ -38,7 +38,6 @@ public class CategoryService {
 		return categoryRepository.StringListCategory();
 	}
 
-
 	public ApiResponse save(Category category) {
 		if(categoryRepository.existsById(category.getId())) {
 			return new ApiResponse(Status.warning, " Mã danh mục: " + category.getId() + " đã tồn tại trong hệ thống" );

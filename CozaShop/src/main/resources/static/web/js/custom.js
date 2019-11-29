@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	var size;
+
 	
 //	Show Cart modal
 	$('#show-cart').click(function() {
@@ -43,6 +45,7 @@ $(document).ready(function() {
 			})
 //			Js  addToCart
 	let atc = document.getElementById("addToCart");
+			
 	if(atc){
 		document.getElementById("addToCart").addEventListener("click", function(e){
 			let id = e.target.dataset.id;
@@ -57,6 +60,7 @@ $(document).ready(function() {
 			}).done(function(data) {
 				Command: toastr["success"]("Đã thêm "+quantity+ " sản phẩm " + name+" sản phẩm vào giỏ hàng", "Thông Báo");
 				$('#cart-remove').attr('data-notify',data);
+				var a = data;
 			}).fail(function(err) {
 				console.log(err);
 			});
@@ -190,7 +194,7 @@ $(document).ready(function() {
 			data : {type : 'modal'}
 		}).done(function(data){
 			$('#cart-modal').html(data);
-			$('#cart-remove').attr('data-notify','${cartSize}');
+			$('#cart-remove').attr('data-notify',a--);
 		}).fail(function(err){
 			
 		})
