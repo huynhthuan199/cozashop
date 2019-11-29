@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -181,7 +182,7 @@
 													<td class=" "><span
 														class="check badge badge-danger shadow-danger m-1">
 															${users.rules == true ? "Quản lý" : "Nhân viên" }</span></td>
-													<td class=" ">${users.createAt}</td>
+													<td class=" "><fmt:formatDate pattern = "yyyy-MM-dd" value = "${users.createAt}" /></td>
 													<td class=" "><span
 														class=" check2 badge badge-danger shadow-danger m-1">
 															${users.enabled == true ? "Bật" : "Tắt" }</span></td>

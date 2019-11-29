@@ -77,6 +77,7 @@ public class ShoppingCartController {
 		Map<String, Cart> listCart = (Map<String, Cart>) session.getAttribute("CART");
 		Customer customer = (Customer) session.getAttribute("customer");
 		if(customer != null) {
+			model.addAttribute("addressCustomer",customer.getAddress().split(",")); 
 			model.addAttribute("profileCustomer",customer);
 		}
 		model.addAttribute("listProvince",proviceService.findAll());
@@ -135,6 +136,9 @@ public class ShoppingCartController {
 		Gift gift = giftService.finByCode(code);
 		DecimalFormat fm = new DecimalFormat("#");
 		Map<String, Cart> listCart = (Map<String, Cart>) session.getAttribute("CART");
+		if(listCart == null) {
+			return new ApiResponse(Status.warning,"Hãy mua gì đó rồi thanh toán sau nhé!");
+		}
 		for (Map.Entry<String, Cart> list : listCart.entrySet()) {
 			total += (list.getValue().getQuantity() * list.getValue().getProduct().getPrice());
 		}
@@ -153,8 +157,8 @@ public class ShoppingCartController {
 	public String deleteProduct(HttpSession session,Model model, @RequestParam String type, @PathVariable String id) {
 		Map<String, Cart> listCart = (Map<String, Cart>) session.getAttribute("CART");
 		listCart.remove(id);
+		model.addAttribute("listSizea",listCart);
 		session.setAttribute("CART", listCart);
-		model.addAttribute("cartSize",listCart.size());
 		if (type.equals("table")) {
 			return "customer/cart-table";
 		} else {
@@ -214,9 +218,9 @@ public class ShoppingCartController {
 		double total =0;
 		
 		StringBuffer BfAddress = new StringBuffer();
-		BfAddress.append(address + ", ");
-		BfAddress.append(province + ", ");
-		BfAddress.append(district + ", ");
+		BfAddress.append(address + ",");
+		BfAddress.append(province + ",");
+		BfAddress.append(district + ",");
 		BfAddress.append(ward);
 		String username = Helper.randomAlphaNumeric(8);
 		

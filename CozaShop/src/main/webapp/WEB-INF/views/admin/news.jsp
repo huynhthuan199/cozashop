@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Quản Lý Chất Liệu</title>
+<title>Quản Lý Tin tức</title>
 <!--favicon-->
 <link rel="icon" href="/resources/admin/assets/images/favicon.ico"
 	type="image/x-icon">
@@ -68,46 +68,106 @@
 				<!-- Breadcrumb-->
 				<div class="row pt-2 pb-2">
 					<div class="col-sm-9">
-						<h4 class="page-title">Quản Lý Chất Liệu</h4>
+						<h4 class="page-title">Quản lý thông tin</h4>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="./home">Trang Chủ</a></li>
-							<li class="breadcrumb-item"><a href="javaScript:void();">Quản lí</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Chất liệu</li>
+							<li class="breadcrumb-item"><a href="javaScript:void();">Quản
+									lý thông tin</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Tin
+								tức</li>
 						</ol>
+					</div>
+					<div class="col-sm-3">
+						<div class="btn-group float-sm-right">
+							<button type="button"
+								class="btn btn-outline-primary waves-effect waves-light">
+								<i class="fa fa-cog mr-1"></i> Setting
+							</button>
+							<button type="button"
+								class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split waves-effect waves-light"
+								data-toggle="dropdown">
+								<span class="caret"></span>
+							</button>
+							<div class="dropdown-menu">
+								<a href="javaScript:void();" class="dropdown-item">Action</a> <a
+									href="javaScript:void();" class="dropdown-item">Another
+									action</a> <a href="javaScript:void();" class="dropdown-item">Something
+									else here</a>
+								<div class="dropdown-divider"></div>
+								<a href="javaScript:void();" class="dropdown-item">Separated
+									link</a>
+							</div>
+						</div>
 					</div>
 				</div>
 				<!-- End Breadcrumb-->
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
+						<form method="POST" enctype="multipart/form-data"
+						id="fileInsertForm">
 							<div class="card-body">
-								<div class="card-title text-info">Thông Tin Màu Sắc</div>
+								<div class="card-title text-info">Thêm Thông Tin</div>
 								<hr>
 								<div class="form-group row">
-									<label for="input-27" class="col-sm-2 col-form-label">Tên
-										Chất Liệu</label>
+									<label for="input-27" class="col-sm-2 col-form-label">Tiêu
+										đề</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control form-control-rounded"
-											id="txtAddName" placeholder="Nhập tên tên chất liệu">
+											id="txtAddTitle" name="title" placeholder="Nhập tiêu đề">
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="input-27" class="col-sm-2 col-form-label">Trạng
-										Thái</label>
+										<label for="input-29" class="col-sm-2 col-form-label">Danh
+											Mục</label>
 										<div class="col-sm-10">
-											<div class="icheck-material-primary icheck-inline">
-												<input type="radio" id="inline-radio-primary"
-													name="rdoAddEnabled" checked value="true"> <label
-													for="inline-radio-primary">Còn</label>
-											</div>
-											<div class="icheck-material-info icheck-inline">
-												<input type="radio" id="inline-radio-info"
-													name="rdoAddEnabled" value="false"> <label
-													for="inline-radio-info">Không</label>
-											</div>
+
+											<select id="txtAddCategoryId" name="category"
+												class="form-control single-select">
+												<c:forEach var="listCategory" items="${listCategory }">
+													<option value="${listCategory.id }">${listCategory.name }
+														[${listCategory.id }]</option>
+												</c:forEach>
+											</select>
 										</div>
+									</div>
+								<div class="form-group row">
+									<label for="input-27" class="col-sm-2 col-form-label">Thẻ</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control form-control-rounded"
+											id="txtAddTags" name="tags" placeholder="Nhập thẻ...">
+									</div>
 								</div>
 								<div class="form-group row">
+									<label for="input-27" class="col-sm-2 col-form-label">Nội
+										Dung Ngắn</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control form-control-rounded"
+											id="txtAddContent" name="content" placeholder="Nhập tiêu đề">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="input-27" class="col-sm-2 col-form-label">Nội
+										dung</label>
+									<div class="col-sm-10">
+										<textarea class="form-control form-control-rounded"
+											placeholder="Nhập nội dung..." id="txtAddDescription"
+											rows="10" name="description"></textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+								<label for="input-12" class="col-sm-2 col-form-label">Hình
+									Ảnh</label>
+								<div class="col-sm-10">
+									<div class="custom-file">
+										<input name="image" type="file" class="custom-file-input"
+											id="addFile3"> <label
+											class="custom-file-label" for="inputGroupFile01">Chọn
+											hình Ảnh</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
 									<label class="col-sm-2 col-form-label"></label>
 									<div class="col-sm-10">
 										<button type="button"
@@ -117,48 +177,53 @@
 									</div>
 								</div>
 							</div>
+							</form>
 						</div>
 
 					</div>
 				</div>
 				<!--End Row-->
-
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<i class="fa fa-table"></i> Danh Sách Chất Liệu
+								<i class="fa fa-table"></i> Danh sách tin tức
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="default-datatable" class="table table-bordered">
 										<thead class="thead-dark">
 											<tr class="headings">
-												<th class="text-center">Mã Chất Liệu</th>
-												<th class="text-center">Tên Chất Liệu</th>
-												<th class="text-center">Trạng Thái</th>
+												<th class="text-center">Mã tin tức</th>
+												<th class="text-center">Tiêu đề</th>
+												<th class="text-center">Nội dung</th>
+												<th class="text-center">Thẻ</th>
+												<th class="text-center">Trạng thái</th>
 												<th class="text-center">Ngày Tạo</th>
 												<th class="text-center">Thao Tác</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="listMaterial" items="${listMaterial}">
+											<c:forEach var="listNews" items="${listNews}">
 												<tr class="even pointer">
-													<td class=" ">${listMaterial.id }</td>
-													<td class=" ">${listMaterial.name }</td>
+													<td class=" ">${listNews.id}</td>
+													<td class=" ">${listNews.title}</td>
+													<td class=" ">${listNews.content}</td>
+													<td class=" ">${listNews.tags}</td>
 													<td class=" valEnabled"><span
-														class="badge badge-danger shadow-danger m-1 valEnabled1">${listMaterial.enabled == true ? "Bật" : "Tắt"}</span></td>
-													<td class=" "><fmt:formatDate pattern = "yyyy-MM-dd" value = "${listMaterial.createAt}" /></td>
+														class="badge badge-danger shadow-danger m-1 valEnabled1">${listNews.enabled == true ? "Bật" : "Tắt"}</span></td>
+													<td class=" "><fmt:formatDate pattern="yyyy-MM-dd"
+															value="${listNews.createAt}" /></td>
 													<td class="text-center action">
 														<button type="button"
 															class="btn btn-warning shadow-warning waves-effect waves-light m-1 btnEdit"
-															data-id="${listMaterial.id }">
+															data-id="${listNews.id}">
 															<i class="fa fa-pencil">Sửa</i>
 														</button>
 														<button type="button"
 															class="btn btn-danger shadow-danger waves-effect waves-light m-1 checkHideShow btnDelete"
-															name="btnDelete" data-id="${listMaterial.id }">
-															<i class="fa fa-trash"> Tắt</i>
+															name="btnDelete" data-id="${listNews.id }">
+															<i class="fa fa-trash">Tắt</i>
 														</button>
 													</td>
 												</tr>
@@ -171,10 +236,8 @@
 					</div>
 				</div>
 				<!-- End Row-->
-
 			</div>
 			<!-- End container-fluid-->
-
 		</div>
 		<!--End content-wrapper-->
 		<!--Start Back To Top Button-->
@@ -185,69 +248,106 @@
 		<!--Start footer-->
 		<%@ include file="./block/footer.jsp"%>
 		<!--End footer-->
-		<!--Success  Modal -->
+
+		<!-- Modal -->
 		<div class="modal fade" id="edit-category">
-			<div class="modal-dialog">
-				<div class="modal-content border-success">
-					<div class="modal-header bg-success">
-						<h5 class="modal-title text-white">Chỉnh Sửa Thông Tin</h5>
-						<button type="button" class="close text-white"
-							data-dismiss="modal" aria-label="Close">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Chỉnh Sửa Thông Tin</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">
-						<div class="card-title text-info">Thông Tin Chất Liệu</div>
-						<hr>
-						<div class="form-group row">
-							<label for="input-26" class="col-sm-2 col-form-label">Mã
-								Chất Liệu</label>
-							<div class="col-sm-10">
-								<input readonly type="text" class="form-control form-control-rounded"
-									id="txtId" placeholder="Nhập mã danh mục">
+					<form method="POST" enctype="multipart/form-data"
+						id="fileUploadForm">
+						<div class="modal-body">
+							<hr>
+							<div class="form-group row">
+								<label for="input-26" class="col-sm-2 col-form-label">ID</label>
+								<div class="col-sm-10">
+									<input readonly type="text"
+										class="form-control form-control-rounded" id="txtId" name="id"
+										placeholder="Nhập tiêu đề">
+								</div>
 							</div>
-						</div>
-						<div class="form-group row">
-							<label for="input-27" class="col-sm-2 col-form-label">Tên
-								Chất liệu</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control form-control-rounded"
-									id="txtName" placeholder="Nhập Tên danh mục">
+							<div class="form-group row">
+								<label for="input-27" class="col-sm-2 col-form-label">Tiêu
+									đề</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control form-control-rounded"
+										id="txtTitle" name="title" placeholder="Nhập tiêu đề">
+								</div>
 							</div>
-						</div>
-						<div class="form-group row">
-							<label for="input-27" class="col-sm-2 col-form-label">Trạng
-								Thái</label>
+							<div class="form-group row">
+								<label for="input-27" class="col-sm-2 col-form-label">Nội
+									Dung Ngắn</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control form-control-rounded"
+										id="txtContent" name="content" placeholder="Nhập tiêu đề">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="input-27" class="col-sm-2 col-form-label">Thẻ</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control form-control-rounded"
+										id="txtTags" name="tags" placeholder="Nhập thẻ">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="input-27" class="col-sm-2 col-form-label">Nội
+									dung</label>
+								<div class="col-sm-10">
+									<textarea class="form-control form-control-rounded"
+										id="txtDescription" name="description" rows="10"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="input-12" class="col-sm-2 col-form-label">Hình
+									Ảnh</label>
+								<div class="col-sm-4">
+									<div class="custom-file">
+										<input name="image" type="file" class="custom-file-input"
+											id="addFile3"> <label
+											class="custom-file-label" for="inputGroupFile01">Chọn
+											hình Ảnh</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="input-27" class="col-sm-2 col-form-label">Trạng
+									Thái</label>
 								<div class=col-sm-10>
-							<div class="icheck-material-primary icheck-inline">
-								<input type="radio" id="inline-radio-primary2" name="rdoEnabled"
-									checked value="true"> <label
-									for="inline-radio-primary">Bật</label>
-							</div>
-							<div class="icheck-material-info icheck-inline">
-								<input type="radio" id="inline-radio-info2" name="rdoEnabled"
-									value="false"> <label for="inline-radio-info">Tắt</label>
-							</div>
+									<div class="icheck-material-primary icheck-inline">
+										<input type="radio" id="inline-radio-primary2"
+											name="rdoEnabled" checked value="true"> <label
+											for="inline-radio-primary">Bật</label>
+									</div>
+									<div class="icheck-material-info icheck-inline">
+										<input type="radio" id="inline-radio-info2" name="rdoEnabled"
+											value="false"> <label for="inline-radio-info">Tắt</label>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-inverse-danger btnHide"
-							data-dismiss="modal">
-							<i class="fa fa-times"></i> Xóa
-						</button>
-						<button type="button" class="btn btn-success btnUpdate">
-							<i class="fa fa-check-square-o"></i> Lưu
-						</button>
-					</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-inverse-danger btnHide"
+								data-dismiss="modal">
+								<i class="fa fa-times"></i> Xóa
+							</button>
+							<button type="button" class="btn btn-success btnUpdate">
+								<i class="fa fa-check-square-o"></i> Lưu
+							</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
 		<!--End Modal -->
 	</div>
 	<!--End wrapper-->
-
-
 	<!-- Bootstrap core JavaScript-->
 	<script src="/resources/admin/assets/js/jquery.min.js"></script>
 	<script src="/resources/admin/assets/js/popper.min.js"></script>
@@ -290,7 +390,7 @@
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<!-- Ajax  -->
-	<script src="/resources/admin/build/customJS/ajaxofmaterial.js"></script>
+	<script src="/resources/admin/build/customJS/ajaxofnew.js"></script>
 
 	<script>
 		$(document).ready(
@@ -308,7 +408,7 @@
 
 				});
 	</script>
-	<script>
+<script>
 	$(document).ready(function(){
 		$(".valEnabled1:contains('Tắt')").parent().parent().find('td.action').children('.checkHideShow').removeClass('btnDelete btn btn-danger shadow-danger').addClass('btnShow btn btn-primary shadow-primary').children().removeClass('fa fa-unlock-alt').addClass('fa fa-unlock').text(' Bật')
 		$(".valEnabled1:contains('Bật')")

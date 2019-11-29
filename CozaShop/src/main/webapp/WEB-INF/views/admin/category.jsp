@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -159,7 +160,7 @@
 													<td class=" ">${category.name }</td>
 													<td class=" valEnabled"><span
 														class="badge badge-danger shadow-danger m-1 valEnabled1" >${category.enabled == true ? "Bật" : "Tắt"}</span></td>
-													<td class=" ">${category.createAt }</td>
+													<td class=" "><fmt:formatDate pattern = "dd-MM-yyyy" value = "${category.createAt}" /></td>
 													<td class="text-center action" >
 														<button type="button"
 															class="btn btn-warning shadow-warning waves-effect waves-light m-1 btnEdit"

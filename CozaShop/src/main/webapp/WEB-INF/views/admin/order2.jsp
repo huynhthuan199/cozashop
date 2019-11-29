@@ -116,7 +116,7 @@
 													<td class="lblidCustomer" data-id="${order.customer.id }">${order.customer.name }</td>
 													<td class="text-justify"><fmt:formatNumber type = "number" 
          maxFractionDigits = "3" value = "${order.totalmoney }" /></td>
-													<td class=" ">${order.createAt }</td>
+													<td class=" "><fmt:formatDate pattern = "yyyy-MM-dd" value = "${order.createAt}" /></td>
 													<td class="valEnabled "><span class=" check2 badge badge-danger shadow-danger m-1">${order.enabled == true ? "Đã Duyệt" : "Chờ Xử lý" }</span></td>
 													<td class=" ">
 														<button type="button" data-id="${order.id }"

@@ -44,6 +44,11 @@ public class InfoProductService {
 	public Product findById(String id) {
 		return infoProductRepository.findById(id).get();
 	}
+	
+	public List<Product> findAllByCategoryNews(String id) {
+		Pageable firstPageWithTwoElements = PageRequest.of(1, 4);
+		return infoProductRepository.findAllByCategoryNews(id, firstPageWithTwoElements);
+	}
 
 
 	public long countProduct() {

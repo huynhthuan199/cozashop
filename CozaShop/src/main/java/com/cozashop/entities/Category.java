@@ -26,6 +26,10 @@ public class Category extends BaseEntity  implements Serializable {
 	private String name;
 
 	@JsonIgnore
+	@OneToMany(mappedBy = "categoryNews", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private Collection<News> news;
+	
+	@JsonIgnore 
 	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Collection<Product> products;
 
@@ -36,6 +40,26 @@ public class Category extends BaseEntity  implements Serializable {
 		this.enabled = enabled;
 		this.createAt = createAt;
 	}
+
+	
+	
+	public Collection<News> getNews() {
+		return news;
+	}
+
+
+
+	public void setNews(Collection<News> news) {
+		this.news = news;
+	}
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 
 	public Category() {
 		super();

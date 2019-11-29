@@ -1,6 +1,7 @@
 package com.cozashop.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,6 +33,10 @@ public class User extends BaseEntity implements Serializable {
 	private String image;
 	private String email;
 	boolean rules;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private Collection<News> news;
 	
 	@JsonIgnore
 	@ManyToMany
@@ -81,6 +87,18 @@ public class User extends BaseEntity implements Serializable {
 
 	
 	
+	public Collection<News> getNews() {
+		return news;
+	}
+
+	public void setNews(Collection<News> news) {
+		this.news = news;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public String getImage() {
 		return image;
 	}
