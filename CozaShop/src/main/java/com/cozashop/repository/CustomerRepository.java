@@ -49,6 +49,9 @@ public interface CustomerRepository  extends JpaRepository<Customer, Integer> {
 	// Validate
 	Customer findByUsername(String username);
 	
+	// Validate
+	Customer findByEmail(String email);
+	
 	// CheckLogin
 	Customer findByUsernameAndPassword(String username, String password);
 }

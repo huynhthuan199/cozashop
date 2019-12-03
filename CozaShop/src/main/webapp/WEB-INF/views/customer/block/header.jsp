@@ -8,17 +8,17 @@
 	<div class="top-bar" id="profile">
 		<div class="content-topbar flex-sb-m h-full container">
 			<div class="left-top-bar">
-				<marquee>Free shipping for standard order over $100</marquee>
+				<marquee>Miễn Phí Ship Cho Đơn hàng Trên 1.000.000 VNĐ</marquee>
 			</div>
 			 <c:if test="${customer == null }"> 
 			<div class="right-top-bar flex-w h-full">
-				<a href="#" class="flex-c-m trans-04 p-lr-25"> Help & FAQs </a>
+				<a href="./contact" class="flex-c-m trans-04 p-lr-25"> Help & FAQs </a>
 				<button style="border: 0px">
-					<a href="#" class="flex-c-m trans-04 p-lr-25"> Đăng ký </a>
+					<a href="/login?regist=regist" class="flex-c-m trans-04 p-lr-25"> Đăng ký </a>
 				</button>
 				<button style="border: 0px" type="button" data-toggle="modal"
 	data-target="#loginCustomer">
-					<a href="#" class="flex-c-m trans-04 p-lr-25">Đăng nhập</a>
+					<a href="/login" class="flex-c-m trans-04 p-lr-25">Đăng nhập</a>
 				</button>
 				<a href="#" class="flex-c-m trans-04 p-lr-25"> VIETNAM </a> <a
 					href="#" class="flex-c-m trans-04 p-lr-25"> VNĐ </a>
@@ -153,8 +153,8 @@
 	</ul>
 </div>
 
-<!-- Login Modal -->
-<div class="modal fade" style="z-index: 9999; margin-top:100px" id="loginCustomer"
+ <!-- Login Modal -->
+<!--<div class="modal fade" style="z-index: 9999; margin-top:100px" id="loginCustomer"
 	tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -184,7 +184,7 @@
 			</form>
 		</div>
 	</div>
-</div>
+</div> -->
 		<!-- Modal -->
 		<div class="modal fade" style="z-index: 99999999" id="edit-customer">
 			<div class="modal-dialog" style="max-width: 700px">

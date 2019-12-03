@@ -25,9 +25,9 @@
 <link
 	href="/resources/admin/assets/plugins/bootstrap-datatable/css/dataTables.bootstrap4.min.css"
 	rel="stylesheet" type="text/css">
-<link
+<!-- <link
 	href="/resources/admin/assets/plugins/bootstrap-datatable/css/buttons.bootstrap4.min.css"
-	rel="stylesheet" type="text/css">
+	rel="stylesheet" type="text/css"> -->
 <!-- animate CSS-->
 <link href="/resources/admin/assets/css/animate.css" rel="stylesheet"
 	type="text/css">

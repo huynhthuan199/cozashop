@@ -23,47 +23,47 @@ height: 50px
 	href="resources/web/images/icons/favicon.png" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/web/vendor/bootstrap/css/bootstrap.min.css">
+	href="./resources/web/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/web/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	href="./resources/web/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/web/fonts/iconic/css/material-design-iconic-font.min.css">
+	href="./resources/web/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/web/fonts/linearicons-v1.0.0/icon-font.min.css">
+	href="./resources/web/fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/web/vendor/animate/animate.css">
+	href="./resources/web/vendor/animate/animate.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/web/vendor/css-hamburgers/hamburgers.min.css">
+	href="./resources/web/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/web/vendor/animsition/css/animsition.min.css">
+	href="./resources/web/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/web/vendor/select2/select2.min.css">
+	href="./resources/web/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/web/vendor/daterangepicker/daterangepicker.css">
+	href="./resources/web/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/web/vendor/slick/slick.css">
+	href="./resources/web/vendor/slick/slick.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/web/vendor/MagnificPopup/magnific-popup.css">
+	href="./resources/web/vendor/MagnificPopup/magnific-popup.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/web/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	href="./resources/web/vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!-- Toastr -->
 <link
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
 	rel="stylesheet">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="resources/web/css/util.css">
-<link rel="stylesheet" type="text/css" href="resources/web/css/main.css">
+<link rel="stylesheet" type="text/css" href="./resources/web/css/util.css">
+<link rel="stylesheet" type="text/css" href="./resources/web/css/main.css">
 <!--===============================================================================================-->
 
 </head>
@@ -173,7 +173,7 @@ height: 50px
 					<div class="block1 wrap-pic-w myimg">
 						<img src="resources/web/images/Products/CV1.jpg" alt="IMG-BANNER">
 
-						<a href="./product"
+						<a href="./product?categogyName=CV"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8"> Cà Vạt
@@ -193,7 +193,7 @@ height: 50px
 					<div class="block1 wrap-pic-w">
 						<img src="resources/web/images/Products/AV6.jpg" alt="IMG-BANNER">
 
-						<a href="./product"
+						<a href="./product?categogyName=AV"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8"> Áo Vest </span>
@@ -214,7 +214,7 @@ height: 50px
 					<div class="block1 wrap-pic-w">
 						<img src="resources/web/images/Products/AT1.jpg" alt="IMG-BANNER">
 
-						<a href="./product"
+						<a href="./product?categogyName=AT"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
@@ -608,6 +608,10 @@ height: 50px
 	<script src="/resources/web/js/custom.js"></script>
 	<script>
 		$(document).ready(function() {
+			var sessionLogin = '<% session.getAttribute("customer");%>'
+				if(sessionLogin != null){
+					 Command: toastr["info"]("Chào Mừng Bạn Đến Với CozaShop","Thông Báo")
+				}
 			$('.btncategogy').click()
 		})
 	</script>

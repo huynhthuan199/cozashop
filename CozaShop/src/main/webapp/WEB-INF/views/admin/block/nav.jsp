@@ -15,7 +15,7 @@
 	<div class="mx-auto mt-20" style="text-align: center;margin-top: 20px ">
 			<img style="border-radius: 50px;" src="/resources/admin/assets/images/avatars/" alt="profile-image" class="profile">
 			<h5 class="logo-text"><sec:authentication property="principal.fullname" /> </h5>
-			<span id="lblidUser"><sec:authentication property="principal.id" /> </span>
+			<span id="lblidUser" style="display: none"><sec:authentication property="principal.id" /> </span>
 			</div>
 			
 	<ul class="sidebar-menu do-nicescrol">
@@ -64,7 +64,7 @@
 				<ul class="sidebar-submenu">
 					<li><a href="./contact"><i class="zmdi zmdi-star-outline"></i>Liên
 							Hệ</a></li>
-					<li><a href="./blog"><i class="zmdi zmdi-star-outline"></i>Tin
+					<li><a href="./news"><i class="zmdi zmdi-star-outline"></i>Tin
 							Tức</a></li>
 				</ul></li>
 	</ul>

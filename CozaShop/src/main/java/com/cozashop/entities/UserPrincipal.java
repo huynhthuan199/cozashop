@@ -21,7 +21,7 @@ public class UserPrincipal implements UserDetails {
 	private String fullname;
 
 	private String username;
-
+	
 	private String password;
 
 	private Collection<? extends GrantedAuthority> authorities;
@@ -41,6 +41,10 @@ public class UserPrincipal implements UserDetails {
 		List<GrantedAuthority> authorities = user.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 		return new UserPrincipal(user.getId(), user.getName(), user.getUsername(), user.getPassword(), authorities);
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public int getId() {

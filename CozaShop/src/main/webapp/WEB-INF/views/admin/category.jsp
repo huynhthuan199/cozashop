@@ -236,11 +236,11 @@
 							<div class="icheck-material-primary icheck-inline">
 								<input type="radio" id="inline-radio-primary2" name="rdoEnabled"
 									checked value="false"> <label
-									for="inline-radio-primary">Bật</label>
+									for="inline-radio-primary2">Bật</label>
 							</div>
 							<div class="icheck-material-info icheck-inline">
 								<input type="radio" id="inline-radio-info2" name="rdoEnabled"
-									value="false"> <label for="inline-radio-info">Tắt</label>
+									value="false"> <label for="inline-radio-info2">Tắt</label>
 							</div>
 						</div>
 					</div>

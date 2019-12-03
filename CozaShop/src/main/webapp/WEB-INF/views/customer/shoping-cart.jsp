@@ -405,8 +405,7 @@
 		      beforeSend: function() {
 		       $('#icon2').css({display: "inline-block"});
 		      }
-		     }).done(
-		      function(data) {
+		     }).done(function(data) {
 		       $('#icon2').css({display: "none"});
 		       $('#district').children().remove();
 		       for (var i = 0; i < data.length; i++) {
