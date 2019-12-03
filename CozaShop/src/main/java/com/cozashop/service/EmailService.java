@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
     private JavaMailSender javaMailSender;
+    
     private ScheduledExecutorService quickService = Executors.newScheduledThreadPool(20);
 
     public EmailService(JavaMailSender javaMailSender) {

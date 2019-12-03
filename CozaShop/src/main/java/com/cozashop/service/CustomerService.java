@@ -1,14 +1,20 @@
 package com.cozashop.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cozashop.entities.Customer;
+import com.cozashop.entities.User;
 import com.cozashop.repository.CustomerRepository;
 import com.cozashop.util.ApiResponse;
+import com.cozashop.util.Helper;
 import com.cozashop.util.ApiResponse.Status;
 
 @Service
@@ -17,6 +23,12 @@ public class CustomerService {
 	@Autowired
 	private CustomerRepository customerRepository;
 
+	@Autowired 
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired 
+	private EmailService emailService;
+	
 	public List<Customer> findAll() {
 		return customerRepository.findAll();
 	}
@@ -33,8 +45,16 @@ public class CustomerService {
 		return customerRepository.findByUsername(username);
 	}
 	
-	public Customer existsByUsernameAndPassword(String username,String password) {
-		return customerRepository.findByUsernameAndPassword(username, password);
+	public ApiResponse existsByUsernameAndPassword(String username,String password) {
+		Customer customer = customerRepository.findByUsernameAndPassword(username, password);
+		if(customer != null) {
+			return new ApiResponse(Status.success,"Đăng Nhập thành công",customer);
+		}else if(customer == null) {
+			if(username.equals("") || password.equals("")) {
+				return new ApiResponse(Status.warning,"Không Được Bỏ Trống Tài Khoản và Mật Khẩu");
+			}
+		}
+		return new ApiResponse(Status.warning,"Sai Tài Khoản Hoặc Mật Khẩu");
 	}
 	
 	
@@ -266,4 +286,24 @@ public class CustomerService {
 			return "";
 		}
 	}
+	
+	public ApiResponse setPassword(String email) throws MessagingException, UnsupportedEncodingException {
+		String newPassword = "";
+		String token = "";
+		if(email.equals("")) {
+			return new ApiResponse(Status.danger,"Không Được Để Trống Email");
+		}else if(!Helper.validateEmail(email)) {
+			return new ApiResponse(Status.danger,"Vui lòng nhập đúng dịnh dạng địa chỉ Email");
+		}
+			Customer customer = customerRepository.findByEmail(email);
+			if(customer != null) {
+				newPassword = Helper.randomAlphaNumeric(8);
+				token = passwordEncoder.encode(newPassword);
+				customer.setPassword(token);
+				customerRepository.save(customer);
+				emailService.sendMail(email, "Recover Passwrod", "Mật khẩu mới của bạn là: <span style='color:red;'> " + newPassword +" </span><br> Dùng mã này để đổi mật khẩu: " + token);
+				return new ApiResponse(Status.success,"Check email để nhận mật khẩu mới nhé!");
+			}
+			return new ApiResponse(Status.danger,"Không tồn tại Email trong hệ thông");
+		}
 }

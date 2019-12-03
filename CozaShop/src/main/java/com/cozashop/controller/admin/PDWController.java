@@ -32,7 +32,12 @@ public class PDWController {
 	@PostMapping("test")
 	@ResponseBody
 	public List<District> getDistrict(@RequestParam("id") List<String> id) {
-		return districtService.finById(id.get(0));
+		try {
+			return districtService.finById(id.get(0));
+		}catch(Exception e) {
+			return null;
+		}
+		
 	}
 	
 	@PostMapping("test2")

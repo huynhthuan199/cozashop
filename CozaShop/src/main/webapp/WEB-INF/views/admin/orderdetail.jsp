@@ -81,7 +81,7 @@
 							<td class=" ">${list.quantity }</td>
 							<td class=" "><fmt:formatNumber type = "number" 
          maxFractionDigits = "3" value = "${list.price }" /> VNĐ</td>
-							<td class=" ">${list.createAt }</td>
+							<td class=" "><fmt:formatDate pattern = "dd-MM-yyyy" value = "${list.createAt}" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>

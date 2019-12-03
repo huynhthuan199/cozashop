@@ -274,24 +274,26 @@ $(document).ready(function() {
 					}); 
 			});
 // Login
-			 $('#btnlogin').click(function(){
+		 $('#btnlogin').click(function(){
+				 var form = $('#form-signin')[0];
+				 var formData = new FormData(form);
 				$.ajax({
-					url : '/admin/customer/login',
+					url : '/check',
 					type : 'POST',
-					data :{
-						username : $('#txtloginUsername').val(),
-					 	password : $('#txtloginPassword').val()
-					}
+					data : formData,
+					cache: false,
+			 	    contentType: false,
+			 	    processData: false,
 				}).done((data)=>{
-					if(data != null){
-						Command: toastr['success']('Đăng Nhập Thành Công', 'Thông Báo');
-						$('#loginCustomer').modal('hide');
-						$('#profile').empty().append(data)
+					Command: toastr[data.status](data.message, "Thông Báo")
+					if(data.data != null){
+						window.location.replace("http://localhost:8080")
 					}
 				}).fail((err)=>{
 					
 				})
 			 })
+			 
 //			 profile Customer
 			 $('.editCustomer').click(function() {
 					$.ajax({

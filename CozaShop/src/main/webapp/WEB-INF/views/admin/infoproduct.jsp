@@ -194,7 +194,7 @@
 											</div>
 										</div>
 									</div>
-									<!-- <div class="form-group row">
+									 <div class="form-group row">
 										<label class="col-sm-2 col-form-label">Hình Ảnh 2</label>
 										<div class="col-sm-10">
 											<div class="input-group mb-3">
@@ -223,7 +223,7 @@
 												</div>
 											</div>
 										</div>
-									</div> -->
+									</div> 
 									<div class="form-group row">
 										<label class="col-sm-2 col-form-label"></label>
 										<div class="col-sm-10">

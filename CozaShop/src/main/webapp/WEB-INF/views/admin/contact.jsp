@@ -12,7 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Quản Lý Hóa Đơn</title>
+<title>Quản Lí Liên Hệ</title>
 <!--favicon-->
 <link rel="icon" href="/resources/admin/assets/images/favicon.ico"
 	type="image/x-icon">
@@ -39,92 +39,81 @@
 <link href="/resources/admin/assets/css/sidebar-menu.css"
 	rel="stylesheet">
 
-<link href="/resources/admin/assets/plugins/select2/css/select2.min.css"
-	rel="stylesheet">
 <!-- Toastr -->
-<link
-	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
-	rel="stylesheet">
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 <!-- Custom Style-->
 <link href="/resources/admin/assets/css/app-style.css" rel="stylesheet">
-<style>
-.myimage {
-	width: 100px;
-	height: 400px
-}
-</style>
-
 </head>
 
 <body>
-
 	<!-- Start wrapper-->
 	<div id="wrapper">
 		<!--Start sidebar-wrapper-->
 		<%@ include file="./block/nav.jsp"%>
 		<!--End sidebar-wrapper-->
+
 		<!--Start topbar header-->
 		<%@ include file="./block/header.jsp"%>
 		<!--End topbar header-->
 		<div class="clearfix"></div>
+
 		<div class="content-wrapper">
 			<div class="container-fluid">
 				<!-- Breadcrumb-->
 				<div class="row pt-2 pb-2">
 					<div class="col-sm-9">
-						<h4 class="page-title">Quản Lý Hóa Đơn</h4>
+						<h4 class="page-title">Quản Lý Liên Hệ</h4>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="./home">Trang Chủ</a></li>
-							<li class="breadcrumb-item"><a href="./order">Quản Lý</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Hóa Đơn</li>
+							<li class="breadcrumb-item"><a href="./cotact">Quản Lí</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Liên Hệ</li>
 						</ol>
 					</div>
 				</div>
 				<!-- End Breadcrumb-->
-				<!-- Content  -->
-				<!--Row-->
+				<!-- <div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								
+							</div>
+						</div>
+					</div>
+				</div> -->
 				<!--End Row-->
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-header">
-								<i class="fa fa-table"></i> Danh Sách Hóa Đơn
+								<i class="fa fa-table"></i> Danh Sách Liên Hệ
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="example" class="table table-bordered">
-										<thead class="thead-light">
-											<tr>
-												<th class="column-title text-center">Id</th>
-												<th class="column-title text-center">Khách Hàng</th>
-												<th class="column-title text-center">Tổng Tiền (VNĐ)</th>
-												<th class="column-title text-center">Ngày Tạo</th>
-												<th class="column-title text-center">Trạng Thái</th>
-												<th class="column-title text-center">Chức Năng</th>
+									<table id="default-datatable" class="table table-bordered">
+										<thead class="thead-dark">
+											<tr class="headings">
+												<th class="text-center">Mã</th>
+												<th class="text-center">Email</th>
+												<th class="text-center">Nội Dung</th>
+												<th class="text-center">Trạng Thái</th>
+												<th class="text-center">Ngày Tạo</th>
+												<th class="text-center">Thao Tác</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="order" items="${listOrder}">
+											<c:forEach var="listContact" items="${listContact}">
 												<tr class="even pointer">
-													<td class=" ">${order.id }</td>
-													<td class="lblidCustomer" data-id="${order.customer.id }">${order.customer.name }</td>
-													<td class="text-justify"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${order.totalmoney }" /></td>
-													<td class=" "><fmt:formatDate pattern = "yyyy-MM-dd" value = "${order.createAt}" /></td>
-													<td class="valEnabled "><span class=" check2 badge badge-danger shadow-danger m-1">${order.enabled == true ? "Đã Duyệt" : "Chờ Xử lý" }</span></td>
+													<td class="valId">${listContact.id }</td>
+													<td class="valEmail">${listContact.gmail }</td>
+													<td class=" ">${listContact.content }</td>
+													<td class="valEnabled"><span
+														class="badge badge-danger shadow-danger m-1 check">${listContact.enabled == true ? "Đã Xử Lý" : "Chưa Xử Lý"}</span></td>
+											 		<td class=" "><fmt:formatDate pattern = "dd-MM-yyyy" value = "${listContact.createAt}" /></td> 
 													<td class="text-center action">
-														<button type="button" data-id="${order.id }"
-															class="btn btn-outline-dark waves-effect waves-light m-1 show">
-															<i class="fa fa-pencil"> Xem</i>
-														</button>
 														<button type="button"
-															class="btn btn-outline-success waves-effect waves-light m-1 btnShow"
-															data-id="${order.id }" name="btnDelete">
-															<i class="fa fa-trash"> Xác Nhận</i>
-														</button>
-														<button type="button"
-															class="btn btn-outline-primary waves-effect waves-light m-1 btnprint"
-															data-id="${order.id }" name="btnDelete">
-															<i class="fa fa-print">In Hóa Đơn</i>
+															class="btn btn-warning shadow-warning waves-effect waves-light m-1 btnEdit"
+															data-id="${listContact.id }">
+															<i class="fa fa-pencil">Trả Lời</i>
 														</button>
 													</td>
 												</tr>
@@ -137,10 +126,8 @@
 					</div>
 				</div>
 				<!-- End Row-->
-
 			</div>
 			<!-- End container-fluid-->
-
 		</div>
 		<!--End content-wrapper-->
 		<!--Start Back To Top Button-->
@@ -151,29 +138,78 @@
 		<!--Start footer-->
 		<%@ include file="./block/footer.jsp"%>
 		<!--End footer-->
+		
 		<!-- Modal -->
-		<!-- Modal -->
-                <div class="modal fade" id="show-orderdetail">
-                  <div class="modal-dialog modal-lg" style="max-width: 1000px;">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Chi Tiết Đơn Hàng</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body" id="show-body">
-                        
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-inverse-primary" data-dismiss="modal"><i class="fa fa-times"></i> Đóng</button>
-                        <!-- <button type="button" class="btn btn-primary btnprint" data-dismiss="modal"><i class="fa fa-print"></i> In Hóa Đơn</button> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-		<!-- Modal -->
-		<!-- Side Modal Top Right -->
+		<div class="modal fade" id="edit-contact">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Trả Lời Liên Hệ</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form method="POST"
+						id="fileSendMailForm">
+						<div class="modal-body">
+							<hr>
+							<div class="form-group row" style="display: none">
+								<label for="input-27" class="col-sm-2 col-form-label">Id</label>
+								<div class="col-sm-10">
+									<input readonly="readonly" type="text" class="form-control form-control-rounded"
+										id="txtId" name="id" placeholder="Nhập Id">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="input-27" class="col-sm-2 col-form-label">Email</label>
+								<div class="col-sm-10">
+									<input readonly="readonly" type="text" class="form-control form-control-rounded"
+										id="txtEmail" name="email" placeholder="Nhập email">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="input-27" class="col-sm-2 col-form-label">Tiêu
+									đề</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control form-control-rounded"
+										id="txtTitle" name="title" placeholder="Nhập tiêu đề">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="input-27" class="col-sm-2 col-form-label">Nội
+									dung</label>
+								<div class="col-sm-10">
+									<textarea class="form-control form-control-rounded"
+										id="txtDescription" name="content" rows="10" placeholder="Nhập nội dung"></textarea>
+								</div>
+							</div>
+							<!-- <div class="form-group row">
+								<label for="input-12" class="col-sm-2 col-form-label">Hình
+									Ảnh</label>
+								<div class="col-sm-4">
+									<div class="custom-file">
+										<input name="image" type="file" class="custom-file-input"
+											id="addFile3"> <label
+											class="custom-file-label" for="inputGroupFile01">Chọn
+											hình Ảnh</label>
+									</div>
+								</div>
+							</div> -->
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-inverse-danger btnHide">
+								<i class="fa fa-times"></i> Xóa
+							</button>
+							<button type="button" class="btn btn-success btnSendMail">
+								<i class="fa fa-check-square-o"></i> Gởi
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!--End Modal -->
 	</div>
 	<!--End wrapper-->
 
@@ -215,46 +251,37 @@
 
 	<!--Sweet Alerts -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
 	<!--Toastr -->
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-	<!--Select Plugins Js-->
-	<script src="/resources/admin/assets/plugins/select2/js/select2.min.js"></script>
-	
-	<script src="/resources/admin/build/customJS/ajaxoforder.js"></script>
-	<script type="text/javascript">
-		toastr.options = {
-			"closeButton" : false,
-			"debug" : false,
-			"newestOnTop" : true,
-			"progressBar" : true,
-			"positionClass" : "toast-top-right",
-			"preventDuplicates" : false,
-			"onclick" : null,
-			"showDuration" : "300",
-			"hideDuration" : "1000",
-			"timeOut" : "5000",
-			"extendedTimeOut" : "1000",
-			"showEasing" : "swing",
-			"hideEasing" : "linear",
-			"showMethod" : "fadeIn",
-			"hideMethod" : "fadeOut"
-		}
+	<!-- Ajax  -->
+	<script src="/resources/admin/build/customJS/ajaxofcontact.js"></script>
+
+	<script>
+		$(document).ready(
+				function() {
+					//Default data table
+					$('#default-datatable').DataTable();
+
+					var table = $('#example').DataTable({
+						lengthChange : false,
+						buttons : [ 'copy', 'excel', 'pdf', 'print', 'colvis' ]
+					});
+
+					table.buttons().container().appendTo(
+							'#example_wrapper .col-md-6:eq(0)');
+
+				});
 	</script>
 	<script>
 		$(document).ready(function() {
-					//Default data table
-					$('#default-datatable').DataTable();
-					var table = $('#example').DataTable({
-								lengthChange : true,
-								buttons : [ 'copy', 'excel', 'pdf', 'print',
-										'colvis' ],
-								"lengthMenu" : [ [ 5, 10, 25, 50, -1 ],
-										[ 5, 10, 25, 50, "All" ] ]
-							});
-					table.buttons().container().appendTo(
-							'#example_wrapper .col-md-6:eq(0)');
-				});
+							$(".check:contains('Đã Xử Lý')").removeClass("badge badge-danger shadow-danger m-1").addClass("badge badge-primary shadow-primary m-1");
+							$(document).on('click','.page-link',function() {
+							$(".check:contains('Đã Xử Lý')").removeClass("badge badge-danger shadow-danger m-1").addClass("badge badge-primary shadow-primary m-1");
+									})
+						});
 	</script>
+
 </body>
 </html>

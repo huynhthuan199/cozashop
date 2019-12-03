@@ -26,10 +26,13 @@
 	<link rel="stylesheet" type="text/css" href="resources/web/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="resources/web/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!-- Toastr -->
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="resources/web/css/util.css">
 	<link rel="stylesheet" type="text/css" href="resources/web/css/main.css">
 <!--===============================================================================================-->
+
 </head>
 <body class="animsition">
 	
@@ -48,29 +51,28 @@
 			Liên hệ
 		</h2>
 	</section>	
-
-
 	<!-- Content page -->
 	<section class="bg0 p-t-104 p-b-116">
 		<div class="container">
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					<form>
+					<form method="POST"
+						id="fileSendForm">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							Gửi tin nhắn cho chúng tôi
 						</h4>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
-							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Địa chỉ email của bạn">
+							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="gmail" placeholder="Địa chỉ email của bạn">
 							<img class="how-pos4 pointer-none" src="resources/web/images/icons/icon-email.png" alt="ICON">
 						</div>
 
 						<div class="bor8 m-b-30">
-							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="Bạn cần giúp gì ?"></textarea>
+							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="content" placeholder="Bạn cần giúp gì ?"></textarea>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-							Submit
+						<button type="button" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer btnSend">
+							Gởi Chúng Tôi
 						</button>
 					</form>
 				</div>
@@ -80,7 +82,6 @@
 						<span class="fs-18 cl5 txt-center size-211">
 							<span class="lnr lnr-map-marker"></span>
 						</span>
-
 						<div class="size-212 p-t-2">
 							<span class="mtext-110 cl2">
 								Địa chỉ
@@ -119,7 +120,7 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								huynng1@gmail.com
+								thuannhps07773@fpt.edu.vn (Coza Shop)
 							</p>
 						</div>
 					</div>
@@ -189,7 +190,35 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
 	<script src="resources/web/js/map-custom.js"></script>
 <!--===============================================================================================-->
+<!--Sweet Alerts -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+	<!--Toastr -->
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<script src="resources/web/js/main.js"></script>
 <script src="/resources/web/js/custom.js"></script>
+
+
+		<script type="text/javascript">
+		toastr.options = {
+			"closeButton" : false,
+			"debug" : false,
+			"newestOnTop" : true,
+			"progressBar" : true,
+			"positionClass" : "toast-top-right",
+			"preventDuplicates" : false,
+			"onclick" : null,
+			"showDuration" : "300",
+			"hideDuration" : "1000",
+			"timeOut" : "5000",
+			"extendedTimeOut" : "1000",
+			"showEasing" : "swing",
+			"hideEasing" : "linear",
+			"showMethod" : "fadeIn",
+			"hideMethod" : "fadeOut"
+		}
+	</script>
+		<!-- Ajax  -->
+	<script src="/resources/admin/build/customJS/ajaxofcontact.js"></script>
 </body>
 </html>

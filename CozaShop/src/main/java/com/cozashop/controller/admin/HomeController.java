@@ -40,6 +40,7 @@ public class HomeController {
 	
 	@Autowired
 	private OrderDetailService orderDetailService;
+	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping({"","home"})
 	public String index(Model model) {

@@ -218,11 +218,11 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <div class="card-title text-dark mx-auto">Thông Tin Màu Sắc</div>
+                        <div class="card-title text-dark mx-auto">Thông Tin Khuyến Mãi</div>
 						<hr>
 						<div class="form-group row">
 							<label for="input-26" class="col-sm-2 col-form-label">Mã
-								Màu Sắc</label>
+								Khuyến Mãi</label>
 							<div class="col-sm-10">
 								<input readonly type="text" class="form-control form-control-rounded"
 									id="txtId" placeholder="">

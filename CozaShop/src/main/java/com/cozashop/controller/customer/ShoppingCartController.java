@@ -69,6 +69,7 @@ public class ShoppingCartController {
 	
 	@Autowired
 	private GiftService giftService;
+	
 	@Autowired
 	private EmailService emailService;
 
@@ -251,7 +252,6 @@ public class ShoppingCartController {
 		sendmail.append("</thead>");
 		sendmail.append("<tbody>");
 		for (Map.Entry<String, Cart> list : listCart.entrySet()) {
-			
 			Product product = infoProductService.finById(list.getKey());
 			if(product != null) {
 				orderDetailService.save(new OrderDetails(product,order,list.getValue().getQuantity(),list.getValue().getProduct().getPrice()));

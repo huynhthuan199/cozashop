@@ -1,8 +1,7 @@
 package com.cozashop.entities;
 
 import java.io.Serializable;
-
-import javax.annotation.Generated;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,17 +12,46 @@ import javax.persistence.Table;
 @Table(name = "contact")
 public class Contact extends BaseEntity  implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String gmail;
 	private String content;
 
-	public Contact(int id, String gmail, String content) {
+	public Contact(String gmail, String content) {
 		super();
 		this.gmail = gmail;
 		this.content = content;
 	}
+	
+	
+
+	public Contact(int id, String gmail, String content) {
+		super();
+		this.id = id;
+		this.gmail = gmail;
+		this.content = content;
+	}
+	
+	public Contact(String gmail, String content,Date createAt,boolean enabled) {
+		super();
+		this.gmail = gmail;
+		this.content = content;
+		this.createAt = createAt;
+		this.enabled = enabled;
+	}
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 
 	public Contact() {
 		super();

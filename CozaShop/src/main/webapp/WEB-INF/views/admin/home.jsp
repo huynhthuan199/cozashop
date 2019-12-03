@@ -244,7 +244,7 @@
 
 
       <div class="row">
-         <div class="col-12 col-lg-6 col-xl-8">
+         <div class="col-12 col-lg-12 col-xl-12">
            <div class="card">
              <div class="card-header border-0">
               Danh Sách Khách Hàng Mới
@@ -290,72 +290,6 @@
              </table>
            </div>
            </div>
-         </div>
-         <div class="col-12 col-lg-6 col-xl-4">
-           <div class="card">
-              <div class="card-header">Social Traffic</div>
-              <div class="card-body">
-                 <div class="media align-items-center">
-                   <div><i class="fa fa-facebook-square fa-2x text-facebook"></i></div>
-                     <div class="media-body text-left ml-3">
-                       <div class="progress-wrapper">
-                         <p>Facebook <span class="float-right">65%</span></p>
-                         <div class="progress" style="height: 7px;">
-                          <div class="progress-bar bg-facebook" style="width:65%"></div>
-                         </div>
-                        </div>                   
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="media align-items-center">
-                   <div><i class="fa fa-twitter fa-2x text-twitter"></i></div>
-                     <div class="media-body text-left ml-3">
-                       <div class="progress-wrapper">
-                         <p>Twitter <span class="float-right">50%</span></p>
-                         <div class="progress" style="height: 7px;">
-                          <div class="progress-bar bg-twitter" style="width:50%"></div>
-                         </div>
-                        </div>                   
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="media align-items-center">
-                   <div><i class="fa fa-dribbble fa-2x text-dribbble"></i></div>
-                     <div class="media-body text-left ml-3">
-                       <div class="progress-wrapper">
-                         <p>Dribble <span class="float-right">70%</span></p>
-                         <div class="progress" style="height: 7px;">
-                          <div class="progress-bar bg-dribbble" style="width:70%"></div>
-                         </div>
-                        </div>                   
-                    </div>
-                  </div>
-                   <hr>
-                  <div class="media align-items-center">
-                   <div><i class="fa fa-linkedin-square fa-2x text-linkedin"></i></div>
-                     <div class="media-body text-left ml-3">
-                       <div class="progress-wrapper">
-                         <p>Linkedin <span class="float-right">35%</span></p>
-                         <div class="progress" style="height: 7px;">
-                          <div class="progress-bar bg-linkedin" style="width:35%"></div>
-                         </div>
-                        </div>                   
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="media align-items-center">
-                   <div><i class="fa fa-youtube-square fa-2x text-youtube"></i></div>
-                     <div class="media-body text-left ml-3">
-                       <div class="progress-wrapper">
-                         <p>Youtube <span class="float-right">5%</span></p>
-                         <div class="progress" style="height: 7px;">
-                          <div class="progress-bar bg-youtube" style="width:25%"></div>
-                         </div>
-                        </div>                   
-                    </div>
-                  </div>
-              </div>
-            </div>
          </div>
       </div><!--End Row-->
 
@@ -660,7 +594,6 @@
    				  myChart2.data.datasets[0].data = totalProduct;
    				  myChart2.update();
    				});
- 		
  	})
   </script>
 </body>
